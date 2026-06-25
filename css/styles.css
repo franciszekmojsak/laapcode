@@ -300,33 +300,52 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 .services__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  gap: 24px;
 }
 .service-card {
   background: var(--white);
-  padding: 36px 28px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
-.service-card__num {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 20px;
+.service-card__body {
+  padding: 32px 28px 24px;
+}
+.service-card__icon {
+  display: block;
+  color: var(--text);
+  margin-bottom: 22px;
 }
 .service-card__title {
   font-size: 22px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.service-card__intro {
+  font-size: 14px;
+  color: var(--text-2);
   margin-bottom: 18px;
 }
 .service-card__list li {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-2);
   padding: 8px 0;
   border-top: 1px solid var(--border);
 }
 .service-card__list li:first-child { border-top: none; }
+.service-card__media {
+  flex: 1;
+  min-height: 220px;
+  background: var(--bg);
+}
+.service-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* =============================================
    CENNIK
