@@ -58,7 +58,7 @@ section[id] {
    ============================================= */
 .brand-bar {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: var(--nav-h); left: 0; right: 0;
   height: 3px;
   background: var(--accent);
   z-index: 1100;
@@ -70,11 +70,10 @@ section[id] {
    ============================================= */
 .nav {
   position: fixed;
-  top: 3px; left: 0; right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 1000;
   height: var(--nav-h);
   background: var(--bg);
-  border-bottom: 1px solid var(--border);
 }
 
 .nav__inner {
@@ -190,16 +189,18 @@ section[id] {
    ELEMENTY WSPÓLNE — eyebrow / przyciski / tytuły sekcji
    ============================================= */
 .eyebrow {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
   color: var(--accent);
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .section__title {
-  font-size: clamp(28px, 3.4vw, 40px);
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   margin-bottom: 36px;
   max-width: 640px;
 }
@@ -269,8 +270,6 @@ main { padding-top: calc(var(--nav-h) + 3px); }
    ============================================= */
 .clients {
   padding: 48px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
 .section__caption {
   font-size: 13px;
@@ -332,40 +331,36 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 /* =============================================
    CENNIK
    ============================================= */
-.pricing { padding: 96px 0; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pricing { padding: 96px 0; background: var(--white); }
 
-.pricing__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+.pricing__list {
+  max-width: 760px;
 }
-.price-card {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 28px;
-  background: var(--bg);
+.pricing__group {
+  margin-bottom: 44px;
 }
-.price-card__title {
-  font-size: 19px;
-  margin-bottom: 20px;
+.pricing__group:last-child { margin-bottom: 0; }
+.pricing__group-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 4px;
 }
 .price-list li {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  gap: 12px;
-  padding: 10px 0;
+  gap: 4px 24px;
+  padding: 18px 0;
   border-top: 1px solid var(--border);
-  font-size: 14px;
+  font-size: 16px;
 }
 .price-list li:first-child { border-top: none; }
-.price-list li span { color: var(--text-2); }
+.price-list li span { color: var(--text); }
 .price-list li strong { white-space: nowrap; font-weight: 700; }
-.price-card__text {
-  font-size: 14px;
-  color: var(--text-2);
-  margin-bottom: 10px;
-}
 
 /* =============================================
    PORTFOLIO — sekcja wizualna, puste przestrzenie na kolaż
@@ -393,7 +388,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 /* =============================================
    O MNIE
    ============================================= */
-.about { padding: 96px 0; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.about { padding: 96px 0; background: var(--white); }
 
 .about__inner {
   display: grid;
@@ -445,7 +440,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 /* =============================================
    KONTAKT
    ============================================= */
-.contact { padding: 96px 0; background: var(--white); border-top: 1px solid var(--border); }
+.contact { padding: 96px 0; background: var(--white); }
 
 .contact__inner {
   display: grid;
@@ -570,7 +565,6 @@ main { padding-top: calc(var(--nav-h) + 3px); }
    ============================================= */
 @media (max-width: 980px) {
   .services__grid,
-  .pricing__grid,
   .blog__grid { grid-template-columns: 1fr; }
   .about__inner { grid-template-columns: 1fr; }
   .about__photo { width: 160px; }
