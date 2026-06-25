@@ -126,7 +126,7 @@ section[id] {
   flex-shrink: 0;
   padding: 9px 20px;
   border: 1.5px solid var(--accent);
-  border-radius: 999px;
+  border-radius: 6px;
   color: var(--accent);
   background: transparent;
   font-size: 14px;
@@ -209,7 +209,7 @@ section[id] {
   align-items: center;
   gap: 8px;
   padding: 13px 26px;
-  border-radius: 999px;
+  border-radius: 6px;
   font-size: 15px;
   font-weight: 700;
   border: 1.5px solid transparent;
