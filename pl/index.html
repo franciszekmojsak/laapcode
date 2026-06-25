@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laap Code — strony internetowe, importy produktowe, wdrożenia AI</title>
+  <meta name="description" content="Projektowanie stron internetowych, automatyzacja importów produktowych i wdrożenia AI dla małych i średnich firm." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <!-- Cienka bordowa kreska na samej górze — jedyny "duży" akcent, ale minimalny (3px) -->
+  <div class="brand-bar"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
+        <!-- Placeholder znaku marki: pierścień z punktem + nawiasy kodu — do zamiany na finalne logo -->
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="40" height="20" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+        <span class="nav__logo-text">Laap Code</span>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="#usaugi">Usługi</a></li>
+        <li><a href="#cennik">Cennik</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#o-mnie">O mnie</a></li>
+        <li><a href="#blog">Blog</a></li>
+      </ul>
+
+      <a class="nav__cta" href="#kontakt">Kontakt</a>
+
+      <button class="nav__hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav__mobile" id="navMobile">
+    <ul class="nav__mobile-links">
+      <li><a href="#usaugi">Usługi</a></li>
+      <li><a href="#cennik">Cennik</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#o-mnie">O mnie</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="inner">
+        <p class="eyebrow">Laap Code</p>
+        <!-- Hero — treść świadomie odłożona na koniec (po ustaleniu reszty sekcji) -->
+        <h1 class="hero__title hero__title--placeholder">[ Nagłówek hero — do napisania na końcu ]</h1>
+        <p class="hero__sub hero__sub--placeholder">[ Krótki opis pod nagłówkiem — do napisania razem z hero ]</p>
+        <div class="hero__ctas">
+          <a class="btn btn--filled" href="#kontakt">Napisz do mnie</a>
+          <a class="btn btn--ghost" href="#usaugi">Zobacz usługi</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PAS LOGO KLIENTÓW ========== -->
+    <section class="clients" id="klienci">
+      <div class="inner">
+        <p class="section__caption">Zrealizowane współprace</p>
+        <div class="clients__row">
+          <!-- 10 placeholderów — do podmiany na realne loga klientów po uzyskaniu zgód -->
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+          <span class="client-logo"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== USŁUGI ========== -->
+    <section class="services" id="usaugi">
+      <div class="inner">
+        <p class="eyebrow">01 — Usługi</p>
+        <h2 class="section__title">Czym się zajmuję</h2>
+
+        <div class="services__grid">
+
+          <article class="service-card">
+            <span class="service-card__num">01</span>
+            <h3 class="service-card__title">Strony internetowe</h3>
+            <ul class="service-card__list">
+              <li>Design i identyfikacja wizualna</li>
+              <li>Wdrożenie (GitHub + Vercel)</li>
+              <li>Bez opłat miesięcznych</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <span class="service-card__num">02</span>
+            <h3 class="service-card__title">Importy produktowe</h3>
+            <ul class="service-card__list">
+              <li>Przygotowanie baz produktów pod docelowy system</li>
+              <li>Automatyzacja i skrócenie czasu importu</li>
+              <li>Masowe importy</li>
+              <li>Stała współpraca na preferencyjnych warunkach dla klientów regularnych</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <span class="service-card__num">03</span>
+            <h3 class="service-card__title">Wdrożenia AI</h3>
+            <ul class="service-card__list">
+              <li>Bazy klientów</li>
+              <li>Mailingi</li>
+              <li>Automatyzacje</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CENNIK ========== -->
+    <section class="pricing" id="cennik">
+      <div class="inner">
+        <p class="eyebrow">02 — Cennik</p>
+        <h2 class="section__title">Ile to kosztuje</h2>
+
+        <div class="pricing__grid">
+
+          <article class="price-card">
+            <h3 class="price-card__title">Strony internetowe</h3>
+            <ul class="price-list">
+              <li><span>Strona internetowa</span><strong>od 800 zł netto</strong></li>
+              <li><span>Więcej podstron, blog itp.</span><strong>od 2000 zł netto</strong></li>
+              <li><span>Projekty zaawansowane / indywidualne</span><strong>do konsultacji</strong></li>
+            </ul>
+          </article>
+
+          <article class="price-card">
+            <h3 class="price-card__title">Importy i bazy produktowe</h3>
+            <p class="price-card__text">Wycena indywidualna — zależna od systemu, ilości produktów itp.</p>
+            <p class="price-card__text">Stała współpraca (regularne importy) — preferencyjne warunki.</p>
+          </article>
+
+          <article class="price-card">
+            <h3 class="price-card__title">Wdrożenia AI</h3>
+            <p class="price-card__text">Wycena indywidualna, w zależności od potrzeb klienta.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PORTFOLIO ========== -->
+    <!-- Sekcja wizualna, bez treści tekstowej — puste przestrzenie na kolaż realizacji -->
+    <section class="portfolio" id="portfolio">
+      <div class="inner">
+        <p class="eyebrow">03 — Portfolio</p>
+        <h2 class="section__title">Zrealizowane projekty</h2>
+
+        <div class="portfolio__grid">
+          <div class="portfolio__cell portfolio__cell--a"></div>
+          <div class="portfolio__cell portfolio__cell--b"></div>
+          <div class="portfolio__cell portfolio__cell--c"></div>
+          <div class="portfolio__cell portfolio__cell--d"></div>
+          <div class="portfolio__cell portfolio__cell--e"></div>
+          <div class="portfolio__cell portfolio__cell--f"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== O MNIE ========== -->
+    <section class="about" id="o-mnie">
+      <div class="inner about__inner">
+        <div class="about__photo"></div>
+        <div class="about__text">
+          <p class="eyebrow">04 — O mnie</p>
+          <p>Nazywam się Franciszek Mojsak. Od czterech lat łączę doświadczenie w e-commerce, sprzedaży, grafice i sztucznej inteligencji — i z tego połączenia powstała ta oferta. Pracuję sam, ale od początku do końca: projektuję, wdrażam i utrzymuję rozwiązania, które realnie ułatwiają prowadzenie biznesu, bez zbędnych kosztów i komplikacji. Lubię, kiedy technologia działa w tle i po prostu ułatwia życie — niezależnie, czy to nowa strona, zautomatyzowany import produktów, czy wdrożenie AI w firmie.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BLOG ========== -->
+    <section class="blog" id="blog">
+      <div class="inner">
+        <p class="eyebrow">05 — Blog</p>
+        <h2 class="section__title">Najnowsze wpisy</h2>
+
+        <div class="blog__grid">
+          <article class="blog-card blog-card--placeholder">
+            <span>Wpis w przygotowaniu</span>
+          </article>
+          <article class="blog-card blog-card--placeholder">
+            <span>Wpis w przygotowaniu</span>
+          </article>
+          <article class="blog-card blog-card--placeholder">
+            <span>Wpis w przygotowaniu</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== KONTAKT ========== -->
+    <section class="contact" id="kontakt">
+      <div class="inner contact__inner">
+
+        <div class="contact__left">
+          <p class="eyebrow">06 — Kontakt</p>
+          <h2 class="section__title">Napisz do mnie</h2>
+          <p class="contact__sub">Opisz, czego potrzebujesz — odpiszę w ciągu 24 godzin.</p>
+          <a class="contact__email" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
+        </div>
+
+        <!-- TODO: podmienić na właściwy Formspree ID -->
+        <form class="contact__form" method="POST" action="https://formspree.io/f/XXXXXXXX">
+          <div class="service-chips">
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Strony internetowe"> Strony internetowe</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Importy produktowe"> Importy produktowe</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Wdrożenia AI"> Wdrożenia AI</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Inne"> Inne</label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="imie">Imię i nazwisko</label>
+              <input type="text" id="imie" name="imie" placeholder="Jan Kowalski" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jan@firma.pl" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="tel">Telefon <span class="form-optional">(opcjonalnie)</span></label>
+            <input type="tel" id="tel" name="telefon" placeholder="+48 000 000 000" />
+          </div>
+
+          <div class="form-field">
+            <label for="wiadomosc">Opisz projekt</label>
+            <textarea id="wiadomosc" name="wiadomosc" placeholder="Co, dla kogo, w jakim terminie." required></textarea>
+          </div>
+
+          <div class="form-consent">
+            <input type="checkbox" id="rodo" name="rodo" required />
+            <label for="rodo">Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie.</label>
+          </div>
+
+          <button type="submit" class="btn btn--filled">Wyślij wiadomość →</button>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="inner footer__inner">
+
+      <div class="footer__brand">
+        <a class="footer__logo" href="#hero">
+          <svg class="nav__logo-mark" viewBox="0 0 64 32" width="32" height="16" fill="none">
+            <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+          </svg>
+          <span class="footer__logo-text">Laap Code</span>
+        </a>
+        <a class="footer__contact" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
+      </div>
+
+      <nav class="footer__col">
+        <p class="footer__col-heading">Strona</p>
+        <a class="footer__link" href="#usaugi">Usługi</a>
+        <a class="footer__link" href="#cennik">Cennik</a>
+        <a class="footer__link" href="#portfolio">Portfolio</a>
+        <a class="footer__link" href="#o-mnie">O mnie</a>
+        <a class="footer__link" href="#blog">Blog</a>
+      </nav>
+
+      <nav class="footer__col">
+        <p class="footer__col-heading">Usługi</p>
+        <span class="footer__link footer__link--static">Strony internetowe</span>
+        <span class="footer__link footer__link--static">Importy produktowe</span>
+        <span class="footer__link footer__link--static">Wdrożenia AI</span>
+      </nav>
+
+    </div>
+
+    <div class="inner footer__bottom">
+      <span class="footer__copy">© <span id="year"></span> Laap Code</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
