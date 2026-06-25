@@ -7,7 +7,7 @@
   <meta name="description" content="Projektowanie stron internetowych, automatyzacja importów produktowych i wdrożenia AI dla małych i średnich firm." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
@@ -184,26 +184,77 @@
 
           <div class="pricing__group">
             <p class="pricing__group-title">Strony internetowe</p>
-            <ul class="price-list">
-              <li><span>Strona internetowa</span><strong>od 800 zł netto</strong></li>
-              <li><span>Więcej podstron, blog itp.</span><strong>od 2000 zł netto</strong></li>
-              <li><span>Projekty zaawansowane / indywidualne</span><strong>do konsultacji</strong></li>
-            </ul>
+            <table class="price-table">
+              <thead>
+                <tr>
+                  <th class="price-table__num">#</th>
+                  <th>Usługa</th>
+                  <th class="price-table__price">Cena</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="price-table__num">1</td>
+                  <td>Strona internetowa</td>
+                  <td class="price-table__price">od 800 zł netto</td>
+                </tr>
+                <tr>
+                  <td class="price-table__num">2</td>
+                  <td>Więcej podstron, blog itp.</td>
+                  <td class="price-table__price">od 2000 zł netto</td>
+                </tr>
+                <tr>
+                  <td class="price-table__num">3</td>
+                  <td>Projekty zaawansowane / indywidualne</td>
+                  <td class="price-table__price">do konsultacji</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="pricing__group">
             <p class="pricing__group-title">Importy i bazy produktowe</p>
-            <ul class="price-list">
-              <li><span>Import i baza produktowa</span><strong>wycena indywidualna</strong></li>
-              <li><span>Stała współpraca (regularne importy)</span><strong>warunki preferencyjne</strong></li>
-            </ul>
+            <table class="price-table">
+              <thead>
+                <tr>
+                  <th class="price-table__num">#</th>
+                  <th>Usługa</th>
+                  <th class="price-table__price">Cena</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="price-table__num">1</td>
+                  <td>Import i baza produktowa</td>
+                  <td class="price-table__price">wycena indywidualna</td>
+                </tr>
+                <tr>
+                  <td class="price-table__num">2</td>
+                  <td>Stała współpraca (regularne importy)</td>
+                  <td class="price-table__price">warunki preferencyjne</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="pricing__group">
             <p class="pricing__group-title">Wdrożenia AI</p>
-            <ul class="price-list">
-              <li><span>Bazy klientów, mailingi, automatyzacje</span><strong>wycena indywidualna</strong></li>
-            </ul>
+            <table class="price-table">
+              <thead>
+                <tr>
+                  <th class="price-table__num">#</th>
+                  <th>Usługa</th>
+                  <th class="price-table__price">Cena</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="price-table__num">1</td>
+                  <td>Bazy klientów, mailingi, automatyzacje</td>
+                  <td class="price-table__price">wycena indywidualna</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
         </div>
@@ -230,31 +281,96 @@
 
     <!-- ========== O MNIE ========== -->
     <section class="about" id="o-mnie">
-      <div class="inner about__inner">
-        <div class="about__photo"></div>
-        <div class="about__text">
+      <div class="about__card">
+        <div class="inner">
           <p class="eyebrow">04 — O mnie</p>
-          <p>Nazywam się Franciszek Mojsak. Od czterech lat łączę doświadczenie w e-commerce, sprzedaży, grafice i sztucznej inteligencji — i z tego połączenia powstała ta oferta. Pracuję sam, ale od początku do końca: projektuję, wdrażam i utrzymuję rozwiązania, które realnie ułatwiają prowadzenie biznesu, bez zbędnych kosztów i komplikacji. Lubię, kiedy technologia działa w tle i po prostu ułatwia życie — niezależnie, czy to nowa strona, zautomatyzowany import produktów, czy wdrożenie AI w firmie.</p>
+
+          <h2 class="about__headline">
+            <span class="about__headline-line">o</span>
+            <span class="about__headline-line about__headline-row">mnie.
+              <!-- TODO: zdjęcie placeholder z neta — do zamiany na właściwe -->
+              <span class="about__photo"><img src="https://picsum.photos/seed/laapcode-about/300/300" alt="Franciszek Mojsak" loading="lazy" /></span>
+            </span>
+          </h2>
+
+          <p class="about__hello">Miło Cię poznać!</p>
+          <p class="about__bio">Nazywam się Franciszek Mojsak. Od czterech lat łączę doświadczenie w e-commerce, sprzedaży, grafice i sztucznej inteligencji — i z tego połączenia powstała ta oferta. Pracuję sam, ale od początku do końca: projektuję, wdrażam i utrzymuję rozwiązania, które realnie ułatwiają prowadzenie biznesu, bez zbędnych kosztów i komplikacji. Lubię, kiedy technologia działa w tle i po prostu ułatwia życie — niezależnie, czy to nowa strona, zautomatyzowany import produktów, czy wdrożenie AI w firmie.</p>
+
+          <p class="about__signature">Franciszek Mojsak</p>
         </div>
       </div>
     </section>
 
     <!-- ========== BLOG ========== -->
+    <!-- Treść przykładowa/placeholder — realne wpisy i linki do podstron pojawią się później -->
     <section class="blog" id="blog">
       <div class="inner">
-        <p class="eyebrow">05 — Blog</p>
-        <h2 class="section__title">Najnowsze wpisy</h2>
+        <div class="blog__head">
+          <div>
+            <p class="eyebrow">05 — Blog</p>
+            <h2 class="section__title">Najnowsze wpisy</h2>
+          </div>
+          <a class="blog__see-more" href="#blog">Zobacz więcej →</a>
+        </div>
 
-        <div class="blog__grid">
-          <article class="blog-card blog-card--placeholder">
-            <span>Wpis w przygotowaniu</span>
+        <div class="blog__list">
+
+          <article class="blog-row">
+            <p class="blog-row__date">12 cze</p>
+            <div class="blog-row__content">
+              <div class="blog-row__media">
+                <img src="https://picsum.photos/seed/laapcode-blog1/220/220" alt="" loading="lazy" />
+              </div>
+              <div class="blog-row__body">
+                <h3 class="blog-row__title">Jak wygląda dobry proces wdrożenia strony internetowej</h3>
+                <p class="blog-row__excerpt">Od briefu, przez projekt, po wdrożenie na produkcję — krok po kroku, bez zaskoczeń po drodze.</p>
+                <a class="blog-row__read" href="#blog">Czytaj →</a>
+              </div>
+            </div>
           </article>
-          <article class="blog-card blog-card--placeholder">
-            <span>Wpis w przygotowaniu</span>
+
+          <article class="blog-row">
+            <p class="blog-row__date">28 maj</p>
+            <div class="blog-row__content">
+              <div class="blog-row__media">
+                <img src="https://picsum.photos/seed/laapcode-blog2/220/220" alt="" loading="lazy" />
+              </div>
+              <div class="blog-row__body">
+                <h3 class="blog-row__title">Automatyzacja importu produktów — od czego zacząć</h3>
+                <p class="blog-row__excerpt">Największe błędy przy migracji bazy produktowej i jak ich uniknąć przy dużych wolumenach.</p>
+                <a class="blog-row__read" href="#blog">Czytaj →</a>
+              </div>
+            </div>
           </article>
-          <article class="blog-card blog-card--placeholder">
-            <span>Wpis w przygotowaniu</span>
+
+          <article class="blog-row">
+            <p class="blog-row__date">15 maj</p>
+            <div class="blog-row__content">
+              <div class="blog-row__media">
+                <img src="https://picsum.photos/seed/laapcode-blog3/220/220" alt="" loading="lazy" />
+              </div>
+              <div class="blog-row__body">
+                <h3 class="blog-row__title">Czy małe firmy potrzebują AI? Praktyczne przykłady</h3>
+                <p class="blog-row__excerpt">Trzy proste automatyzacje, które realnie odciążają lokalny biznes — bez wielkiego budżetu.</p>
+                <a class="blog-row__read" href="#blog">Czytaj →</a>
+              </div>
+            </div>
           </article>
+
+          <article class="blog-row">
+            <p class="blog-row__date">30 kwi</p>
+            <div class="blog-row__content">
+              <div class="blog-row__media">
+                <img src="https://picsum.photos/seed/laapcode-blog4/220/220" alt="" loading="lazy" />
+              </div>
+              <div class="blog-row__body">
+                <h3 class="blog-row__title">Ile kosztuje strona internetowa w 2026 roku?</h3>
+                <p class="blog-row__excerpt">Realny rozkład kosztów — od prostej wizytówki do rozwiniętego serwisu z blogiem.</p>
+                <a class="blog-row__read" href="#blog">Czytaj →</a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>

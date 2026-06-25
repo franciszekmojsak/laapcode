@@ -350,7 +350,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 /* =============================================
    CENNIK
    ============================================= */
-.pricing { padding: 96px 0; background: var(--white); }
+.pricing { padding: 96px 0; }
 
 .pricing__list {
   max-width: 760px;
@@ -367,19 +367,38 @@ main { padding-top: calc(var(--nav-h) + 3px); }
   color: var(--text-2);
   margin-bottom: 4px;
 }
-.price-list li {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 4px 24px;
-  padding: 18px 0;
-  border-top: 1px solid var(--border);
-  font-size: 16px;
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
 }
-.price-list li:first-child { border-top: none; }
-.price-list li span { color: var(--text); }
-.price-list li strong { white-space: nowrap; font-weight: 700; }
+.price-table thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.price-table tbody td {
+  padding: 14px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text);
+}
+.price-table tbody tr:last-child td { border-bottom: none; }
+.price-table__num {
+  width: 32px;
+  color: var(--text-2);
+  font-size: 13px;
+}
+.price-table__price {
+  text-align: right;
+  font-weight: 700;
+  white-space: nowrap;
+}
+thead .price-table__price { text-align: right; }
 
 /* =============================================
    PORTFOLIO — sekcja wizualna, puste przestrzenie na kolaż
@@ -407,25 +426,64 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 /* =============================================
    O MNIE
    ============================================= */
-.about { padding: 96px 0; background: var(--white); }
+.about { padding: 96px 0; }
 
-.about__inner {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 56px;
-  align-items: start;
+.about__card {
+  background: var(--text);
+  border-radius: 28px;
+  padding: 72px 0;
+}
+.about__card .eyebrow { color: var(--accent); }
+
+.about__headline {
+  color: var(--white);
+  font-size: clamp(52px, 9vw, 116px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+  margin: 4px 0 32px;
+}
+.about__headline-line { display: block; }
+.about__headline-row {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
 }
 .about__photo {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background: var(--bg);
-  border: 1px dashed var(--border);
-  border-radius: 10px;
+  display: inline-flex;
+  width: 0.85em;
+  height: 0.85em;
+  border-radius: 0.18em;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--text-2);
 }
-.about__text p {
-  font-size: 17px;
-  color: var(--text-2);
-  max-width: 640px;
+.about__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about__hello {
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.about__bio {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+.about__signature {
+  font-family: 'Caveat', cursive;
+  font-size: 42px;
+  color: var(--white);
+  text-align: right;
 }
 
 /* =============================================
@@ -433,33 +491,77 @@ main { padding-top: calc(var(--nav-h) + 3px); }
    ============================================= */
 .blog { padding: 96px 0; }
 
-.blog__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.blog__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 24px;
 }
-.blog-card {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--white);
+.blog__see-more {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 1.5px solid var(--text);
+  padding-bottom: 2px;
+  flex-shrink: 0;
+  margin-bottom: 36px;
+  transition: color 0.15s, border-color 0.15s;
 }
-.blog-card--placeholder {
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-style: dashed;
+.blog__see-more:hover { color: var(--accent); border-color: var(--accent); }
+
+.blog-row {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
 }
-.blog-card--placeholder span {
+.blog__list .blog-row:first-child { border-top: none; }
+
+.blog-row__date {
   font-size: 13px;
+  font-weight: 600;
   color: var(--text-2);
-  font-style: italic;
+  margin-bottom: 14px;
+}
+.blog-row__content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.blog-row__media {
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg);
+  flex-shrink: 0;
+}
+.blog-row__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.blog-row__body { flex: 1; min-width: 0; }
+.blog-row__title {
+  font-size: 18px;
+  margin-bottom: 6px;
+  max-width: 560px;
+}
+.blog-row__excerpt {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 10px;
+  max-width: 560px;
+}
+.blog-row__read {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
 }
 
 /* =============================================
    KONTAKT
    ============================================= */
-.contact { padding: 96px 0; background: var(--white); }
+.contact { padding: 96px 0; }
 
 .contact__inner {
   display: grid;
@@ -583,10 +685,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
    RESPONSIVE
    ============================================= */
 @media (max-width: 980px) {
-  .services__grid,
-  .blog__grid { grid-template-columns: 1fr; }
-  .about__inner { grid-template-columns: 1fr; }
-  .about__photo { width: 160px; }
+  .services__grid { grid-template-columns: 1fr; }
   .contact__inner { grid-template-columns: 1fr; gap: 40px; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .portfolio__grid {
@@ -607,4 +706,9 @@ main { padding-top: calc(var(--nav-h) + 3px); }
   .nav__hamburger { display: flex; }
   .form-row { grid-template-columns: 1fr; }
   .footer__inner { grid-template-columns: 1fr; gap: 32px; }
+  .about__card { padding: 48px 0; }
+  .about__signature { text-align: left; margin-top: 8px; }
+  .blog-row__media { width: 64px; height: 64px; }
+  .blog__head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .blog__see-more { margin-bottom: 24px; }
 }
