@@ -7,7 +7,7 @@
   <meta name="description" content="Projektowanie stron internetowych, automatyzacja importów produktowych i wdrożenia AI dla małych i średnich firm." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
@@ -18,17 +18,6 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav__inner">
-      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
-        <!-- Placeholder znaku marki: pierścień z punktem + nawiasy kodu — do zamiany na finalne logo -->
-        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="40" height="20" fill="none">
-          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
-        </svg>
-        <span class="nav__logo-text">Laap Code</span>
-      </a>
-
       <ul class="nav__links">
         <li><a href="#usaugi">Usługi</a></li>
         <li><a href="#cennik">Cennik</a></li>
@@ -37,11 +26,22 @@
         <li><a href="#blog">Blog</a></li>
       </ul>
 
-      <a class="nav__cta" href="#kontakt">Kontakt</a>
+      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
+        <!-- Placeholder znaku marki: pierścień z punktem + nawiasy kodu — do zamiany na finalne logo -->
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="48" height="24" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+      </a>
 
-      <button class="nav__hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__right">
+        <a class="nav__cta" href="#kontakt">Skontaktuj się</a>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -62,29 +62,31 @@
     <!-- ========== HERO ========== -->
     <section class="hero" id="hero">
       <div class="inner">
-        <p class="eyebrow">Laap Code</p>
-        <!-- Hero — treść świadomie odłożona na koniec (po ustaleniu reszty sekcji) -->
-        <h1 class="hero__title hero__title--placeholder">[ Nagłówek hero — do napisania na końcu ]</h1>
-        <p class="hero__sub hero__sub--placeholder">[ Krótki opis pod nagłówkiem — do napisania razem z hero ]</p>
-        <div class="hero__ctas">
-          <a class="btn btn--filled" href="#kontakt">Napisz do mnie</a>
-          <a class="btn btn--ghost" href="#usaugi">Zobacz usługi</a>
+
+        <div class="hero__meta">
+          <span class="hero__meta-name">Laap Code</span>
+          <span class="hero__meta-year">2026</span>
+          <span class="hero__meta-by">by laap</span>
         </div>
 
-        <div class="hero__stats">
-          <div class="hero__stat">
-            <p class="hero__stat-num">4+</p>
-            <p class="hero__stat-label">lata doświadczenia</p>
+        <!-- Nagłówek/podtytuł — tekst tymczasowy, do podmiany razem z resztą hero -->
+        <div class="hero__layout">
+          <div class="hero__main">
+            <h1 class="hero__title">Laap Code Production</h1>
+            <p class="hero__sub">Powered by Laap</p>
+            <div class="hero__ctas">
+              <a class="btn btn--filled" href="#kontakt">Napisz do mnie</a>
+              <a class="btn btn--ghost" href="#usaugi">Zobacz usługi</a>
+            </div>
           </div>
-          <div class="hero__stat">
-            <p class="hero__stat-num">1</p>
-            <p class="hero__stat-label">osoba, cały proces</p>
-          </div>
-          <div class="hero__stat">
-            <p class="hero__stat-num">0</p>
-            <p class="hero__stat-label">opłat miesięcznych</p>
-          </div>
+
+          <ul class="hero__quicklinks">
+            <li><span class="hero__quicklink-arrow" aria-hidden="true">→</span><a href="#usaugi">Strony internetowe</a></li>
+            <li><span class="hero__quicklink-arrow" aria-hidden="true">→</span><a href="#usaugi">Automatyzacje e-commerce</a></li>
+            <li><span class="hero__quicklink-arrow" aria-hidden="true">→</span><a href="#usaugi">Wdrożenia AI</a></li>
+          </ul>
         </div>
+
       </div>
     </section>
 
@@ -93,17 +95,13 @@
       <div class="inner">
         <p class="section__caption">Zrealizowane współprace</p>
         <div class="clients__row">
-          <!-- 10 placeholderów — do podmiany na realne loga klientów po uzyskaniu zgód -->
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
-          <span class="client-logo"></span>
+          <!-- Loga klientów — część hostowana zewnętrznie tymczasowo, do przeniesienia do własnego repo -->
+          <span class="client-logo"><img src="../img/toxichair_logo.png" alt="Toxic Hair" loading="lazy" /></span>
+          <span class="client-logo"><img src="https://agency.wisehabit.com/data/gfx/mask/eng/logo_5_small.svg" alt="Wise Habit — Agency for the Future" loading="lazy" /></span>
+          <span class="client-logo"><img src="https://wisehabit.com/data/gfx/mask/eng/logo_4_big.png" alt="Wise Habit" loading="lazy" /></span>
+          <span class="client-logo"><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" loading="lazy" /></span>
+          <span class="client-logo"><img src="https://theb.pl/images/Logo_shop_b_pink.png" alt="Shop B." loading="lazy" /></span>
+          <span class="client-logo"><img src="https://i-p.rmcdn.net/657c2898dc8d6a001494d67a/4537282/image-e19cdb16-03b1-4e71-a365-4354d7e38aed.png?w=358&e=webp&nll=true" alt="Mikołaj Markowski" loading="lazy" /></span>
         </div>
       </div>
     </section>
