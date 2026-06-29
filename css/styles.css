@@ -16,6 +16,14 @@
 
   --font: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
 
+  /* Skala typograficzna — ograniczona liczba rozmiarów, każdy ma jedną rolę */
+  --text-2xs: 12px;   /* mikro-etykiety, wersaliki, liczby w tabeli */
+  --text-sm: 14px;    /* UI: linki, przyciski, tekst pomocniczy */
+  --text-base: 16px;  /* tekst główny / akapity / pola formularza */
+  --text-md: 18px;    /* wyróżniony tekst, podtytuły */
+  --text-lg: 20px;    /* nagłówki kart i podsekcji */
+  --text-xl: 30px;    /* duże liczby / statystyki */
+
   --max-w: 1200px;
   --pad-h: 32px;
   --nav-h: 76px;
@@ -29,7 +37,7 @@ body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  font-size: 16px;
+  font-size: var(--text-base);
   line-height: 1.6;
   text-align: left;
   -webkit-font-smoothing: antialiased;
@@ -96,7 +104,7 @@ section[id] {
 .nav__logo-mark { color: var(--accent); flex-shrink: 0; }
 .nav__logo-text {
   font-weight: 800;
-  font-size: 18px;
+  font-size: var(--text-md);
   letter-spacing: -0.01em;
   color: var(--text);
 }
@@ -108,7 +116,7 @@ section[id] {
   justify-self: start;
 }
 .nav__links a {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--text);
   transition: color 0.15s;
@@ -133,7 +141,7 @@ section[id] {
   border-radius: 6px;
   color: var(--accent);
   background: transparent;
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
   transition: background 0.15s, color 0.15s;
 }
@@ -185,7 +193,7 @@ section[id] {
 .nav__mobile-links a {
   display: block;
   padding: 13px 0;
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 700;
 }
 
@@ -196,7 +204,7 @@ section[id] {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.09em;
   color: var(--accent);
@@ -226,7 +234,7 @@ section[id] {
   gap: 8px;
   padding: 13px 26px;
   border-radius: 6px;
-  font-size: 15px;
+  font-size: var(--text-sm);
   font-weight: 700;
   border: 1.5px solid transparent;
   cursor: pointer;
@@ -238,13 +246,16 @@ section[id] {
 }
 .btn--filled:hover { opacity: 0.85; }
 
-.btn--ghost {
-  background: transparent;
-  border-color: var(--text);
+.hero__cta-secondary {
+  font-size: var(--text-sm);
+  font-weight: 700;
   color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  align-self: center;
+  transition: color 0.15s;
 }
-.btn--ghost:hover {
-  border-color: var(--accent);
+.hero__cta-secondary:hover {
   color: var(--accent);
 }
 
@@ -264,14 +275,14 @@ main { padding-top: calc(var(--nav-h) + 3px); }
   margin-bottom: 40px;
 }
 .hero__meta-name {
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text);
 }
 .hero__meta-year {
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   padding: 2px 9px;
   border: 1.5px solid var(--text);
@@ -279,7 +290,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
   color: var(--text);
 }
 .hero__meta-by {
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-weight: 600;
   color: var(--text);
 }
@@ -309,7 +320,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
   font-weight: 600;
 }
 .hero__sub {
-  font-size: 18px;
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--accent);
   max-width: 560px;
@@ -334,10 +345,10 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 }
 .hero__quicklink-arrow {
   color: var(--text);
-  font-size: 18px;
+  font-size: var(--text-md);
 }
 .hero__quicklinks a {
-  font-size: 18px;
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--text);
   text-decoration: underline;
@@ -350,7 +361,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 
 .hero__stats {
   display: flex;
-  gap: 44px;
+  gap: 48px;
   flex-wrap: wrap;
   margin-top: 64px;
 }
@@ -359,14 +370,14 @@ main { padding-top: calc(var(--nav-h) + 3px); }
   border-left: 2px solid var(--accent);
 }
 .hero__stat-num {
-  font-size: 30px;
+  font-size: var(--text-xl);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
   margin-bottom: 4px;
 }
 .hero__stat-label {
-  font-size: 13px;
+  font-size: var(--text-2xs);
   font-weight: 600;
   max-width: 150px;
   line-height: 1.3;
@@ -379,7 +390,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
   padding: 48px 0;
 }
 .section__caption {
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -428,32 +439,21 @@ main { padding-top: calc(var(--nav-h) + 3px); }
   flex-direction: column;
 }
 .service-card__body {
-  padding: 32px 28px 22px;
-}
-.service-card__icon-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--bg);
-  color: var(--text);
-  margin-bottom: 22px;
+  padding: 32px 24px 24px;
 }
 .service-card__title {
-  font-size: 22px;
+  font-size: var(--text-lg);
   color: var(--accent);
   margin-bottom: 10px;
 }
 .service-card__intro {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 500;
   color: var(--text);
   margin-bottom: 20px;
 }
 .service-card__list li {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text);
   padding: 7px 0 7px 18px;
@@ -487,7 +487,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 }
 .pricing__group:last-child { margin-bottom: 0; }
 .pricing__group-title {
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -500,7 +500,7 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 }
 .price-table thead th {
   text-align: left;
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -510,14 +510,14 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 }
 .price-table tbody td {
   padding: 16px 14px;
-  font-size: 15px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text);
 }
 .price-table__num {
   width: 32px;
   color: var(--accent);
-  font-size: 13px;
+  font-size: var(--text-2xs);
   font-weight: 700;
 }
 .price-table__price {
@@ -548,7 +548,7 @@ thead .price-table__price { text-align: right; }
   padding: 14px;
 }
 .portfolio__cell-label {
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -584,7 +584,7 @@ thead .price-table__price { text-align: right; }
 }
 
 .about__bio {
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 500;
   line-height: 1.75;
   color: var(--text);
@@ -605,12 +605,12 @@ thead .price-table__price { text-align: right; }
 }
 .about__name {
   color: var(--text);
-  font-size: 15px;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 .about__role {
   color: var(--accent);
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -642,7 +642,7 @@ thead .price-table__price { text-align: right; }
   gap: 24px;
 }
 .blog__see-more {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--text);
   border-bottom: 1.5px solid var(--text);
@@ -657,7 +657,7 @@ thead .price-table__price { text-align: right; }
   padding: 26px 0;
 }
 .blog-row__date {
-  font-size: 12px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -686,19 +686,19 @@ thead .price-table__price { text-align: right; }
 }
 .blog-row__body { flex: 1; min-width: 0; }
 .blog-row__title {
-  font-size: 18px;
+  font-size: var(--text-md);
   margin-bottom: 6px;
   max-width: 560px;
 }
 .blog-row__excerpt {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 500;
   color: var(--text);
   margin-bottom: 10px;
   max-width: 560px;
 }
 .blog-row__read {
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--accent);
 }
@@ -725,17 +725,17 @@ thead .price-table__price { text-align: right; }
 }
 .contact__email {
   display: inline-block;
-  font-size: 17px;
+  font-size: var(--text-md);
   font-weight: 700;
   border-bottom: 1.5px solid var(--accent);
   color: var(--text);
 }
 
-.contact__form { display: flex; flex-direction: column; gap: 18px; }
+.contact__form { display: flex; flex-direction: column; gap: 16px; }
 
 .service-chips {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 .service-chip {
@@ -745,7 +745,7 @@ thead .price-table__price { text-align: right; }
   padding: 8px 14px;
   border: 1.5px solid var(--text);
   border-radius: 999px;
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text);
   cursor: pointer;
@@ -761,11 +761,11 @@ thead .price-table__price { text-align: right; }
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 16px;
 }
-.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field { display: flex; flex-direction: column; gap: 8px; }
 .form-field label {
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -779,7 +779,7 @@ thead .price-table__price { text-align: right; }
   background: transparent;
   padding: 10px 2px;
   font-family: var(--font);
-  font-size: 15px;
+  font-size: var(--text-base);
   color: var(--text);
   transition: border-color 0.15s;
 }
@@ -795,7 +795,7 @@ thead .price-table__price { text-align: right; }
   align-items: flex-start;
   gap: 10px;
 }
-.form-consent label { font-size: 13px; font-weight: 500; color: var(--text); }
+.form-consent label { font-size: var(--text-2xs); font-weight: 500; color: var(--text); }
 .form-consent input { margin-top: 3px; accent-color: var(--accent); }
 
 /* =============================================
@@ -811,12 +811,12 @@ thead .price-table__price { text-align: right; }
 .footer__brand { display: flex; flex-direction: column; gap: 14px; }
 .footer__brand .nav__logo-mark { color: var(--accent); }
 .footer__logo { display: flex; align-items: center; gap: 8px; }
-.footer__logo-text { font-weight: 800; font-size: 17px; }
-.footer__contact { font-size: 14px; font-weight: 600; }
+.footer__logo-text { font-weight: 800; font-size: var(--text-md); }
+.footer__contact { font-size: var(--text-sm); font-weight: 600; }
 .footer__contact:hover { color: var(--accent); }
 
 .footer__col-heading {
-  font-size: 13px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -825,7 +825,7 @@ thead .price-table__price { text-align: right; }
 }
 .footer__link {
   display: block;
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
   padding: 6px 0;
 }
@@ -837,7 +837,7 @@ thead .price-table__price { text-align: right; }
   padding-top: 24px;
   border-top: 1px solid rgba(255,255,255,0.15);
 }
-.footer__copy { font-size: 13px; font-weight: 600; }
+.footer__copy { font-size: var(--text-2xs); font-weight: 600; }
 
 /* =============================================
    RESPONSIVE
