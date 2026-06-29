@@ -533,9 +533,10 @@ thead .price-table__price { text-align: right; }
 .portfolio { padding: 96px 0; }
 
 .portfolio__grid {
+  container-type: inline-size;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, 180px);
+  grid-template-rows: repeat(2, minmax(140px, 15cqw));
   gap: 12px;
 }
 .portfolio__cell {
@@ -845,7 +846,7 @@ thead .price-table__price { text-align: right; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .portfolio__grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 160px);
+    grid-template-rows: repeat(3, minmax(120px, 24cqw));
   }
   .portfolio__cell--a,
   .portfolio__cell--b,
