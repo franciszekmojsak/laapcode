@@ -37,7 +37,7 @@
       </a>
 
       <div class="nav__right">
-        <a class="nav__cta" href="#kontakt">Skontaktuj się</a>
+        <a class="nav__cta" href="#kontakt">Wyceń projekt</a>
         <button class="nav__hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -72,10 +72,10 @@
         <!-- Nagłówek/podtytuł — tekst tymczasowy, do podmiany razem z resztą hero -->
         <div class="hero__layout">
           <div class="hero__main">
-            <h1 class="hero__title">Laap Code Production</h1>
+            <h1 class="hero__title">Projektujemy i wdrażamy.</h1>
             <p class="hero__sub">Powered by Laap</p>
             <div class="hero__ctas">
-              <a class="btn btn--filled" href="#kontakt">Napisz do mnie</a>
+              <a class="btn btn--filled" href="#kontakt">Wyceń mój projekt →</a>
               <a class="btn btn--ghost" href="#usaugi">Zobacz usługi</a>
             </div>
           </div>
@@ -346,7 +346,7 @@
               <div class="blog-row__body">
                 <h3 class="blog-row__title">Jak wygląda dobry proces wdrożenia strony internetowej</h3>
                 <p class="blog-row__excerpt">Od briefu, przez projekt, po wdrożenie na produkcję — krok po kroku, bez zaskoczeń po drodze.</p>
-                <a class="blog-row__read" href="#blog">Czytaj →</a>
+                <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
               </div>
             </div>
           </article>
@@ -360,7 +360,7 @@
               <div class="blog-row__body">
                 <h3 class="blog-row__title">Automatyzacja importu produktów — od czego zacząć</h3>
                 <p class="blog-row__excerpt">Największe błędy przy migracji bazy produktowej i jak ich uniknąć przy dużych wolumenach.</p>
-                <a class="blog-row__read" href="#blog">Czytaj →</a>
+                <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
               </div>
             </div>
           </article>
@@ -374,7 +374,7 @@
               <div class="blog-row__body">
                 <h3 class="blog-row__title">Czy małe firmy potrzebują AI? Praktyczne przykłady</h3>
                 <p class="blog-row__excerpt">Trzy proste automatyzacje, które realnie odciążają lokalny biznes — bez wielkiego budżetu.</p>
-                <a class="blog-row__read" href="#blog">Czytaj →</a>
+                <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
               </div>
             </div>
           </article>
@@ -388,7 +388,7 @@
               <div class="blog-row__body">
                 <h3 class="blog-row__title">Ile kosztuje strona internetowa w 2026 roku?</h3>
                 <p class="blog-row__excerpt">Realny rozkład kosztów — od prostej wizytówki do rozwiniętego serwisu z blogiem.</p>
-                <a class="blog-row__read" href="#blog">Czytaj →</a>
+                <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
               </div>
             </div>
           </article>
@@ -403,13 +403,13 @@
 
         <div class="contact__left">
           <p class="eyebrow">06 — Kontakt</p>
-          <h2 class="section__title">Napisz do mnie</h2>
-          <p class="contact__sub">Opisz, czego potrzebujesz — odpiszę w ciągu 24 godzin.</p>
+          <h2 class="section__title">Wyceń swój projekt</h2>
+          <p class="contact__sub">Zostaw kontakt — odpiszę z konkretną wyceną w ciągu 24 godzin.</p>
           <a class="contact__email" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
         </div>
 
-        <!-- TODO: podmienić na właściwy Formspree ID -->
-        <form class="contact__form" method="POST" action="https://formspree.io/f/XXXXXXXX">
+        <!-- Tymczasowo: wysyłka przez mailto (obsłużone w js/main.js) — do zamiany na realny Formspree ID -->
+        <form class="contact__form" method="POST" action="#">
           <div class="service-chips">
             <label class="service-chip"><input type="checkbox" name="usluga" value="Strony internetowe"> Strony internetowe</label>
             <label class="service-chip"><input type="checkbox" name="usluga" value="Importy produktowe"> Importy produktowe</label>
@@ -434,8 +434,8 @@
           </div>
 
           <div class="form-field">
-            <label for="wiadomosc">Opisz projekt</label>
-            <textarea id="wiadomosc" name="wiadomosc" placeholder="Co, dla kogo, w jakim terminie." required></textarea>
+            <label for="wiadomosc">Opisz projekt <span class="form-optional">(kilka słów wystarczy)</span></label>
+            <textarea id="wiadomosc" name="wiadomosc" placeholder="Co, dla kogo, w jakim terminie."></textarea>
           </div>
 
           <div class="form-consent">
@@ -443,7 +443,7 @@
             <label for="rodo">Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie.</label>
           </div>
 
-          <button type="submit" class="btn btn--filled">Wyślij wiadomość →</button>
+          <button type="submit" class="btn btn--filled">Wyceń mój projekt →</button>
         </form>
 
       </div>

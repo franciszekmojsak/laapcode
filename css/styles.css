@@ -702,6 +702,10 @@ thead .price-table__price { text-align: right; }
   font-weight: 700;
   color: var(--accent);
 }
+.blog-row__read--soon {
+  color: var(--text);
+  cursor: default;
+}
 
 /* =============================================
    KONTAKT

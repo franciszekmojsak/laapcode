@@ -29,4 +29,36 @@ document.addEventListener('DOMContentLoaded', function () {
     yearEl.textContent = new Date().getFullYear();
   }
 
+  // Formularz kontaktowy — tymczasowo mailto (do zamiany na realny Formspree ID)
+  var contactForm = document.querySelector('.contact__form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var imie = (contactForm.querySelector('#imie') || {}).value || '';
+      var email = (contactForm.querySelector('#email') || {}).value || '';
+      var telefon = (contactForm.querySelector('#tel') || {}).value || '';
+      var wiadomosc = (contactForm.querySelector('#wiadomosc') || {}).value || '';
+      var uslugi = Array.prototype.map.call(
+        contactForm.querySelectorAll('input[name="usluga"]:checked'),
+        function (el) { return el.value; }
+      ).join(', ');
+
+      var bodyLines = [
+        'Imię i nazwisko: ' + imie.trim(),
+        'Email: ' + email.trim(),
+        'Telefon: ' + (telefon.trim() || '—'),
+        'Usługi: ' + (uslugi || '—'),
+        '',
+        'Opis projektu:',
+        wiadomosc.trim() || '—'
+      ];
+
+      var subject = encodeURIComponent('Zapytanie z formularza — Laap Code');
+      var body = encodeURIComponent(bodyLines.join('\n'));
+
+      window.location.href = 'mailto:mojsakfranciszek@gmail.com?subject=' + subject + '&body=' + body;
+    });
+  }
+
 });
