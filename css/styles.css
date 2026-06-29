@@ -89,21 +89,20 @@ section[id] {
   margin: 0 auto;
   padding: 0 var(--pad-h);
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 48px;
 }
 
 .nav__logo {
   display: flex;
   align-items: center;
-  justify-self: center;
+  gap: 10px;
   flex-shrink: 0;
 }
 .nav__logo-mark { color: var(--accent); flex-shrink: 0; }
 .nav__logo-text {
-  font-weight: 800;
+  font-weight: 700;
   font-size: var(--text-md);
   letter-spacing: -0.01em;
   color: var(--text);
@@ -113,11 +112,11 @@ section[id] {
   display: flex;
   align-items: center;
   gap: 32px;
-  justify-self: start;
+  flex: 1;
 }
 .nav__links a {
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text);
   transition: color 0.15s;
 }
@@ -128,26 +127,22 @@ section[id] {
 .nav__right {
   display: flex;
   align-items: center;
-  gap: 16px;
-  justify-self: end;
+  gap: 24px;
   flex-shrink: 0;
 }
 
-/* CTA — stroke bordowy, wnętrze przezroczyste */
+/* Link kontaktowy — bez przycisku, podkreślenie jak w reszcie nawigacji */
 .nav__cta {
   flex-shrink: 0;
-  padding: 9px 20px;
-  border: 1.5px solid var(--accent);
-  border-radius: 6px;
-  color: var(--accent);
-  background: transparent;
   font-size: var(--text-sm);
-  font-weight: 700;
-  transition: background 0.15s, color 0.15s;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
 }
 .nav__cta:hover {
-  background: var(--accent);
-  color: var(--white);
+  color: var(--accent);
 }
 
 .nav__hamburger {
@@ -402,105 +397,58 @@ main { padding-top: calc(var(--nav-h) + 3px); }
 }
 
 /* =============================================
-   USŁUGI — akordeon procesu
+   USŁUGI
    ============================================= */
 .services { padding: 96px 0; }
 
-.accordion {
+.services__cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 8px;
+  border-top: 1.5px solid var(--text);
   border-bottom: 1.5px solid var(--text);
 }
-.accordion__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  width: 100%;
-  padding: 24px 0;
-  background: none;
-  border: none;
-  border-top: 1.5px solid var(--text);
-  cursor: pointer;
-  text-align: left;
+.services__col {
+  padding: 32px;
 }
-.accordion__title {
+.services__col:first-child {
+  padding-left: 0;
+}
+.services__col:last-child {
+  padding-right: 0;
+}
+.services__col:not(:first-child) {
+  border-left: 1.5px solid var(--text);
+}
+.services__col-title {
   font-size: var(--text-lg);
   text-transform: uppercase;
   letter-spacing: 0.01em;
+  margin-bottom: 12px;
 }
-.accordion__icon {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-.accordion__icon::before,
-.accordion__icon::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: var(--text);
-  transition: transform 0.2s, opacity 0.2s;
-}
-.accordion__icon::before {
-  width: 18px;
-  height: 1.5px;
-  transform: translate(-50%, -50%);
-}
-.accordion__icon::after {
-  width: 1.5px;
-  height: 18px;
-  transform: translate(-50%, -50%);
-}
-.accordion__header:hover .accordion__icon::before,
-.accordion__header:hover .accordion__icon::after {
-  background: var(--accent);
-}
-.accordion__item.is-open .accordion__icon::after {
-  opacity: 0;
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-.accordion__panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-.accordion__item.is-open .accordion__panel {
-  max-height: 2000px;
-}
-
-.accordion__intro {
+.services__col-intro {
   font-size: var(--text-sm);
   font-weight: 500;
   color: var(--text);
-  max-width: 560px;
-  padding: 24px 0 0;
+  margin-bottom: 24px;
 }
-
-.accordion__cols {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  padding: 24px 0 32px;
+.services__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-.accordion__col {
-  padding: 0 24px;
-  border-left: 1.5px solid var(--text);
+.services__item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
 }
-.accordion__col:first-child {
-  border-left: none;
-  padding-left: 0;
-}
-.accordion__num {
-  display: block;
-  font-size: clamp(40px, 4vw, 56px);
+.services__item-num {
+  font-size: var(--text-lg);
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  margin-bottom: 16px;
+  flex-shrink: 0;
+  width: 26px;
 }
-.accordion__col p {
+.services__item p {
   font-size: var(--text-sm);
   font-weight: 500;
   line-height: 1.5;
@@ -871,6 +819,13 @@ thead .price-table__price { text-align: right; }
 /* =============================================
    RESPONSIVE
    ============================================= */
+/* Nawigacja chowa się do hamburgera wcześniej niż reszta layoutu —
+   wordmark + linki + link kontaktowy robią się ciasne ok. 900px */
+@media (max-width: 900px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__hamburger { display: flex; }
+}
+
 @media (max-width: 980px) {
   .about__inner { grid-template-columns: 1fr; gap: 40px; }
   .about__media { aspect-ratio: 16 / 9; }
@@ -890,19 +845,17 @@ thead .price-table__price { text-align: right; }
 
 @media (max-width: 760px) {
   :root { --pad-h: 20px; --nav-h: 64px; }
-  .nav__links, .nav__cta { display: none; }
-  .nav__hamburger { display: flex; }
   .form-row { grid-template-columns: 1fr; }
   .hero__stats { gap: 32px; margin-top: 44px; }
   .footer__inner { grid-template-columns: 1fr; gap: 32px; }
   .blog-row__media { width: 64px; height: 64px; }
   .blog__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .blog__see-more { margin-bottom: 24px; }
-  .accordion__cols { grid-template-columns: 1fr; }
-  .accordion__col {
+  .services__cols { grid-template-columns: 1fr; }
+  .services__col { padding: 28px 0; }
+  .services__col:first-child { padding-top: 0; }
+  .services__col:not(:first-child) {
     border-left: none;
     border-top: 1.5px solid var(--text);
-    padding: 20px 0 0;
   }
-  .accordion__col:first-child { border-top: none; padding-top: 0; }
 }

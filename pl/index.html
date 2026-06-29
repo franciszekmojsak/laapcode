@@ -18,6 +18,17 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav__inner">
+      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
+        <!-- Placeholder znaku marki: pierścień z punktem + nawiasy kodu — do zamiany na finalne logo -->
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="40" height="20" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+        <span class="nav__logo-text">Laap Code</span>
+      </a>
+
       <ul class="nav__links">
         <li><a href="#usaugi">Usługi</a></li>
         <li><a href="#cennik">Cennik</a></li>
@@ -25,16 +36,6 @@
         <li><a href="#o-mnie">O mnie</a></li>
         <li><a href="#blog">Blog</a></li>
       </ul>
-
-      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
-        <!-- Placeholder znaku marki: pierścień z punktem + nawiasy kodu — do zamiany na finalne logo -->
-        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="48" height="24" fill="none">
-          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
-        </svg>
-      </a>
 
       <div class="nav__right">
         <a class="nav__cta" href="#kontakt">Wyceń projekt</a>
@@ -111,82 +112,67 @@
       <div class="inner">
         <h2 class="section__title">Usługi</h2>
 
-        <div class="accordion">
+        <div class="services__cols">
 
-          <div class="accordion__item is-open">
-            <button class="accordion__header" type="button" aria-expanded="true">
-              <h3 class="accordion__title">Strony internetowe</h3>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__panel">
-              <p class="accordion__intro">Od projektu po wdrożenie — bez zbędnych dodatków i opłat miesięcznych.</p>
-              <div class="accordion__cols">
-                <div class="accordion__col">
-                  <span class="accordion__num">01</span>
-                  <p>Design i identyfikacja wizualna</p>
-                </div>
-                <div class="accordion__col">
-                  <span class="accordion__num">02</span>
-                  <p>Wdrożenie (GitHub + Vercel)</p>
-                </div>
-                <div class="accordion__col">
-                  <span class="accordion__num">03</span>
-                  <p>Bez opłat miesięcznych</p>
-                </div>
-              </div>
-            </div>
+          <div class="services__col">
+            <h3 class="services__col-title">Strony internetowe</h3>
+            <p class="services__col-intro">Od projektu po wdrożenie — bez zbędnych dodatków i opłat miesięcznych.</p>
+            <ul class="services__items">
+              <li class="services__item">
+                <span class="services__item-num">01</span>
+                <p>Design i identyfikacja wizualna</p>
+              </li>
+              <li class="services__item">
+                <span class="services__item-num">02</span>
+                <p>Wdrożenie (GitHub + Vercel)</p>
+              </li>
+              <li class="services__item">
+                <span class="services__item-num">03</span>
+                <p>Bez opłat miesięcznych</p>
+              </li>
+            </ul>
           </div>
 
-          <div class="accordion__item">
-            <button class="accordion__header" type="button" aria-expanded="false">
-              <h3 class="accordion__title">Importy produktowe</h3>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__panel">
-              <p class="accordion__intro">Automatyzacja i przygotowanie baz produktowych pod docelowy system.</p>
-              <div class="accordion__cols">
-                <div class="accordion__col">
-                  <span class="accordion__num">01</span>
-                  <p>Przygotowanie baz produktów pod docelowy system</p>
-                </div>
-                <div class="accordion__col">
-                  <span class="accordion__num">02</span>
-                  <p>Automatyzacja i skrócenie czasu importu</p>
-                </div>
-                <div class="accordion__col">
-                  <span class="accordion__num">03</span>
-                  <p>Masowe importy</p>
-                </div>
-                <div class="accordion__col">
-                  <span class="accordion__num">04</span>
-                  <p>Stała współpraca na preferencyjnych warunkach dla klientów regularnych</p>
-                </div>
-              </div>
-            </div>
+          <div class="services__col">
+            <h3 class="services__col-title">Importy produktowe</h3>
+            <p class="services__col-intro">Automatyzacja i przygotowanie baz produktowych pod docelowy system.</p>
+            <ul class="services__items">
+              <li class="services__item">
+                <span class="services__item-num">04</span>
+                <p>Przygotowanie baz produktów pod docelowy system</p>
+              </li>
+              <li class="services__item">
+                <span class="services__item-num">05</span>
+                <p>Automatyzacja i skrócenie czasu importu</p>
+              </li>
+              <li class="services__item">
+                <span class="services__item-num">06</span>
+                <p>Masowe importy</p>
+              </li>
+              <li class="services__item">
+                <span class="services__item-num">07</span>
+                <p>Stała współpraca na preferencyjnych warunkach dla klientów regularnych</p>
+              </li>
+            </ul>
           </div>
 
-          <div class="accordion__item">
-            <button class="accordion__header" type="button" aria-expanded="false">
-              <h3 class="accordion__title">Wdrożenia AI</h3>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__panel">
-              <p class="accordion__intro">Automatyzacje, bazy klientów i mailingi oparte na AI.</p>
-              <div class="accordion__cols">
-                <div class="accordion__col">
-                  <span class="accordion__num">01</span>
-                  <p>Bazy klientów</p>
-                </div>
-                <div class="accordion__col">
-                  <span class="accordion__num">02</span>
-                  <p>Mailingi</p>
-                </div>
-                <div class="accordion__col">
-                  <span class="accordion__num">03</span>
-                  <p>Automatyzacje</p>
-                </div>
-              </div>
-            </div>
+          <div class="services__col">
+            <h3 class="services__col-title">Wdrożenia AI</h3>
+            <p class="services__col-intro">Automatyzacje, bazy klientów i mailingi oparte na AI.</p>
+            <ul class="services__items">
+              <li class="services__item">
+                <span class="services__item-num">08</span>
+                <p>Bazy klientów</p>
+              </li>
+              <li class="services__item">
+                <span class="services__item-num">09</span>
+                <p>Mailingi</p>
+              </li>
+              <li class="services__item">
+                <span class="services__item-num">10</span>
+                <p>Automatyzacje</p>
+              </li>
+            </ul>
           </div>
 
         </div>
