@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- Cienka bordowa kreska na samej górze — jedyny "duży" akcent, ale minimalny (3px) -->
+  <!-- Cienka bordowa kreska na samej górze — jedyny "duży" akcent, ale minimalny (2px) -->
   <div class="brand-bar"></div>
   <!-- Powtórzenie tego samego motywu jako pionowa oś strony — bordo jako element strukturalny, nie tylko górny pasek -->
   <div class="brand-axis"></div>
@@ -20,17 +20,6 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav__inner">
-      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
-        <!-- Placeholder znaku marki: pierścień z punktem + nawiasy kodu — do zamiany na finalne logo -->
-        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="40" height="20" fill="none">
-          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
-        </svg>
-        <span class="nav__logo-text">Laap Code</span>
-      </a>
-
       <ul class="nav__links">
         <li><a href="#usaugi">Usługi</a></li>
         <li><a href="#cennik">Cennik</a></li>
@@ -38,6 +27,17 @@
         <li><a href="#o-mnie">O mnie</a></li>
         <li><a href="#blog">Blog</a></li>
       </ul>
+
+      <!-- Logo wycentrowane, tylko znak — nazwa marki usunięta z nav (zostaje w hero/footer) -->
+      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
+        <!-- Placeholder znaku marki: pierścień z punktem + nawiasy kodu — do zamiany na finalne logo -->
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="52" height="26" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+      </a>
 
       <div class="nav__right">
         <a class="nav__cta" href="#kontakt">Wyceń projekt</a>
