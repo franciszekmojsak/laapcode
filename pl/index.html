@@ -111,56 +111,83 @@
       <div class="inner">
         <h2 class="section__title">Usługi</h2>
 
-        <div class="services__grid">
+        <div class="accordion">
 
-          <article class="service-card">
-            <div class="service-card__body">
-              <h3 class="service-card__title">Strony internetowe</h3>
-              <p class="service-card__intro">Od projektu po wdrożenie — bez zbędnych dodatków i opłat miesięcznych.</p>
-              <ul class="service-card__list">
-                <li>Design i identyfikacja wizualna</li>
-                <li>Wdrożenie (GitHub + Vercel)</li>
-                <li>Bez opłat miesięcznych</li>
-              </ul>
+          <div class="accordion__item is-open">
+            <button class="accordion__header" type="button" aria-expanded="true">
+              <h3 class="accordion__title">Strony internetowe</h3>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__panel">
+              <p class="accordion__intro">Od projektu po wdrożenie — bez zbędnych dodatków i opłat miesięcznych.</p>
+              <div class="accordion__cols">
+                <div class="accordion__col">
+                  <span class="accordion__num">01</span>
+                  <p>Design i identyfikacja wizualna</p>
+                </div>
+                <div class="accordion__col">
+                  <span class="accordion__num">02</span>
+                  <p>Wdrożenie (GitHub + Vercel)</p>
+                </div>
+                <div class="accordion__col">
+                  <span class="accordion__num">03</span>
+                  <p>Bez opłat miesięcznych</p>
+                </div>
+              </div>
             </div>
-            <!-- TODO: zdjęcie placeholder z neta — do zamiany na właściwe -->
-            <div class="service-card__media">
-              <img src="https://picsum.photos/seed/laapcode-strony/640/520" alt="" loading="lazy" />
-            </div>
-          </article>
+          </div>
 
-          <article class="service-card">
-            <div class="service-card__body">
-              <h3 class="service-card__title">Importy produktowe</h3>
-              <p class="service-card__intro">Automatyzacja i przygotowanie baz produktowych pod docelowy system.</p>
-              <ul class="service-card__list">
-                <li>Przygotowanie baz produktów pod docelowy system</li>
-                <li>Automatyzacja i skrócenie czasu importu</li>
-                <li>Masowe importy</li>
-                <li>Stała współpraca na preferencyjnych warunkach dla klientów regularnych</li>
-              </ul>
+          <div class="accordion__item">
+            <button class="accordion__header" type="button" aria-expanded="false">
+              <h3 class="accordion__title">Importy produktowe</h3>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__panel">
+              <p class="accordion__intro">Automatyzacja i przygotowanie baz produktowych pod docelowy system.</p>
+              <div class="accordion__cols">
+                <div class="accordion__col">
+                  <span class="accordion__num">01</span>
+                  <p>Przygotowanie baz produktów pod docelowy system</p>
+                </div>
+                <div class="accordion__col">
+                  <span class="accordion__num">02</span>
+                  <p>Automatyzacja i skrócenie czasu importu</p>
+                </div>
+                <div class="accordion__col">
+                  <span class="accordion__num">03</span>
+                  <p>Masowe importy</p>
+                </div>
+                <div class="accordion__col">
+                  <span class="accordion__num">04</span>
+                  <p>Stała współpraca na preferencyjnych warunkach dla klientów regularnych</p>
+                </div>
+              </div>
             </div>
-            <!-- TODO: zdjęcie placeholder z neta — do zamiany na właściwe -->
-            <div class="service-card__media">
-              <img src="https://picsum.photos/seed/laapcode-importy/640/520" alt="" loading="lazy" />
-            </div>
-          </article>
+          </div>
 
-          <article class="service-card">
-            <div class="service-card__body">
-              <h3 class="service-card__title">Wdrożenia AI</h3>
-              <p class="service-card__intro">Automatyzacje, bazy klientów i mailingi oparte na AI.</p>
-              <ul class="service-card__list">
-                <li>Bazy klientów</li>
-                <li>Mailingi</li>
-                <li>Automatyzacje</li>
-              </ul>
+          <div class="accordion__item">
+            <button class="accordion__header" type="button" aria-expanded="false">
+              <h3 class="accordion__title">Wdrożenia AI</h3>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__panel">
+              <p class="accordion__intro">Automatyzacje, bazy klientów i mailingi oparte na AI.</p>
+              <div class="accordion__cols">
+                <div class="accordion__col">
+                  <span class="accordion__num">01</span>
+                  <p>Bazy klientów</p>
+                </div>
+                <div class="accordion__col">
+                  <span class="accordion__num">02</span>
+                  <p>Mailingi</p>
+                </div>
+                <div class="accordion__col">
+                  <span class="accordion__num">03</span>
+                  <p>Automatyzacje</p>
+                </div>
+              </div>
             </div>
-            <!-- TODO: zdjęcie placeholder z neta — do zamiany na właściwe -->
-            <div class="service-card__media">
-              <img src="https://picsum.photos/seed/laapcode-ai/640/520" alt="" loading="lazy" />
-            </div>
-          </article>
+          </div>
 
         </div>
       </div>

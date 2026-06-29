@@ -23,6 +23,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Akordeon usług — jeden otwarty na raz
+  var accordionItems = document.querySelectorAll('.accordion__item');
+  accordionItems.forEach(function (item) {
+    var header = item.querySelector('.accordion__header');
+    if (!header) return;
+    header.addEventListener('click', function () {
+      var willOpen = !item.classList.contains('is-open');
+      accordionItems.forEach(function (other) {
+        other.classList.remove('is-open');
+        var otherHeader = other.querySelector('.accordion__header');
+        if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
+      });
+      if (willOpen) {
+        item.classList.add('is-open');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
   // Rok w footerze
   var yearEl = document.getElementById('year');
   if (yearEl) {
