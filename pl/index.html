@@ -14,6 +14,8 @@
 
   <!-- Cienka bordowa kreska na samej górze — jedyny "duży" akcent, ale minimalny (3px) -->
   <div class="brand-bar"></div>
+  <!-- Powtórzenie tego samego motywu jako pionowa oś strony — bordo jako element strukturalny, nie tylko górny pasek -->
+  <div class="brand-axis"></div>
 
   <!-- NAV -->
   <nav class="nav">
@@ -110,6 +112,7 @@
     <!-- ========== USŁUGI ========== -->
     <section class="services" id="usaugi">
       <div class="inner">
+        <span class="section__index">01</span>
         <h2 class="section__title">Usługi</h2>
 
         <div class="services__cols">
@@ -179,9 +182,20 @@
       </div>
     </section>
 
+    <!-- ========== MANIFEST ========== -->
+    <!-- Jedyna pełnoekranowa sekcja na stronie — świadomie poza numeracją 01-06,
+         żeby wizualnie i strukturalnie łamać rytm "boxed" sekcji. Treść tymczasowa. -->
+    <section class="manifesto" id="manifest">
+      <div class="manifesto__inner">
+        <span class="manifesto__index">—</span>
+        <p class="manifesto__text">Mniej szablonu.<br>Więcej decyzji projektowych.</p>
+      </div>
+    </section>
+
     <!-- ========== CENNIK ========== -->
     <section class="pricing" id="cennik">
       <div class="inner">
+        <span class="section__index">02</span>
         <h2 class="section__title">Cennik</h2>
 
         <div class="pricing__list">
@@ -198,17 +212,17 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="price-table__num">1</td>
+                  <td class="price-table__num">11</td>
                   <td>Strona internetowa</td>
                   <td class="price-table__price">od 800 zł netto</td>
                 </tr>
                 <tr>
-                  <td class="price-table__num">2</td>
+                  <td class="price-table__num">12</td>
                   <td>Więcej podstron, blog itp.</td>
                   <td class="price-table__price">od 2000 zł netto</td>
                 </tr>
                 <tr>
-                  <td class="price-table__num">3</td>
+                  <td class="price-table__num">13</td>
                   <td>Projekty zaawansowane / indywidualne</td>
                   <td class="price-table__price">do konsultacji</td>
                 </tr>
@@ -228,12 +242,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="price-table__num">1</td>
+                  <td class="price-table__num">14</td>
                   <td>Import i baza produktowa</td>
                   <td class="price-table__price">wycena indywidualna</td>
                 </tr>
                 <tr>
-                  <td class="price-table__num">2</td>
+                  <td class="price-table__num">15</td>
                   <td>Stała współpraca (regularne importy)</td>
                   <td class="price-table__price">warunki preferencyjne</td>
                 </tr>
@@ -253,7 +267,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="price-table__num">1</td>
+                  <td class="price-table__num">16</td>
                   <td>Bazy klientów, mailingi, automatyzacje</td>
                   <td class="price-table__price">wycena indywidualna</td>
                 </tr>
@@ -269,15 +283,19 @@
     <!-- Sekcja wizualna, bez treści tekstowej — puste przestrzenie na kolaż realizacji -->
     <section class="portfolio" id="portfolio">
       <div class="inner">
+        <span class="section__index">03</span>
         <h2 class="section__title">Portfolio</h2>
 
-        <div class="portfolio__grid">
-          <div class="portfolio__cell portfolio__cell--a"><span class="portfolio__cell-label">Projekt 01</span></div>
-          <div class="portfolio__cell portfolio__cell--b"><span class="portfolio__cell-label">Projekt 02</span></div>
-          <div class="portfolio__cell portfolio__cell--c"><span class="portfolio__cell-label">Projekt 03</span></div>
-          <div class="portfolio__cell portfolio__cell--d"><span class="portfolio__cell-label">Projekt 04</span></div>
-          <div class="portfolio__cell portfolio__cell--e"><span class="portfolio__cell-label">Projekt 05</span></div>
-          <div class="portfolio__cell portfolio__cell--f"><span class="portfolio__cell-label">Projekt 06</span></div>
+        <!-- Kontynuacja globalnej numeracji (17-22) zamiast "Projekt 0X" — do zamiany na realne zdjęcia -->
+        <div class="portfolio__grid-wrap">
+          <div class="portfolio__grid">
+            <div class="portfolio__cell portfolio__cell--a"><span class="portfolio__cell-num">17</span></div>
+            <div class="portfolio__cell portfolio__cell--b"><span class="portfolio__cell-num">18</span></div>
+            <div class="portfolio__cell portfolio__cell--c"><span class="portfolio__cell-num">19</span></div>
+            <div class="portfolio__cell portfolio__cell--d"><span class="portfolio__cell-num">20</span></div>
+            <div class="portfolio__cell portfolio__cell--e"><span class="portfolio__cell-num">21</span></div>
+            <div class="portfolio__cell portfolio__cell--f"><span class="portfolio__cell-num">22</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -287,6 +305,7 @@
       <div class="inner about__inner">
 
         <div class="about__text">
+          <span class="section__index">04</span>
           <h2 class="about__headline">O mnie</h2>
           <p class="about__bio">Nazywam się Franciszek Mojsak. Od czterech lat łączę doświadczenie w e-commerce, sprzedaży, grafice i sztucznej inteligencji — i z tego połączenia powstała ta oferta. Pracuję sam, ale od początku do końca: projektuję, wdrażam i utrzymuję rozwiązania, które realnie ułatwiają prowadzenie biznesu, bez zbędnych kosztów i komplikacji. Lubię, kiedy technologia działa w tle i po prostu ułatwia życie — niezależnie, czy to nowa strona, zautomatyzowany import produktów, czy wdrożenie AI w firmie.</p>
           <div class="about__signoff">
@@ -298,9 +317,10 @@
           </div>
         </div>
 
-        <!-- TODO: zdjęcie placeholder z neta — do zamiany na właściwe -->
-        <div class="about__media">
-          <img src="https://picsum.photos/seed/laapcode-about/640/780" alt="Franciszek Mojsak" loading="lazy" />
+        <!-- Panel zamiast zdjęcia ze stocka (Picsum) — do zamiany na realne zdjęcie Franciszka,
+             gdy będzie gotowe. Zdjęcie podstawione jako "Franciszek" było nieuczciwe wobec treści. -->
+        <div class="about__media about__media--placeholder">
+          <span class="about__media-mark">FM</span>
         </div>
 
       </div>
@@ -312,6 +332,7 @@
       <div class="inner">
         <div class="blog__head">
           <div>
+            <span class="section__index">05</span>
             <h2 class="section__title">Blog</h2>
           </div>
           <a class="blog__see-more" href="#blog">Zobacz więcej →</a>
@@ -384,6 +405,7 @@
       <div class="inner contact__inner">
 
         <div class="contact__left">
+          <span class="section__index">06</span>
           <h2 class="section__title">Kontakt</h2>
           <p class="contact__sub">Zostaw kontakt — odpiszę z konkretną wyceną w ciągu 24 godzin.</p>
           <a class="contact__email" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
