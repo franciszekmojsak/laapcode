@@ -198,28 +198,8 @@ section[id] {
 }
 
 /* =============================================
-   ELEMENTY WSPÓLNE — eyebrow / przyciski / tytuły sekcji
+   ELEMENTY WSPÓLNE — przyciski / tytuły sekcji
    ============================================= */
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.eyebrow::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  flex-shrink: 0;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
 .section__title {
   font-size: clamp(34px, 5.6vw, 64px);
   line-height: 1.02;
