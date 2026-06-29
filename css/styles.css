@@ -831,6 +831,13 @@ thead .price-table__price { text-align: right; }
   .about__media { aspect-ratio: 16 / 9; }
   .contact__inner { grid-template-columns: 1fr; gap: 40px; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
+  .services__cols { grid-template-columns: 1fr; }
+  .services__col { padding: 28px 0; }
+  .services__col:first-child { padding-top: 0; }
+  .services__col:not(:first-child) {
+    border-left: none;
+    border-top: 1.5px solid var(--text);
+  }
   .portfolio__grid {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, minmax(120px, 24cqw));
@@ -851,11 +858,4 @@ thead .price-table__price { text-align: right; }
   .blog-row__media { width: 64px; height: 64px; }
   .blog__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .blog__see-more { margin-bottom: 24px; }
-  .services__cols { grid-template-columns: 1fr; }
-  .services__col { padding: 28px 0; }
-  .services__col:first-child { padding-top: 0; }
-  .services__col:not(:first-child) {
-    border-left: none;
-    border-top: 1.5px solid var(--text);
-  }
 }
