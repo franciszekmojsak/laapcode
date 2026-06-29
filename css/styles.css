@@ -24,8 +24,8 @@
   --text-lg: 20px;    /* nagłówki kart i podsekcji */
   --text-xl: 30px;    /* duże liczby / statystyki */
 
-  --max-w: 1200px;
-  --pad-h: 32px;
+  --max-w: 1600px;
+  --pad-h: 48px;
   --nav-h: 76px;
 }
 
@@ -778,43 +778,41 @@ thead .price-table__price { text-align: right; }
 /* =============================================
    FOOTER
    ============================================= */
-.footer { background: var(--text); color: var(--white); padding: 64px 0 24px; }
+.footer { background: var(--bg); padding: 32px 0; border-top: 1.5px solid var(--text); }
 
 .footer__inner {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 48px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
 }
-.footer__brand { display: flex; flex-direction: column; gap: 14px; }
-.footer__brand .nav__logo-mark { color: var(--accent); }
-.footer__logo { display: flex; align-items: center; gap: 8px; }
-.footer__logo-text { font-weight: 800; font-size: var(--text-md); }
-.footer__contact { font-size: var(--text-sm); font-weight: 600; }
+.footer__logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.footer__logo .nav__logo-mark { color: var(--accent); }
+.footer__logo-text { font-weight: 700; font-size: var(--text-md); color: var(--text); }
+
+.footer__contact {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text);
+  transition: color 0.15s;
+}
 .footer__contact:hover { color: var(--accent); }
 
-.footer__col-heading {
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-  margin-bottom: 14px;
-}
-.footer__link {
-  display: block;
+.footer__links { display: flex; gap: 24px; flex-wrap: wrap; flex: 1; }
+.footer__links a {
   font-size: var(--text-sm);
-  font-weight: 600;
-  padding: 6px 0;
+  font-weight: 500;
+  color: var(--text);
+  transition: color 0.15s;
 }
-.footer__link:not(.footer__link--static):hover { color: var(--accent); }
-.footer__link--static { cursor: default; }
+.footer__links a:hover { color: var(--accent); }
 
-.footer__bottom {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.15);
+.footer__copy {
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  color: var(--text);
+  flex-shrink: 0;
 }
-.footer__copy { font-size: var(--text-2xs); font-weight: 600; }
 
 /* =============================================
    RESPONSIVE
@@ -830,7 +828,6 @@ thead .price-table__price { text-align: right; }
   .about__inner { grid-template-columns: 1fr; gap: 40px; }
   .about__media { aspect-ratio: 16 / 9; }
   .contact__inner { grid-template-columns: 1fr; gap: 40px; }
-  .footer__inner { grid-template-columns: 1fr 1fr; }
   .services__cols { grid-template-columns: 1fr; }
   .services__col { padding: 28px 0; }
   .services__col:first-child { padding-top: 0; }
@@ -854,7 +851,8 @@ thead .price-table__price { text-align: right; }
   :root { --pad-h: 20px; --nav-h: 64px; }
   .form-row { grid-template-columns: 1fr; }
   .hero__stats { gap: 32px; margin-top: 44px; }
-  .footer__inner { grid-template-columns: 1fr; gap: 32px; }
+  .footer__inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer__links { gap: 16px; }
   .blog-row__media { width: 64px; height: 64px; }
   .blog__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .blog__see-more { margin-bottom: 24px; }
