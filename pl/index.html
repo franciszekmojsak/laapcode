@@ -73,7 +73,7 @@
         </div>
 
         <!-- Nagłówek/podtytuł — tekst tymczasowy, do podmiany razem z resztą hero -->
-        <div class="hero__layout">
+        <div class="hero__layout tech-frame">
           <div class="hero__main">
             <h1 class="hero__title">Projektujemy i wdrażamy.</h1>
             <p class="hero__sub">Powered by Laap</p>
@@ -112,10 +112,9 @@
     <!-- ========== USŁUGI ========== -->
     <section class="services" id="usaugi">
       <div class="inner">
-        <span class="section__index">01</span>
         <h2 class="section__title">Usługi</h2>
 
-        <div class="services__cols">
+        <div class="services__cols tech-frame">
 
           <div class="services__col">
             <h3 class="services__col-title">Strony internetowe</h3>
@@ -185,84 +184,55 @@
     <!-- ========== CENNIK ========== -->
     <section class="pricing" id="cennik">
       <div class="inner">
-        <span class="section__index">02</span>
         <h2 class="section__title">Cennik</h2>
 
-        <div class="pricing__list">
+        <!-- Inny układ niż Usługi: jedna pozioma lista/zestawienie (wiersze), nie równoległe kolumny -->
+        <div class="price-ledger tech-frame">
 
-          <div class="pricing__group">
-            <p class="pricing__group-title">Strony internetowe</p>
-            <table class="price-table">
-              <thead>
-                <tr>
-                  <th class="price-table__num">#</th>
-                  <th>Usługa</th>
-                  <th class="price-table__price">Cena</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="price-table__num">11</td>
-                  <td>Strona internetowa</td>
-                  <td class="price-table__price">od 800 zł netto</td>
-                </tr>
-                <tr>
-                  <td class="price-table__num">12</td>
-                  <td>Więcej podstron, blog itp.</td>
-                  <td class="price-table__price">od 2000 zł netto</td>
-                </tr>
-                <tr>
-                  <td class="price-table__num">13</td>
-                  <td>Projekty zaawansowane / indywidualne</td>
-                  <td class="price-table__price">do konsultacji</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="price-ledger__row price-ledger__row--head">
+            <span class="price-ledger__num">#</span>
+            <span class="price-ledger__group">Kategoria</span>
+            <span class="price-ledger__service">Usługa</span>
+            <span class="price-ledger__price">Cena</span>
           </div>
 
-          <div class="pricing__group">
-            <p class="pricing__group-title">Importy i bazy produktowe</p>
-            <table class="price-table">
-              <thead>
-                <tr>
-                  <th class="price-table__num">#</th>
-                  <th>Usługa</th>
-                  <th class="price-table__price">Cena</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="price-table__num">14</td>
-                  <td>Import i baza produktowa</td>
-                  <td class="price-table__price">wycena indywidualna</td>
-                </tr>
-                <tr>
-                  <td class="price-table__num">15</td>
-                  <td>Stała współpraca (regularne importy)</td>
-                  <td class="price-table__price">warunki preferencyjne</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="price-ledger__row">
+            <span class="price-ledger__num">11</span>
+            <span class="price-ledger__group">Strony internetowe</span>
+            <span class="price-ledger__service">Strona internetowa</span>
+            <span class="price-ledger__price">od 800 zł netto</span>
+          </div>
+          <div class="price-ledger__row">
+            <span class="price-ledger__num">12</span>
+            <span class="price-ledger__group"></span>
+            <span class="price-ledger__service">Więcej podstron, blog itp.</span>
+            <span class="price-ledger__price">od 2000 zł netto</span>
+          </div>
+          <div class="price-ledger__row">
+            <span class="price-ledger__num">13</span>
+            <span class="price-ledger__group"></span>
+            <span class="price-ledger__service">Projekty zaawansowane / indywidualne</span>
+            <span class="price-ledger__price">do konsultacji</span>
           </div>
 
-          <div class="pricing__group">
-            <p class="pricing__group-title">Wdrożenia AI</p>
-            <table class="price-table">
-              <thead>
-                <tr>
-                  <th class="price-table__num">#</th>
-                  <th>Usługa</th>
-                  <th class="price-table__price">Cena</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="price-table__num">16</td>
-                  <td>Bazy klientów, mailingi, automatyzacje</td>
-                  <td class="price-table__price">wycena indywidualna</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="price-ledger__row">
+            <span class="price-ledger__num">14</span>
+            <span class="price-ledger__group">Importy i bazy produktowe</span>
+            <span class="price-ledger__service">Import i baza produktowa</span>
+            <span class="price-ledger__price">wycena indywidualna</span>
+          </div>
+          <div class="price-ledger__row">
+            <span class="price-ledger__num">15</span>
+            <span class="price-ledger__group"></span>
+            <span class="price-ledger__service">Stała współpraca (regularne importy)</span>
+            <span class="price-ledger__price">warunki preferencyjne</span>
+          </div>
+
+          <div class="price-ledger__row">
+            <span class="price-ledger__num">16</span>
+            <span class="price-ledger__group">Wdrożenia AI</span>
+            <span class="price-ledger__service">Bazy klientów, mailingi, automatyzacje</span>
+            <span class="price-ledger__price">wycena indywidualna</span>
           </div>
 
         </div>
@@ -273,18 +243,18 @@
     <!-- Sekcja wizualna, bez treści tekstowej — puste przestrzenie na kolaż realizacji -->
     <section class="portfolio" id="portfolio">
       <div class="inner">
-        <span class="section__index">03</span>
         <h2 class="section__title">Portfolio</h2>
 
-        <!-- Kontynuacja globalnej numeracji (17-22) zamiast "Projekt 0X" — do zamiany na realne zdjęcia -->
-        <div class="portfolio__grid-wrap">
+        <!-- Kontynuacja globalnej numeracji (17-22) zamiast "Projekt 0X" — do zamiany na realne zdjęcia.
+             Etykieta "Poz." — motyw techniczny/katalogowy (jak w zestawieniach projektowych). -->
+        <div class="portfolio__grid-wrap tech-frame">
           <div class="portfolio__grid">
-            <div class="portfolio__cell portfolio__cell--a"><span class="portfolio__cell-num">17</span></div>
-            <div class="portfolio__cell portfolio__cell--b"><span class="portfolio__cell-num">18</span></div>
-            <div class="portfolio__cell portfolio__cell--c"><span class="portfolio__cell-num">19</span></div>
-            <div class="portfolio__cell portfolio__cell--d"><span class="portfolio__cell-num">20</span></div>
-            <div class="portfolio__cell portfolio__cell--e"><span class="portfolio__cell-num">21</span></div>
-            <div class="portfolio__cell portfolio__cell--f"><span class="portfolio__cell-num">22</span></div>
+            <div class="portfolio__cell portfolio__cell--a"><span class="portfolio__cell-tag">Poz.</span><span class="portfolio__cell-num">17</span></div>
+            <div class="portfolio__cell portfolio__cell--b"><span class="portfolio__cell-tag">Poz.</span><span class="portfolio__cell-num">18</span></div>
+            <div class="portfolio__cell portfolio__cell--c"><span class="portfolio__cell-tag">Poz.</span><span class="portfolio__cell-num">19</span></div>
+            <div class="portfolio__cell portfolio__cell--d"><span class="portfolio__cell-tag">Poz.</span><span class="portfolio__cell-num">20</span></div>
+            <div class="portfolio__cell portfolio__cell--e"><span class="portfolio__cell-tag">Poz.</span><span class="portfolio__cell-num">21</span></div>
+            <div class="portfolio__cell portfolio__cell--f"><span class="portfolio__cell-tag">Poz.</span><span class="portfolio__cell-num">22</span></div>
           </div>
         </div>
       </div>
@@ -295,7 +265,6 @@
       <div class="inner about__inner">
 
         <div class="about__text">
-          <span class="section__index">04</span>
           <h2 class="about__headline">O mnie</h2>
           <p class="about__bio">Nazywam się Franciszek Mojsak. Od czterech lat łączę doświadczenie w e-commerce, sprzedaży, grafice i sztucznej inteligencji — i z tego połączenia powstała ta oferta. Pracuję sam, ale od początku do końca: projektuję, wdrażam i utrzymuję rozwiązania, które realnie ułatwiają prowadzenie biznesu, bez zbędnych kosztów i komplikacji. Lubię, kiedy technologia działa w tle i po prostu ułatwia życie — niezależnie, czy to nowa strona, zautomatyzowany import produktów, czy wdrożenie AI w firmie.</p>
           <div class="about__signoff">
@@ -321,69 +290,51 @@
     <section class="blog" id="blog">
       <div class="inner">
         <div class="blog__head">
-          <div>
-            <span class="section__index">05</span>
-            <h2 class="section__title">Blog</h2>
-          </div>
+          <h2 class="section__title">Blog</h2>
           <a class="blog__see-more" href="#blog">Zobacz więcej →</a>
         </div>
 
-        <div class="blog__list">
+        <!-- Poziomy układ kart (nie pionowa lista wierszy) — ten sam bordered-grid motyw co reszta strony -->
+        <div class="blog__list tech-frame">
 
           <article class="blog-row">
+            <div class="blog-row__media">
+              <img src="https://picsum.photos/seed/laapcode-blog1/420/320" alt="" loading="lazy" />
+            </div>
             <p class="blog-row__date">12 cze</p>
-            <div class="blog-row__content">
-              <div class="blog-row__media">
-                <img src="https://picsum.photos/seed/laapcode-blog1/220/220" alt="" loading="lazy" />
-              </div>
-              <div class="blog-row__body">
-                <h3 class="blog-row__title">Jak wygląda dobry proces wdrożenia strony internetowej</h3>
-                <p class="blog-row__excerpt">Od briefu, przez projekt, po wdrożenie na produkcję — krok po kroku, bez zaskoczeń po drodze.</p>
-                <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
-              </div>
-            </div>
+            <h3 class="blog-row__title">Jak wygląda dobry proces wdrożenia strony internetowej</h3>
+            <p class="blog-row__excerpt">Od briefu, przez projekt, po wdrożenie na produkcję — krok po kroku, bez zaskoczeń po drodze.</p>
+            <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
           </article>
 
           <article class="blog-row">
+            <div class="blog-row__media">
+              <img src="https://picsum.photos/seed/laapcode-blog2/420/320" alt="" loading="lazy" />
+            </div>
             <p class="blog-row__date">28 maj</p>
-            <div class="blog-row__content">
-              <div class="blog-row__media">
-                <img src="https://picsum.photos/seed/laapcode-blog2/220/220" alt="" loading="lazy" />
-              </div>
-              <div class="blog-row__body">
-                <h3 class="blog-row__title">Automatyzacja importu produktów — od czego zacząć</h3>
-                <p class="blog-row__excerpt">Największe błędy przy migracji bazy produktowej i jak ich uniknąć przy dużych wolumenach.</p>
-                <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
-              </div>
-            </div>
+            <h3 class="blog-row__title">Automatyzacja importu produktów — od czego zacząć</h3>
+            <p class="blog-row__excerpt">Największe błędy przy migracji bazy produktowej i jak ich uniknąć przy dużych wolumenach.</p>
+            <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
           </article>
 
           <article class="blog-row">
+            <div class="blog-row__media">
+              <img src="https://picsum.photos/seed/laapcode-blog3/420/320" alt="" loading="lazy" />
+            </div>
             <p class="blog-row__date">15 maj</p>
-            <div class="blog-row__content">
-              <div class="blog-row__media">
-                <img src="https://picsum.photos/seed/laapcode-blog3/220/220" alt="" loading="lazy" />
-              </div>
-              <div class="blog-row__body">
-                <h3 class="blog-row__title">Czy małe firmy potrzebują AI? Praktyczne przykłady</h3>
-                <p class="blog-row__excerpt">Trzy proste automatyzacje, które realnie odciążają lokalny biznes — bez wielkiego budżetu.</p>
-                <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
-              </div>
-            </div>
+            <h3 class="blog-row__title">Czy małe firmy potrzebują AI? Praktyczne przykłady</h3>
+            <p class="blog-row__excerpt">Trzy proste automatyzacje, które realnie odciążają lokalny biznes — bez wielkiego budżetu.</p>
+            <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
           </article>
 
           <article class="blog-row">
-            <p class="blog-row__date">30 kwi</p>
-            <div class="blog-row__content">
-              <div class="blog-row__media">
-                <img src="https://picsum.photos/seed/laapcode-blog4/220/220" alt="" loading="lazy" />
-              </div>
-              <div class="blog-row__body">
-                <h3 class="blog-row__title">Ile kosztuje strona internetowa w 2026 roku?</h3>
-                <p class="blog-row__excerpt">Realny rozkład kosztów — od prostej wizytówki do rozwiniętego serwisu z blogiem.</p>
-                <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
-              </div>
+            <div class="blog-row__media">
+              <img src="https://picsum.photos/seed/laapcode-blog4/420/320" alt="" loading="lazy" />
             </div>
+            <p class="blog-row__date">30 kwi</p>
+            <h3 class="blog-row__title">Ile kosztuje strona internetowa w 2026 roku?</h3>
+            <p class="blog-row__excerpt">Realny rozkład kosztów — od prostej wizytówki do rozwiniętego serwisu z blogiem.</p>
+            <span class="blog-row__read blog-row__read--soon">Wkrótce →</span>
           </article>
 
         </div>
@@ -395,7 +346,6 @@
       <div class="inner contact__inner">
 
         <div class="contact__left">
-          <span class="section__index">06</span>
           <h2 class="section__title">Kontakt</h2>
           <p class="contact__sub">Zostaw kontakt — odpiszę z konkretną wyceną w ciągu 24 godzin.</p>
           <a class="contact__email" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
