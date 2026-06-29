@@ -80,7 +80,14 @@ section[id] {
   top: 0; bottom: 0;
   left: calc(var(--pad-h) - 1px);
   width: 1px;
-  background: var(--accent);
+  /* Kreskowanie jak na linijce/tasiemce geodezyjnej, nie pełna linia — estetyka techniczna/pomiarowa */
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--accent) 0px,
+    var(--accent) 5px,
+    transparent 5px,
+    transparent 24px
+  );
   z-index: 1100;
   pointer-events: none;
 }
@@ -203,15 +210,30 @@ section[id] {
 /* =============================================
    ELEMENTY WSPÓLNE — przyciski / tytuły sekcji
    ============================================= */
-/* Ciągły indeks sekcji (01 Usługi, 02 Cennik...) — motyw numeracji jako element architektury strony */
-.section__index {
-  display: block;
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 16px;
+/* Narożniki rejestracyjne (motyw geodezyjny/techniczny) — powtórzone na każdym bordered-blocku
+   siatki strony (hero/usługi/cennik/portfolio/blog), zamiast osobnej numeracji sekcji (była nieczytelna) */
+.tech-frame {
+  position: relative;
+}
+.tech-frame::before,
+.tech-frame::after {
+  content: '';
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  pointer-events: none;
+}
+.tech-frame::before {
+  top: -1.5px;
+  left: 0;
+  border-top: 1.5px solid var(--accent);
+  border-left: 1.5px solid var(--accent);
+}
+.tech-frame::after {
+  bottom: -1.5px;
+  right: 0;
+  border-bottom: 1.5px solid var(--accent);
+  border-right: 1.5px solid var(--accent);
 }
 
 .section__title {
@@ -482,69 +504,56 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 }
 
 /* =============================================
-   CENNIK
+   CENNIK — inny układ niż Usługi: jedna pozioma lista (wiersze), nie równoległe kolumny
    ============================================= */
 .pricing { padding: 96px 0; }
 
-.pricing__list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.price-ledger {
   margin-top: 8px;
   border-top: 1.5px solid var(--text);
+}
+.price-ledger__row {
+  display: grid;
+  grid-template-columns: 56px 1fr 2.2fr auto;
+  align-items: baseline;
+  gap: 24px;
+  padding: 18px 0;
   border-bottom: 1.5px solid var(--text);
 }
-.pricing__group {
-  padding: 32px;
+.price-ledger__row--head {
+  padding-bottom: 14px;
 }
-.pricing__group:first-child {
-  padding-left: 0;
-}
-.pricing__group:last-child {
-  padding-right: 0;
-}
-.pricing__group:not(:first-child) {
-  border-left: 1.5px solid var(--text);
-}
-.pricing__group-title {
+.price-ledger__row--head span {
   font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text);
-  margin-bottom: 6px;
 }
-.price-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.price-table thead th {
-  text-align: left;
+.price-ledger__num {
   font-size: var(--text-2xs);
   font-weight: 700;
-  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+.price-ledger__group {
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text);
-  padding: 8px 14px 12px;
-  border-bottom: 2px solid var(--text);
 }
-.price-table tbody td {
-  padding: 16px 14px;
+.price-ledger__service {
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text);
 }
-.price-table__num {
-  width: 32px;
-  color: var(--accent);
-  font-size: var(--text-2xs);
+.price-ledger__price {
+  font-size: var(--text-sm);
   font-weight: 700;
-}
-.price-table__price {
   text-align: right;
-  font-weight: 700;
   white-space: nowrap;
+  color: var(--text);
 }
-thead .price-table__price { text-align: right; }
 
 /* =============================================
    PORTFOLIO — sekcja wizualna, puste przestrzenie na kolaż
@@ -567,6 +576,7 @@ thead .price-table__price { text-align: right; }
   gap: 12px;
 }
 .portfolio__cell {
+  position: relative;
   background: var(--white);
   border: 1px solid var(--text);
   border-radius: 4px;
@@ -575,6 +585,17 @@ thead .price-table__price { text-align: right; }
   padding: 14px;
 }
 .portfolio__cell-label {
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+/* Etykieta "Poz." w lewym górnym rogu — jak w zestawieniach/rysunkach technicznych (pozycja katalogowa) */
+.portfolio__cell-tag {
+  position: absolute;
+  top: 12px;
+  left: 14px;
   font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -702,29 +723,26 @@ thead .price-table__price { text-align: right; }
 }
 .blog__see-more:hover { color: var(--accent); border-color: var(--accent); }
 
+.blog__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 8px;
+  padding: 32px 0;
+  border-top: 1.5px solid var(--text);
+  border-bottom: 1.5px solid var(--text);
+}
 .blog-row {
-  padding: 26px 0;
-}
-.blog-row__date {
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
-}
-.blog-row__content {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  flex-direction: column;
 }
 .blog-row__media {
-  width: 96px;
-  height: 96px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   border-radius: 4px;
   overflow: hidden;
   background: var(--bg);
-  flex-shrink: 0;
+  margin-bottom: 18px;
 }
 .blog-row__media img {
   width: 100%;
@@ -733,18 +751,23 @@ thead .price-table__price { text-align: right; }
   filter: grayscale(1);
   display: block;
 }
-.blog-row__body { flex: 1; min-width: 0; }
+.blog-row__date {
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
 .blog-row__title {
   font-size: var(--text-md);
-  margin-bottom: 6px;
-  max-width: 560px;
+  margin-bottom: 8px;
 }
 .blog-row__excerpt {
   font-size: var(--text-sm);
   font-weight: 500;
   color: var(--text);
   margin-bottom: 10px;
-  max-width: 560px;
 }
 .blog-row__read {
   font-size: var(--text-sm);
@@ -916,13 +939,12 @@ thead .price-table__price { text-align: right; }
     padding-top: 24px;
     width: 100%;
   }
-  .pricing__list { grid-template-columns: 1fr; }
-  .pricing__group { padding: 28px 0; }
-  .pricing__group:first-child { padding-top: 0; }
-  .pricing__group:not(:first-child) {
-    border-left: none;
-    border-top: 1.5px solid var(--text);
+  .price-ledger__row {
+    grid-template-columns: 28px 1fr 1.6fr auto;
+    gap: 12px;
+    padding: 14px 0;
   }
+  .blog__list { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .portfolio__grid {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, minmax(120px, 24cqw));
@@ -942,7 +964,21 @@ thead .price-table__price { text-align: right; }
   .hero__stats { gap: 32px; margin-top: 44px; }
   .footer__inner { flex-direction: column; align-items: flex-start; gap: 20px; }
   .footer__links { gap: 16px; }
-  .blog-row__media { width: 64px; height: 64px; }
+  .price-ledger__row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "num"
+      "group"
+      "service"
+      "price";
+    gap: 4px;
+  }
+  .price-ledger__num { grid-area: num; }
+  .price-ledger__group { grid-area: group; }
+  .price-ledger__service { grid-area: service; }
+  .price-ledger__price { grid-area: price; text-align: left; }
+  .price-ledger__row--head { display: none; }
+  .blog__list { grid-template-columns: 1fr; padding: 24px 0; }
   .blog__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .blog__see-more { margin-bottom: 24px; }
 }
