@@ -13,9 +13,6 @@
 
   <!-- Cienka bordowa kreska na samej górze — jedyny "duży" akcent, ale minimalny (2px) -->
   <div class="brand-bar"></div>
-  <!-- Powtórzenie tego samego motywu jako pionowa oś strony — bordo jako element strukturalny, nie tylko górny pasek -->
-  <div class="brand-axis"></div>
-
   <!-- NAV -->
   <nav class="nav">
     <div class="nav__inner">
@@ -96,8 +93,18 @@
     <section class="clients" id="klienci">
       <div class="inner">
         <p class="section__caption">Zrealizowane współprace</p>
-        <div class="clients__row">
-          <!-- Loga klientów — część hostowana zewnętrznie tymczasowo, do przeniesienia do własnego repo -->
+      </div>
+      <div class="clients__marquee">
+        <div class="clients__track">
+          <span class="client-logo"><img src="../img/LAAP_logo_transparent.png" alt="Laap Code" loading="lazy" /></span>
+          <span class="client-logo"><img src="../img/toxichair_logo.png" alt="Toxic Hair" loading="lazy" /></span>
+          <span class="client-logo"><img src="https://agency.wisehabit.com/data/gfx/mask/eng/logo_5_small.svg" alt="Wise Habit — Agency for the Future" loading="lazy" /></span>
+          <span class="client-logo"><img src="https://wisehabit.com/data/gfx/mask/eng/logo_4_big.png" alt="Wise Habit" loading="lazy" /></span>
+          <span class="client-logo"><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" loading="lazy" /></span>
+          <span class="client-logo"><img src="https://theb.pl/images/Logo_shop_b_pink.png" alt="Shop B." loading="lazy" /></span>
+          <span class="client-logo"><img src="https://i-p.rmcdn.net/657c2898dc8d6a001494d67a/4537282/image-e19cdb16-03b1-4e71-a365-4354d7e38aed.png?w=358&e=webp&nll=true" alt="Mikołaj Markowski" loading="lazy" /></span>
+          <!-- Duplikat do pętli marquee -->
+          <span class="client-logo"><img src="../img/LAAP_logo_transparent.png" alt="Laap Code" loading="lazy" /></span>
           <span class="client-logo"><img src="../img/toxichair_logo.png" alt="Toxic Hair" loading="lazy" /></span>
           <span class="client-logo"><img src="https://agency.wisehabit.com/data/gfx/mask/eng/logo_5_small.svg" alt="Wise Habit — Agency for the Future" loading="lazy" /></span>
           <span class="client-logo"><img src="https://wisehabit.com/data/gfx/mask/eng/logo_4_big.png" alt="Wise Habit" loading="lazy" /></span>
@@ -119,18 +126,9 @@
             <h3 class="services__col-title">Strony internetowe</h3>
             <p class="services__col-intro">Od projektu po wdrożenie — bez zbędnych dodatków i opłat miesięcznych.</p>
             <ul class="services__items">
-              <li class="services__item">
-                <span class="services__item-num">01</span>
-                <p>Design i identyfikacja wizualna</p>
-              </li>
-              <li class="services__item">
-                <span class="services__item-num">02</span>
-                <p>Wdrożenie (GitHub + Vercel)</p>
-              </li>
-              <li class="services__item">
-                <span class="services__item-num">03</span>
-                <p>Bez opłat miesięcznych</p>
-              </li>
+              <li class="services__item"><p>Design i identyfikacja wizualna</p></li>
+              <li class="services__item"><p>Wdrożenie (GitHub + Vercel)</p></li>
+              <li class="services__item"><p>Bez opłat miesięcznych</p></li>
             </ul>
           </div>
 
@@ -138,22 +136,10 @@
             <h3 class="services__col-title">Importy produktowe</h3>
             <p class="services__col-intro">Automatyzacja i przygotowanie baz produktowych pod docelowy system.</p>
             <ul class="services__items">
-              <li class="services__item">
-                <span class="services__item-num">04</span>
-                <p>Przygotowanie baz produktów pod docelowy system</p>
-              </li>
-              <li class="services__item">
-                <span class="services__item-num">05</span>
-                <p>Automatyzacja i skrócenie czasu importu</p>
-              </li>
-              <li class="services__item">
-                <span class="services__item-num">06</span>
-                <p>Masowe importy</p>
-              </li>
-              <li class="services__item">
-                <span class="services__item-num">07</span>
-                <p>Stała współpraca na preferencyjnych warunkach dla klientów regularnych</p>
-              </li>
+              <li class="services__item"><p>Przygotowanie baz produktów pod docelowy system</p></li>
+              <li class="services__item"><p>Automatyzacja i skrócenie czasu importu</p></li>
+              <li class="services__item"><p>Masowe importy</p></li>
+              <li class="services__item"><p>Stała współpraca na preferencyjnych warunkach dla klientów regularnych</p></li>
             </ul>
           </div>
 
@@ -161,18 +147,9 @@
             <h3 class="services__col-title">Wdrożenia AI</h3>
             <p class="services__col-intro">Automatyzacje, bazy klientów i mailingi oparte na AI.</p>
             <ul class="services__items">
-              <li class="services__item">
-                <span class="services__item-num">08</span>
-                <p>Bazy klientów</p>
-              </li>
-              <li class="services__item">
-                <span class="services__item-num">09</span>
-                <p>Mailingi</p>
-              </li>
-              <li class="services__item">
-                <span class="services__item-num">10</span>
-                <p>Automatyzacje</p>
-              </li>
+              <li class="services__item"><p>Bazy klientów</p></li>
+              <li class="services__item"><p>Mailingi</p></li>
+              <li class="services__item"><p>Automatyzacje</p></li>
             </ul>
           </div>
 
@@ -185,51 +162,45 @@
       <div class="inner">
         <h2 class="section__title">Cennik</h2>
 
-        <!-- Inny układ niż Usługi: jedna pozioma lista/zestawienie (wiersze), nie równoległe kolumny -->
         <div class="price-ledger tech-frame">
 
           <div class="price-ledger__row price-ledger__row--head">
-            <span class="price-ledger__num">#</span>
-            <span class="price-ledger__group">Kategoria</span>
             <span class="price-ledger__service">Usługa</span>
             <span class="price-ledger__price">Cena</span>
           </div>
 
-          <div class="price-ledger__row">
-            <span class="price-ledger__num">11</span>
+          <div class="price-ledger__row price-ledger__row--cat">
             <span class="price-ledger__group">Strony internetowe</span>
+          </div>
+          <div class="price-ledger__row">
             <span class="price-ledger__service">Strona internetowa</span>
             <span class="price-ledger__price">od 800 zł netto</span>
           </div>
           <div class="price-ledger__row">
-            <span class="price-ledger__num">12</span>
-            <span class="price-ledger__group"></span>
             <span class="price-ledger__service">Więcej podstron, blog itp.</span>
             <span class="price-ledger__price">od 2000 zł netto</span>
           </div>
           <div class="price-ledger__row">
-            <span class="price-ledger__num">13</span>
-            <span class="price-ledger__group"></span>
             <span class="price-ledger__service">Projekty zaawansowane / indywidualne</span>
             <span class="price-ledger__price">do konsultacji</span>
           </div>
 
-          <div class="price-ledger__row">
-            <span class="price-ledger__num">14</span>
+          <div class="price-ledger__row price-ledger__row--cat">
             <span class="price-ledger__group">Importy i bazy produktowe</span>
+          </div>
+          <div class="price-ledger__row">
             <span class="price-ledger__service">Import i baza produktowa</span>
             <span class="price-ledger__price">wycena indywidualna</span>
           </div>
           <div class="price-ledger__row">
-            <span class="price-ledger__num">15</span>
-            <span class="price-ledger__group"></span>
             <span class="price-ledger__service">Stała współpraca (regularne importy)</span>
             <span class="price-ledger__price">warunki preferencyjne</span>
           </div>
 
-          <div class="price-ledger__row">
-            <span class="price-ledger__num">16</span>
+          <div class="price-ledger__row price-ledger__row--cat">
             <span class="price-ledger__group">Wdrożenia AI</span>
+          </div>
+          <div class="price-ledger__row">
             <span class="price-ledger__service">Bazy klientów, mailingi, automatyzacje</span>
             <span class="price-ledger__price">wycena indywidualna</span>
           </div>

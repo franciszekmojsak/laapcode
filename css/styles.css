@@ -11,7 +11,7 @@
   --text: #1F1F1F;         /* tekst główny */
   --text-2: #363636;       /* tekst drugorzędny */
   --border: #E6E6E6;       /* separatory, ramki */
-  --bg: #F7F7F7;           /* tło główne */
+  --bg: #FFFFFF;           /* tło główne */
   --white: #FFFFFF;
 
   --font: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -22,11 +22,11 @@
   --text-base: 16px;  /* tekst główny / akapity / pola formularza */
   --text-md: 18px;    /* wyróżniony tekst, podtytuły */
   --text-lg: 20px;    /* nagłówki kart i podsekcji */
-  --text-xl: 30px;    /* duże liczby / statystyki */
+  --text-xl: 26px;    /* duże liczby / statystyki */
 
   --max-w: 1600px;
-  --pad-h: 48px;
-  --nav-h: 76px;
+  --pad-h: 44px;
+  --nav-h: 68px;
 }
 
 html {
@@ -76,6 +76,7 @@ section[id] {
    strukturalny widoczny przez całą stronę, nie tylko dekoracyjny pasek na górze.
    Cieńsza niż górny pasek — to subtelna oś marginesu, nie kolejny duży akcent. */
 .brand-axis {
+  display: none;
   position: fixed;
   top: 0; bottom: 0;
   left: calc(var(--pad-h) - 1px);
@@ -238,7 +239,7 @@ section[id] {
 }
 
 .section__title {
-  font-size: clamp(34px, 5.6vw, 64px);
+  font-size: clamp(28px, 4.6vw, 56px);
   line-height: 1.02;
   letter-spacing: -0.02em;
   margin-bottom: 36px;
@@ -282,7 +283,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
    HERO
    ============================================= */
 .hero {
-  padding: 64px 0 88px;
+  padding: 52px 0 68px;
 }
 .hero__meta {
   display: flex;
@@ -329,7 +330,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   padding-right: 32px;
 }
 .hero__title {
-  font-size: clamp(42px, 7.5vw, 108px);
+  font-size: clamp(36px, 6.4vw, 92px);
   line-height: 0.98;
   letter-spacing: -0.025em;
   text-transform: uppercase;
@@ -388,7 +389,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   display: flex;
   gap: 48px;
   flex-wrap: wrap;
-  margin-top: 64px;
+  margin-top: 52px;
 }
 .hero__stat {
   padding-left: 18px;
@@ -422,14 +423,27 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   color: var(--text);
   margin-bottom: 28px;
 }
-.clients__row {
+.clients__marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%);
+}
+.clients__track {
   display: flex;
   align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  gap: 64px;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.clients__track:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 .client-logo {
-  height: 32px;
+  height: 52px;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -437,9 +451,9 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 .client-logo img {
   height: 100%;
   width: auto;
-  max-width: 140px;
+  max-width: 200px;
   filter: grayscale(1);
-  opacity: 0.75;
+  opacity: 0.7;
   transition: opacity 0.15s;
 }
 .client-logo img:hover {
@@ -449,7 +463,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* =============================================
    USŁUGI
    ============================================= */
-.services { padding: 96px 0; }
+.services { padding: 80px 0; }
 
 .services__cols {
   display: grid;
@@ -507,7 +521,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* =============================================
    CENNIK — inny układ niż Usługi: jedna pozioma lista (wiersze), nie równoległe kolumny
    ============================================= */
-.pricing { padding: 96px 0; }
+.pricing { padding: 80px 0; }
 
 .price-ledger {
   margin-top: 8px;
@@ -515,14 +529,16 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 }
 .price-ledger__row {
   display: grid;
-  grid-template-columns: 56px 1fr 2.2fr auto;
+  grid-template-columns: 1fr auto;
   align-items: baseline;
-  gap: 24px;
-  padding: 18px 0;
-  border-bottom: 1.5px solid var(--text);
+  gap: 32px;
+  padding: 15px 0;
+  border-bottom: 1.5px solid var(--border);
 }
 .price-ledger__row--head {
-  padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--text);
+  padding-bottom: 12px;
+  padding-top: 0;
 }
 .price-ledger__row--head span {
   font-size: var(--text-2xs);
@@ -531,21 +547,22 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   text-transform: uppercase;
   color: var(--text);
 }
-.price-ledger__num {
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  color: var(--accent);
+.price-ledger__row--cat {
+  grid-template-columns: 1fr;
+  padding-top: 32px;
+  padding-bottom: 6px;
+  border-bottom: none;
 }
 .price-ledger__group {
   font-size: var(--text-2xs);
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--text);
+  color: var(--accent);
 }
 .price-ledger__service {
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text);
 }
 .price-ledger__price {
@@ -559,7 +576,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* =============================================
    PORTFOLIO — sekcja wizualna, puste przestrzenie na kolaż
    ============================================= */
-.portfolio { padding: 96px 0; }
+.portfolio { padding: 80px 0; }
 
 /* Sam bordered-row motyw co hero/Usługi/Cennik — domyka system siatki na całej stronie */
 .portfolio__grid-wrap {
@@ -621,7 +638,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* =============================================
    O MNIE
    ============================================= */
-.about { padding: 96px 0; }
+.about { padding: 80px 0; }
 
 .about__inner {
   display: grid;
@@ -632,7 +649,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 
 .about__headline {
   color: var(--text);
-  font-size: clamp(56px, 8vw, 108px);
+  font-size: clamp(48px, 7vw, 96px);
   font-weight: 800;
   line-height: 0.9;
   letter-spacing: -0.02em;
@@ -704,7 +721,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* =============================================
    BLOG
    ============================================= */
-.blog { padding: 96px 0; }
+.blog { padding: 80px 0; }
 
 .blog__head {
   display: flex;
@@ -749,7 +766,6 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1);
   display: block;
 }
 .blog-row__date {
@@ -783,7 +799,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* =============================================
    KONTAKT
    ============================================= */
-.contact { padding: 96px 0; }
+.contact { padding: 80px 0; }
 
 .contact__inner {
   display: grid;
@@ -941,9 +957,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
     width: 100%;
   }
   .price-ledger__row {
-    grid-template-columns: 28px 1fr 1.6fr auto;
-    gap: 12px;
-    padding: 14px 0;
+    gap: 16px;
+    padding: 13px 0;
   }
   .blog__list { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .portfolio__grid {
@@ -967,18 +982,11 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   .footer__links { gap: 16px; }
   .price-ledger__row {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "num"
-      "group"
-      "service"
-      "price";
     gap: 4px;
   }
-  .price-ledger__num { grid-area: num; }
-  .price-ledger__group { grid-area: group; }
-  .price-ledger__service { grid-area: service; }
-  .price-ledger__price { grid-area: price; text-align: left; }
+  .price-ledger__price { text-align: left; }
   .price-ledger__row--head { display: none; }
+  .price-ledger__row--cat { padding-top: 20px; }
   .blog__list { grid-template-columns: 1fr; padding: 24px 0; }
   .blog__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .blog__see-more { margin-bottom: 24px; }
