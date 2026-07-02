@@ -364,7 +364,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   flex-shrink: 0;
   border-left: 1px solid #C8C8C8;
   padding-left: 32px;
-  padding-top: 6px;
+  align-self: flex-start;
 }
 .hero__quicklinks li {
   display: flex;

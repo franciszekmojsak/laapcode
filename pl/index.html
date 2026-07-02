@@ -16,6 +16,18 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav__inner">
+
+      <!-- Logo po lewej stronie z nazwą -->
+      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="48" height="24" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+      </a>
+
+      <!-- Linki nawigacyjne -->
       <ul class="nav__links">
         <li><a href="#usaugi">Usługi</a></li>
         <li><a href="#cennik">Cennik</a></li>
@@ -24,19 +36,8 @@
         <li><a href="#blog">Blog</a></li>
       </ul>
 
-      <!-- Logo wycentrowane, tylko znak — nazwa marki usunięta z nav (zostaje w hero/footer) -->
-      <a class="nav__logo" href="#hero" aria-label="Laap Code — strona główna">
-        <!-- Placeholder znaku marki: pierścień z punktem + nawiasy kodu — do zamiany na finalne logo -->
-        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="52" height="26" fill="none">
-          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
-        </svg>
-      </a>
-
       <div class="nav__right">
-        <a class="nav__cta" href="#kontakt">Wyceń projekt</a>
+        <a class="nav__cta" href="#kontakt">Skontaktuj się</a>
         <button class="nav__hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -62,20 +63,12 @@
     <section class="hero" id="hero">
       <div class="inner">
 
-        <div class="hero__meta">
-          <span class="hero__meta-name">Laap Code</span>
-          <span class="hero__meta-year">2026</span>
-          <span class="hero__meta-by">by laap</span>
-        </div>
-
-        <!-- Nagłówek/podtytuł — tekst tymczasowy, do podmiany razem z resztą hero -->
-        <div class="hero__layout tech-frame">
+        <div class="hero__layout">
           <div class="hero__main">
             <h1 class="hero__title">Projektujemy i wdrażamy.</h1>
-            <p class="hero__sub">Powered by Laap</p>
             <div class="hero__ctas">
-              <a class="btn btn--filled" href="#kontakt">Wyceń mój projekt →</a>
-              <a class="hero__cta-secondary" href="#usaugi">Zobacz usługi</a>
+              <a class="btn btn--filled" href="#kontakt">Skontaktuj się →</a>
+              <a class="btn btn--outline" href="#usaugi">Czytaj więcej</a>
             </div>
           </div>
 
