@@ -491,10 +491,10 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 
 /* Ikona vintage na górze kolumny */
 .services__col-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   color: var(--accent);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   flex-shrink: 0;
 }
 .services__col-icon svg {
@@ -502,15 +502,9 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   height: 100%;
 }
 
-/* Numer kolumny — mała etykieta katalogowa */
+/* Numer kolumny — ukryty, nie jest używany */
 .services__col-num {
-  display: block;
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  display: none;
 }
 
 .services__col-title {
@@ -532,7 +526,6 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   display: flex;
   flex-direction: column;
   gap: 12px;
-  flex: 1;
 }
 .services__item {
   display: flex;
@@ -560,7 +553,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   color: var(--text);
 }
 
-/* Link CTA na dole każdej kolumny */
+/* Link CTA na dole każdej kolumny — margin-top: auto wypycha do dołu */
 .services__col-link {
   display: inline-flex;
   align-items: center;
@@ -568,7 +561,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--accent);
-  margin-top: 28px;
+  margin-top: auto;
+  padding-top: 28px;
   letter-spacing: -0.01em;
   transition: opacity 0.15s;
 }
