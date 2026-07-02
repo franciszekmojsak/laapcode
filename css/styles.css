@@ -471,8 +471,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 8px;
-  border-top: 1px solid #C8C8C8;
-  border-bottom: 1px solid #C8C8C8;
+  gap: 0;
 }
 .services__col {
   padding: 40px 36px;
@@ -484,9 +483,6 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 }
 .services__col:last-child {
   padding-right: 0;
-}
-.services__col:not(:first-child) {
-  border-left: 1px solid #C8C8C8;
 }
 
 /* Ikona vintage na górze kolumny */
@@ -518,8 +514,6 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   font-weight: 400;
   color: var(--text-2);
   margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #E8E8E8;
   line-height: 1.6;
 }
 .services__items {
@@ -533,12 +527,12 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   gap: 10px;
 }
 .services__item::before {
-  content: '-';
+  content: '•';
   color: var(--accent);
-  font-size: var(--text-sm);
-  font-weight: 400;
+  font-size: 8px;
+  font-weight: 700;
   flex-shrink: 0;
-  line-height: 1.5;
+  line-height: 2;
 }
 .services__item-num {
   font-size: var(--text-lg);
@@ -553,20 +547,13 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   color: var(--text);
 }
 
-/* Link CTA na dole każdej kolumny — margin-top: auto wypycha do dołu */
-.services__col-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--accent);
-  margin-top: auto;
-  padding-top: 28px;
-  letter-spacing: -0.01em;
-  transition: opacity 0.15s;
+/* Ukryty — zastąpiony jednym sekcyjnym buttonem */
+.services__col-link { display: none; }
+
+/* Jeden button CTA pod całą sekcją usług */
+.services__cta {
+  margin-top: 40px;
 }
-.services__col-link:hover { opacity: 0.7; }
 
 /* =============================================
    CENNIK — inny układ niż Usługi: jedna pozioma lista (wiersze), nie równoległe kolumny
