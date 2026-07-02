@@ -219,23 +219,7 @@ section[id] {
 }
 .tech-frame::before,
 .tech-frame::after {
-  content: '';
-  position: absolute;
-  width: 11px;
-  height: 11px;
-  pointer-events: none;
-}
-.tech-frame::before {
-  top: -1.5px;
-  left: 0;
-  border-top: 1.5px solid var(--accent);
-  border-left: 1.5px solid var(--accent);
-}
-.tech-frame::after {
-  bottom: -1.5px;
-  right: 0;
-  border-bottom: 1.5px solid var(--accent);
-  border-right: 1.5px solid var(--accent);
+  content: none;
 }
 
 .section__title {
@@ -318,9 +302,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   align-items: center;
   gap: 48px;
   flex-wrap: wrap;
-  /* Ten sam bordered-row motyw co Usługi/Cennik/Portfolio — hero wchodzi do tego samego systemu siatki */
-  border-top: 1.5px solid var(--text);
-  border-bottom: 1.5px solid var(--text);
+  border-top: 1px solid #C8C8C8;
+  border-bottom: 1px solid #C8C8C8;
   padding: 32px 0;
   margin-top: 24px;
 }
@@ -361,7 +344,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   flex-direction: column;
   gap: 18px;
   flex-shrink: 0;
-  border-left: 1.5px solid var(--text);
+  border-left: 1px solid #C8C8C8;
   padding-left: 32px;
 }
 .hero__quicklinks li {
@@ -425,6 +408,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 }
 .clients__marquee {
   overflow: hidden;
+  margin-top: 24px;
+  padding: 16px 0;
   -webkit-mask-image: linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%);
   mask-image: linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%);
 }
@@ -443,7 +428,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   to { transform: translateX(-50%); }
 }
 .client-logo {
-  height: 52px;
+  height: 44px;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -451,7 +436,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 .client-logo img {
   height: 100%;
   width: auto;
-  max-width: 200px;
+  max-width: 180px;
+  object-fit: contain;
   filter: grayscale(1);
   opacity: 0.7;
   transition: opacity 0.15s;
@@ -469,8 +455,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 8px;
-  border-top: 1.5px solid var(--text);
-  border-bottom: 1.5px solid var(--text);
+  border-top: 1px solid #C8C8C8;
+  border-bottom: 1px solid #C8C8C8;
 }
 .services__col {
   padding: 32px;
@@ -482,12 +468,12 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   padding-right: 0;
 }
 .services__col:not(:first-child) {
-  border-left: 1.5px solid var(--text);
+  border-left: 1px solid #C8C8C8;
 }
 .services__col-title {
   font-size: var(--text-lg);
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 12px;
 }
 .services__col-intro {
@@ -525,7 +511,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 
 .price-ledger {
   margin-top: 8px;
-  border-top: 1.5px solid var(--text);
+  border-top: 1px solid #C8C8C8;
 }
 .price-ledger__row {
   display: grid;
@@ -533,10 +519,10 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   align-items: baseline;
   gap: 32px;
   padding: 15px 0;
-  border-bottom: 1.5px solid var(--border);
+  border-bottom: 1px solid #E8E8E8;
 }
 .price-ledger__row--head {
-  border-bottom: 1.5px solid var(--text);
+  border-bottom: 1px solid #C8C8C8;
   padding-bottom: 12px;
   padding-top: 0;
 }
@@ -554,10 +540,9 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   border-bottom: none;
 }
 .price-ledger__group {
-  font-size: var(--text-2xs);
+  font-size: var(--text-sm);
   font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--accent);
 }
 .price-ledger__service {
@@ -582,8 +567,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 .portfolio__grid-wrap {
   margin-top: 8px;
   padding: 32px 0;
-  border-top: 1.5px solid var(--text);
-  border-bottom: 1.5px solid var(--text);
+  border-top: 1px solid #C8C8C8;
+  border-bottom: 1px solid #C8C8C8;
 }
 
 .portfolio__grid {
@@ -596,7 +581,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 .portfolio__cell {
   position: relative;
   background: var(--white);
-  border: 1px solid var(--text);
+  border: 1px solid #D4D4D4;
   border-radius: 4px;
   display: flex;
   align-items: flex-end;
@@ -747,8 +732,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   gap: 32px;
   margin-top: 8px;
   padding: 32px 0;
-  border-top: 1.5px solid var(--text);
-  border-bottom: 1.5px solid var(--text);
+  border-top: 1px solid #C8C8C8;
+  border-bottom: 1px solid #C8C8C8;
 }
 .blog-row {
   display: flex;
@@ -890,7 +875,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* =============================================
    FOOTER
    ============================================= */
-.footer { background: var(--bg); padding: 32px 0; border-top: 1.5px solid var(--text); }
+.footer { background: var(--bg); padding: 32px 0; border-top: 1px solid #C8C8C8; }
 
 .footer__inner {
   display: flex;
@@ -945,13 +930,13 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   .services__col:first-child { padding-top: 0; }
   .services__col:not(:first-child) {
     border-left: none;
-    border-top: 1.5px solid var(--text);
+    border-top: 1px solid #C8C8C8;
   }
   .hero__layout { padding: 24px 0; }
   .hero__main { padding-right: 0; }
   .hero__quicklinks {
     border-left: none;
-    border-top: 1.5px solid var(--text);
+    border-top: 1px solid #C8C8C8;
     padding-left: 0;
     padding-top: 24px;
     width: 100%;
