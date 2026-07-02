@@ -477,6 +477,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   padding: 40px 36px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .services__col:first-child {
   padding-left: 0;
@@ -485,12 +487,21 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   padding-right: 0;
 }
 
-/* Ikona vintage na górze kolumny */
+/* Ikona + tytuł obok siebie, wyśrodkowane */
+.services__col-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Ikona vintage - teraz wewnątrz .services__col-header */
 .services__col-icon {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   color: var(--accent);
-  margin-bottom: 24px;
   flex-shrink: 0;
 }
 .services__col-icon svg {
@@ -507,7 +518,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   font-size: var(--text-lg);
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin-bottom: 12px;
+  margin-bottom: 0;
+  text-align: left;
 }
 .services__col-intro {
   font-size: var(--text-sm);
@@ -515,11 +527,15 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   color: var(--text-2);
   margin-bottom: 24px;
   line-height: 1.6;
+  text-align: center;
+  width: 100%;
 }
 .services__items {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
+  text-align: left;
 }
 .services__item {
   display: flex;
