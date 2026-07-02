@@ -484,6 +484,9 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 .services__col:last-child {
   padding-right: 0;
 }
+.services__col:not(:first-child) {
+  border-left: 1px solid var(--text);
+}
 
 /* Ikona + tytuł obok siebie, wyrównane do lewej */
 .services__col-header {
@@ -554,12 +557,32 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   color: var(--text);
 }
 
-/* Ukryty — zastąpiony jednym sekcyjnym buttonem */
+/* Ukryty — zastąpiony buttonem w nagłówku sekcji */
 .services__col-link { display: none; }
 
-/* Jeden button CTA pod całą sekcją usług */
-.services__cta {
-  margin-top: 40px;
+/* Nagłówek sekcji z buttonem wyrównanym do prawej */
+.services__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+}
+.services__head .section__title {
+  margin-bottom: 0;
+}
+
+/* Przezroczysty button z bordowym obramowaniem */
+.btn--outline-accent {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+  border-width: 1.5px;
+  flex-shrink: 0;
+}
+.btn--outline-accent:hover {
+  background: var(--accent);
+  color: var(--white);
+  opacity: 1;
 }
 
 /* =============================================
