@@ -506,7 +506,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr 1fr 0.7fr;
-  gap: 4px;
+  gap: 10px;
   height: 520px;
   border-radius: 4px;
 }
@@ -739,6 +739,42 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 
 /* Ukryty — zastąpiony buttonem w nagłówku sekcji */
 .services__col-link { display: none; }
+
+/* Dual block — Strony + AI po lewej, kolaż po prawej */
+.services-dual {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 0 72px;
+  border-top: 1px solid var(--text);
+  border-bottom: 1px solid var(--text);
+}
+.services-dual__texts {
+  display: flex;
+  flex-direction: column;
+}
+.services-dual__block {
+  padding: 64px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+.services-dual__block .btn {
+  align-self: flex-start;
+}
+.services-dual__sep {
+  height: 1px;
+  background: var(--text);
+}
+.services-dual__media {
+  padding: 64px 0;
+  display: flex;
+  align-items: stretch;
+}
+.services-dual__media .svc-collage {
+  height: 100%;
+  width: 100%;
+}
 
 /* Portfolio strip pod nagłówkiem Usługi */
 .portfolio-strip {
