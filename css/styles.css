@@ -505,7 +505,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 .svc-collage {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto auto auto;
   gap: 10px;
   border-radius: 4px;
 }
@@ -524,33 +524,25 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   aspect-ratio: unset;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-/* Poziome: 2 kolumny, proporcje ~2.1:1 */
-.svc-collage__item--a,
-.svc-collage__item--b,
-.svc-collage__item--g,
-.svc-collage__item--h { aspect-ratio: 2.1 / 1; }
-/* Kwadratowe: 1 kolumna */
-.svc-collage__item--c,
-.svc-collage__item--d,
-.svc-collage__item--e,
-.svc-collage__item--f { aspect-ratio: 1 / 1; }
+/* Wszystkie komórki mają aspect-ratio per-item */
+.svc-collage__item--a { grid-column: 1 / 3; grid-row: 1; aspect-ratio: 2.2 / 1; }
+.svc-collage__item--b { grid-column: 3 / 5; grid-row: 1; aspect-ratio: 2.2 / 1; }
+.svc-collage__item--c { grid-column: 1 / 3; grid-row: 2; aspect-ratio: 1 / 1; }
+.svc-collage__item--d { grid-column: 3 / 5; grid-row: 2; aspect-ratio: 1 / 1; }
+.svc-collage__item--e { grid-column: 1 / 3; grid-row: 3; aspect-ratio: 2.2 / 1; }
+.svc-collage__item--f { grid-column: 3 / 5; grid-row: 3; aspect-ratio: 2.2 / 1; }
+.svc-collage__item--g { grid-column: 1 / 3; grid-row: 4; aspect-ratio: 1 / 1; }
+.svc-collage__item--h { grid-column: 3 / 5; grid-row: 4; aspect-ratio: 1 / 1; }
 .svc-collage__item:hover img {
   transform: scale(1.06);
 }
 /*
-  Layout:
-  [a — poziome ×2  ] [b — poziome ×2  ]
-  [c][d][e][f] — 4 kwadraty
-  [g — poziome ×2  ] [h — poziome ×2  ]
+  Layout (4 rzędy):
+  [a — poziome 2col] [b — poziome 2col]
+  [c — kwadrat 2col] [d — kwadrat 2col]
+  [e — poziome 2col] [f — poziome 2col]
+  [g — kwadrat 2col] [h — kwadrat 2col]
 */
-.svc-collage__item--a { grid-column: 1 / 3; grid-row: 1; }
-.svc-collage__item--b { grid-column: 3 / 5; grid-row: 1; }
-.svc-collage__item--c { grid-column: 1;     grid-row: 2; }
-.svc-collage__item--d { grid-column: 2;     grid-row: 2; }
-.svc-collage__item--e { grid-column: 3;     grid-row: 2; }
-.svc-collage__item--f { grid-column: 4;     grid-row: 2; }
-.svc-collage__item--g { grid-column: 1 / 3; grid-row: 3; }
-.svc-collage__item--h { grid-column: 3 / 5; grid-row: 3; }
 
 /* Single image wrapper */
 .svc-single-img {
