@@ -178,7 +178,11 @@
 
           </div>
           <div class="services-dual__media">
-            <div class="svc-collage">
+            <div class="carousel-nav" id="collageNav">
+              <button class="carousel-btn carousel-btn--prev" data-target="collageCarousel" aria-label="Poprzednie">←</button>
+              <button class="carousel-btn carousel-btn--next" data-target="collageCarousel" aria-label="Następne">→</button>
+            </div>
+            <div class="svc-collage" id="collageCarousel">
               <div class="svc-collage__item svc-collage__item--a">
                 <img src="../img/laapcode5.webp" alt="Projekt 5" loading="lazy" />
               </div>
@@ -313,11 +317,17 @@
       <div class="inner">
         <div class="blog__head">
           <h2 class="section__title">Blog</h2>
-          <a class="blog__see-more" href="#blog">Zobacz więcej →</a>
+          <div class="blog__head-right">
+            <a class="blog__see-more" href="#blog">Zobacz więcej →</a>
+            <div class="carousel-nav" id="blogNav">
+              <button class="carousel-btn carousel-btn--prev" data-target="blogCarousel" aria-label="Poprzednie">←</button>
+              <button class="carousel-btn carousel-btn--next" data-target="blogCarousel" aria-label="Następne">→</button>
+            </div>
+          </div>
         </div>
 
         <!-- Poziomy układ kart (nie pionowa lista wierszy) - ten sam bordered-grid motyw co reszta strony -->
-        <div class="blog__list tech-frame">
+        <div class="blog__list tech-frame" id="blogCarousel">
 
           <article class="blog-row">
             <div class="blog-row__media">
@@ -520,6 +530,21 @@
         initMarquee();
       }
     })();
+  </script>
+  <script>
+    // Karuzele — strzałki prev/next
+    document.querySelectorAll('.carousel-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var carousel = document.getElementById(btn.dataset.target);
+        if (!carousel) return;
+        var firstItem = carousel.querySelector(':scope > *');
+        if (!firstItem) return;
+        var gap = 10;
+        var itemW = firstItem.getBoundingClientRect().width + gap;
+        var dir = btn.classList.contains('carousel-btn--prev') ? -1 : 1;
+        carousel.scrollBy({ left: dir * itemW, behavior: 'smooth' });
+      });
+    });
   </script>
 </body>
 </html>

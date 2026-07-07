@@ -1069,6 +1069,13 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   align-items: flex-end;
   gap: 24px;
 }
+.blog__head-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* Strzałki karuzeli — domyślnie ukryte (tylko mobile) */
+.carousel-nav { display: none; }
 .blog__see-more {
   font-size: var(--text-sm);
   font-weight: 700;
@@ -1369,24 +1376,37 @@ main { padding-top: calc(var(--nav-h) + 2px); }
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 10px;
+    /* Padding na outline żeby się nie ucinał */
+    padding: 2px var(--pad-h) 4px;
     margin-left: calc(-1 * var(--pad-h));
     margin-right: calc(-1 * var(--pad-h));
-    padding-left: var(--pad-h);
-    padding-right: var(--pad-h);
-    padding-bottom: 4px;
     grid-template-columns: unset;
     grid-template-rows: unset;
   }
   .svc-collage::-webkit-scrollbar { display: none; }
 
-  /* Każde zdjęcie — karta w karuzeli, aspect-ratio 4:3 */
+  /* Poziome (a,b,e,f) — szersze karty */
   .svc-collage__item {
-    flex: 0 0 72vw !important;
+    flex-shrink: 0;
     scroll-snap-align: start;
-    aspect-ratio: 4 / 3 !important;
     grid-column: unset !important;
     grid-row: unset !important;
     height: auto;
+  }
+  .svc-collage__item--a,
+  .svc-collage__item--b,
+  .svc-collage__item--e,
+  .svc-collage__item--f {
+    flex: 0 0 72vw;
+    aspect-ratio: 2.2 / 1 !important;
+  }
+  /* Kwadratowe (c,d,g,h) */
+  .svc-collage__item--c,
+  .svc-collage__item--d,
+  .svc-collage__item--g,
+  .svc-collage__item--h {
+    flex: 0 0 60vw;
+    aspect-ratio: 1 / 1 !important;
   }
 
   /* Blog — poziomy scroll carousel */
@@ -1398,11 +1418,9 @@ main { padding-top: calc(var(--nav-h) + 2px); }
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 16px;
-    padding: 8px 0 16px;
+    padding: 2px var(--pad-h) 16px;
     margin-left: calc(-1 * var(--pad-h));
     margin-right: calc(-1 * var(--pad-h));
-    padding-left: var(--pad-h);
-    padding-right: var(--pad-h);
     border-top: none;
     border-bottom: none;
     grid-template-columns: unset;
@@ -1410,7 +1428,34 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   .blog__list::-webkit-scrollbar { display: none; }
 
   .blog-row {
-    flex: 0 0 72vw;
+    flex: 0 0 78vw;
     scroll-snap-align: start;
   }
+
+  /* Strzałki karuzeli — tylko mobile */
+  .carousel-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--bg);
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .carousel-btn:hover {
+    background: var(--text);
+    color: var(--bg);
+  }
+
 }
