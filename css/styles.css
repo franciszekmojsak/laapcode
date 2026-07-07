@@ -641,8 +641,9 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* Wiersz cenowy */
 .service-feature__pricing {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   padding: 16px 0;
   border-top: 1px solid #EBEBEB;
   border-bottom: 1px solid #EBEBEB;
@@ -655,9 +656,9 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   color: var(--text-2);
 }
 .service-feature__price-val {
-  font-size: var(--text-md);
-  font-weight: 900;
-  letter-spacing: -0.01em;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0;
   color: var(--text);
   text-transform: lowercase;
 }
