@@ -33,7 +33,6 @@
     /* Hero podstrony */
     .subpage-hero {
       padding: 52px 0 72px;
-      border-bottom: 1px solid var(--border);
     }
     .subpage-hero__tag {
       display: inline-block;
@@ -226,28 +225,29 @@
     .process-steps {
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
-      gap: 0;
-      margin-top: 48px;
+      align-items: stretch;
+      gap: 8px;
+      margin-top: 40px;
     }
     .process-step {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding-right: 24px;
+      padding: 20px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
       position: relative;
-    }
-    .process-step:last-child {
-      padding-right: 0;
     }
     .process-step__arrow {
       position: absolute;
-      right: -4px;
-      top: 6px;
-      font-size: 18px;
-      color: var(--border);
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--accent);
       line-height: 1;
+      z-index: 1;
     }
     .process-step:last-child .process-step__arrow {
       display: none;
@@ -269,20 +269,19 @@
       color: var(--text-2);
       line-height: 1.6;
     }
-    @media (max-width: 760px) {
+    @media (max-width: 900px) {
       .process-steps {
-        flex-direction: column;
-        gap: 0;
-        padding-top: 0;
-        border-top: none;
+        flex-wrap: wrap;
       }
       .process-step {
-        padding-right: 0;
-        padding: 20px 0;
-        border-bottom: 1px solid var(--border);
+        flex: 1 1 calc(33% - 8px);
       }
-      .process-step:first-child { border-top: 1px solid var(--border); }
       .process-step__arrow { display: none; }
+    }
+    @media (max-width: 600px) {
+      .process-step {
+        flex: 1 1 100%;
+      }
     }
 
     /* Placeholdery na screenshoty */
@@ -443,6 +442,20 @@
         </div>
 
       </div>
+
+      <!-- Karuzela logo pod buttonami -->
+      <div class="clients__marquee" style="margin-top: 52px;">
+        <div class="clients__track" id="clientsTrack">
+          <span class="client-logo"><img src="../img/LAAP_logo_transparent.png" alt="Laap Code" /></span>
+          <span class="client-logo"><img src="https://agency.wisehabit.com/data/gfx/mask/eng/logo_5_small.svg" alt="Wise Habit - Agency for the Future" /></span>
+          <span class="client-logo"><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" /></span>
+          <span class="client-logo"><img src="../img/toxichair_logo.png" alt="Toxic Hair" /></span>
+          <span class="client-logo"><img src="https://wisehabit.com/data/gfx/mask/eng/logo_4_big.png" alt="Wise Habit" /></span>
+          <span class="client-logo"><img src="https://theb.pl/images/Logo_shop_b_pink.png" alt="Shop B." /></span>
+          <span class="client-logo"><img src="https://i-p.rmcdn.net/657c2898dc8d6a001494d67a/4537282/image-e19cdb16-03b1-4e71-a365-4354d7e38aed.png?w=358&e=webp&nll=true" alt="Mikołaj Markowski" /></span>
+        </div>
+      </div>
+
     </section>
 
     <!-- ========== CO ROBIMY ========== -->
@@ -538,53 +551,47 @@
     <!-- ========== NASZ PROCES ========== -->
     <section class="temu-section" id="proces">
       <div class="inner">
-        <div class="temu-section__inner">
+        <p class="temu-section__label">Jak pracujemy</p>
+        <h2 class="temu-section__title">6 kroków od briefu do publikacji</h2>
+        <p class="temu-section__lead">Przejrzysty proces bez zaskoczeń - zawsze wiesz na jakim etapie jesteśmy.</p>
 
-          <div>
-            <p class="temu-section__label">Jak pracujemy</p>
-            <h2 class="temu-section__title">6 kroków od briefu do publikacji</h2>
-            <p class="temu-section__lead">Przejrzysty proces bez zaskoczeń - zawsze wiesz na jakim etapie jesteśmy.</p>
+        <div class="process-steps">
+          <div class="process-step">
+            <span class="process-step__arrow">→</span>
+            <span class="process-step__num">01</span>
+            <p class="process-step__title">brief</p>
+            <p class="process-step__desc">Przesyłasz nam asortyment - plik Excel, XML od dostawcy lub dane z innego systemu.</p>
           </div>
-
-          <div class="process-steps">
-            <div class="process-step">
-              <span class="process-step__arrow">→</span>
-              <span class="process-step__num">01</span>
-              <p class="process-step__title">brief</p>
-              <p class="process-step__desc">Przesyłasz nam asortyment - plik Excel, XML od dostawcy lub dane z innego systemu.</p>
-            </div>
-            <div class="process-step">
-              <span class="process-step__arrow">→</span>
-              <span class="process-step__num">02</span>
-              <p class="process-step__title">analiza</p>
-              <p class="process-step__desc">Sprawdzamy strukturę danych, kategorie Temu i wymagania dla Twojej branży.</p>
-            </div>
-            <div class="process-step">
-              <span class="process-step__arrow">→</span>
-              <span class="process-step__num">03</span>
-              <p class="process-step__title">przygotowanie pliku</p>
-              <p class="process-step__desc">Budujemy plik importowy zgodny z Temu Seller Center.</p>
-            </div>
-            <div class="process-step">
-              <span class="process-step__arrow">→</span>
-              <span class="process-step__num">04</span>
-              <p class="process-step__title">import</p>
-              <p class="process-step__desc">Wgrywamy produkty i obsługujemy weryfikację przez platformę.</p>
-            </div>
-            <div class="process-step">
-              <span class="process-step__arrow">→</span>
-              <span class="process-step__num">05</span>
-              <p class="process-step__title">weryfikacja ręczna</p>
-              <p class="process-step__desc">Dla pewności przeglądamy każdy zaimportowany produkt.</p>
-            </div>
-            <div class="process-step">
-              <span class="process-step__arrow">→</span>
-              <span class="process-step__num">06</span>
-              <p class="process-step__title">raport</p>
-              <p class="process-step__desc">Dostajesz zestawienie opublikowanych produktów.</p>
-            </div>
+          <div class="process-step">
+            <span class="process-step__arrow">→</span>
+            <span class="process-step__num">02</span>
+            <p class="process-step__title">analiza</p>
+            <p class="process-step__desc">Sprawdzamy strukturę danych, kategorie Temu i wymagania dla Twojej branży.</p>
           </div>
-
+          <div class="process-step">
+            <span class="process-step__arrow">→</span>
+            <span class="process-step__num">03</span>
+            <p class="process-step__title">przygotowanie pliku</p>
+            <p class="process-step__desc">Budujemy plik importowy zgodny z Temu Seller Center.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-step__arrow">→</span>
+            <span class="process-step__num">04</span>
+            <p class="process-step__title">import</p>
+            <p class="process-step__desc">Wgrywamy produkty i obsługujemy weryfikację przez platformę.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-step__arrow">→</span>
+            <span class="process-step__num">05</span>
+            <p class="process-step__title">weryfikacja ręczna</p>
+            <p class="process-step__desc">Dla pewności przeglądamy każdy zaimportowany produkt.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-step__arrow">→</span>
+            <span class="process-step__num">06</span>
+            <p class="process-step__title">raport</p>
+            <p class="process-step__desc">Dostajesz zestawienie opublikowanych produktów.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -599,24 +606,6 @@
             <p class="temu-section__lead">Wycena zależy od liczby produktów i stopnia skomplikowania asortymentu. Napisz do nas - odpiszemy z wyceną w ciągu 24 godzin.</p>
             <a class="btn btn--filled" href="#kontakt" style="margin-top: 28px; display: inline-flex;">Zapytaj o wycenę →</a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== KARUZELA KLIENTÓW ========== -->
-    <section class="clients" id="klienci">
-      <div class="inner">
-        <p class="section__caption">Zrealizowane współprace</p>
-      </div>
-      <div class="clients__marquee">
-        <div class="clients__track" id="clientsTrack">
-          <span class="client-logo"><img src="../img/LAAP_logo_transparent.png" alt="Laap Code" /></span>
-          <span class="client-logo"><img src="https://agency.wisehabit.com/data/gfx/mask/eng/logo_5_small.svg" alt="Wise Habit - Agency for the Future" /></span>
-          <span class="client-logo"><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" /></span>
-          <span class="client-logo"><img src="../img/toxichair_logo.png" alt="Toxic Hair" /></span>
-          <span class="client-logo"><img src="https://wisehabit.com/data/gfx/mask/eng/logo_4_big.png" alt="Wise Habit" /></span>
-          <span class="client-logo"><img src="https://theb.pl/images/Logo_shop_b_pink.png" alt="Shop B." /></span>
-          <span class="client-logo"><img src="https://i-p.rmcdn.net/657c2898dc8d6a001494d67a/4537282/image-e19cdb16-03b1-4e71-a365-4354d7e38aed.png?w=358&e=webp&nll=true" alt="Mikołaj Markowski" /></span>
         </div>
       </div>
     </section>
