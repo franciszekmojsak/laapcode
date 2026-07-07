@@ -1344,38 +1344,49 @@ main { padding-top: calc(var(--nav-h) + 2px); }
     height: 260px;
   }
 
-  /* Dual block (Strony + AI): stack do jednej kolumny */
+  /* Dual block (Strony + AI): stack do jednej kolumny, kolaż na górze */
   .services-dual {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
   .services-dual__media {
-    padding: 0 0 48px;
+    order: -1;
+    padding: 32px 0 0;
+    width: 100%;
+  }
+  .services-dual__texts {
+    padding-bottom: 0;
   }
 
   /* Kolaż zdjęć — poziomy scroll carousel */
   .svc-collage {
-    display: flex;
+    display: flex !important;
     flex-direction: row;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 10px;
-    /* Wychodzi poza padding kontenera */
     margin-left: calc(-1 * var(--pad-h));
     margin-right: calc(-1 * var(--pad-h));
     padding-left: var(--pad-h);
     padding-right: var(--pad-h);
+    padding-bottom: 4px;
+    grid-template-columns: unset;
+    grid-template-rows: unset;
   }
   .svc-collage::-webkit-scrollbar { display: none; }
 
-  /* Każde zdjęcie — jedna karta w karuzeli */
+  /* Każde zdjęcie — karta w karuzeli, aspect-ratio 4:3 */
   .svc-collage__item {
-    flex: 0 0 72vw;
+    flex: 0 0 72vw !important;
     scroll-snap-align: start;
     aspect-ratio: 4 / 3 !important;
     grid-column: unset !important;
     grid-row: unset !important;
+    height: auto;
   }
 
   /* Blog — poziomy scroll carousel */
