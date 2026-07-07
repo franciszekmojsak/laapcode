@@ -746,6 +746,32 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* Ukryty — zastąpiony buttonem w nagłówku sekcji */
 .services__col-link { display: none; }
 
+/* Portfolio strip pod nagłówkiem Usługi */
+.portfolio-strip {
+  margin-bottom: 64px;
+  overflow: hidden;
+}
+.portfolio-strip__track {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.portfolio-strip__track img {
+  height: 200px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-radius: 2px;
+  filter: grayscale(15%);
+  transition: filter 0.3s ease, transform 0.4s ease;
+}
+.portfolio-strip__track img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
 /* Nagłówek sekcji z buttonem wyrównanym do prawej */
 .services__head {
   display: flex;
