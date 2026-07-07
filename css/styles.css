@@ -564,7 +564,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   align-items: flex-start;
 }
 .service-feature__content .btn {
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .service-feature__label {
