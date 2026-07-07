@@ -261,6 +261,7 @@ section[id] {
   color: var(--white);
 }
 .btn--filled:hover { opacity: 0.85; }
+.btn--short { align-self: flex-start; }
 
 .btn--outline {
   background: transparent;
@@ -604,7 +605,35 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   font-weight: 400;
 }
 
-/* Lista platform obsługiwanych systemów */
+/* Tagi platform — klikalne, subtelne */
+.platform-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: -4px;
+}
+.platform-tag {
+  display: inline-block;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.platform-tag:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+.platform-tag--more {
+  color: var(--text-2);
+  border-style: dashed;
+}
+
+/* stary styl (zastąpiony) */
 .service-feature__platforms {
   font-size: var(--text-2xs);
   font-weight: 600;
