@@ -221,6 +221,26 @@
     .winwin__cta {
       flex-shrink: 0;
     }
+    .btn--filled {
+      background: var(--temu);
+      border-color: var(--temu);
+      color: var(--white);
+    }
+    .btn--filled:hover {
+      background: transparent;
+      color: var(--temu);
+      border-color: var(--temu);
+      opacity: 1;
+    }
+    .btn--outline {
+      border-color: var(--temu);
+      color: var(--temu);
+    }
+    .btn--outline:hover {
+      background: var(--temu);
+      color: var(--white);
+      opacity: 1;
+    }
     .btn--white {
       background: var(--white);
       color: var(--accent);
@@ -327,7 +347,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
-      align-items: start;
+      align-items: center;
     }
     .co-robimy__text .temu-section__title {
       margin-bottom: 16px;
@@ -632,7 +652,7 @@
               <tr>
                 <th></th>
                 <th>Ręcznie</th>
-                <th>Import przez nas</th>
+                <th>Import masowy</th>
               </tr>
             </thead>
             <tbody>
@@ -648,7 +668,7 @@
               </tr>
               <tr>
                 <td>Ryzyko błędów</td>
-                <td>Wysokie</td>
+                <td>Minimalne</td>
                 <td>Minimalne</td>
               </tr>
               <tr>
@@ -666,13 +686,13 @@
     <section class="temu-section" id="proces">
       <div class="inner">
         <p class="temu-section__label">Jak pracujemy</p>
-        <h2 class="temu-section__title">6 kroków od briefu do publikacji</h2>
+        <h2 class="temu-section__title">6 kroków do publikacji</h2>
         <p class="temu-section__lead">Przejrzysty proces bez zaskoczeń - zawsze wiesz na jakim etapie jesteśmy.</p>
 
         <div class="process-steps">
           <div class="process-step">
             <span class="process-step__num">01</span>
-            <p class="process-step__title">brief</p>
+            <p class="process-step__title">zgłoszenie</p>
             <p class="process-step__desc">Przesyłasz nam asortyment - plik Excel, XML od dostawcy lub dane z innego systemu.</p>
           </div>
           <span class="process-arrow">→</span>
