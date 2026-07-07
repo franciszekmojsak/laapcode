@@ -1385,28 +1385,24 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   }
   .svc-collage::-webkit-scrollbar { display: none; }
 
-  /* Poziome (a,b,e,f) — szersze karty */
-  .svc-collage__item {
-    flex-shrink: 0;
-    scroll-snap-align: start;
-    grid-column: unset !important;
-    grid-row: unset !important;
-    height: auto;
-  }
+  /* Na mobile: chowamy poziome, zostają tylko kwadraty */
   .svc-collage__item--a,
   .svc-collage__item--b,
   .svc-collage__item--e,
   .svc-collage__item--f {
-    flex: 0 0 72vw;
-    aspect-ratio: 2.2 / 1 !important;
+    display: none;
   }
-  /* Kwadratowe (c,d,g,h) */
+  /* Kwadratowe (c,d,g,h) — karuzela */
   .svc-collage__item--c,
   .svc-collage__item--d,
   .svc-collage__item--g,
   .svc-collage__item--h {
-    flex: 0 0 60vw;
+    flex: 0 0 72vw;
+    scroll-snap-align: start;
     aspect-ratio: 1 / 1 !important;
+    grid-column: unset !important;
+    grid-row: unset !important;
+    height: auto;
   }
 
   /* Blog — poziomy scroll carousel */
@@ -1442,7 +1438,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
     width: 36px;
     height: 36px;
     border: 1px solid var(--border);
-    border-radius: 50%;
+    border-radius: 8px;
     background: var(--bg);
     cursor: pointer;
     font-size: 15px;
