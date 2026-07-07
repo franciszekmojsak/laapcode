@@ -1,6 +1,18 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/pl/", "permanent": false }
+    { "source": "/pl", "destination": "/", "permanent": true },
+    { "source": "/pl/", "destination": "/", "permanent": true },
+    { "source": "/pl/temu.html", "destination": "/temu", "permanent": true },
+    { "source": "/pl/wp.html", "destination": "/wp", "permanent": true },
+    { "source": "/pl/privacy.html", "destination": "/privacy", "permanent": true },
+    { "source": "/pl/terms.html", "destination": "/terms", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/pl/index.html" },
+    { "source": "/temu", "destination": "/pl/temu.html" },
+    { "source": "/wp", "destination": "/pl/wp.html" },
+    { "source": "/privacy", "destination": "/pl/privacy.html" },
+    { "source": "/terms", "destination": "/pl/terms.html" }
   ],
   "headers": [
     {
