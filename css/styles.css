@@ -520,7 +520,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 .svc-collage__item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: top center;
   display: block;
   aspect-ratio: unset;
