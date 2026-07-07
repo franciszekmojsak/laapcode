@@ -1327,7 +1327,79 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   .price-ledger__price { text-align: left; }
   .price-ledger__row--head { display: none; }
   .price-ledger__row--cat { padding-top: 20px; }
-  .blog__list { grid-template-columns: 1fr; padding: 24px 0; }
   .blog__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .blog__see-more { margin-bottom: 24px; }
+
+  /* ---- Usługi mobile ---- */
+
+  /* Importy: zdjęcie na górze, tekst pod spodem */
+  .service-feature {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .service-feature__media {
+    order: -1;
+  }
+  .svc-single-img {
+    height: 260px;
+  }
+
+  /* Dual block (Strony + AI): stack do jednej kolumny */
+  .services-dual {
+    grid-template-columns: 1fr;
+  }
+  .services-dual__media {
+    padding: 0 0 48px;
+  }
+
+  /* Kolaż zdjęć — poziomy scroll carousel */
+  .svc-collage {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 10px;
+    /* Wychodzi poza padding kontenera */
+    margin-left: calc(-1 * var(--pad-h));
+    margin-right: calc(-1 * var(--pad-h));
+    padding-left: var(--pad-h);
+    padding-right: var(--pad-h);
+  }
+  .svc-collage::-webkit-scrollbar { display: none; }
+
+  /* Każde zdjęcie — jedna karta w karuzeli */
+  .svc-collage__item {
+    flex: 0 0 72vw;
+    scroll-snap-align: start;
+    aspect-ratio: 4 / 3 !important;
+    grid-column: unset !important;
+    grid-row: unset !important;
+  }
+
+  /* Blog — poziomy scroll carousel */
+  .blog__list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 16px;
+    padding: 8px 0 16px;
+    margin-left: calc(-1 * var(--pad-h));
+    margin-right: calc(-1 * var(--pad-h));
+    padding-left: var(--pad-h);
+    padding-right: var(--pad-h);
+    border-top: none;
+    border-bottom: none;
+    grid-template-columns: unset;
+  }
+  .blog__list::-webkit-scrollbar { display: none; }
+
+  .blog-row {
+    flex: 0 0 72vw;
+    scroll-snap-align: start;
+  }
 }
