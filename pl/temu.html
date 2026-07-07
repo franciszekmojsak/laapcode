@@ -13,6 +13,10 @@
        TEMU SUBPAGE — dodatkowe style
        ============================================= */
 
+    :root {
+      --temu: #F37301;
+    }
+
     /* Breadcrumb */
     .breadcrumb {
       display: flex;
@@ -28,7 +32,7 @@
       text-underline-offset: 3px;
     }
     .breadcrumb a:hover { color: var(--text); }
-    .breadcrumb__sep { color: var(--border); }
+    .breadcrumb__sep { color: var(--text-2); }
 
     /* Hero podstrony */
     .subpage-hero {
@@ -40,11 +44,11 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      border: 1.5px solid var(--accent);
+      border: 1.5px solid var(--temu);
       border-radius: 4px;
       padding: 4px 10px;
       margin-bottom: 28px;
-      color: var(--accent);
+      color: var(--temu);
     }
     .subpage-hero__title {
       font-size: clamp(40px, 7.5vw, 108px);
@@ -61,7 +65,7 @@
       line-height: 1.05;
       letter-spacing: -0.02em;
       text-transform: lowercase;
-      color: var(--text-2);
+      color: var(--temu);
       white-space: nowrap;
       margin-bottom: 32px;
     }
@@ -135,7 +139,7 @@
     }
     .temu-list li::before {
       content: '—';
-      color: var(--accent);
+      color: var(--temu);
       font-weight: 700;
       flex-shrink: 0;
     }
@@ -215,7 +219,7 @@
     }
     .compare-table td:last-child {
       font-weight: 700;
-      color: var(--accent);
+      color: var(--temu);
     }
     .compare-table tr:last-child td {
       border-bottom: none;
@@ -247,14 +251,14 @@
       align-items: center;
       flex-shrink: 0;
       font-size: 16px;
-      color: var(--accent);
+      color: var(--temu);
       align-self: center;
     }
     .process-step__num {
       font-size: var(--text-2xs);
       font-weight: 700;
       letter-spacing: 0.06em;
-      color: var(--text-2);
+      color: var(--temu);
     }
     .process-step__title {
       font-size: var(--text-sm);
@@ -377,7 +381,7 @@
 </head>
 <body>
 
-  <div class="brand-bar"></div>
+  <div class="brand-bar" style="background: #F37301;"></div>
 
   <!-- NAV -->
   <nav class="nav">
@@ -442,7 +446,10 @@
       </div>
 
       <!-- Karuzela logo pod buttonami -->
-      <div class="clients__marquee" style="margin-top: 52px;">
+      <div class="inner" style="margin-top: 52px;">
+        <p class="section__caption">Zrealizowane współprace</p>
+      </div>
+      <div class="clients__marquee" style="margin-top: 16px;">
         <div class="clients__track" id="clientsTrack">
           <span class="client-logo"><img src="../img/LAAP_logo_transparent.png" alt="Laap Code" /></span>
           <span class="client-logo"><img src="https://agency.wisehabit.com/data/gfx/mask/eng/logo_5_small.svg" alt="Wise Habit - Agency for the Future" /></span>
