@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Importy produktowe WordPress + WooCommerce — od 1 zł za produkt | Laap Code</title>
+  <meta name="description" content="Masowy import produktów do sklepu WooCommerce. Przygotowujemy pliki CSV/XML, obsługujemy warianty, kategorie i zdjęcia. Pełen proces od A do Z. Od 1 zł za produkt." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://code.laap.pl/wp" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://code.laap.pl/wp" />
+  <meta property="og:title" content="Importy produktowe WordPress + WooCommerce — od 1 zł za produkt | Laap Code" />
+  <meta property="og:description" content="Masowy import produktów do sklepu WooCommerce. Przygotowujemy pliki CSV/XML, obsługujemy warianty, kategorie i zdjęcia." />
+  <meta property="og:image" content="https://code.laap.pl/img/og_wp.png" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:site_name" content="Laap Code" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Importy produktowe WordPress + WooCommerce — od 1 zł za produkt | Laap Code" />
+  <meta name="twitter:description" content="Masowy import produktów do WooCommerce. Od 1 zł za produkt." />
+  <meta name="twitter:image" content="https://code.laap.pl/img/og_wp.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Importy produktowe WordPress + WooCommerce",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Laap Code",
+      "url": "https://code.laap.pl/",
+      "email": "mojsakfranciszek@gmail.com"
+    },
+    "description": "Masowy import produktów do sklepu WooCommerce. Przygotowujemy pliki CSV/XML zgodne z importerem WooCommerce, obsługujemy warianty, kategorie, zdjęcia i metadane SEO.",
+    "areaServed": "PL",
+    "inLanguage": "pl",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "PLN",
+      "price": "1",
+      "description": "Od 1 zł za produkt"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+
+  <style>
+    /* =============================================
+       WP/WooCommerce SUBPAGE — style
+       ============================================= */
+
+    :root {
+      --wp:      #3858E9;
+      --wc:      #873EFF;
+      --wp-grad: linear-gradient(135deg, #3858E9, #873EFF);
+      --text-2:  #1F1F1F;
+    }
+
+    /* Gradient helpers */
+    .grad-text {
+      background: var(--wp-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-bg {
+      background: var(--wp-grad);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: var(--text-sm);
+      color: var(--text);
+      margin-bottom: 40px;
+    }
+    .breadcrumb a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb__sep { color: var(--text); }
+
+    /* Hero */
+    .subpage-hero {
+      padding: 52px 0 72px;
+    }
+    .subpage-hero__tag {
+      display: inline-block;
+      font-size: var(--text-2xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1.5px solid transparent;
+      background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                  var(--wp-grad) border-box;
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 28px;
+    }
+    .subpage-hero__tag span {
+      background: var(--wp-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subpage-hero__title {
+      font-size: clamp(36px, 6.5vw, 96px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      text-transform: lowercase;
+      margin-bottom: 12px;
+    }
+    .subpage-hero__subtitle {
+      font-size: clamp(18px, 2.8vw, 42px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      margin-bottom: 32px;
+    }
+    .subpage-hero__lead {
+      font-size: var(--text-md);
+      font-weight: 500;
+      color: var(--text);
+      max-width: 600px;
+      line-height: 1.6;
+      margin-top: 28px;
+      margin-bottom: 40px;
+    }
+    .subpage-hero__ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Gradient button */
+    .btn--wp {
+      background: var(--wp-grad);
+      border-color: transparent;
+      color: var(--white);
+    }
+    .btn--wp:hover {
+      background: transparent;
+      border-image: var(--wp-grad) 1;
+      color: var(--wp);
+      opacity: 1;
+    }
+
+    /* Sekcje */
+    .wp-section {
+      padding: 72px 0;
+    }
+    .wp-section__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .wp-section__label {
+      display: none;
+      font-size: var(--text-2xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .wp-section__title {
+      font-size: clamp(22px, 3vw, 38px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-transform: lowercase;
+      margin-bottom: 20px;
+    }
+    .wp-section__lead {
+      font-size: var(--text-base);
+      color: var(--text);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    /* Lista */
+    .wp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .wp-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: var(--text-base);
+      line-height: 1.5;
+    }
+    .wp-list li::before {
+      content: '—';
+      background: var(--wp-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Co robimy — 2 kolumny */
+    .co-robimy__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .co-robimy__text .wp-section__title { margin-bottom: 16px; }
+    .co-robimy__text .wp-section__lead  { margin-bottom: 28px; }
+
+    /* Kroki ze screenami */
+    .step-screens {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .step-screen__img {
+      aspect-ratio: 16/3.5;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FAFAFA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-screen__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .step-screen__img-placeholder {
+      font-size: var(--text-2xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--border);
+    }
+    .step-screen__caption {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .step-screen__num {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      background: var(--wp-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      flex-shrink: 0;
+    }
+    .step-screen__label {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-transform: lowercase;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    /* Win-win */
+    .winwin { padding: 72px 0; }
+    .winwin__box {
+      background: var(--bg);
+      color: var(--text);
+      border-radius: 8px;
+      border: 1px solid var(--accent);
+      padding: 48px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .winwin__text { max-width: 560px; }
+    .winwin__title {
+      font-size: clamp(22px, 3vw, 36px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-transform: lowercase;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .winwin__desc {
+      font-size: var(--text-base);
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .winwin__cta { flex-shrink: 0; }
+
+    /* Tabela */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid var(--accent);
+    }
+    .compare-table th,
+    .compare-table td {
+      text-align: left;
+      padding: 11px 16px;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      border: 1px solid var(--accent);
+      color: var(--text);
+      background: transparent;
+    }
+    .compare-table th { font-weight: 700; }
+    .compare-table td:first-child { font-weight: 700; }
+    .compare-table td:last-child {
+      font-weight: 700;
+      background: var(--wp-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Proces */
+    .process-steps {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 8px;
+      margin-top: 40px;
+    }
+    .process-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+    }
+    .process-arrow {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      font-size: 16px;
+      background: var(--wp-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      align-self: center;
+    }
+    .process-step__num {
+      font-size: var(--text-2xs);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      background: var(--wp-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .process-step__title {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      text-transform: lowercase;
+      line-height: 1.3;
+    }
+    .process-step__desc {
+      font-size: var(--text-sm);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Cena CTA */
+    .wp-cta { padding: 80px 0; }
+    .wp-cta__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .wp-cta__title {
+      font-size: clamp(24px, 3.5vw, 48px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-transform: lowercase;
+      max-width: 600px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .co-robimy__inner,
+      .wp-section__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .winwin__box {
+        flex-direction: column;
+        padding: 36px 28px;
+        gap: 28px;
+      }
+      .wp-cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+      }
+      .process-steps { flex-wrap: wrap; }
+      .process-step { flex: 1 1 calc(33% - 8px); }
+    }
+    @media (max-width: 700px) {
+      .step-screens { grid-template-columns: 1fr; }
+      .process-step { flex: 1 1 100%; }
+      .compare-table { font-size: var(--text-2xs); }
+      .compare-table th, .compare-table td { padding: 14px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="brand-bar"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="../pl/index.html" aria-label="Laap Code - strona główna">
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="48" height="24" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../pl/index.html#usaugi">Usługi</a></li>
+        <li><a href="../pl/index.html#strony">Portfolio</a></li>
+        <li><a href="../pl/index.html#o-mnie">O nas</a></li>
+        <li><a href="../pl/index.html#blog">Blog</a></li>
+      </ul>
+      <div class="nav__right">
+        <a class="nav__cta" href="#kontakt">Skontaktuj się</a>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav__mobile" id="navMobile">
+    <ul class="nav__mobile-links">
+      <li><a href="../pl/index.html#usaugi">Usługi</a></li>
+      <li><a href="../pl/index.html#strony">Portfolio</a></li>
+      <li><a href="../pl/index.html#o-mnie">O nas</a></li>
+      <li><a href="../pl/index.html#blog">Blog</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="subpage-hero">
+      <div class="inner">
+
+        <div class="breadcrumb">
+          <a href="../pl/index.html">Laap Code</a>
+          <span class="breadcrumb__sep">→</span>
+          <a href="../pl/index.html#importy">Importy produktowe</a>
+          <span class="breadcrumb__sep">→</span>
+          <span>WordPress + WooCommerce</span>
+        </div>
+
+        <div class="subpage-hero__tag"><span>wordpress + woocommerce</span></div>
+
+        <h1 class="subpage-hero__title">importy produktowe <span class="grad-text">woocommerce</span></h1>
+        <p class="subpage-hero__subtitle"><span class="grad-text">masowo. precyzyjnie. bez błędów.</span></p>
+        <p class="subpage-hero__lead">WooCommerce wymaga starannie przygotowanych danych produktowych — właściwej struktury kategorii, atrybutów, wariantów i zdjęć w odpowiednim formacie. Przygotowujemy wszystko za Ciebie i przeprowadzamy import od początku do końca.</p>
+        <div class="subpage-hero__ctas">
+          <a class="btn btn--wp" href="#kontakt">skontaktuj się →</a>
+          <a class="btn btn--outline" href="#co-robimy">czytaj więcej</a>
+        </div>
+
+      </div>
+
+      <!-- Karuzela logo -->
+      <div class="inner" style="margin-top: 52px;">
+        <p class="section__caption">Zrealizowane współprace</p>
+      </div>
+      <div class="clients__marquee" style="margin-top: 16px;">
+        <div class="clients__track" id="clientsTrack">
+          <span class="client-logo"><img src="../img/LAAP_logo_transparent.png" alt="Laap Code" /></span>
+          <span class="client-logo"><img src="https://agency.wisehabit.com/data/gfx/mask/eng/logo_5_small.svg" alt="Wise Habit - Agency for the Future" /></span>
+          <span class="client-logo"><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" /></span>
+          <span class="client-logo"><img src="../img/toxichair_logo.png" alt="Toxic Hair" /></span>
+          <span class="client-logo"><img src="https://wisehabit.com/data/gfx/mask/eng/logo_4_big.png" alt="Wise Habit" /></span>
+          <span class="client-logo"><img src="https://theb.pl/images/Logo_shop_b_pink.png" alt="Shop B." /></span>
+          <span class="client-logo"><img src="https://i-p.rmcdn.net/657c2898dc8d6a001494d67a/4537282/image-e19cdb16-03b1-4e71-a365-4354d7e38aed.png?w=358&e=webp&nll=true" alt="Mikołaj Markowski" /></span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========== CO ROBIMY ========== -->
+    <section class="wp-section" id="co-robimy">
+      <div class="inner">
+        <div class="co-robimy__inner">
+
+          <div class="co-robimy__text">
+            <p class="wp-section__label">Co obejmuje usługa</p>
+            <h2 class="wp-section__title">wszystko od przygotowania pliku po publikację w sklepie</h2>
+            <p class="wp-section__lead">Zajmujemy się całym procesem - od analizy asortymentu po weryfikację każdego produktu po imporcie. Ty skupiasz się na sprzedaży.</p>
+            <ul class="wp-list">
+              <li>Analiza asortymentu i dopasowanie do struktury kategorii WooCommerce</li>
+              <li>Przygotowanie pliku CSV/XML zgodnego z importerem WooCommerce</li>
+              <li>Mapowanie atrybutów i parametrów produktów (rozmiary, kolory, warianty)</li>
+              <li>Masowy import produktów, kategorii, zdjęć oraz wszystkich metadanych</li>
+              <li>Optymalizacja tytułów i opisów pod SEO (Yoast / RankMath)</li>
+              <li>Konfiguracja wariantów produktowych (WooCommerce Variations)</li>
+              <li>Ręczna weryfikacja importu po zakończeniu - sprawdzamy każdy produkt</li>
+              <li>Raport końcowy z zestawieniem opublikowanych produktów</li>
+            </ul>
+          </div>
+
+          <!-- Kroki ze screenami -->
+          <div class="step-screens">
+            <div>
+              <div class="step-screen__img">
+                <span class="step-screen__img-placeholder">screen 1</span>
+              </div>
+              <div class="step-screen__caption">
+                <span class="step-screen__num">01</span>
+                <span class="step-screen__label">przygotowanie pliku importowego CSV/XML</span>
+              </div>
+            </div>
+            <div>
+              <div class="step-screen__img">
+                <span class="step-screen__img-placeholder">screen 2</span>
+              </div>
+              <div class="step-screen__caption">
+                <span class="step-screen__num">02</span>
+                <span class="step-screen__label">import i konfiguracja w panelu WooCommerce</span>
+              </div>
+            </div>
+            <div>
+              <div class="step-screen__img">
+                <span class="step-screen__img-placeholder">screen 3</span>
+              </div>
+              <div class="step-screen__caption">
+                <span class="step-screen__num">03</span>
+                <span class="step-screen__label">podsumowanie i raport końcowy</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WIN-WIN ========== -->
+    <section class="winwin">
+      <div class="inner">
+        <div class="winwin__box">
+          <div class="winwin__text">
+            <h2 class="winwin__title">sytuacja win-win - pełen sklep, minimalny koszt.</h2>
+            <p class="winwin__desc">Właściciel sklepu WooCommerce zyskuje kompletny asortyment online bez tygodni ręcznej pracy. My zajmujemy się całym procesem importu - od pliku po weryfikację. Ty skupiasz się na sprzedaży.</p>
+          </div>
+          <a class="btn btn--filled winwin__cta" href="#kontakt">Zapytaj o wycenę →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DLACZEGO WARTO ========== -->
+    <section class="wp-section" id="dlaczego">
+      <div class="inner">
+        <div class="wp-section__inner">
+
+          <div>
+            <p class="wp-section__label">Porównanie</p>
+            <h2 class="wp-section__title">ręcznie czy import przez nas?</h2>
+            <p class="wp-section__lead">Ręczne dodawanie produktów do WooCommerce to przeciętnie 15-30 minut na jeden produkt. Przy 200 produktach to ponad tydzień pracy — zanim jeszcze zaczniesz sprzedawać.</p>
+          </div>
+
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Ręcznie</th>
+                <th>Import masowy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Koszt za produkt</td>
+                <td>nawet 20 zł/szt.</td>
+                <td>od 1 zł/szt.</td>
+              </tr>
+              <tr>
+                <td>500 produktów</td>
+                <td>100-150 godz.</td>
+                <td>1-2 dni robocze</td>
+              </tr>
+              <tr>
+                <td>Ryzyko błędów</td>
+                <td>Minimalne</td>
+                <td>Minimalne</td>
+              </tr>
+              <tr>
+                <td>Skalowalność</td>
+                <td>Ograniczona</td>
+                <td>Dowolna liczba produktów</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== NASZ PROCES ========== -->
+    <section class="wp-section" id="proces">
+      <div class="inner">
+        <p class="wp-section__label">Jak pracujemy</p>
+        <h2 class="wp-section__title">6 kroków do publikacji</h2>
+        <p class="wp-section__lead">Przejrzysty proces bez zaskoczeń - zawsze wiesz na jakim etapie jesteśmy.</p>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <span class="process-step__num">01</span>
+            <p class="process-step__title">zgłoszenie</p>
+            <p class="process-step__desc">Przesyłasz nam asortyment - plik Excel, XML od dostawcy lub eksport z innego systemu.</p>
+          </div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">
+            <span class="process-step__num">02</span>
+            <p class="process-step__title">analiza</p>
+            <p class="process-step__desc">Sprawdzamy strukturę danych, kategorie WooCommerce i wymagane atrybuty dla Twojej branży.</p>
+          </div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">
+            <span class="process-step__num">03</span>
+            <p class="process-step__title">przygotowanie pliku</p>
+            <p class="process-step__desc">Budujemy plik CSV/XML gotowy do importu przez WooCommerce Product Importer.</p>
+          </div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">
+            <span class="process-step__num">04</span>
+            <p class="process-step__title">import</p>
+            <p class="process-step__desc">Wgrywamy produkty do Twojego sklepu i konfigurujemy warianty, ceny i stany magazynowe.</p>
+          </div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">
+            <span class="process-step__num">05</span>
+            <p class="process-step__title">weryfikacja ręczna</p>
+            <p class="process-step__desc">Dla pewności przeglądamy każdy zaimportowany produkt w panelu sklepu.</p>
+          </div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">
+            <span class="process-step__num">06</span>
+            <p class="process-step__title">raport</p>
+            <p class="process-step__desc">Dostajesz zestawienie opublikowanych produktów z potwierdzeniem poprawności danych.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CENA ========== -->
+    <section class="wp-section" id="cena">
+      <div class="inner">
+        <div class="wp-section__inner">
+          <div>
+            <p class="wp-section__label">Cena</p>
+            <h2 class="wp-section__title">ile to kosztuje?</h2>
+            <p class="wp-section__lead">Wycena zależy od liczby produktów i stopnia skomplikowania asortymentu - prostych produktów czy wariantów. Napisz do nas - odpiszemy z wyceną w ciągu 24 godzin.</p>
+            <a class="btn btn--filled" href="#kontakt" style="margin-top: 28px; display: inline-flex;">Zapytaj o wycenę →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== O NAS ========== -->
+    <section class="about">
+      <div class="inner about__inner">
+
+        <div class="about__media">
+          <img src="../img/onas_zdjecie.webp" alt="Laap Code - Franciszek Mojsak i Szymon Markowski" loading="lazy" />
+        </div>
+
+        <div class="about__text">
+          <h2 class="about__headline">O nas</h2>
+          <p class="about__bio">Od czterech lat łączymy doświadczenie w e-commerce, sprzedaży, programowaniu i sztucznej inteligencji - i z tego połączenia powstało Laap Code. Od początku do końca: projektujemy, wdrażamy i utrzymujemy rozwiązania, które realnie ułatwiają prowadzenie biznesu, bez zbędnych kosztów i komplikacji. Lubimy, kiedy technologia działa w tle i po prostu ułatwia życie - niezależnie, czy to nowa strona, zautomatyzowany import produktów, czy wdrożenie AI w firmie.</p>
+          <div class="about__signoff">
+            <span class="about__signoff-rule"></span>
+            <div>
+              <p class="about__name">Franciszek Mojsak, Szymon Markowski</p>
+              <p class="about__role">Laap Code</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== KONTAKT ========== -->
+    <section class="contact wp-cta" id="kontakt">
+      <div class="inner contact__inner">
+
+        <div class="contact__left">
+          <h2 class="section__title">Kontakt</h2>
+          <p class="contact__sub">Zostaw kontakt - odezwiemy się z konkretną wyceną w ciągu 24 godzin.</p>
+          <a class="contact__email" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
+        </div>
+
+        <form class="contact__form" method="POST" action="#">
+          <div class="service-chips">
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Importy WooCommerce" checked> importy woocommerce</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Importy Temu"> importy temu</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Strony internetowe"> strony internetowe</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Inne"> inne</label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="imie">Imię i nazwisko</label>
+              <input type="text" id="imie" name="imie" placeholder="Jan Kowalski" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jan@firma.pl" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="tel">Telefon <span class="form-optional">(opcjonalnie)</span></label>
+            <input type="tel" id="tel" name="telefon" placeholder="+48 000 000 000" />
+          </div>
+
+          <div class="form-field">
+            <label for="wiadomosc">Opisz projekt <span class="form-optional">(kilka słów wystarczy)</span></label>
+            <textarea id="wiadomosc" name="wiadomosc" placeholder="Ile produktów, jaka branża, skąd masz dane produktów."></textarea>
+          </div>
+
+          <div class="form-consent">
+            <input type="checkbox" id="rodo" name="rodo" required />
+            <label for="rodo">Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie.</label>
+          </div>
+
+          <button type="submit" class="btn btn--filled btn--short">wyślij</button>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="inner footer__inner">
+
+      <a class="footer__logo" href="../pl/index.html">
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="32" height="16" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+        <span class="footer__logo-text">Laap Code</span>
+      </a>
+
+      <a class="footer__contact" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
+
+      <nav class="footer__links">
+        <a href="../pl/index.html#usaugi">Usługi</a>
+        <a href="../pl/index.html#strony">Portfolio</a>
+        <a href="../pl/index.html#o-mnie">O nas</a>
+        <a href="../pl/index.html#blog">Blog</a>
+      </nav>
+
+      <span class="footer__copy">© <span id="year"></span> Laap Code</span>
+
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    var hamburger = document.getElementById('navHamburger');
+    var mobileNav = document.getElementById('navMobile');
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', function() {
+        var isOpen = mobileNav.classList.toggle('is-open');
+        hamburger.classList.toggle('is-open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+      mobileNav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileNav.classList.remove('is-open');
+          hamburger.classList.remove('is-open');
+          hamburger.setAttribute('aria-expanded', false);
+        });
+      });
+    }
+    var yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    (function () {
+      var track = document.getElementById('clientsTrack');
+      if (!track) return;
+      var origItems = Array.from(track.children);
+      var origCount = origItems.length;
+      function fillTrack() {
+        while (track.scrollWidth < window.innerWidth * 2.5) {
+          origItems.forEach(function(item) { track.appendChild(item.cloneNode(true)); });
+        }
+        var setWidth = 0;
+        var children = track.children;
+        for (var i = 0; i < origCount; i++) {
+          setWidth += children[i].getBoundingClientRect().width;
+        }
+        setWidth += 64 * origCount;
+        track.style.setProperty('--marquee-offset', -setWidth + 'px');
+        track.style.setProperty('--marquee-duration', (setWidth / 80).toFixed(1) + 's');
+        track.classList.add('is-animating');
+      }
+      var imgs = track.querySelectorAll('img');
+      var loaded = 0, total = imgs.length;
+      if (total === 0) { fillTrack(); return; }
+      imgs.forEach(function(img) {
+        function done() { loaded++; if (loaded === total) fillTrack(); }
+        if (img.complete) done(); else { img.addEventListener('load', done); img.addEventListener('error', done); }
+      });
+      setTimeout(function() { if (!track.classList.contains('is-animating')) fillTrack(); }, 2000);
+    })();
+  </script>
+
+</body>
+</html>
