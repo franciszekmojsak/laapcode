@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Importy produktowe na Temu — Laap Code</title>
+  <meta name="description" content="Masowy import produktów na Temu — precyzyjnie, szybko, z ręczną weryfikacją. Od 1 zł za produkt." />
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* =============================================
+       TEMU SUBPAGE — dodatkowe style
+       ============================================= */
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin-bottom: 40px;
+    }
+    .breadcrumb a {
+      color: var(--text-2);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb__sep { color: var(--border); }
+
+    /* Hero podstrony */
+    .subpage-hero {
+      padding: 52px 0 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .subpage-hero__tag {
+      display: inline-block;
+      font-size: var(--text-2xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--accent);
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 28px;
+      color: var(--accent);
+    }
+    .subpage-hero__title {
+      font-size: clamp(32px, 5.5vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      text-transform: lowercase;
+      max-width: 860px;
+      margin-bottom: 24px;
+    }
+    .subpage-hero__lead {
+      font-size: var(--text-md);
+      font-weight: 500;
+      color: var(--text-2);
+      max-width: 600px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .subpage-hero__ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .subpage-hero__note {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+    }
+
+    /* Sekcja z listą punktów */
+    .temu-section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .temu-section:last-of-type {
+      border-bottom: none;
+    }
+    .temu-section__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .temu-section__inner--wide {
+      grid-template-columns: 1fr;
+    }
+    .temu-section__label {
+      font-size: var(--text-2xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+    .temu-section__title {
+      font-size: clamp(22px, 3vw, 38px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-transform: lowercase;
+      margin-bottom: 20px;
+    }
+    .temu-section__lead {
+      font-size: var(--text-base);
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+    .temu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .temu-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: var(--text-base);
+      line-height: 1.5;
+    }
+    .temu-list li::before {
+      content: '—';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Win-win box */
+    .winwin {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .winwin__box {
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 48px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .winwin__text {
+      max-width: 560px;
+    }
+    .winwin__title {
+      font-size: clamp(22px, 3vw, 36px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-transform: lowercase;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .winwin__desc {
+      font-size: var(--text-base);
+      line-height: 1.65;
+      color: rgba(255,255,255,0.75);
+    }
+    .winwin__cta {
+      flex-shrink: 0;
+    }
+    .btn--white {
+      background: var(--white);
+      color: var(--accent);
+      border-color: var(--white);
+    }
+    .btn--white:hover {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+      opacity: 1;
+    }
+
+    /* Tabela porównawcza */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 36px;
+    }
+    .compare-table th,
+    .compare-table td {
+      text-align: left;
+      padding: 18px 20px;
+      font-size: var(--text-sm);
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-table th {
+      font-weight: 700;
+      font-size: var(--text-2xs);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      padding-top: 0;
+    }
+    .compare-table th:first-child,
+    .compare-table td:first-child {
+      padding-left: 0;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .compare-table td:last-child {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Proces - kroki */
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 40px;
+    }
+    .process-step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .process-step:first-child {
+      border-top: 1px solid var(--border);
+    }
+    .process-step__num {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--text-2);
+      padding-top: 2px;
+    }
+    .process-step__body {}
+    .process-step__title {
+      font-size: var(--text-base);
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-transform: lowercase;
+    }
+    .process-step__desc {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Placeholdery na screenshoty */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .screen-placeholder {
+      aspect-ratio: 16/10;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FAFAFA;
+    }
+    .screen-placeholder__label {
+      font-size: var(--text-2xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--border);
+    }
+    .screens-grid--two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Dla kogo — tagi */
+    .for-whom {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .for-whom__item {
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Sekcja CTA końcowa */
+    .temu-cta {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .temu-cta__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .temu-cta__title {
+      font-size: clamp(24px, 3.5vw, 48px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-transform: lowercase;
+      max-width: 600px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .temu-section__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .winwin__box {
+        flex-direction: column;
+        padding: 36px 28px;
+        gap: 28px;
+      }
+      .screens-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .temu-cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+      }
+    }
+    @media (max-width: 600px) {
+      .screens-grid {
+        grid-template-columns: 1fr;
+      }
+      .screens-grid--two {
+        grid-template-columns: 1fr;
+      }
+      .compare-table { font-size: var(--text-2xs); }
+      .compare-table th, .compare-table td { padding: 14px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="brand-bar"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="../pl/index.html" aria-label="Laap Code - strona główna">
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="48" height="24" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../pl/index.html#usaugi">Usługi</a></li>
+        <li><a href="../pl/index.html#strony">Portfolio</a></li>
+        <li><a href="../pl/index.html#o-mnie">O nas</a></li>
+        <li><a href="../pl/index.html#blog">Blog</a></li>
+      </ul>
+      <div class="nav__right">
+        <a class="nav__cta" href="#kontakt">Skontaktuj się</a>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav__mobile" id="navMobile">
+    <ul class="nav__mobile-links">
+      <li><a href="../pl/index.html#usaugi">Usługi</a></li>
+      <li><a href="../pl/index.html#strony">Portfolio</a></li>
+      <li><a href="../pl/index.html#o-mnie">O nas</a></li>
+      <li><a href="../pl/index.html#blog">Blog</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="subpage-hero">
+      <div class="inner">
+
+        <div class="breadcrumb">
+          <a href="../pl/index.html">Laap Code</a>
+          <span class="breadcrumb__sep">/</span>
+          <a href="../pl/index.html#importy">Importy produktowe</a>
+          <span class="breadcrumb__sep">/</span>
+          <span>Temu</span>
+        </div>
+
+        <span class="subpage-hero__tag">Importy produktowe</span>
+        <h1 class="subpage-hero__title">importy produktowe na temu - precyzyjnie, masowo, bez błędów.</h1>
+        <p class="subpage-hero__lead">Temu wymaga precyzyjnie przygotowanych plików produktowych - odpowiednich kategorii, atrybutów, wariantów i zdjęć w wymaganym formacie. Przygotowujemy je za Ciebie i przeprowadzamy import od początku do końca.</p>
+        <div class="subpage-hero__ctas">
+          <a class="btn btn--filled" href="#kontakt">Zapytaj o wycenę →</a>
+          <span class="subpage-hero__note">Odpowiadamy w ciągu 24h</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== CO ROBIMY ========== -->
+    <section class="temu-section" id="co-robimy">
+      <div class="inner">
+        <div class="temu-section__inner">
+
+          <div>
+            <p class="temu-section__label">Co obejmuje usługa</p>
+            <h2 class="temu-section__title">wszystko od przygotowania pliku po publikację</h2>
+            <p class="temu-section__lead">Zajmujemy się całym procesem - od analizy asortymentu po weryfikację każdego produktu po imporcie. Ty skupiasz się na sprzedaży.</p>
+          </div>
+
+          <ul class="temu-list">
+            <li>Analiza asortymentu i dopasowanie do struktury kategorii Temu</li>
+            <li>Przygotowanie pliku importowego (XML/CSV) zgodnego z Temu Seller Center</li>
+            <li>Mapowanie atrybutów i parametrów produktów (rozmiary, kolory, warianty)</li>
+            <li>Masowy import produktów, kategorii, zdjęć oraz wszystkich innych atrybutów</li>
+            <li>Optymalizacja tytułów i opisów pod wymagania platformy</li>
+            <li>Obsługa procesu weryfikacji produktów przez Temu przed publikacją</li>
+            <li>Ręczna weryfikacja importu po zakończeniu - dla pewności sprawdzamy każdy produkt</li>
+            <li>Raport końcowy z zestawieniem opublikowanych produktów</li>
+          </ul>
+
+        </div>
+
+        <!-- Placeholdery na screeny z realizacji -->
+        <div class="screens-grid" style="margin-top: 64px;">
+          <div class="screen-placeholder"><span class="screen-placeholder__label">Screen 1</span></div>
+          <div class="screen-placeholder"><span class="screen-placeholder__label">Screen 2</span></div>
+          <div class="screen-placeholder"><span class="screen-placeholder__label">Screen 3</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== WIN-WIN ========== -->
+    <section class="winwin">
+      <div class="inner">
+        <div class="winwin__box">
+          <div class="winwin__text">
+            <h2 class="winwin__title">sytuacja win-win - więcej produktów, mniejszy koszt.</h2>
+            <p class="winwin__desc">Sprzedający na Temu zyskuje pełną obecność asortymentu na platformie, płacąc za każdy produkt ułamek tego, co kosztuje ręczne wprowadzanie. My zajmujemy się całym procesem, Ty skupiasz się na sprzedaży.</p>
+          </div>
+          <a class="btn btn--white winwin__cta" href="#kontakt">Zapytaj o wycenę →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DLACZEGO WARTO ========== -->
+    <section class="temu-section" id="dlaczego">
+      <div class="inner">
+
+        <p class="temu-section__label">Porównanie</p>
+        <h2 class="temu-section__title">ręcznie czy import przez nas?</h2>
+        <p class="temu-section__lead" style="margin-bottom: 0;">Ręczne wprowadzanie produktów na Temu to przeciętnie 15-30 minut na jeden produkt. Przy 200 produktach to ponad tydzień pracy.</p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Ręcznie</th>
+              <th>Import przez nas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Koszt za produkt</td>
+              <td>nawet 15 zł/szt.</td>
+              <td>od 1 zł/szt.</td>
+            </tr>
+            <tr>
+              <td>500 produktów</td>
+              <td>100-150 godz.</td>
+              <td>1-3 dni robocze</td>
+            </tr>
+            <tr>
+              <td>Ryzyko błędów</td>
+              <td>Wysokie</td>
+              <td>Minimalne</td>
+            </tr>
+            <tr>
+              <td>Skalowalność</td>
+              <td>Ograniczona</td>
+              <td>Dowolna liczba SKU</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </section>
+
+    <!-- ========== NASZ PROCES ========== -->
+    <section class="temu-section" id="proces">
+      <div class="inner">
+        <div class="temu-section__inner">
+
+          <div>
+            <p class="temu-section__label">Jak pracujemy</p>
+            <h2 class="temu-section__title">6 kroków od briefu do publikacji</h2>
+            <p class="temu-section__lead">Przejrzysty proces bez zaskoczeń - zawsze wiesz na jakim etapie jesteśmy.</p>
+          </div>
+
+          <div class="process-steps">
+            <div class="process-step">
+              <span class="process-step__num">01</span>
+              <div class="process-step__body">
+                <p class="process-step__title">brief</p>
+                <p class="process-step__desc">Przesyłasz nam asortyment - plik Excel, XML od dostawcy lub dane z innego systemu.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__num">02</span>
+              <div class="process-step__body">
+                <p class="process-step__title">analiza</p>
+                <p class="process-step__desc">Sprawdzamy strukturę danych, kategorie Temu i wymagania dla Twojej branży.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__num">03</span>
+              <div class="process-step__body">
+                <p class="process-step__title">przygotowanie pliku</p>
+                <p class="process-step__desc">Budujemy plik importowy zgodny z Temu Seller Center - wszystkie atrybuty, zdjęcia, warianty.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__num">04</span>
+              <div class="process-step__body">
+                <p class="process-step__title">import</p>
+                <p class="process-step__desc">Wgrywamy produkty i obsługujemy proces weryfikacji przez platformę.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__num">05</span>
+              <div class="process-step__body">
+                <p class="process-step__title">weryfikacja ręczna</p>
+                <p class="process-step__desc">Dla pewności przeglądamy każdy zaimportowany produkt.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__num">06</span>
+              <div class="process-step__body">
+                <p class="process-step__title">raport</p>
+                <p class="process-step__desc">Dostajesz zestawienie opublikowanych produktów.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DLA KOGO ========== -->
+    <section class="temu-section" id="dla-kogo">
+      <div class="inner">
+        <div class="temu-section__inner">
+
+          <div>
+            <p class="temu-section__label">Dla kogo</p>
+            <h2 class="temu-section__title">z kim najczęściej współpracujemy</h2>
+            <div class="for-whom">
+              <span class="for-whom__item">Sprzedawcy Temu Local-to-Local</span>
+              <span class="for-whom__item">Sklepy migrujące z Allegro / WooCommerce / IdoSell</span>
+              <span class="for-whom__item">Hurtownicy z dużym asortymentem</span>
+              <span class="for-whom__item">Marki wchodzące na Temu</span>
+            </div>
+          </div>
+
+          <div>
+            <p class="temu-section__label">Cena</p>
+            <h2 class="temu-section__title">ile to kosztuje?</h2>
+            <p class="temu-section__lead">Wycena zależy od liczby produktów i stopnia skomplikowania asortymentu. Napisz do nas - odpiszemy z wyceną w ciągu 24 godzin.</p>
+            <a class="btn btn--filled" href="#kontakt" style="margin-top: 24px; display: inline-flex;">Zapytaj o wycenę →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ZREALIZOWANE IMPORTY ========== -->
+    <section class="temu-section" id="realizacje">
+      <div class="inner">
+        <p class="temu-section__label">Zrealizowane importy</p>
+        <h2 class="temu-section__title">wybrane współprace</h2>
+        <p class="temu-section__lead">Przykłady importów które zrealizowaliśmy - zdjęcia listingów po imporcie.</p>
+
+        <div class="screens-grid screens-grid--two" style="margin-top: 40px;">
+          <div class="screen-placeholder"><span class="screen-placeholder__label">Realizacja 1</span></div>
+          <div class="screen-placeholder"><span class="screen-placeholder__label">Realizacja 2</span></div>
+          <div class="screen-placeholder"><span class="screen-placeholder__label">Realizacja 3</span></div>
+          <div class="screen-placeholder"><span class="screen-placeholder__label">Realizacja 4</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== KONTAKT ========== -->
+    <section class="contact temu-cta" id="kontakt">
+      <div class="inner contact__inner">
+
+        <div class="contact__left">
+          <h2 class="section__title">Kontakt</h2>
+          <p class="contact__sub">Zostaw kontakt - odezwiemy się z konkretną wyceną w ciągu 24 godzin.</p>
+          <a class="contact__email" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
+        </div>
+
+        <form class="contact__form" method="POST" action="#">
+          <div class="service-chips">
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Importy Temu" checked> importy temu</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Inne importy"> inne importy</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Strony internetowe"> strony internetowe</label>
+            <label class="service-chip"><input type="checkbox" name="usluga" value="Inne"> inne</label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="imie">Imię i nazwisko</label>
+              <input type="text" id="imie" name="imie" placeholder="Jan Kowalski" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jan@firma.pl" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="tel">Telefon <span class="form-optional">(opcjonalnie)</span></label>
+            <input type="tel" id="tel" name="telefon" placeholder="+48 000 000 000" />
+          </div>
+
+          <div class="form-field">
+            <label for="wiadomosc">Opisz projekt <span class="form-optional">(kilka słów wystarczy)</span></label>
+            <textarea id="wiadomosc" name="wiadomosc" placeholder="Ile produktów, jaka branża, skąd masz dane produktów."></textarea>
+          </div>
+
+          <div class="form-consent">
+            <input type="checkbox" id="rodo" name="rodo" required />
+            <label for="rodo">Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie.</label>
+          </div>
+
+          <button type="submit" class="btn btn--filled btn--short">wyślij</button>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="inner footer__inner">
+
+      <a class="footer__logo" href="../pl/index.html">
+        <svg class="nav__logo-mark" viewBox="0 0 64 32" width="32" height="16" fill="none">
+          <path d="M22 7 L10 16 L22 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 7 L54 16 L42 25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="16" r="6.5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="16" r="1.8" fill="currentColor"/>
+        </svg>
+        <span class="footer__logo-text">Laap Code</span>
+      </a>
+
+      <a class="footer__contact" href="mailto:mojsakfranciszek@gmail.com">mojsakfranciszek@gmail.com</a>
+
+      <nav class="footer__links">
+        <a href="../pl/index.html#usaugi">Usługi</a>
+        <a href="../pl/index.html#strony">Portfolio</a>
+        <a href="../pl/index.html#o-mnie">O nas</a>
+        <a href="../pl/index.html#blog">Blog</a>
+      </nav>
+
+      <span class="footer__copy">© <span id="year"></span> Laap Code</span>
+
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Hamburger menu
+    var hamburger = document.getElementById('navHamburger');
+    var mobileNav = document.getElementById('navMobile');
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', function() {
+        var isOpen = mobileNav.classList.toggle('is-open');
+        hamburger.classList.toggle('is-open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+      mobileNav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileNav.classList.remove('is-open');
+          hamburger.classList.remove('is-open');
+          hamburger.setAttribute('aria-expanded', false);
+        });
+      });
+    }
+    // Rok w footerze
+    var yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
