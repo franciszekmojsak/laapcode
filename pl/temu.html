@@ -3,8 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Importy produktowe na Temu — Laap Code</title>
-  <meta name="description" content="Masowy import produktów na Temu — precyzyjnie, szybko, z ręczną weryfikacją. Od 1 zł za produkt." />
+  <title>Importy produktowe na Temu — od 1 zł za produkt | Laap Code</title>
+  <meta name="description" content="Masowy import produktów, kategorii i zdjęć na Temu. Przygotowujemy pliki importowe, obsługujemy cały proces i weryfikujemy każdy produkt ręcznie. Od 1 zł za produkt." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://laapcode.vercel.app/pl/temu.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://laapcode.vercel.app/pl/temu.html" />
+  <meta property="og:title" content="Importy produktowe na Temu — od 1 zł za produkt | Laap Code" />
+  <meta property="og:description" content="Masowy import produktów, kategorii i zdjęć na Temu. Przygotowujemy pliki importowe, obsługujemy cały proces i weryfikujemy każdy produkt ręcznie." />
+  <meta property="og:image" content="https://laapcode.vercel.app/img/og_temu.png" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:site_name" content="Laap Code" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Importy produktowe na Temu — od 1 zł za produkt | Laap Code" />
+  <meta name="twitter:description" content="Masowy import produktów, kategorii i zdjęć na Temu. Od 1 zł za produkt." />
+  <meta name="twitter:image" content="https://laapcode.vercel.app/img/og_temu.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Importy produktowe na Temu",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Laap Code",
+      "url": "https://laapcode.vercel.app/pl/",
+      "email": "mojsakfranciszek@gmail.com"
+    },
+    "description": "Masowy import produktów, kategorii i zdjęć na Temu. Przygotowujemy pliki importowe zgodne z Temu Seller Center, obsługujemy cały proces i weryfikujemy każdy produkt ręcznie.",
+    "areaServed": "PL",
+    "inLanguage": "pl",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "PLN",
+      "price": "1",
+      "description": "Od 1 zł za produkt"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css" />
@@ -195,7 +237,7 @@
     .compare-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 36px;
+      margin-top: 0;
       border: 1.5px solid var(--accent);
     }
     .compare-table th,
@@ -206,18 +248,10 @@
       font-weight: 600;
       border: 1px solid var(--accent);
       color: var(--text);
+      background: transparent;
     }
     .compare-table th {
       font-weight: 700;
-      font-size: var(--text-sm);
-      background: var(--accent);
-      color: var(--white);
-      letter-spacing: 0;
-      text-transform: none;
-    }
-    .compare-table th:first-child {
-      background: var(--accent);
-      color: var(--white);
     }
     .compare-table td:first-child {
       font-weight: 700;
@@ -225,9 +259,6 @@
     .compare-table td:last-child {
       font-weight: 700;
       color: var(--temu);
-    }
-    .compare-table tbody tr:nth-child(even) td {
-      background: #F8F8F8;
     }
 
     /* Proces - kroki poziome */
@@ -517,42 +548,45 @@
     <!-- ========== DLACZEGO WARTO ========== -->
     <section class="temu-section" id="dlaczego">
       <div class="inner">
+        <div class="temu-section__inner">
 
-        <p class="temu-section__label">Porównanie</p>
-        <h2 class="temu-section__title">ręcznie czy import przez nas?</h2>
-        <p class="temu-section__lead" style="margin-bottom: 0;">Ręczne wprowadzanie produktów na Temu to przeciętnie 15-30 minut na jeden produkt. Przy 200 produktach to ponad tydzień pracy.</p>
+          <div>
+            <p class="temu-section__label">Porównanie</p>
+            <h2 class="temu-section__title">ręcznie czy import przez nas?</h2>
+            <p class="temu-section__lead">Ręczne wprowadzanie produktów na Temu to przeciętnie 15-30 minut na jeden produkt. Przy 200 produktach to ponad tydzień pracy.</p>
+          </div>
 
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Ręcznie</th>
-              <th>Import przez nas</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Koszt za produkt</td>
-              <td>nawet 15 zł/szt.</td>
-              <td>od 1 zł/szt.</td>
-            </tr>
-            <tr>
-              <td>500 produktów</td>
-              <td>100-150 godz.</td>
-              <td>1-2 dni robocze</td>
-            </tr>
-            <tr>
-              <td>Ryzyko błędów</td>
-              <td>Wysokie</td>
-              <td>Minimalne</td>
-            </tr>
-            <tr>
-              <td>Skalowalność</td>
-              <td>Ograniczona</td>
-              <td>Dowolna liczba produktów</td>
-            </tr>
-          </tbody>
-        </table>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Ręcznie</th>
+                <th>Import przez nas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Koszt za produkt</td>
+                <td>nawet 15 zł/szt.</td>
+                <td>od 1 zł/szt.</td>
+              </tr>
+              <tr>
+                <td>500 produktów</td>
+                <td>100-150 godz.</td>
+                <td>1-2 dni robocze</td>
+              </tr>
+              <tr>
+                <td>Ryzyko błędów</td>
+                <td>Wysokie</td>
+                <td>Minimalne</td>
+              </tr>
+              <tr>
+                <td>Skalowalność</td>
+                <td>Ograniczona</td>
+                <td>Dowolna liczba produktów</td>
+              </tr>
+            </tbody>
+          </table>
 
       </div>
     </section>
