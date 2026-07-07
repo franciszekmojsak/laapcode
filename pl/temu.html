@@ -48,12 +48,23 @@
       color: var(--accent);
     }
     .subpage-hero__title {
-      font-size: clamp(32px, 5.5vw, 72px);
-      line-height: 1.05;
-      letter-spacing: -0.025em;
+      font-size: clamp(40px, 7.5vw, 108px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
       text-transform: lowercase;
-      max-width: 860px;
-      margin-bottom: 24px;
+      white-space: nowrap;
+      max-width: 100%;
+      margin-bottom: 12px;
+    }
+    .subpage-hero__subtitle {
+      font-size: clamp(20px, 3.2vw, 48px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      color: var(--text-2);
+      white-space: nowrap;
+      margin-bottom: 32px;
     }
     .subpage-hero__lead {
       font-size: var(--text-md);
@@ -61,6 +72,7 @@
       color: var(--text-2);
       max-width: 600px;
       line-height: 1.6;
+      margin-top: 28px;
       margin-bottom: 40px;
     }
     .subpage-hero__ctas {
@@ -77,10 +89,6 @@
     /* Sekcja z listą punktów */
     .temu-section {
       padding: 72px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .temu-section:last-of-type {
-      border-bottom: none;
     }
     .temu-section__inner {
       display: grid;
@@ -92,6 +100,7 @@
       grid-template-columns: 1fr;
     }
     .temu-section__label {
+      display: none;
       font-size: var(--text-2xs);
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -135,12 +144,12 @@
     /* Win-win box */
     .winwin {
       padding: 72px 0;
-      border-bottom: 1px solid var(--border);
     }
     .winwin__box {
-      background: var(--accent);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--text);
       border-radius: 8px;
+      border: 1px solid var(--accent);
       padding: 48px 56px;
       display: flex;
       align-items: center;
@@ -155,13 +164,13 @@
       letter-spacing: -0.02em;
       line-height: 1.1;
       text-transform: lowercase;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 16px;
     }
     .winwin__desc {
       font-size: var(--text-base);
       line-height: 1.65;
-      color: rgba(255,255,255,0.75);
+      color: var(--text-2);
     }
     .winwin__cta {
       flex-shrink: 0;
@@ -213,41 +222,67 @@
       border-bottom: none;
     }
 
-    /* Proces - kroki */
+    /* Proces - kroki poziome */
     .process-steps {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      align-items: flex-start;
       gap: 0;
-      margin-top: 40px;
+      margin-top: 48px;
     }
     .process-step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 24px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-right: 24px;
+      position: relative;
     }
-    .process-step:first-child {
-      border-top: 1px solid var(--border);
+    .process-step:last-child {
+      padding-right: 0;
+    }
+    .process-step__arrow {
+      position: absolute;
+      right: -4px;
+      top: 6px;
+      font-size: 18px;
+      color: var(--border);
+      line-height: 1;
+    }
+    .process-step:last-child .process-step__arrow {
+      display: none;
     }
     .process-step__num {
+      font-size: var(--text-2xs);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text-2);
+    }
+    .process-step__title {
       font-size: var(--text-sm);
       font-weight: 700;
-      color: var(--text-2);
-      padding-top: 2px;
-    }
-    .process-step__body {}
-    .process-step__title {
-      font-size: var(--text-base);
-      font-weight: 700;
-      margin-bottom: 4px;
       text-transform: lowercase;
+      line-height: 1.3;
     }
     .process-step__desc {
       font-size: var(--text-sm);
       color: var(--text-2);
       line-height: 1.6;
+    }
+    @media (max-width: 760px) {
+      .process-steps {
+        flex-direction: column;
+        gap: 0;
+        padding-top: 0;
+        border-top: none;
+      }
+      .process-step {
+        padding-right: 0;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .process-step:first-child { border-top: 1px solid var(--border); }
+      .process-step__arrow { display: none; }
     }
 
     /* Placeholdery na screenshoty */
@@ -296,7 +331,6 @@
     /* Sekcja CTA końcowa */
     .temu-cta {
       padding: 80px 0;
-      border-top: 1px solid var(--border);
     }
     .temu-cta__inner {
       display: flex;
@@ -393,18 +427,19 @@
 
         <div class="breadcrumb">
           <a href="../pl/index.html">Laap Code</a>
-          <span class="breadcrumb__sep">/</span>
+          <span class="breadcrumb__sep">→</span>
           <a href="../pl/index.html#importy">Importy produktowe</a>
-          <span class="breadcrumb__sep">/</span>
+          <span class="breadcrumb__sep">→</span>
           <span>Temu</span>
         </div>
 
         <span class="subpage-hero__tag">Importy produktowe</span>
-        <h1 class="subpage-hero__title">importy produktowe na temu - precyzyjnie, masowo, bez błędów.</h1>
+        <h1 class="subpage-hero__title">importy produktowe temu</h1>
+        <p class="subpage-hero__subtitle">precyzyjnie, masowo, bez błędów.</p>
         <p class="subpage-hero__lead">Temu wymaga precyzyjnie przygotowanych plików produktowych - odpowiednich kategorii, atrybutów, wariantów i zdjęć w wymaganym formacie. Przygotowujemy je za Ciebie i przeprowadzamy import od początku do końca.</p>
         <div class="subpage-hero__ctas">
-          <a class="btn btn--filled" href="#kontakt">Zapytaj o wycenę →</a>
-          <span class="subpage-hero__note">Odpowiadamy w ciągu 24h</span>
+          <a class="btn btn--filled" href="#kontakt">skontaktuj się →</a>
+          <a class="btn btn--outline" href="#co-robimy">czytaj więcej</a>
         </div>
 
       </div>
@@ -452,7 +487,7 @@
             <h2 class="winwin__title">sytuacja win-win - więcej produktów, mniejszy koszt.</h2>
             <p class="winwin__desc">Sprzedający na Temu zyskuje pełną obecność asortymentu na platformie, płacąc za każdy produkt ułamek tego, co kosztuje ręczne wprowadzanie. My zajmujemy się całym procesem, Ty skupiasz się na sprzedaży.</p>
           </div>
-          <a class="btn btn--white winwin__cta" href="#kontakt">Zapytaj o wycenę →</a>
+          <a class="btn btn--filled winwin__cta" href="#kontakt">Zapytaj o wycenę →</a>
         </div>
       </div>
     </section>
@@ -482,7 +517,7 @@
             <tr>
               <td>500 produktów</td>
               <td>100-150 godz.</td>
-              <td>1-3 dni robocze</td>
+              <td>1-2 dni robocze</td>
             </tr>
             <tr>
               <td>Ryzyko błędów</td>
@@ -492,7 +527,7 @@
             <tr>
               <td>Skalowalność</td>
               <td>Ograniczona</td>
-              <td>Dowolna liczba SKU</td>
+              <td>Dowolna liczba produktów</td>
             </tr>
           </tbody>
         </table>
@@ -513,46 +548,40 @@
 
           <div class="process-steps">
             <div class="process-step">
+              <span class="process-step__arrow">→</span>
               <span class="process-step__num">01</span>
-              <div class="process-step__body">
-                <p class="process-step__title">brief</p>
-                <p class="process-step__desc">Przesyłasz nam asortyment - plik Excel, XML od dostawcy lub dane z innego systemu.</p>
-              </div>
+              <p class="process-step__title">brief</p>
+              <p class="process-step__desc">Przesyłasz nam asortyment - plik Excel, XML od dostawcy lub dane z innego systemu.</p>
             </div>
             <div class="process-step">
+              <span class="process-step__arrow">→</span>
               <span class="process-step__num">02</span>
-              <div class="process-step__body">
-                <p class="process-step__title">analiza</p>
-                <p class="process-step__desc">Sprawdzamy strukturę danych, kategorie Temu i wymagania dla Twojej branży.</p>
-              </div>
+              <p class="process-step__title">analiza</p>
+              <p class="process-step__desc">Sprawdzamy strukturę danych, kategorie Temu i wymagania dla Twojej branży.</p>
             </div>
             <div class="process-step">
+              <span class="process-step__arrow">→</span>
               <span class="process-step__num">03</span>
-              <div class="process-step__body">
-                <p class="process-step__title">przygotowanie pliku</p>
-                <p class="process-step__desc">Budujemy plik importowy zgodny z Temu Seller Center - wszystkie atrybuty, zdjęcia, warianty.</p>
-              </div>
+              <p class="process-step__title">przygotowanie pliku</p>
+              <p class="process-step__desc">Budujemy plik importowy zgodny z Temu Seller Center.</p>
             </div>
             <div class="process-step">
+              <span class="process-step__arrow">→</span>
               <span class="process-step__num">04</span>
-              <div class="process-step__body">
-                <p class="process-step__title">import</p>
-                <p class="process-step__desc">Wgrywamy produkty i obsługujemy proces weryfikacji przez platformę.</p>
-              </div>
+              <p class="process-step__title">import</p>
+              <p class="process-step__desc">Wgrywamy produkty i obsługujemy weryfikację przez platformę.</p>
             </div>
             <div class="process-step">
+              <span class="process-step__arrow">→</span>
               <span class="process-step__num">05</span>
-              <div class="process-step__body">
-                <p class="process-step__title">weryfikacja ręczna</p>
-                <p class="process-step__desc">Dla pewności przeglądamy każdy zaimportowany produkt.</p>
-              </div>
+              <p class="process-step__title">weryfikacja ręczna</p>
+              <p class="process-step__desc">Dla pewności przeglądamy każdy zaimportowany produkt.</p>
             </div>
             <div class="process-step">
+              <span class="process-step__arrow">→</span>
               <span class="process-step__num">06</span>
-              <div class="process-step__body">
-                <p class="process-step__title">raport</p>
-                <p class="process-step__desc">Dostajesz zestawienie opublikowanych produktów.</p>
-              </div>
+              <p class="process-step__title">raport</p>
+              <p class="process-step__desc">Dostajesz zestawienie opublikowanych produktów.</p>
             </div>
           </div>
 
@@ -560,47 +589,35 @@
       </div>
     </section>
 
-    <!-- ========== DLA KOGO ========== -->
-    <section class="temu-section" id="dla-kogo">
+    <!-- ========== CENA ========== -->
+    <section class="temu-section" id="cena">
       <div class="inner">
         <div class="temu-section__inner">
-
-          <div>
-            <p class="temu-section__label">Dla kogo</p>
-            <h2 class="temu-section__title">z kim najczęściej współpracujemy</h2>
-            <div class="for-whom">
-              <span class="for-whom__item">Sprzedawcy Temu Local-to-Local</span>
-              <span class="for-whom__item">Sklepy migrujące z Allegro / WooCommerce / IdoSell</span>
-              <span class="for-whom__item">Hurtownicy z dużym asortymentem</span>
-              <span class="for-whom__item">Marki wchodzące na Temu</span>
-            </div>
-          </div>
-
           <div>
             <p class="temu-section__label">Cena</p>
             <h2 class="temu-section__title">ile to kosztuje?</h2>
             <p class="temu-section__lead">Wycena zależy od liczby produktów i stopnia skomplikowania asortymentu. Napisz do nas - odpiszemy z wyceną w ciągu 24 godzin.</p>
-            <a class="btn btn--filled" href="#kontakt" style="margin-top: 24px; display: inline-flex;">Zapytaj o wycenę →</a>
+            <a class="btn btn--filled" href="#kontakt" style="margin-top: 28px; display: inline-flex;">Zapytaj o wycenę →</a>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ========== ZREALIZOWANE IMPORTY ========== -->
-    <section class="temu-section" id="realizacje">
+    <!-- ========== KARUZELA KLIENTÓW ========== -->
+    <section class="clients" id="klienci">
       <div class="inner">
-        <p class="temu-section__label">Zrealizowane importy</p>
-        <h2 class="temu-section__title">wybrane współprace</h2>
-        <p class="temu-section__lead">Przykłady importów które zrealizowaliśmy - zdjęcia listingów po imporcie.</p>
-
-        <div class="screens-grid screens-grid--two" style="margin-top: 40px;">
-          <div class="screen-placeholder"><span class="screen-placeholder__label">Realizacja 1</span></div>
-          <div class="screen-placeholder"><span class="screen-placeholder__label">Realizacja 2</span></div>
-          <div class="screen-placeholder"><span class="screen-placeholder__label">Realizacja 3</span></div>
-          <div class="screen-placeholder"><span class="screen-placeholder__label">Realizacja 4</span></div>
+        <p class="section__caption">Zrealizowane współprace</p>
+      </div>
+      <div class="clients__marquee">
+        <div class="clients__track" id="clientsTrack">
+          <span class="client-logo"><img src="../img/LAAP_logo_transparent.png" alt="Laap Code" /></span>
+          <span class="client-logo"><img src="https://agency.wisehabit.com/data/gfx/mask/eng/logo_5_small.svg" alt="Wise Habit - Agency for the Future" /></span>
+          <span class="client-logo"><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" /></span>
+          <span class="client-logo"><img src="../img/toxichair_logo.png" alt="Toxic Hair" /></span>
+          <span class="client-logo"><img src="https://wisehabit.com/data/gfx/mask/eng/logo_4_big.png" alt="Wise Habit" /></span>
+          <span class="client-logo"><img src="https://theb.pl/images/Logo_shop_b_pink.png" alt="Shop B." /></span>
+          <span class="client-logo"><img src="https://i-p.rmcdn.net/657c2898dc8d6a001494d67a/4537282/image-e19cdb16-03b1-4e71-a365-4354d7e38aed.png?w=358&e=webp&nll=true" alt="Mikołaj Markowski" /></span>
         </div>
-
       </div>
     </section>
 
@@ -706,6 +723,36 @@
     // Rok w footerze
     var yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Karuzela logo klientów
+    (function () {
+      var track = document.getElementById('clientsTrack');
+      if (!track) return;
+      var origItems = Array.from(track.children);
+      var origCount = origItems.length;
+      function fillTrack() {
+        while (track.scrollWidth < window.innerWidth * 2.5) {
+          origItems.forEach(function(item) { track.appendChild(item.cloneNode(true)); });
+        }
+        var setWidth = 0;
+        var children = track.children;
+        for (var i = 0; i < origCount; i++) {
+          setWidth += children[i].getBoundingClientRect().width;
+        }
+        setWidth += 64 * origCount;
+        track.style.setProperty('--marquee-offset', -setWidth + 'px');
+        track.style.setProperty('--marquee-duration', (setWidth / 80).toFixed(1) + 's');
+        track.classList.add('is-animating');
+      }
+      var imgs = track.querySelectorAll('img');
+      var loaded = 0, total = imgs.length;
+      if (total === 0) { fillTrack(); return; }
+      imgs.forEach(function(img) {
+        function done() { loaded++; if (loaded === total) fillTrack(); }
+        if (img.complete) done(); else { img.addEventListener('load', done); img.addEventListener('error', done); }
+      });
+      setTimeout(function() { if (!track.classList.contains('is-animating')) fillTrack(); }, 2000);
+    })();
   </script>
 
 </body>
