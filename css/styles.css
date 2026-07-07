@@ -987,9 +987,9 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 
 .about__headline {
   color: var(--text);
-  font-size: clamp(48px, 7vw, 96px);
+  font-size: clamp(28px, 4.6vw, 56px);
   font-weight: 800;
-  line-height: 0.9;
+  line-height: 1.02;
   letter-spacing: -0.02em;
   text-transform: lowercase;
   margin: 4px 0 28px;
