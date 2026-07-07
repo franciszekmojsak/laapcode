@@ -140,6 +140,7 @@ section[id] {
   font-size: var(--text-sm);
   font-weight: 600;
   letter-spacing: 0.01em;
+  text-transform: lowercase;
   color: var(--text);
   transition: color 0.15s;
 }
@@ -158,6 +159,7 @@ section[id] {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
+  text-transform: lowercase;
   padding: 8px 18px;
   border-radius: 6px;
   font-size: var(--text-sm);
@@ -216,6 +218,7 @@ section[id] {
   padding: 13px 0;
   font-size: var(--text-base);
   font-weight: 700;
+  text-transform: lowercase;
 }
 
 /* =============================================
@@ -235,6 +238,7 @@ section[id] {
   font-size: clamp(28px, 4.6vw, 56px);
   line-height: 1.02;
   letter-spacing: -0.02em;
+  text-transform: lowercase;
   margin-bottom: 36px;
   max-width: 680px;
 }
@@ -247,6 +251,7 @@ section[id] {
   border-radius: 6px;
   font-size: var(--text-sm);
   font-weight: 700;
+  text-transform: lowercase;
   border: 1.5px solid transparent;
   cursor: pointer;
   transition: opacity 0.15s, background 0.15s, color 0.15s, border-color 0.15s;
@@ -330,7 +335,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 }
 .hero__title {
   font-size: clamp(36px, 6.4vw, 92px);
-  line-height: 0.98;
+  line-height: 1.05;
   letter-spacing: -0.025em;
   text-transform: uppercase;
   margin: 0 0 26px;
@@ -547,7 +552,8 @@ main { padding-top: calc(var(--nav-h) + 2px); }
 /* Single image wrapper */
 .svc-single-img {
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 6px;
+  outline: 1px solid #1F1F1F;
   height: 520px;
 }
 .svc-single-img img {
@@ -650,6 +656,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   font-weight: 900;
   letter-spacing: -0.01em;
   color: var(--text);
+  text-transform: lowercase;
 }
 
 .services__cols {
@@ -982,6 +989,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   line-height: 0.9;
   letter-spacing: -0.02em;
   text-transform: lowercase;
+  text-transform: lowercase;
   margin: 4px 0 28px;
 }
 
@@ -1061,6 +1069,7 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   font-size: var(--text-sm);
   font-weight: 700;
   color: var(--text);
+  text-transform: lowercase;
   border-bottom: 1.5px solid var(--text);
   padding-bottom: 2px;
   flex-shrink: 0;
