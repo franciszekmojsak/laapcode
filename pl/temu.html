@@ -322,9 +322,12 @@
       }
     }
 
-    /* Co robimy — text blok po lewej */
-    .co-robimy__text {
-      max-width: 680px;
+    /* Co robimy — 2-kolumnowy układ: tekst | screeny */
+    .co-robimy__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
     }
     .co-robimy__text .temu-section__title {
       margin-bottom: 16px;
@@ -333,15 +336,14 @@
       margin-bottom: 28px;
     }
 
-    /* Kroki ze screenami */
+    /* Kroki ze screenami — pionowo po prawej */
     .step-screens {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
     .step-screen__img {
-      aspect-ratio: 16/10;
+      aspect-ratio: 16/7;
       border: 1px solid var(--border);
       border-radius: 6px;
       display: flex;
@@ -367,7 +369,7 @@
       display: flex;
       align-items: baseline;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 10px;
     }
     .step-screen__num {
       font-size: var(--text-sm);
@@ -382,11 +384,14 @@
       color: var(--text);
       line-height: 1.3;
     }
-    @media (max-width: 700px) {
-      .step-screens { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+      .co-robimy__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
     }
 
-    /* legacy — keep for screens-grid--two used elsewhere */
+    /* legacy */
     .screens-grid--two {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -545,54 +550,56 @@
     <!-- ========== CO ROBIMY ========== -->
     <section class="temu-section" id="co-robimy">
       <div class="inner">
+        <div class="co-robimy__inner">
 
-        <div class="co-robimy__text">
-          <p class="temu-section__label">Co obejmuje usługa</p>
-          <h2 class="temu-section__title">wszystko od przygotowania pliku po publikację</h2>
-          <p class="temu-section__lead">Zajmujemy się całym procesem - od analizy asortymentu po weryfikację każdego produktu po imporcie. Ty skupiasz się na sprzedaży.</p>
-          <ul class="temu-list">
-            <li>Analiza asortymentu i dopasowanie do struktury kategorii Temu</li>
-            <li>Przygotowanie pliku importowego (XML/CSV) zgodnego z Temu Seller Center</li>
-            <li>Mapowanie atrybutów i parametrów produktów (rozmiary, kolory, warianty)</li>
-            <li>Masowy import produktów, kategorii, zdjęć oraz wszystkich innych atrybutów</li>
-            <li>Optymalizacja tytułów i opisów pod wymagania platformy</li>
-            <li>Obsługa procesu weryfikacji produktów przez Temu przed publikacją</li>
-            <li>Ręczna weryfikacja importu po zakończeniu - dla pewności sprawdzamy każdy produkt</li>
-            <li>Raport końcowy z zestawieniem opublikowanych produktów</li>
-          </ul>
+          <div class="co-robimy__text">
+            <p class="temu-section__label">Co obejmuje usługa</p>
+            <h2 class="temu-section__title">wszystko od przygotowania pliku po publikację</h2>
+            <p class="temu-section__lead">Zajmujemy się całym procesem - od analizy asortymentu po weryfikację każdego produktu po imporcie. Ty skupiasz się na sprzedaży.</p>
+            <ul class="temu-list">
+              <li>Analiza asortymentu i dopasowanie do struktury kategorii Temu</li>
+              <li>Przygotowanie pliku importowego (XML/CSV) zgodnego z Temu Seller Center</li>
+              <li>Mapowanie atrybutów i parametrów produktów (rozmiary, kolory, warianty)</li>
+              <li>Masowy import produktów, kategorii, zdjęć oraz wszystkich innych atrybutów</li>
+              <li>Optymalizacja tytułów i opisów pod wymagania platformy</li>
+              <li>Obsługa procesu weryfikacji produktów przez Temu przed publikacją</li>
+              <li>Ręczna weryfikacja importu po zakończeniu - dla pewności sprawdzamy każdy produkt</li>
+              <li>Raport końcowy z zestawieniem opublikowanych produktów</li>
+            </ul>
+          </div>
+
+          <!-- Kroki ze screenami — pionowo po prawej -->
+          <div class="step-screens">
+            <div>
+              <div class="step-screen__img">
+                <span class="step-screen__img-placeholder">screen 1</span>
+              </div>
+              <div class="step-screen__caption">
+                <span class="step-screen__num">01</span>
+                <span class="step-screen__label">przygotowanie pliku importowego</span>
+              </div>
+            </div>
+            <div>
+              <div class="step-screen__img">
+                <span class="step-screen__img-placeholder">screen 2</span>
+              </div>
+              <div class="step-screen__caption">
+                <span class="step-screen__num">02</span>
+                <span class="step-screen__label">import i weryfikacja przez Temu</span>
+              </div>
+            </div>
+            <div>
+              <div class="step-screen__img">
+                <span class="step-screen__img-placeholder">screen 3</span>
+              </div>
+              <div class="step-screen__caption">
+                <span class="step-screen__num">03</span>
+                <span class="step-screen__label">podsumowanie i raport końcowy</span>
+              </div>
+            </div>
+          </div>
+
         </div>
-
-        <!-- Kroki ze screenami -->
-        <div class="step-screens">
-          <div>
-            <div class="step-screen__img">
-              <span class="step-screen__img-placeholder">screen 1</span>
-            </div>
-            <div class="step-screen__caption">
-              <span class="step-screen__num">01</span>
-              <span class="step-screen__label">przygotowanie pliku importowego</span>
-            </div>
-          </div>
-          <div>
-            <div class="step-screen__img">
-              <span class="step-screen__img-placeholder">screen 2</span>
-            </div>
-            <div class="step-screen__caption">
-              <span class="step-screen__num">02</span>
-              <span class="step-screen__label">import i weryfikacja przez Temu</span>
-            </div>
-          </div>
-          <div>
-            <div class="step-screen__img">
-              <span class="step-screen__img-placeholder">screen 3</span>
-            </div>
-            <div class="step-screen__caption">
-              <span class="step-screen__num">03</span>
-              <span class="step-screen__label">podsumowanie i raport końcowy</span>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
