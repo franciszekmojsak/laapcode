@@ -757,19 +757,22 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   align-items: stretch;
 }
 .portfolio-strip__track img {
-  height: 200px;
-  width: auto;
-  flex-shrink: 0;
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  height: 220px;
   object-fit: cover;
   object-position: top center;
   display: block;
   border-radius: 2px;
-  filter: grayscale(15%);
-  transition: filter 0.3s ease, transform 0.4s ease;
+  filter: grayscale(10%);
+  transition: filter 0.35s ease, transform 0.4s ease;
 }
 .portfolio-strip__track img:hover {
   filter: grayscale(0%);
-  transform: scale(1.02);
+  transform: scale(1.03);
+  z-index: 1;
+  position: relative;
 }
 
 /* Nagłówek sekcji z buttonem wyrównanym do prawej */
