@@ -240,17 +240,15 @@
       position: relative;
     }
     .process-step__arrow {
-      position: absolute;
-      right: -20px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 14px;
-      color: var(--accent);
-      line-height: 1;
-      z-index: 1;
-    }
-    .process-step:last-child .process-step__arrow {
       display: none;
+    }
+    .process-arrow {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      font-size: 16px;
+      color: var(--accent);
+      align-self: center;
     }
     .process-step__num {
       font-size: var(--text-2xs);
@@ -557,37 +555,36 @@
 
         <div class="process-steps">
           <div class="process-step">
-            <span class="process-step__arrow">→</span>
             <span class="process-step__num">01</span>
             <p class="process-step__title">brief</p>
             <p class="process-step__desc">Przesyłasz nam asortyment - plik Excel, XML od dostawcy lub dane z innego systemu.</p>
           </div>
+          <span class="process-arrow">→</span>
           <div class="process-step">
-            <span class="process-step__arrow">→</span>
             <span class="process-step__num">02</span>
             <p class="process-step__title">analiza</p>
             <p class="process-step__desc">Sprawdzamy strukturę danych, kategorie Temu i wymagania dla Twojej branży.</p>
           </div>
+          <span class="process-arrow">→</span>
           <div class="process-step">
-            <span class="process-step__arrow">→</span>
             <span class="process-step__num">03</span>
             <p class="process-step__title">przygotowanie pliku</p>
             <p class="process-step__desc">Budujemy plik importowy zgodny z Temu Seller Center.</p>
           </div>
+          <span class="process-arrow">→</span>
           <div class="process-step">
-            <span class="process-step__arrow">→</span>
             <span class="process-step__num">04</span>
             <p class="process-step__title">import</p>
             <p class="process-step__desc">Wgrywamy produkty i obsługujemy weryfikację przez platformę.</p>
           </div>
+          <span class="process-arrow">→</span>
           <div class="process-step">
-            <span class="process-step__arrow">→</span>
             <span class="process-step__num">05</span>
             <p class="process-step__title">weryfikacja ręczna</p>
             <p class="process-step__desc">Dla pewności przeglądamy każdy zaimportowany produkt.</p>
           </div>
+          <span class="process-arrow">→</span>
           <div class="process-step">
-            <span class="process-step__arrow">→</span>
             <span class="process-step__num">06</span>
             <p class="process-step__title">raport</p>
             <p class="process-step__desc">Dostajesz zestawienie opublikowanych produktów.</p>
