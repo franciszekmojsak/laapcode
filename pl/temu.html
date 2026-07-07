@@ -23,16 +23,16 @@
       align-items: center;
       gap: 8px;
       font-size: var(--text-sm);
-      color: var(--text-2);
+      color: var(--text);
       margin-bottom: 40px;
     }
     .breadcrumb a {
-      color: var(--text-2);
+      color: var(--text);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
     .breadcrumb a:hover { color: var(--text); }
-    .breadcrumb__sep { color: var(--text-2); }
+    .breadcrumb__sep { color: var(--text); }
 
     /* Hero podstrony */
     .subpage-hero {
@@ -72,7 +72,7 @@
     .subpage-hero__lead {
       font-size: var(--text-md);
       font-weight: 500;
-      color: var(--text-2);
+      color: var(--text);
       max-width: 600px;
       line-height: 1.6;
       margin-top: 28px;
@@ -86,7 +86,7 @@
     }
     .subpage-hero__note {
       font-size: var(--text-sm);
-      color: var(--text-2);
+      color: var(--text);
     }
 
     /* Sekcja z listą punktów */
@@ -108,7 +108,7 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--text-2);
+      color: var(--text);
       margin-bottom: 20px;
     }
     .temu-section__title {
@@ -120,7 +120,7 @@
     }
     .temu-section__lead {
       font-size: var(--text-base);
-      color: var(--text-2);
+      color: var(--text);
       line-height: 1.65;
       max-width: 520px;
     }
@@ -173,7 +173,7 @@
     .winwin__desc {
       font-size: var(--text-base);
       line-height: 1.65;
-      color: var(--text-2);
+      color: var(--text);
     }
     .winwin__cta {
       flex-shrink: 0;
@@ -208,7 +208,7 @@
       font-size: var(--text-2xs);
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--text-2);
+      color: var(--text);
       padding-top: 0;
     }
     .compare-table th:first-child,
@@ -268,7 +268,7 @@
     }
     .process-step__desc {
       font-size: var(--text-sm);
-      color: var(--text-2);
+      color: var(--text);
       line-height: 1.6;
     }
     @media (max-width: 900px) {
@@ -381,7 +381,7 @@
 </head>
 <body>
 
-  <div class="brand-bar" style="background: #F37301;"></div>
+  <div class="brand-bar"></div>
 
   <!-- NAV -->
   <nav class="nav">
@@ -434,8 +434,7 @@
           <span>Temu</span>
         </div>
 
-        <span class="subpage-hero__tag">Importy produktowe</span>
-        <h1 class="subpage-hero__title">importy produktowe temu</h1>
+        <h1 class="subpage-hero__title">importy produktowe <span style="color: var(--temu);">temu</span></h1>
         <p class="subpage-hero__subtitle">precyzyjnie, masowo, bez błędów.</p>
         <p class="subpage-hero__lead">Temu wymaga precyzyjnie przygotowanych plików produktowych - odpowiednich kategorii, atrybutów, wariantów i zdjęć w wymaganym formacie. Przygotowujemy je za Ciebie i przeprowadzamy import od początku do końca.</p>
         <div class="subpage-hero__ctas">
