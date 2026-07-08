@@ -664,7 +664,10 @@ main { padding-top: calc(var(--nav-h) + 2px); }
   font-size: 8px;
   font-weight: 700;
   flex-shrink: 0;
-  line-height: 2;
+  line-height: 1;
+  align-self: center;
+  position: relative;
+  top: -1px;
 }
 
 /* Wiersz cenowy */
