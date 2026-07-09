@@ -29,5 +29,24 @@ document.addEventListener('DOMContentLoaded', function () {
     yearEl.textContent = new Date().getFullYear();
   }
 
+  // Marquee - pas logo klientów
+  var track = document.getElementById('clientsTrack');
+  if (track) {
+    // Duplikuj loga tyle razy żeby track był wystarczająco szeroki na każdym urządzeniu
+    var logos = Array.from(track.children);
+    var copies = window.innerWidth < 600 ? 3 : 2;
+    for (var c = 0; c < copies; c++) {
+      logos.forEach(function(logo) {
+        var clone = logo.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+    }
+    // Ustaw offset proporcjonalnie do liczby kopii (oryginał / łączna liczba zestawów)
+    var totalSets = copies + 1;
+    track.style.setProperty('--marquee-offset', '-' + (100 / totalSets).toFixed(4) + '%');
+    track.classList.add('is-animating');
+  }
+
 
 });
