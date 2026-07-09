@@ -419,10 +419,29 @@
       .process-step { flex: 1 1 calc(33% - 8px); }
     }
     @media (max-width: 700px) {
+      .subpage-hero__title,
+      .subpage-hero__subtitle {
+        white-space: normal;
+      }
       .step-screens { grid-template-columns: 1fr; }
       .process-step { flex: 1 1 100%; }
       .compare-table { font-size: var(--text-2xs); }
       .compare-table th, .compare-table td { padding: 14px 10px; }
+      .process-arrow {
+        width: 100%;
+        justify-content: center;
+        font-size: 0;
+        -webkit-text-fill-color: initial;
+        background: none;
+      }
+      .process-arrow::before {
+        content: '↓';
+        font-size: 16px;
+        background: var(--wp-grad);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
     }
   </style>
   <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
@@ -436,14 +455,14 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav__inner">
-      <a class="nav__logo" href="../pl/index.html" aria-label="Laap Code - strona główna">
+      <a class="nav__logo" href="/" aria-label="Laap Code - strona główna">
         <img src="../img/laapcode_logo_transparent.svg" alt="Laap Code" style="height:64px;width:auto;display:block;" />
       </a>
       <ul class="nav__links">
-        <li><a href="../pl/index.html#importy">importy produktowe</a></li>
-        <li><a href="../pl/index.html#strony">strony internetowe</a></li>
-        <li><a href="../pl/index.html#ai">wdrożenia AI</a></li>
-        <li><a href="../pl/index.html#o-mnie">O nas</a></li>
+        <li><a href="/#importy">importy produktowe</a></li>
+        <li><a href="/#strony">strony internetowe</a></li>
+        <li><a href="/#ai">wdrożenia AI</a></li>
+        <li><a href="/#o-mnie">O nas</a></li>
         
       </ul>
       <div class="nav__right">
@@ -458,10 +477,10 @@
   <!-- MOBILE NAV -->
   <div class="nav__mobile" id="navMobile">
     <ul class="nav__mobile-links">
-      <li><a href="../pl/index.html#importy">importy produktowe</a></li>
-        <li><a href="../pl/index.html#strony">strony internetowe</a></li>
-        <li><a href="../pl/index.html#ai">wdrożenia AI</a></li>
-      <li><a href="../pl/index.html#o-mnie">O nas</a></li>
+      <li><a href="/#importy">importy produktowe</a></li>
+        <li><a href="/#strony">strony internetowe</a></li>
+        <li><a href="/#ai">wdrożenia AI</a></li>
+      <li><a href="/#o-mnie">O nas</a></li>
       
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -474,9 +493,9 @@
       <div class="inner">
 
         <div class="breadcrumb">
-          <a href="../pl/index.html">Laap Code</a>
+          <a href="/">Laap Code</a>
           <span class="breadcrumb__sep">→</span>
-          <a href="../pl/index.html#importy">Importy produktowe</a>
+          <a href="/#importy">Importy produktowe</a>
           <span class="breadcrumb__sep">→</span>
           <span>WordPress + WooCommerce</span>
         </div>
@@ -583,7 +602,7 @@
           <div class="step-screens">
             <div>
               <div class="step-screen__img">
-                <span class="step-screen__img-placeholder">screen 1</span>
+                <img src="../img/import_wordpress1.webp" alt="Przygotowanie pliku importowego CSV/XML dla WooCommerce" loading="lazy" />
               </div>
               <div class="step-screen__caption">
                 <span class="step-screen__num">01</span>
@@ -592,7 +611,7 @@
             </div>
             <div>
               <div class="step-screen__img">
-                <span class="step-screen__img-placeholder">screen 2</span>
+                <img src="../img/import_wordpress2.webp" alt="Import produktów w panelu WooCommerce" loading="lazy" />
               </div>
               <div class="step-screen__caption">
                 <span class="step-screen__num">02</span>
@@ -601,7 +620,7 @@
             </div>
             <div>
               <div class="step-screen__img">
-                <span class="step-screen__img-placeholder">screen 3</span>
+                <img src="../img/import_wordpress3.webp" alt="Podsumowanie i raport końcowy importu WooCommerce" loading="lazy" />
               </div>
               <div class="step-screen__caption">
                 <span class="step-screen__num">03</span>
@@ -768,14 +787,14 @@
   <footer class="footer">
     <div class="inner footer__inner">
 
-      <a class="footer__logo" href="../pl/index.html">
+      <a class="footer__logo" href="/">
         <img src="../img/laapcode_logo_transparent.svg" alt="Laap Code" style="height:48px;width:auto;display:block;" />
       </a>
 
       <a class="footer__contact" href="mailto:laapcode@gmail.com">laapcode@gmail.com</a>
       <div class="footer__legal">
-        <a href="../pl/privacy.html">Polityka prywatności</a>
-        <a href="../pl/terms.html">Regulamin</a>
+        <a href="/privacy">Polityka prywatności</a>
+        <a href="/terms">Regulamin</a>
         <span class="footer__copy">© <span id="year"></span> Laap Code</span>
       </div>
 
