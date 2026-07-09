@@ -4,14 +4,15 @@
     { "source": "/pl", "destination": "/index", "permanent": true },
     { "source": "/pl/", "destination": "/index", "permanent": true },
     { "source": "/pl/temu.html", "destination": "/temu", "permanent": true },
-    { "source": "/pl/wp.html", "destination": "/wp", "permanent": true },
+    { "source": "/pl/wp.html", "destination": "/importy-produktowe-wordpress-woocommerce", "permanent": true },
+    { "source": "/wp", "destination": "/importy-produktowe-wordpress-woocommerce", "permanent": true },
     { "source": "/pl/privacy.html", "destination": "/privacy", "permanent": true },
     { "source": "/pl/terms.html", "destination": "/terms", "permanent": true }
   ],
   "rewrites": [
     { "source": "/index", "destination": "/pl/index.html" },
     { "source": "/temu", "destination": "/pl/temu.html" },
-    { "source": "/wp", "destination": "/pl/wp.html" },
+    { "source": "/importy-produktowe-wordpress-woocommerce", "destination": "/pl/wp.html" },
     { "source": "/privacy", "destination": "/pl/privacy.html" },
     { "source": "/terms", "destination": "/pl/terms.html" }
   ],
