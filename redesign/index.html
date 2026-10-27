@@ -68,11 +68,20 @@
     main { padding-top: var(--nav); }
 
     /* ── Hero ── */
-    .hero { padding-top: 168px; }
-    .hero__statement { grid-column: 1 / span 9; font-size: clamp(30px, 3.4vw, 54px); line-height: 1.12; letter-spacing: 0; font-weight: 400; }
-    .hero__list { grid-column: 1 / span 6; grid-row: 2; margin-top: clamp(36px, 4vw, 64px); font-size: 16px; }
-    .hero__sub { grid-column: 8 / span 5; grid-row: 2; margin-top: clamp(36px, 4vw, 64px); font-size: 16px; }
-    .hero__cta { grid-column: 8 / span 5; grid-row: 3; margin-top: 20px; }
+    .hero { padding-top: 120px; --h1: clamp(30px, 3.4vw, 54px); --h1gap: clamp(36px, 4vw, 64px); }
+    .hero__grid { align-items: start; }
+    .hero__main { grid-column: 1 / span 5; }
+    .hero__mid { grid-column: 6 / span 3; padding-top: calc(var(--h1) * 1.12 + var(--h1gap)); }
+    .hero__side { grid-column: 9 / span 4; }
+    .hero__statement { font-size: var(--h1); line-height: 1.12; letter-spacing: 0; font-weight: 400; white-space: nowrap; }
+    .hero__list { margin-top: var(--h1gap); font-size: 16px; }
+    .hero__sub { margin-top: clamp(56px, 7vw, 112px); font-size: 16px; }
+    .hero__cta { margin-top: 36px; }
+    /* Zrzuty w hero: naturalne proporcje, cienka ramka jak w makiecie */
+    .hero__shot { margin: 0; border: 1px solid rgba(20, 20, 20, .18); background: var(--fill); }
+    .hero__shot img { width: 100%; height: auto; }
+    .hero__shot--a { width: 79%; margin-top: clamp(40px, 4.2vw, 72px); }
+    .hero__shot--d { width: 115%; margin-left: -15%; margin-top: clamp(48px, 5.6vw, 96px); }
 
 
     .clients-row { margin-top: 184px; align-items: center; }
@@ -174,9 +183,11 @@
 
     /* ── Responsive ── */
     @media (max-width: 1100px) {
-      .hero__statement { grid-column: 1 / span 10; }
-      .hero__list { grid-column: 1 / span 5; }
-      .hero__sub, .hero__cta { grid-column: 7 / span 6; }
+      .hero__main { grid-column: 1 / span 7; }
+      .hero__mid { display: none; }
+      .hero__side { grid-column: 8 / span 5; }
+      .hero__shot--a { width: 85%; }
+      .hero__shot--d { width: 100%; margin-left: 0; }
       .section__label { grid-column: 1 / -1; position: static; margin-bottom: 28px; }
       .nav__links { grid-column: 7 / span 4; }
       .section__body { grid-column: 1 / -1; }
@@ -193,8 +204,13 @@
         padding: 32px var(--pad); background: var(--sheet); font-size: 26px; }
       .nav.is-open .lang { display: flex; position: fixed; left: var(--pad); bottom: 32px; font-size: 18px; z-index: 2; }
       .hero { padding-top: 80px; }
-      .hero__statement, .hero__list, .hero__sub, .hero__cta { grid-column: 1 / -1; grid-row: auto; }
-      .hero__sub { margin-top: 28px; }
+      .hero__main, .hero__side { grid-column: 1 / -1; }
+      .hero__statement { white-space: normal; }
+      .hero__shot--a { width: 100%; }
+      .hero__sub { margin-top: 40px; }
+      .hero__side { margin-top: 48px; }
+      .hero__shot--c { width: 72%; margin-left: auto; }
+      .hero__shot--d { display: none; }
       .clients-row { margin-top: 104px; row-gap: 20px; }
       .clients-row__label, .clients-row__logos { grid-column: 1 / -1; }
       .clients-row__logos { gap: 28px 36px; }
@@ -241,21 +257,31 @@
     <!-- ══ HERO ══ -->
     <section class="hero">
       <div class="wrap">
-        <div class="grid">
-          <h1 class="hero__statement">
-            <span class="pl">Projektujemy i&nbsp;wdrażamy</span>
-            <span class="en">We design and build</span>
-          </h1>
-          <ul class="hero__list">
-            <li><span class="pl">strony internetowe</span><span class="en">websites</span></li>
-            <li><span class="pl">importy produktowe</span><span class="en">product imports</span></li>
-            <li><span class="pl">automatyzacje</span><span class="en">automations</span></li>
-          </ul>
-          <p class="hero__sub">
-            <span class="pl">Dla firm, którym zależy na formie. Od koncepcji po wdrożenie, bez miesięcznych opłat za utrzymanie.</span>
-            <span class="en">For companies that care about form. From concept to launch, with no monthly maintenance fees.</span>
-          </p>
-          <p class="hero__cta"><a class="arrow-link u" href="#kontakt"><span class="pl">Porozmawiajmy o projekcie</span><span class="en">Let’s talk about your project</span> →</a></p>
+        <div class="grid hero__grid">
+          <div class="hero__main">
+            <h1 class="hero__statement">
+              <span class="pl">Projektujemy i&nbsp;wdrażamy</span>
+              <span class="en">We design and build</span>
+            </h1>
+            <ul class="hero__list">
+              <li><span class="pl">strony internetowe</span><span class="en">websites</span></li>
+              <li><span class="pl">importy produktowe</span><span class="en">product imports</span></li>
+              <li><span class="pl">automatyzacje</span><span class="en">automations</span></li>
+            </ul>
+            <figure class="hero__shot hero__shot--a"><img src="../img/laapcode_hero_lukasz-klimek.webp" alt="Wise Habit Agency, profil Łukasza Klimka" width="1600" height="972" /></figure>
+            <p class="hero__sub">
+              <span class="pl">Dla firm, którym zależy na formie. Od koncepcji po wdrożenie, bez miesięcznych opłat za utrzymanie.</span>
+              <span class="en">For companies that care about form. From concept to launch, with no monthly maintenance fees.</span>
+            </p>
+            <p class="hero__cta"><a class="arrow-link u" href="#kontakt"><span class="pl">Porozmawiajmy o projekcie</span><span class="en">Let’s talk about your project</span> →</a></p>
+          </div>
+          <div class="hero__mid" aria-hidden="true">
+            <figure class="hero__shot hero__shot--b"><img src="../img/laapcode_hero_adaptive-tableware.webp" alt="" width="1600" height="1519" /></figure>
+          </div>
+          <div class="hero__side">
+            <figure class="hero__shot hero__shot--c"><img src="../img/laapcode_hero_floral-foam.webp" alt="Portfolio projektanta, projekt oyster mushroom floral foam" width="1600" height="1577" /></figure>
+            <figure class="hero__shot hero__shot--d"><img src="../img/laapcode_hero_yeast-coast.webp" alt="Portfolio projektanta, projekt Yeast Coast" width="1600" height="1357" /></figure>
+          </div>
         </div>
 
         <!-- Logotypy klientów (zamiast zestawienia zrzutów) -->
