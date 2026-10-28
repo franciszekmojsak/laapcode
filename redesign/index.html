@@ -77,17 +77,20 @@
     main { padding-top: var(--nav); }
 
     /* ── Hero ── */
-    .hero { padding-top: 64px; --h1: clamp(34px, 5vw, 80px); }
-    .hero__head { align-items: start; grid-template-rows: auto 1fr; }
+    .hero { padding-top: 136px; --h1: clamp(36px, 6.2vw, 104px); } /* --h1: rozmiar nagłówka na telefonie */
+    .hero__head { align-items: start; grid-template-rows: auto 1fr; container-type: inline-size; }
     /* Nagłówek rozłożony na wysokość zdjęcia: góra pierwszej linii = góra zdjęcia, linia bazowa ostatniej = dół zdjęcia */
-    .hero__title { grid-column: 1 / span 7; grid-row: 1; align-self: stretch; display: flex; flex-direction: column; }
-    .hero__statement { flex: 1; display: flex; margin: -0.137em 0 0; font-size: var(--h1); line-height: 1; letter-spacing: -0.015em; font-weight: 300; white-space: nowrap; }
+    .hero__title { grid-column: 1 / span 7; grid-row: 1; align-self: stretch; display: flex; flex-direction: column;
+      --pc: 4; --tc: 8; --tagm: clamp(18px, 1.8vw, 32px); --tagfs: clamp(17px, 1.35vw, 21px); }
+    .hero__statement { flex: 1; display: flex; margin: -0.137em 0 0;
+      font-size: min(calc((((100cqw - 11 * var(--gap)) / 12 * var(--pc) + (var(--pc) - 1) * var(--gap)) * 0.75 - var(--tagm) - 0.864 * var(--tagfs)) / 3),
+                     calc(((100cqw - 11 * var(--gap)) / 12 * var(--tc) + (var(--tc) - 2) * var(--gap)) / 8.6)); line-height: 1; letter-spacing: -0.015em; font-weight: 300; white-space: nowrap; }
     .hero__statement > span { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
     .hero__photo { grid-column: 9 / span 4; grid-row: 1; margin: 0; }
     .hero__photo img { width: 100%; height: auto; }
     .hero-strip__foot { display: flex; justify-content: flex-end; margin-top: 8px; font-size: 14px; }
-    .hero__intro { grid-column: 1 / -1; grid-row: 2; margin-top: clamp(48px, 4.6vw, 80px); }
-    .hero__tag { font-size: clamp(17px, 1.35vw, 21px); line-height: 1; letter-spacing: -0.005em; margin: clamp(24px, 2.4vw, 40px) 0 -0.136em; }
+    .hero__intro { grid-column: 1 / -1; grid-row: 2; margin-top: clamp(64px, 6.2vw, 112px); }
+    .hero__tag { font-size: var(--tagfs); line-height: 1; letter-spacing: -0.005em; margin: var(--tagm) 0 -0.136em; }
     .hero__sub { font-size: 14px; grid-column: 1 / span 7; max-width: 44em; }
     /* Opis z lewej, przycisk na szerokość zdjęcia (te same kolumny co zdjęcie) */
     .hero__cta { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 28px; align-items: center; }
@@ -97,14 +100,14 @@
     .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--sheet); }
     /* Zrzuty w jednym rzędzie, równa wysokość, cienka ramka.
        Pas zaczyna się przy lewym marginesie, wychodzi do prawej krawędzi ekranu i przewija się w bok. */
-    .hero-strip__head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: clamp(88px, 8.4vw, 144px); font-size: 14px; font-weight: 500; }
+    .hero-strip__head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: clamp(120px, 11vw, 184px); font-size: 14px; font-weight: 500; }
     .hero-strip { --sh: clamp(240px, 29vw, 460px); margin-top: 20px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; cursor: grab;
       scrollbar-width: thin; scrollbar-color: var(--ink) transparent; padding-bottom: 20px;
       padding-left: calc((100% - min(100%, var(--max))) / 2 + var(--pad));
-      /* Zdjęcia za prawym marginesem wygaszone do tła; widać je dopiero po przewinięciu */
+      /* Zdjęcia poza marginesami (z prawej i po przewinięciu z lewej) wygaszone do tła */
       --edge: calc((100% - min(100%, var(--max))) / 2 + var(--pad));
-      -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--edge)), transparent calc(100% - var(--edge) * 0.35));
-      mask-image: linear-gradient(to right, #000 calc(100% - var(--edge)), transparent calc(100% - var(--edge) * 0.35)); }
+      -webkit-mask-image: linear-gradient(to right, transparent calc(var(--edge) * 0.35), #000 var(--edge), #000 calc(100% - var(--edge)), transparent calc(100% - var(--edge) * 0.35));
+      mask-image: linear-gradient(to right, transparent calc(var(--edge) * 0.35), #000 var(--edge), #000 calc(100% - var(--edge)), transparent calc(100% - var(--edge) * 0.35)); }
     .hero-strip.is-drag { cursor: grabbing; user-select: none; }
     .hero-strip.is-static { cursor: default; }
     .hero-strip:focus-visible { outline: 1px solid var(--ink); outline-offset: 6px; }
@@ -114,7 +117,7 @@
     .hero__shot img { height: 100%; width: auto; max-width: none; -webkit-user-drag: none; }
     /* Usługi w hero: cztery kolumny na całą szerokość, nagłówek i krótki opis */
     /* cztery wąskie kolumny rozsunięte od lewego do prawego marginesu */
-    .hero__svc { margin-top: clamp(96px, 9vw, 160px); row-gap: 40px; display: flex; justify-content: space-between; }
+    .hero__svc { margin-top: clamp(128px, 12.5vw, 208px); row-gap: 40px; display: flex; justify-content: space-between; }
     .hero__svc-item { flex: 0 1 19.5em; min-width: 0; }
     .hero__svc-title { font-size: clamp(19px, 1.5vw, 24px); font-weight: 500; line-height: 1.25; letter-spacing: -0.005em; }
     .hero__svc-item p { margin-top: 16px; font-size: 13px; }
@@ -231,6 +234,7 @@
     @media (max-width: 1100px) {
       .hero__title { grid-column: 1 / span 7; }
       .hero__photo { grid-column: 8 / span 5; }
+      .hero__title { --pc: 5; --tc: 7; }
       .hero__intro { grid-column: 1 / -1; }
       .hero__cta .btn { grid-column: 8 / span 5; }
       .hero__svc { display: grid; }
@@ -247,8 +251,8 @@
       .tb > div:nth-child(n+3) { border-top: 1px solid var(--ink); }
     }
     @media (max-width: 800px) {
-      .hero { padding-top: 48px; }
-      .hero__statement { white-space: normal; grid-row: auto; margin: 0; line-height: 1.12; }
+      .hero { padding-top: 84px; }
+      .hero__statement { white-space: normal; grid-row: auto; margin: 0; line-height: 1.12; font-size: var(--h1); }
       .hero__statement > span { gap: 0; }
       .hero__title, .hero__photo { grid-column: 1 / -1; }
       .hero__title { grid-row: auto; }
@@ -258,9 +262,9 @@
       .hero__sub, .hero__cta .btn { grid-column: 1 / -1; }
       .hero__cta .btn { width: auto; justify-self: stretch; }
       .hero__sub { max-width: none; }
-      .hero-strip__head { margin-top: 72px; }
+      .hero-strip__head { margin-top: 96px; }
       .hero-strip { --sh: 240px; margin-top: 16px; }
-      .hero__svc { margin-top: 80px; row-gap: 40px; }
+      .hero__svc { margin-top: 104px; row-gap: 40px; }
       .hero__svc-item { grid-column: 1 / -1; }
       .hero__svc-item p { max-width: 22em; }
       .nav__right { display: contents; }
@@ -347,7 +351,7 @@
           </div>
           <div class="hero__svc-item">
             <h2 class="hero__svc-title"><span class="pl">Importy produktowe</span><span class="en">Product imports</span></h2>
-            <p><span class="pl">Bazy produktów i&nbsp;automatyczne importy do WooCommerce, IdoSell, Allegro, Temu i&nbsp;innych.</span><span class="en">Product databases and automated imports to WooCommerce, IdoSell, Allegro, Temu and more.</span></p>
+            <p><span class="pl">Bazy produktów i&nbsp;importy do WooCommerce, IdoSell, Allegro, Temu i&nbsp;innych.</span><span class="en">Product databases and imports to WooCommerce, IdoSell, Allegro, Temu and more.</span></p>
           </div>
           <div class="hero__svc-item">
             <h2 class="hero__svc-title"><span class="pl">E-commerce</span><span class="en">E-commerce</span></h2>
@@ -373,15 +377,29 @@
         </div>
       </div>
       <script>
+        /* Pasek realizacji: zapętlony (trzy kopie zdjęć, po dojściu do końca przeskakuje niezauważalnie), przeciąganie myszą */
         (function () {
           var el = document.getElementById('heroStrip'); if (!el) return;
-          var down = false, moved = false, sx = 0, sl = 0;
+          var track = el.querySelector('.hero-strip__track');
+          var items = [].slice.call(track.children), n = items.length;
+          function copy(node) { var c = node.cloneNode(true); c.setAttribute('aria-hidden', 'true'); var im = c.querySelector('img'); if (im) im.alt = ''; return c; }
+          for (var k = 0; k < 2; k++) items.forEach(function (node) { track.appendChild(copy(node)); });
+          var W = 0, down = false, moved = false, sx = 0, sl = 0;
+          function measure() { W = track.children[n].offsetLeft - track.children[0].offsetLeft; }
+          function wrap() {
+            if (!W) return;
+            if (el.scrollLeft < W * 0.5) { el.scrollLeft += W; sl += W; }
+            else if (el.scrollLeft > W * 1.5) { el.scrollLeft -= W; sl -= W; }
+          }
+          el.addEventListener('scroll', wrap, { passive: true });
           el.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse' || e.button !== 0) return; down = true; moved = false; sx = e.clientX; sl = el.scrollLeft; });
           window.addEventListener('pointermove', function (e) { if (!down) return; var dx = e.clientX - sx; if (!moved && Math.abs(dx) > 6) { moved = true; el.classList.add('is-drag'); } if (moved) el.scrollLeft = sl - dx; });
           window.addEventListener('pointerup', function () { down = false; el.classList.remove('is-drag'); });
           el.addEventListener('dragstart', function (e) { e.preventDefault(); });
-          function fit() { el.classList.toggle('is-static', el.scrollWidth <= el.clientWidth + 1); }
-          window.addEventListener('resize', fit); window.addEventListener('load', fit); fit();
+          function start() { measure(); el.scrollLeft = W; }
+          window.addEventListener('resize', function () { var r = W ? ((el.scrollLeft % W) + W) % W : 0; measure(); el.scrollLeft = W + r; });
+          window.addEventListener('load', function () { var r = W ? ((el.scrollLeft % W) + W) % W : 0; measure(); el.scrollLeft = W + r; });
+          start();
         })();
       </script>
 
@@ -437,7 +455,7 @@
           <div class="svc">
             <h3><span class="pl">Strony internetowe</span><span class="en">Websites</span></h3>
             <div class="svc__desc">
-              <p><span class="pl">Od prostego one-pagera po rozbudowany serwis z&nbsp;integracjami, z&nbsp;indywidualnym projektem graficznym.</span><span class="en">From a simple one-pager to a full site with integrations, with a custom visual design.</span></p>
+              <p><span class="pl">Od prostego one-pagera po rozbudowany serwis z&nbsp;integracjami, a&nbsp;także sklepy internetowe. Zawsze z&nbsp;indywidualnym projektem graficznym.</span><span class="en">From a simple one-pager to a full site with integrations, as well as online stores. Always with a custom visual design.</span></p>
             </div>
             <ul class="svc__list">
               <li><span class="pl">Strony One Page i serwisy firmowe</span><span class="en">One-page sites and company websites</span></li>
@@ -449,7 +467,7 @@
           <div class="svc">
             <h3><span class="pl">Importy produktowe</span><span class="en">Product imports</span></h3>
             <div class="svc__desc">
-              <p><span class="pl">Bazy produktowe i&nbsp;automatyczne importy pod WooCommerce, IdoSell, Temu, Empik, Allegro i&nbsp;OLX.</span><span class="en">Product databases and automated imports for WooCommerce, IdoSell, Temu, Empik, Allegro and OLX.</span></p>
+              <p><span class="pl">Bazy produktowe i&nbsp;importy pod WooCommerce, IdoSell, Temu, Empik, Allegro i&nbsp;OLX.</span><span class="en">Product databases and imports for WooCommerce, IdoSell, Temu, Empik, Allegro and OLX.</span></p>
             </div>
             <ul class="svc__list">
               <li><span class="pl">Masowe importy produktów, wariantów i zdjęć</span><span class="en">Bulk imports of products, variants and images</span></li>
