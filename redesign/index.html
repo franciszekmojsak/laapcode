@@ -59,30 +59,48 @@
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: var(--sheet); padding-top: env(safe-area-inset-top, 0px); }
     .nav__inner { height: var(--nav); align-items: center; }
     .nav__logo { grid-column: 1 / span 3; font-size: 16px; font-weight: 500; letter-spacing: -0.01em; white-space: nowrap; }
-    .nav__links { grid-column: 8 / span 3; display: flex; gap: 28px; font-size: 14px; white-space: nowrap; }
+    /* Menu i PL/EN rozłożone na szerokość zdjęcia w hero (kolumny 9-12) */
+    .nav__right { grid-column: 9 / span 4; display: flex; justify-content: space-between; align-items: center; gap: 14px; font-size: 14px; white-space: nowrap; }
+    .nav__links { display: contents; }
+    #wspolprace { scroll-margin-top: calc(var(--nav) + 48px); }
     .nav__links a:hover { opacity: .5; }
-    .lang { grid-column: 11 / span 2; justify-self: end; display: flex; gap: 6px; font-size: 14px; }
+    .lang { display: flex; gap: 6px; }
+    /* Na węższych laptopach menu nie mieści się w szerokości zdjęcia: wyrównanie do jego prawej krawędzi */
+    @media (max-width: 1270px) { .nav__right { grid-column: 4 / span 9; justify-content: flex-end; gap: 28px; } }
     .lang button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
     .lang button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
     .nav__menu { display: none; font: inherit; font-size: 15px; background: none; border: 0; color: inherit; cursor: pointer; }
     main { padding-top: var(--nav); }
 
     /* ── Hero ── */
-    .hero { padding-top: 120px; --h1: clamp(30px, 3.4vw, 54px); --h1gap: clamp(36px, 4vw, 64px); }
-    .hero__grid { align-items: start; }
-    .hero__main { grid-column: 1 / span 5; }
-    .hero__mid { grid-column: 6 / span 3; padding-top: calc(var(--h1) * 1.12 + var(--h1gap)); }
-    .hero__side { grid-column: 9 / span 4; }
-    .hero__statement { font-size: var(--h1); line-height: 1.12; letter-spacing: 0; font-weight: 400; white-space: nowrap; }
-    .hero__list { margin-top: var(--h1gap); font-size: 16px; }
-    .hero__sub { margin-top: clamp(56px, 7vw, 112px); font-size: 16px; }
-    .hero__cta { margin-top: 36px; }
-    /* Zrzuty w hero: naturalne proporcje, cienka ramka jak w makiecie */
-    .hero__shot { margin: 0; border: 1px solid rgba(20, 20, 20, .18); background: var(--fill); }
-    .hero__shot img { width: 100%; height: auto; }
-    .hero__shot--a { width: 79%; margin-top: clamp(40px, 4.2vw, 72px); }
-    .hero__shot--d { width: 115%; margin-left: -15%; margin-top: clamp(48px, 5.6vw, 96px); }
-
+    .hero { padding-top: 64px; --h1: clamp(32px, 4.2vw, 68px); }
+    .hero__head { align-items: start; grid-template-rows: auto 1fr; }
+    .hero__statement { grid-column: 1 / span 7; font-size: var(--h1); line-height: 1.12; letter-spacing: 0; font-weight: 400; white-space: nowrap; }
+    .hero__photo { grid-column: 9 / span 4; grid-row: 1 / span 2; margin: 0; padding-top: calc(var(--h1) * 0.2); }
+    .hero__photo img { width: 100%; height: auto; }
+    .hero-strip__foot { display: flex; justify-content: flex-end; margin-top: 8px; font-size: 14px; }
+    .hero__intro { grid-column: 1 / span 5; grid-row: 2; margin-top: clamp(32px, 3.5vw, 56px); }
+    .hero__sub { font-size: 16px; }
+    .hero__cta { margin-top: 28px; }
+    /* Zrzuty w jednym rzędzie, równa wysokość, cienka ramka.
+       Pas zaczyna się przy lewym marginesie, wychodzi do prawej krawędzi ekranu i przewija się w bok. */
+    .hero-strip__head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: clamp(56px, 6vw, 96px); font-size: 14px; }
+    .hero-strip { --sh: clamp(240px, 29vw, 460px); margin-top: 20px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; cursor: grab;
+      scrollbar-width: thin; scrollbar-color: var(--ink) transparent; padding-bottom: 20px;
+      padding-left: calc((100% - min(100%, var(--max))) / 2 + var(--pad)); }
+    .hero-strip.is-drag { cursor: grabbing; user-select: none; }
+    .hero-strip.is-static { cursor: default; }
+    .hero-strip:focus-visible { outline: 1px solid var(--ink); outline-offset: 6px; }
+    .hero-strip__track { display: flex; gap: var(--gap); width: max-content; }
+    .hero-strip__track::after { content: ""; flex: 0 0 max(0px, calc(var(--pad) - var(--gap))); }
+    .hero__shot { flex: none; height: var(--sh); margin: 0; border: 1px solid rgba(20, 20, 20, .18); background: var(--fill); }
+    .hero__shot img { height: 100%; width: auto; max-width: none; -webkit-user-drag: none; }
+    /* Usługi w hero: cztery kolumny na całą szerokość, nagłówek i krótki opis */
+    /* cztery wąskie kolumny rozsunięte od lewego do prawego marginesu */
+    .hero__svc { margin-top: clamp(64px, 6vw, 104px); row-gap: 40px; display: flex; justify-content: space-between; }
+    .hero__svc-item { flex: 0 1 18.5em; min-width: 0; }
+    .hero__svc-title { font-size: clamp(19px, 1.5vw, 24px); font-weight: 400; line-height: 1.25; letter-spacing: -0.005em; }
+    .hero__svc-item p { margin-top: 12px; }
 
     .clients-row { margin-top: 184px; align-items: center; }
     .clients-row__label { grid-column: 1 / span 3; }
@@ -108,7 +126,7 @@
     .gal-nav button { font: inherit; font-size: 20px; line-height: 1; color: var(--ink); background: none; border: 0; cursor: pointer; padding: 4px 2px; }
     .gal-nav button:hover { opacity: .5; }
     .gal-nav button:disabled { opacity: .2; cursor: default; }
-    .gal { --u: clamp(38px, 5.6vh, 56px); --cap: 34px;
+    .gal { --u: clamp(38px, 5.6vh, 56px); --cap: 0px;
       margin-top: 56px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; cursor: grab;
       scrollbar-width: thin; scrollbar-color: var(--ink) transparent; padding-bottom: 22px;
       padding-left: calc((100% - min(100%, var(--max))) / 2 + var(--pad) + 3 * ((min(100%, var(--max)) - 2 * var(--pad) - 11 * var(--gap)) / 12 + var(--gap))); }
@@ -126,7 +144,6 @@
     .gal__img { height: calc(var(--u) * var(--h)); overflow: hidden; background: var(--fill); }
     .gal__img img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .6s ease; -webkit-user-drag: none; }
     .gal__item:hover .gal__img img { transform: scale(1.015); }
-    .gal__cap { display: flex; gap: 10px; align-items: baseline; height: var(--cap); padding-top: 9px; font-size: 14px; white-space: nowrap; overflow: hidden; }
     .gal__end { font-size: clamp(18px, 1.3vw, 20px); line-height: 1.3; letter-spacing: -0.01em; }
     .lb { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; border: 0; margin: 0;
       padding: calc(var(--nav) + 8px) var(--pad) var(--pad); background: var(--sheet); color: var(--ink); overflow: auto; }
@@ -179,17 +196,18 @@
     .footer__legal nav { display: flex; gap: 24px; }
 
     /* Akapity wyjustowane do pełnej szerokości; dzielenie wyrazów zmniejsza dziury w wąskich kolumnach */
-    .hero__sub, .principles p, .svc__desc p, .about__text p { text-align: justify; text-justify: inter-word; -webkit-hyphens: auto; hyphens: auto; }
+    .hero__sub, .hero__svc-item p, .principles p, .svc__desc p, .about__text p { text-align: justify; text-justify: inter-word; -webkit-hyphens: auto; hyphens: auto; }
 
     /* ── Responsive ── */
     @media (max-width: 1100px) {
-      .hero__main { grid-column: 1 / span 7; }
-      .hero__mid { display: none; }
-      .hero__side { grid-column: 8 / span 5; }
-      .hero__shot--a { width: 85%; }
-      .hero__shot--d { width: 100%; margin-left: 0; }
+      .hero__statement { grid-column: 1 / span 7; }
+      .hero__photo { grid-column: 8 / span 5; }
+      .hero__intro { grid-column: 1 / span 7; }
+      .hero__svc { display: grid; }
+      .hero__svc-item { grid-column: span 6; }
+      .hero__svc-item p { max-width: 22em; }
       .section__label { grid-column: 1 / -1; position: static; margin-bottom: 28px; }
-      .nav__links { grid-column: 7 / span 4; }
+      .nav__right { gap: 20px; }
       .section__body { grid-column: 1 / -1; }
       .gal-head { grid-column: 1 / -1; }
       .gal { padding-left: var(--pad); }
@@ -198,19 +216,23 @@
       .tb > div:nth-child(n+3) { border-top: 1px solid var(--ink); }
     }
     @media (max-width: 800px) {
+      .hero { padding-top: 48px; }
+      .hero__statement { white-space: normal; }
+      .hero__statement, .hero__photo { grid-column: 1 / -1; }
+      .hero__photo { grid-row: auto; padding-top: 0; margin-top: 40px; }
+      .hero__intro { grid-column: 1 / -1; grid-row: auto; margin-top: 28px; }
+      .hero-strip__head { margin-top: 48px; }
+      .hero-strip { --sh: 240px; margin-top: 16px; }
+      .hero__svc { margin-top: 56px; row-gap: 32px; }
+      .hero__svc-item { grid-column: 1 / -1; }
+      .hero__svc-item p { max-width: 22em; }
+      .nav__right { display: contents; }
       .nav__links, .lang { display: none; }
       .nav__menu { display: block; grid-column: 10 / span 3; justify-self: end; }
+      .nav.is-open .nav__links { justify-content: flex-start; }
       .nav.is-open .nav__links { display: flex; position: fixed; top: var(--nav); left: 0; right: 0; bottom: 0; flex-direction: column; gap: 18px;
         padding: 32px var(--pad); background: var(--sheet); font-size: 26px; }
       .nav.is-open .lang { display: flex; position: fixed; left: var(--pad); bottom: 32px; font-size: 18px; z-index: 2; }
-      .hero { padding-top: 80px; }
-      .hero__main, .hero__side { grid-column: 1 / -1; }
-      .hero__statement { white-space: normal; }
-      .hero__shot--a { width: 100%; }
-      .hero__sub { margin-top: 40px; }
-      .hero__side { margin-top: 48px; }
-      .hero__shot--c { width: 72%; margin-left: auto; }
-      .hero__shot--d { display: none; }
       .clients-row { margin-top: 104px; row-gap: 20px; }
       .clients-row__label, .clients-row__logos { grid-column: 1 / -1; }
       .clients-row__logos { gap: 28px 36px; }
@@ -239,14 +261,17 @@
   <header class="nav" id="nav">
     <div class="wrap grid nav__inner">
       <a class="nav__logo" href="#top">Franciszek Mojsak</a>
-      <nav class="nav__links" aria-label="Menu">
-        <a href="#uslugi"><span class="pl">Usługi</span><span class="en">Services</span></a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#o-mnie"><span class="pl">O mnie</span><span class="en">About</span></a>
-        <a href="#kontakt"><span class="pl">Kontakt</span><span class="en">Contact</span></a>
-      </nav>
-      <div class="lang" role="group" aria-label="Język / Language">
-        <button type="button" data-lang="pl" aria-pressed="true">PL</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <div class="nav__right">
+        <nav class="nav__links" aria-label="Menu">
+          <a href="#wspolprace"><span class="pl">Współprace</span><span class="en">Clients</span></a>
+          <a href="#uslugi"><span class="pl">Usługi</span><span class="en">Services</span></a>
+          <a href="#portfolio"><span class="pl">Galeria</span><span class="en">Gallery</span></a>
+          <a href="#o-mnie"><span class="pl">O mnie</span><span class="en">About</span></a>
+          <a href="#kontakt"><span class="pl">Kontakt</span><span class="en">Contact</span></a>
+        </nav>
+        <div class="lang" role="group" aria-label="Język / Language">
+          <button type="button" data-lang="pl" aria-pressed="true">PL</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
       </div>
       <button class="nav__menu" id="menuBtn" aria-expanded="false">Menu</button>
     </div>
@@ -257,35 +282,73 @@
     <!-- ══ HERO ══ -->
     <section class="hero">
       <div class="wrap">
-        <div class="grid hero__grid">
-          <div class="hero__main">
-            <h1 class="hero__statement">
-              <span class="pl">Projektujemy i&nbsp;wdrażamy</span>
-              <span class="en">We design and build</span>
-            </h1>
-            <ul class="hero__list">
-              <li><span class="pl">strony internetowe</span><span class="en">websites</span></li>
-              <li><span class="pl">importy produktowe</span><span class="en">product imports</span></li>
-              <li><span class="pl">automatyzacje</span><span class="en">automations</span></li>
-            </ul>
-            <figure class="hero__shot hero__shot--a"><img src="../img/laapcode_hero_lukasz-klimek.webp" alt="Wise Habit Agency, profil Łukasza Klimka" width="1600" height="972" /></figure>
+        <div class="grid hero__head">
+          <h1 class="hero__statement">
+            <span class="pl">Projektujemy i&nbsp;wdrażamy</span>
+            <span class="en">We design and build</span>
+          </h1>
+          <div class="hero__intro">
             <p class="hero__sub">
-              <span class="pl">Dla firm, którym zależy na formie. Od koncepcji po wdrożenie, bez miesięcznych opłat za utrzymanie.</span>
-              <span class="en">For companies that care about form. From concept to launch, with no monthly maintenance fees.</span>
+              <span class="pl">Dla firm i osób, którym zależy na zrozumieniu ich potrzeb, wysokim poziomie projektowania i stronie spójnej z ich estetyką. Od koncepcji po wdrożenie, bez miesięcznych opłat za utrzymanie.</span>
+              <span class="en">For companies and individuals who value being understood, a high standard of design and a website that matches their aesthetic. From concept to launch, with no monthly maintenance fees.</span>
             </p>
             <p class="hero__cta"><a class="arrow-link u" href="#kontakt"><span class="pl">Porozmawiajmy o projekcie</span><span class="en">Let’s talk about your project</span> →</a></p>
           </div>
-          <div class="hero__mid" aria-hidden="true">
-            <figure class="hero__shot hero__shot--b"><img src="../img/laapcode_hero_adaptive-tableware.webp" alt="" width="1600" height="1519" /></figure>
+          <figure class="hero__photo"><img src="../img/laapcode_franciszek-mojsak-okulary.webp" alt="Franciszek Mojsak" width="1600" height="1200" /></figure>
+        </div>
+        <!-- Usługi w skrócie: cztery kolumny -->
+        <div class="hero__svc grid">
+          <div class="hero__svc-item">
+            <h2 class="hero__svc-title"><span class="pl">Strony internetowe</span><span class="en">Websites</span></h2>
+            <p><span class="pl">Projekt i wdrożenie stron firmowych, portfolio i serwisów z integracjami.</span><span class="en">Design and build of company websites, portfolios and sites with integrations.</span></p>
           </div>
-          <div class="hero__side">
-            <figure class="hero__shot hero__shot--c"><img src="../img/laapcode_hero_floral-foam.webp" alt="Portfolio projektanta, projekt oyster mushroom floral foam" width="1600" height="1577" /></figure>
-            <figure class="hero__shot hero__shot--d"><img src="../img/laapcode_hero_yeast-coast.webp" alt="Portfolio projektanta, projekt Yeast Coast" width="1600" height="1357" /></figure>
+          <div class="hero__svc-item">
+            <h2 class="hero__svc-title"><span class="pl">Importy produktowe</span><span class="en">Product imports</span></h2>
+            <p><span class="pl">Bazy produktów i automatyczne importy do WooCommerce, IdoSell, Allegro, Temu i innych.</span><span class="en">Product databases and automated imports to WooCommerce, IdoSell, Allegro, Temu and more.</span></p>
           </div>
+          <div class="hero__svc-item">
+            <h2 class="hero__svc-title"><span class="pl">E-commerce</span><span class="en">E-commerce</span></h2>
+            <p><span class="pl">Bieżąca obsługa sklepu: produkty, grafiki i zmiany wizualne, stale albo jednorazowo.</span><span class="en">Day-to-day store care: products, graphics and visual changes, ongoing or one-off.</span></p>
+          </div>
+          <div class="hero__svc-item">
+            <h2 class="hero__svc-title"><span class="pl">Automatyzacje</span><span class="en">Automations</span></h2>
+            <p><span class="pl">Narzędzia do pozyskiwania klientów, kampanie e-mail i integracje AI z CRM.</span><span class="en">Client acquisition tools, email campaigns and AI integrations with CRM.</span></p>
+          </div>
+        </div>
+        <div class="hero-strip__head">
+          <p><span class="pl">Moje projekty</span><span class="en">My projects</span></p>
+        </div>
+      </div>
+
+      <!-- Zrzuty w jednym rzędzie; gdy nie mieszczą się w marginesach, pas przewija się w bok -->
+      <div class="hero-strip" id="heroStrip" tabindex="0" role="region" aria-label="Realizacje / Work">
+        <div class="hero-strip__track">
+          <figure class="hero__shot hero__shot--a"><img src="../img/laapcode_hero_wise-habit-agency.webp" alt="Wise Habit Agency, strona główna" width="1800" height="899" /></figure>
+          <figure class="hero__shot hero__shot--b"><img src="../img/laapcode_hero_adaptive-tableware.webp" alt="Adaptive Tableware, strona produktu" width="1600" height="1519" /></figure>
+          <figure class="hero__shot hero__shot--c"><img src="../img/laapcode_hero_floral-foam.webp" alt="Portfolio projektanta, projekt oyster mushroom floral foam" width="1600" height="1577" /></figure>
+          <figure class="hero__shot hero__shot--d"><img src="../img/laapcode_hero_yeast-coast.webp" alt="Portfolio projektanta, projekt Yeast Coast" width="1600" height="1357" /></figure>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var el = document.getElementById('heroStrip'); if (!el) return;
+          var down = false, moved = false, sx = 0, sl = 0;
+          el.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse' || e.button !== 0) return; down = true; moved = false; sx = e.clientX; sl = el.scrollLeft; });
+          window.addEventListener('pointermove', function (e) { if (!down) return; var dx = e.clientX - sx; if (!moved && Math.abs(dx) > 6) { moved = true; el.classList.add('is-drag'); } if (moved) el.scrollLeft = sl - dx; });
+          window.addEventListener('pointerup', function () { down = false; el.classList.remove('is-drag'); });
+          el.addEventListener('dragstart', function (e) { e.preventDefault(); });
+          function fit() { el.classList.toggle('is-static', el.scrollWidth <= el.clientWidth + 1); }
+          window.addEventListener('resize', fit); window.addEventListener('load', fit); fit();
+        })();
+      </script>
+
+      <div class="wrap">
+        <div class="hero-strip__foot">
+            <a class="arrow-link u" href="#portfolio"><span class="pl">Zobacz więcej</span><span class="en">See more</span> →</a>
         </div>
 
         <!-- Logotypy klientów (zamiast zestawienia zrzutów) -->
-        <div class="clients-row grid">
+        <div class="clients-row grid" id="wspolprace">
           <p class="clients-row__label mono"><span class="pl">Współprace</span><span class="en">Clients</span></p>
           <ul class="clients-row__logos">
             <li><img class="lg-mono" src="../img/clients/wise-habit-agency.svg" alt="Wise Habit Agency for the Future" style="height:24px" /></li>
@@ -399,25 +462,25 @@
       <div class="gal" id="gal" tabindex="0" role="region" aria-label="Galeria / Gallery">
         <div class="gal__track">
           <div class="gal__col gal__col--split" style="--w:7">
-            <a class="gal__item" href="../img/laapcode_uslugi_stronainternetowa_3.webp" draggable="false"><div class="gal__img" style="--h:6"><img src="../img/laapcode_uslugi_stronainternetowa_3.webp" alt="Wise Habit Agency, portfolio projektów" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Wise Habit Agency</span><span class="en">Wise Habit Agency</span></span><span class="mono"><span class="pl">portfolio projektów</span><span class="en">project portfolio</span></span></p></a>
-            <a class="gal__item" href="../img/galeria/fpv-wybrane-ujecia.webp" draggable="false"><div class="gal__img" style="--h:3.6"><img src="../img/galeria/fpv-wybrane-ujecia.webp" alt="Studio FPV, wybrane ujęcia" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Studio FPV</span><span class="en">FPV studio</span></span><span class="mono"><span class="pl">wybrane ujęcia</span><span class="en">selected shots</span></span></p></a>
+            <a class="gal__item" href="../img/laapcode_uslugi_stronainternetowa_3.webp" draggable="false"><div class="gal__img" style="--h:6"><img src="../img/laapcode_uslugi_stronainternetowa_3.webp" alt="Wise Habit Agency, portfolio projektów" loading="lazy" draggable="false" /></div></a>
+            <a class="gal__item" href="../img/galeria/fpv-wybrane-ujecia.webp" draggable="false"><div class="gal__img" style="--h:3.6"><img src="../img/galeria/fpv-wybrane-ujecia.webp" alt="Studio FPV, wybrane ujęcia" loading="lazy" draggable="false" /></div></a>
           </div>
           <div class="gal__col gal__col--end" style="--w:10">
-            <a class="gal__item" href="../img/laapcode8.webp" draggable="false"><div class="gal__img" style="--h:4.5"><img src="../img/laapcode8.webp" alt="Studio FPV, strona główna" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Studio FPV</span><span class="en">FPV studio</span></span><span class="mono"><span class="pl">strona główna</span><span class="en">home page</span></span></p></a>
-            <a class="gal__item" href="../img/laapcode_uslugi_stronainternetowa_4.webp" draggable="false"><div class="gal__img" style="--h:4.8"><img src="../img/laapcode_uslugi_stronainternetowa_4.webp" alt="Studio FPV, budowa dronów" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Studio FPV</span><span class="en">FPV studio</span></span><span class="mono"><span class="pl">budowa dronów</span><span class="en">drone building</span></span></p></a>
+            <a class="gal__item" href="../img/laapcode8.webp" draggable="false"><div class="gal__img" style="--h:4.5"><img src="../img/laapcode8.webp" alt="Studio FPV, strona główna" loading="lazy" draggable="false" /></div></a>
+            <a class="gal__item" href="../img/laapcode_uslugi_stronainternetowa_4.webp" draggable="false"><div class="gal__img" style="--h:4.8"><img src="../img/laapcode_uslugi_stronainternetowa_4.webp" alt="Studio FPV, budowa dronów" loading="lazy" draggable="false" /></div></a>
           </div>
           <div class="gal__col gal__col--split" style="--w:5">
-            <a class="gal__item" href="../img/laapcode_uslugi_stronainternetowa_1.webp" draggable="false"><div class="gal__img" style="--h:5"><img src="../img/laapcode_uslugi_stronainternetowa_1.webp" alt="Portfolio projektanta, strona projektu" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Portfolio projektanta</span><span class="en">Designer portfolio</span></span><span class="mono"><span class="pl">strona projektu</span><span class="en">project page</span></span></p></a>
-            <a class="gal__item" href="../img/laapcode4.webp" draggable="false"><div class="gal__img" style="--h:4"><img src="../img/laapcode4.webp" alt="Portfolio projektanta, karta projektu" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Portfolio projektanta</span><span class="en">Designer portfolio</span></span><span class="mono"><span class="pl">karta projektu</span><span class="en">project sheet</span></span></p></a>
+            <a class="gal__item" href="../img/laapcode_uslugi_stronainternetowa_1.webp" draggable="false"><div class="gal__img" style="--h:5"><img src="../img/laapcode_uslugi_stronainternetowa_1.webp" alt="Portfolio projektanta, strona projektu" loading="lazy" draggable="false" /></div></a>
+            <a class="gal__item" href="../img/laapcode4.webp" draggable="false"><div class="gal__img" style="--h:4"><img src="../img/laapcode4.webp" alt="Portfolio projektanta, karta projektu" loading="lazy" draggable="false" /></div></a>
           </div>
           <div class="gal__col gal__col--mid" style="--w:6">
-            <a class="gal__item" href="../img/laapcode6.webp" draggable="false"><div class="gal__img" style="--h:2.7"><img src="../img/laapcode6.webp" alt="Studio FPV, usługi" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Studio FPV</span><span class="en">FPV studio</span></span><span class="mono"><span class="pl">usługi</span><span class="en">services</span></span></p></a>
-            <a class="gal__item" href="../img/laapcode7.webp" draggable="false"><div class="gal__img" style="--h:2.7"><img src="../img/laapcode7.webp" alt="Studio FPV, dlaczego FPV" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Studio FPV</span><span class="en">FPV studio</span></span><span class="mono"><span class="pl">dlaczego FPV</span><span class="en">why FPV</span></span></p></a>
-            <a class="gal__item" href="../img/galeria/fpv-kontakt.webp" draggable="false"><div class="gal__img" style="--h:2.7"><img src="../img/galeria/fpv-kontakt.webp" alt="Studio FPV, kontakt" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Studio FPV</span><span class="en">FPV studio</span></span><span class="mono"><span class="pl">kontakt</span><span class="en">contact</span></span></p></a>
+            <a class="gal__item" href="../img/laapcode6.webp" draggable="false"><div class="gal__img" style="--h:2.7"><img src="../img/laapcode6.webp" alt="Studio FPV, usługi" loading="lazy" draggable="false" /></div></a>
+            <a class="gal__item" href="../img/laapcode7.webp" draggable="false"><div class="gal__img" style="--h:2.7"><img src="../img/laapcode7.webp" alt="Studio FPV, dlaczego FPV" loading="lazy" draggable="false" /></div></a>
+            <a class="gal__item" href="../img/galeria/fpv-kontakt.webp" draggable="false"><div class="gal__img" style="--h:2.7"><img src="../img/galeria/fpv-kontakt.webp" alt="Studio FPV, kontakt" loading="lazy" draggable="false" /></div></a>
           </div>
           <div class="gal__col" style="--w:8">
-            <a class="gal__item" href="../img/galeria/fpv-zespol.webp" draggable="false"><div class="gal__img" style="--h:5.6"><img src="../img/galeria/fpv-zespol.webp" alt="Studio FPV, zespół" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Studio FPV</span><span class="en">FPV studio</span></span><span class="mono"><span class="pl">zespół</span><span class="en">team</span></span></p></a>
-            <a class="gal__item" href="../img/laapcode5.webp" draggable="false"><div class="gal__img" style="--h:3.6"><img src="../img/laapcode5.webp" alt="Studio FPV, blog" loading="lazy" draggable="false" /></div><p class="gal__cap"><span><span class="pl">Studio FPV</span><span class="en">FPV studio</span></span><span class="mono"><span class="pl">blog</span><span class="en">blog</span></span></p></a>
+            <a class="gal__item" href="../img/galeria/fpv-zespol.webp" draggable="false"><div class="gal__img" style="--h:5.6"><img src="../img/galeria/fpv-zespol.webp" alt="Studio FPV, zespół" loading="lazy" draggable="false" /></div></a>
+            <a class="gal__item" href="../img/laapcode5.webp" draggable="false"><div class="gal__img" style="--h:3.6"><img src="../img/laapcode5.webp" alt="Studio FPV, blog" loading="lazy" draggable="false" /></div></a>
           </div>
           <div class="gal__col gal__col--end" style="--w:8"><p class="gal__end"><a class="arrow-link u" href="#kontakt"><span class="pl">Masz podobny projekt? Porozmawiajmy</span><span class="en">Got a similar project? Let’s talk</span> →</a></p></div>
         </div>
@@ -463,7 +526,7 @@
         <h2 class="section__label"><span class="pl">O mnie</span><span class="en">About</span></h2>
         <div class="section__body about">
           <div class="about__text">
-            <p><span class="pl">Od czterech lat łączę doświadczenie w e-commerce, sprzedaży i programowaniu. Z tego połączenia powstało Laap Code.</span><span class="en">For four years I have been combining experience in e-commerce, sales and programming. Laap Code grew out of that mix.</span></p>
+            <p><span class="pl">Od ponad czterech lat łączę doświadczenie w e-commerce, sprzedaży, marketingu i programowaniu. Z tego połączenia wyrosło to, czym zajmuję się dziś: strony i narzędzia, które dobrze wyglądają i pracują na sprzedaż.</span><span class="en">For over four years I have been combining experience in e-commerce, sales, marketing and programming. That mix grew into what I do today: websites and tools that look good and work for sales.</span></p>
             <p><span class="pl">Prowadzę projekty od początku do końca: projektuję, wdrażam i utrzymuję rozwiązania, które realnie ułatwiają prowadzenie firmy, bez zbędnych kosztów i komplikacji.</span><span class="en">I run projects from start to finish: I design, build and maintain solutions that make running a company genuinely easier, without unnecessary costs or complications.</span></p>
             <p class="mono">Franciszek Mojsak</p>
           </div>
