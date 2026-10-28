@@ -9,6 +9,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
   <style>
     /* ── Fonty: self-hosted, bez zewnętrznych CDN ── */
+    @font-face { font-family: 'Inter Tight'; font-weight: 300; font-display: swap; src: url('../fonts/inter-tight-latin-300-normal.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Inter Tight'; font-weight: 300; font-display: swap; src: url('../fonts/inter-tight-latin-ext-300-normal.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
     @font-face { font-family: 'Inter Tight'; font-weight: 400; font-display: swap; src: url('../fonts/inter-tight-latin-400-normal.woff2') format('woff2');
       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
     @font-face { font-family: 'Inter Tight'; font-weight: 400; font-display: swap; src: url('../fonts/inter-tight-latin-ext-400-normal.woff2') format('woff2');
@@ -75,16 +79,19 @@
     /* ── Hero ── */
     .hero { padding-top: 64px; --h1: clamp(32px, 4.2vw, 68px); }
     .hero__head { align-items: start; grid-template-rows: auto 1fr; }
-    .hero__statement { grid-column: 1 / span 7; font-size: var(--h1); line-height: 1.12; letter-spacing: 0; font-weight: 400; white-space: nowrap; }
+    .hero__statement { grid-column: 1 / span 7; font-size: var(--h1); line-height: 1.12; letter-spacing: 0; font-weight: 300; white-space: nowrap; }
     .hero__photo { grid-column: 9 / span 4; grid-row: 1 / span 2; margin: 0; padding-top: calc(var(--h1) * 0.2); }
     .hero__photo img { width: 100%; height: auto; }
     .hero-strip__foot { display: flex; justify-content: flex-end; margin-top: 8px; font-size: 14px; }
-    .hero__intro { grid-column: 1 / span 5; grid-row: 2; margin-top: clamp(32px, 3.5vw, 56px); }
-    .hero__sub { font-size: 16px; }
-    .hero__cta { margin-top: 28px; }
+    .hero__intro { grid-column: 1 / span 6; grid-row: 2; margin-top: clamp(44px, 4.6vw, 80px); }
+    .hero__sub { font-size: 14px; }
+    .hero__cta { margin-top: 40px; }
+    .btn { display: inline-block; padding: 15px 28px; border: 1px solid var(--ink); background: var(--sheet); color: var(--ink); font-size: 14px; line-height: 1; transition: background .15s, color .15s; }
+    .btn__arr { margin-left: 12px; }
+    .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--sheet); }
     /* Zrzuty w jednym rzędzie, równa wysokość, cienka ramka.
        Pas zaczyna się przy lewym marginesie, wychodzi do prawej krawędzi ekranu i przewija się w bok. */
-    .hero-strip__head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: clamp(56px, 6vw, 96px); font-size: 14px; }
+    .hero-strip__head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: clamp(88px, 8.4vw, 144px); font-size: 14px; font-weight: 500; }
     .hero-strip { --sh: clamp(240px, 29vw, 460px); margin-top: 20px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; cursor: grab;
       scrollbar-width: thin; scrollbar-color: var(--ink) transparent; padding-bottom: 20px;
       padding-left: calc((100% - min(100%, var(--max))) / 2 + var(--pad)); }
@@ -97,13 +104,15 @@
     .hero__shot img { height: 100%; width: auto; max-width: none; -webkit-user-drag: none; }
     /* Usługi w hero: cztery kolumny na całą szerokość, nagłówek i krótki opis */
     /* cztery wąskie kolumny rozsunięte od lewego do prawego marginesu */
-    .hero__svc { margin-top: clamp(64px, 6vw, 104px); row-gap: 40px; display: flex; justify-content: space-between; }
+    .hero__svc { margin-top: clamp(96px, 9vw, 160px); row-gap: 40px; display: flex; justify-content: space-between; }
     .hero__svc-item { flex: 0 1 18.5em; min-width: 0; }
-    .hero__svc-title { font-size: clamp(19px, 1.5vw, 24px); font-weight: 400; line-height: 1.25; letter-spacing: -0.005em; }
-    .hero__svc-item p { margin-top: 12px; }
+    .hero__svc-title { font-size: clamp(19px, 1.5vw, 24px); font-weight: 500; line-height: 1.25; letter-spacing: -0.005em; }
+    .hero__svc-item p { margin-top: 16px; font-size: 13px; }
+    .br-d { display: inline; }
+    .nobr { white-space: nowrap; }
 
     .clients-row { margin-top: 184px; align-items: center; }
-    .clients-row__label { grid-column: 1 / span 3; }
+    .clients-row__label { grid-column: 1 / span 3; font-size: 14px; font-weight: 500; }
     .clients-row__logos { grid-column: 4 / span 9; display: flex; flex-wrap: wrap; align-items: center; gap: 36px 56px; }
     .clients-row__logos img { width: auto; max-width: 180px; object-fit: contain; filter: grayscale(1); }
     .clients-row__logos img.lg-mono { filter: brightness(0); }
@@ -111,12 +120,14 @@
     /* ── Sekcje: nazwa w lewym marginesie, treść od 4. kolumny ── */
     .section { padding-top: 224px; }
     h1, h2, h3 { font-weight: 400; }
-    .section__label { grid-column: 1 / span 3; font-size: 14px; font-weight: 400; position: sticky; top: calc(var(--nav) + 16px); align-self: start; }
+    .section__label { grid-column: 1 / span 3; font-size: 14px; font-weight: 500; position: sticky; top: calc(var(--nav) + 16px); align-self: start; }
     .section__body { grid-column: 4 / span 9; }
-    .lead { font-size: clamp(20px, 1.7vw, 26px); line-height: 1.35; letter-spacing: -0.01em; max-width: 30em; }
+    .lead { font-weight: 300; font-size: clamp(20px, 1.7vw, 26px); line-height: 1.35; letter-spacing: -0.01em; max-width: 30em; }
 
     /* Podejście: plan / konstrukcja / detal */
-    .principles { margin-top: 88px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+    /* Plan, Konstrukcja, Detal jeden pod drugim, w jednej kolumnie, równe odstępy */
+    .principles { margin-top: 88px; display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 40px; }
+    .principles > div { grid-column: 1 / span 3; }
     .principles h3 { font-weight: 500; font-size: 16px; margin-bottom: 8px; }
 
     /* Realizacje: arkusze o różnych proporcjach + opis pismem technicznym */
@@ -144,7 +155,7 @@
     .gal__img { height: calc(var(--u) * var(--h)); overflow: hidden; background: var(--fill); }
     .gal__img img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .6s ease; -webkit-user-drag: none; }
     .gal__item:hover .gal__img img { transform: scale(1.015); }
-    .gal__end { font-size: clamp(18px, 1.3vw, 20px); line-height: 1.3; letter-spacing: -0.01em; }
+    .gal__end { font-weight: 300; font-size: clamp(18px, 1.3vw, 20px); line-height: 1.3; letter-spacing: -0.01em; }
     .lb { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; border: 0; margin: 0;
       padding: calc(var(--nav) + 8px) var(--pad) var(--pad); background: var(--sheet); color: var(--ink); overflow: auto; }
     .lb::backdrop { background: var(--sheet); }
@@ -153,16 +164,24 @@
       text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; padding: 4px 0; }
 
     /* Usługi: wykaz jak zestawienie w projekcie */
-    .svc { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: var(--gap); padding: 0 0 80px; }
-    .svc:first-child { border-top: 1px solid var(--ink); padding-top: 36px; }
+    .svc { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: var(--gap); padding: 0 0 128px; }
+    .svc:first-child { border-top: 1px solid var(--ink); padding-top: 56px; }
     .svc:last-child { padding-bottom: 0; }
-    .svc h3 { grid-column: 1 / span 3; font-weight: 400; font-size: clamp(19px, 1.4vw, 22px); letter-spacing: -0.005em; line-height: 1.25; }
-    .svc__desc { grid-column: 4 / span 3; }
-    .svc__desc .arrow-link { margin-top: 18px; font-size: 14px; }
-    .svc__list { grid-column: 7 / span 3; }
-    .svc__list li + li { margin-top: 4px; }
+    .svc h3 { grid-column: 1 / span 3; font-weight: 500; font-size: clamp(19px, 1.5vw, 24px); letter-spacing: -0.005em; line-height: 1.25; }
+    .svc__desc { grid-column: 4 / span 3; font-size: 13px; padding-top: 4px; max-width: 21.5em; }
+    .svc__list { grid-column: 7 / span 3; font-size: 13px; padding-top: 4px; }
+    .svc__list li + li { margin-top: 6px; }
+    /* Usługi na komputerze: wspólne kolumny dla wszystkich usług; lista ma szerokość najdłuższej linii i kończy się na prawym marginesie, tekst biegnie od lewej */
+    @media (min-width: 801px) {
+      #uslugi .section__body { display: grid; grid-template-columns: calc((100% - 8 * var(--gap)) / 3 + 2 * var(--gap)) minmax(0, 280px) minmax(0, 1fr) max-content;
+        column-gap: var(--gap); row-gap: 128px; align-items: start; border-top: 1px solid var(--ink); padding-top: 56px; }
+      #uslugi .svc { display: contents; }
+      #uslugi .svc h3 { grid-column: 1; }
+      #uslugi .svc__desc { grid-column: 2; }
+      #uslugi .svc__list { grid-column: 4; }
+    }
 
-    .clients { font-size: clamp(22px, 2vw, 30px); line-height: 1.35; letter-spacing: -0.01em; max-width: 30em; }
+    .clients { font-weight: 300; font-size: clamp(22px, 2vw, 30px); line-height: 1.35; letter-spacing: -0.01em; max-width: 30em; }
 
     /* O mnie */
     .about { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: var(--gap); }
@@ -170,7 +189,7 @@
     .about__text p + p { margin-top: 18px; }
 
     /* Kontakt */
-    .contact__big { display: block; font-size: clamp(22px, 2.2vw, 34px); line-height: 1.2; letter-spacing: -0.02em; }
+    .contact__big { display: block; font-weight: 300; font-size: clamp(22px, 2.2vw, 34px); line-height: 1.2; letter-spacing: -0.02em; }
     .contact__big:hover { opacity: .5; }
     .form { margin-top: 88px; display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 18px var(--gap); }
     .form__f { grid-column: span 3; }
@@ -196,7 +215,7 @@
     .footer__legal nav { display: flex; gap: 24px; }
 
     /* Akapity wyjustowane do pełnej szerokości; dzielenie wyrazów zmniejsza dziury w wąskich kolumnach */
-    .hero__sub, .hero__svc-item p, .principles p, .svc__desc p, .about__text p { text-align: justify; text-justify: inter-word; -webkit-hyphens: auto; hyphens: auto; }
+    .hero__sub, .hero__svc-item p, .principles p, .svc__desc p, .about__text p { text-align: justify; text-justify: inter-word; -webkit-hyphens: manual; hyphens: manual; }
 
     /* ── Responsive ── */
     @media (max-width: 1100px) {
@@ -204,6 +223,7 @@
       .hero__photo { grid-column: 8 / span 5; }
       .hero__intro { grid-column: 1 / span 7; }
       .hero__svc { display: grid; }
+      .br-d { display: none; }
       .hero__svc-item { grid-column: span 6; }
       .hero__svc-item p { max-width: 22em; }
       .section__label { grid-column: 1 / -1; position: static; margin-bottom: 28px; }
@@ -220,10 +240,10 @@
       .hero__statement { white-space: normal; }
       .hero__statement, .hero__photo { grid-column: 1 / -1; }
       .hero__photo { grid-row: auto; padding-top: 0; margin-top: 40px; }
-      .hero__intro { grid-column: 1 / -1; grid-row: auto; margin-top: 28px; }
-      .hero-strip__head { margin-top: 48px; }
+      .hero__intro { grid-column: 1 / -1; grid-row: auto; margin-top: 36px; }
+      .hero-strip__head { margin-top: 72px; }
       .hero-strip { --sh: 240px; margin-top: 16px; }
-      .hero__svc { margin-top: 56px; row-gap: 32px; }
+      .hero__svc { margin-top: 80px; row-gap: 40px; }
       .hero__svc-item { grid-column: 1 / -1; }
       .hero__svc-item p { max-width: 22em; }
       .nav__right { display: contents; }
@@ -231,7 +251,7 @@
       .nav__menu { display: block; grid-column: 10 / span 3; justify-self: end; }
       .nav.is-open .nav__links { justify-content: flex-start; }
       .nav.is-open .nav__links { display: flex; position: fixed; top: var(--nav); left: 0; right: 0; bottom: 0; flex-direction: column; gap: 18px;
-        padding: 32px var(--pad); background: var(--sheet); font-size: 26px; }
+        padding: 32px var(--pad); background: var(--sheet); font-size: 26px; font-weight: 300; }
       .nav.is-open .lang { display: flex; position: fixed; left: var(--pad); bottom: 32px; font-size: 18px; z-index: 2; }
       .clients-row { margin-top: 104px; row-gap: 20px; }
       .clients-row__label, .clients-row__logos { grid-column: 1 / -1; }
@@ -239,7 +259,8 @@
       .section { padding-top: 144px; }
       .gal { --u: 30px; margin-top: 32px; }
       .principles { grid-template-columns: 1fr; gap: 28px; }
-      .svc { grid-template-columns: 1fr; gap: 12px; }
+      .principles > div { grid-column: 1 / -1; }
+      .svc { grid-template-columns: 1fr; gap: 16px; padding-bottom: 80px; }
       .svc h3, .svc__desc, .svc__list { grid-column: 1 / -1; }
       .about { grid-template-columns: 1fr; gap: 28px; }
       .about__text { grid-column: 1; }
@@ -292,7 +313,7 @@
               <span class="pl">Dla firm i osób, którym zależy na zrozumieniu ich potrzeb, wysokim poziomie projektowania i stronie spójnej z ich estetyką. Od koncepcji po wdrożenie, bez miesięcznych opłat za utrzymanie.</span>
               <span class="en">For companies and individuals who value being understood, a high standard of design and a website that matches their aesthetic. From concept to launch, with no monthly maintenance fees.</span>
             </p>
-            <p class="hero__cta"><a class="arrow-link u" href="#kontakt"><span class="pl">Porozmawiajmy o projekcie</span><span class="en">Let’s talk about your project</span> →</a></p>
+            <p class="hero__cta"><a class="btn" href="#kontakt"><span class="pl">Skontaktuj się</span><span class="en">Get in touch</span><span class="btn__arr" aria-hidden="true">→</span></a></p>
           </div>
           <figure class="hero__photo"><img src="../img/laapcode_franciszek-mojsak-okulary.webp" alt="Franciszek Mojsak" width="1600" height="1200" /></figure>
         </div>
@@ -308,11 +329,11 @@
           </div>
           <div class="hero__svc-item">
             <h2 class="hero__svc-title"><span class="pl">E-commerce</span><span class="en">E-commerce</span></h2>
-            <p><span class="pl">Bieżąca obsługa sklepu: produkty, grafiki i zmiany wizualne, stale albo jednorazowo.</span><span class="en">Day-to-day store care: products, graphics and visual changes, ongoing or one-off.</span></p>
+            <p><span class="pl">Bieżąca obsługa sklepu: produkty,<br class="br-d" /> grafiki i&nbsp;zmiany wizualne, stale albo jednorazowo.</span><span class="en">Day-to-day store care: products, graphics and visual changes, ongoing or one-off.</span></p>
           </div>
           <div class="hero__svc-item">
             <h2 class="hero__svc-title"><span class="pl">Automatyzacje</span><span class="en">Automations</span></h2>
-            <p><span class="pl">Narzędzia do pozyskiwania klientów, kampanie e-mail i integracje AI z CRM.</span><span class="en">Client acquisition tools, email campaigns and AI integrations with CRM.</span></p>
+            <p><span class="pl">Narzędzia do pozyskiwania klientów, kampanie <span class="nobr">e-mail</span> i integracje AI z CRM.</span><span class="en">Client acquisition tools, email campaigns and AI integrations with CRM.</span></p>
           </div>
         </div>
         <div class="hero-strip__head">
@@ -349,7 +370,7 @@
 
         <!-- Logotypy klientów (zamiast zestawienia zrzutów) -->
         <div class="clients-row grid" id="wspolprace">
-          <p class="clients-row__label mono"><span class="pl">Współprace</span><span class="en">Clients</span></p>
+          <p class="clients-row__label"><span class="pl">Współprace</span><span class="en">Clients</span></p>
           <ul class="clients-row__logos">
             <li><img class="lg-mono" src="../img/clients/wise-habit-agency.svg" alt="Wise Habit Agency for the Future" style="height:24px" /></li>
             <li><img src="https://wisehabit.com/data/gfx/mask/eng/logo_4_big.png" alt="Wise Habit" style="height:30px" onerror="this.parentNode.remove()" /></li>
@@ -394,8 +415,7 @@
           <div class="svc">
             <h3><span class="pl">Strony internetowe</span><span class="en">Websites</span></h3>
             <div class="svc__desc">
-              <p><span class="pl">Od prostego one-pagera po rozbudowany serwis z integracjami, z indywidualnym projektem graficznym.</span><span class="en">From a simple one-pager to a full site with integrations, with a custom visual design.</span></p>
-              <a class="arrow-link u" href="#kontakt"><span class="pl">Wycena</span><span class="en">Get a quote</span> →</a>
+              <p><span class="pl">Od prostego one-pagera po rozbudowany serwis z&nbsp;integracjami, z&nbsp;indywidualnym projektem graficznym.</span><span class="en">From a simple one-pager to a full site with integrations, with a custom visual design.</span></p>
             </div>
             <ul class="svc__list">
               <li><span class="pl">Strony One Page i serwisy firmowe</span><span class="en">One-page sites and company websites</span></li>
@@ -407,8 +427,7 @@
           <div class="svc">
             <h3><span class="pl">Importy produktowe</span><span class="en">Product imports</span></h3>
             <div class="svc__desc">
-              <p><span class="pl">Bazy produktowe i automatyczne importy pod WooCommerce, IdoSell, Temu, Empik, Allegro i OLX.</span><span class="en">Product databases and automated imports for WooCommerce, IdoSell, Temu, Empik, Allegro and OLX.</span></p>
-              <a class="arrow-link u" href="#kontakt"><span class="pl">Wycena</span><span class="en">Get a quote</span> →</a>
+              <p><span class="pl">Bazy produktowe i&nbsp;automatyczne importy pod WooCommerce, IdoSell, Temu, Empik, Allegro i&nbsp;OLX.</span><span class="en">Product databases and automated imports for WooCommerce, IdoSell, Temu, Empik, Allegro and OLX.</span></p>
             </div>
             <ul class="svc__list">
               <li><span class="pl">Masowe importy produktów, wariantów i zdjęć</span><span class="en">Bulk imports of products, variants and images</span></li>
@@ -420,8 +439,7 @@
           <div class="svc">
             <h3><span class="pl">E-commerce</span><span class="en">E-commerce</span></h3>
             <div class="svc__desc">
-              <p><span class="pl">Bieżąca obsługa sklepu internetowego: produkty, grafiki i zmiany wizualne. Jako stała współpraca albo jednorazowe zlecenie.</span><span class="en">Day-to-day care of your online store: products, graphics and visual changes. As ongoing cooperation or a one-off job.</span></p>
-              <a class="arrow-link u" href="#kontakt"><span class="pl">Wycena</span><span class="en">Get a quote</span> →</a>
+              <p><span class="pl">Bieżąca obsługa sklepu internetowego: produkty, grafiki i&nbsp;zmiany wizualne. Jako stała współpraca albo jednorazowe zlecenie.</span><span class="en">Day-to-day care of your online store: products, graphics and visual changes. As ongoing cooperation or a one-off job.</span></p>
             </div>
             <ul class="svc__list">
               <li><span class="pl">Zarządzanie sklepem i produktami</span><span class="en">Store and product management</span></li>
@@ -433,8 +451,7 @@
           <div class="svc">
             <h3><span class="pl">Automatyzacja</span><span class="en">Automation</span></h3>
             <div class="svc__desc">
-              <p><span class="pl">Narzędzia do pozyskiwania klientów, kampanii i automatyzacji procesów w firmie.</span><span class="en">Tools for client acquisition, campaigns and business process automation.</span></p>
-              <a class="arrow-link u" href="#kontakt"><span class="pl">Wycena</span><span class="en">Get a quote</span> →</a>
+              <p><span class="pl">Narzędzia do pozyskiwania klientów, kampanii i&nbsp;automatyzacji procesów w&nbsp;firmie.</span><span class="en">Tools for client acquisition, campaigns and business process automation.</span></p>
             </div>
             <ul class="svc__list">
               <li><span class="pl">Bazy klientów i kampanie e-mail</span><span class="en">Client databases and email campaigns</span></li>
