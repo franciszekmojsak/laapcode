@@ -91,7 +91,7 @@
     .hero__sub { font-size: 14px; grid-column: 1 / span 7; max-width: 44em; }
     /* Opis z lewej, przycisk na szerokość zdjęcia (te same kolumny co zdjęcie) */
     .hero__cta { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 28px; align-items: center; }
-    .hero__cta .btn { grid-column: 9 / span 4; display: flex; justify-content: space-between; align-items: center; }
+    .hero__cta .btn { grid-column: 9 / span 4; width: 50%; justify-self: end; display: flex; justify-content: space-between; align-items: center; }
     .btn { display: inline-block; padding: 15px 28px; border: 1px solid var(--ink); background: var(--sheet); color: var(--ink); font-size: 14px; line-height: 1; transition: background .15s, color .15s; }
     .btn__arr { margin-left: 12px; }
     .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--sheet); }
@@ -252,6 +252,7 @@
       .hero__photo { grid-row: auto; padding-top: 0; margin-top: 40px; }
       .hero__intro { grid-column: 1 / -1; grid-row: auto; margin-top: 36px; }
       .hero__sub, .hero__cta .btn { grid-column: 1 / -1; }
+      .hero__cta .btn { width: auto; justify-self: stretch; }
       .hero__sub { max-width: none; }
       .hero-strip__head { margin-top: 72px; }
       .hero-strip { --sh: 240px; margin-top: 16px; }
