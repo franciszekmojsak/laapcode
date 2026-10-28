@@ -77,7 +77,7 @@
     main { padding-top: var(--nav); }
 
     /* ── Hero ── */
-    .hero { padding-top: 136px; --h1: clamp(36px, 6.2vw, 104px); } /* --h1: rozmiar nagłówka na telefonie */
+    .hero { padding-top: 64px; --h1: clamp(36px, 6.2vw, 104px); } /* --h1: rozmiar nagłówka na telefonie */
     .hero__head { align-items: start; grid-template-rows: auto 1fr; container-type: inline-size; }
     /* Nagłówek rozłożony na wysokość zdjęcia: góra pierwszej linii = góra zdjęcia, linia bazowa ostatniej = dół zdjęcia */
     .hero__title { grid-column: 1 / span 7; grid-row: 1; align-self: stretch; display: flex; flex-direction: column;
@@ -180,7 +180,10 @@
     .svc { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: var(--gap); padding: 0 0 128px; }
     .svc:first-child { border-top: 1px solid var(--ink); padding-top: 56px; }
     .svc:last-child { padding-bottom: 0; }
-    .svc h3 { grid-column: 1 / span 3; font-weight: 500; font-size: clamp(19px, 1.5vw, 24px); letter-spacing: -0.005em; line-height: 1.25; }
+    .svc h3 { grid-column: 1 / span 3; font-weight: 500; font-size: clamp(19px, 1.5vw, 24px); letter-spacing: -0.005em; line-height: 1.25; display: flex; align-items: center; gap: 0.6em; }
+    /* Ikony usług: Phosphor Light (MIT), wstawione jako SVG */
+    .svc__icon { flex: none; display: block; width: 1.2em; height: 1.2em; }
+    .svc__icon svg { display: block; width: 100%; height: 100%; }
     .svc__desc { grid-column: 4 / span 3; font-size: 13px; padding-top: 4px; max-width: 21.5em; }
     .svc__list { grid-column: 7 / span 3; font-size: 13px; padding-top: 4px; }
     .svc__list li + li { margin-top: 6px; }
@@ -251,7 +254,7 @@
       .tb > div:nth-child(n+3) { border-top: 1px solid var(--ink); }
     }
     @media (max-width: 800px) {
-      .hero { padding-top: 84px; }
+      .hero { padding-top: 48px; }
       .hero__statement { white-space: normal; grid-row: auto; margin: 0; line-height: 1.12; font-size: var(--h1); }
       .hero__statement > span { gap: 0; }
       .hero__title, .hero__photo { grid-column: 1 / -1; }
@@ -418,6 +421,8 @@
             <li><img class="lg-mono" src="../img/clients/toxic-hair.png" alt="Toxic Hair" style="height:58px" /></li>
             <li><img src="https://theb.pl/images/Logo_shop_b_pink.png" alt="Shop B." style="height:30px" onerror="this.parentNode.remove()" /></li>
             <li><img src="https://i-p.rmcdn.net/657c2898dc8d6a001494d67a/4537282/image-e19cdb16-03b1-4e71-a365-4354d7e38aed.png?w=358&amp;e=webp&amp;nll=true" alt="Mikołaj Markowski" style="height:30px" onerror="this.parentNode.remove()" /></li>
+            <li><img class="lg-mono" src="../img/clients/lust-for-life.png" alt="Lust for Life &amp; Lust for Business" width="600" height="124" style="height:30px" /></li>
+            <li><img class="lg-mono" src="../img/clients/laap.png" alt="Laap" width="203" height="178" style="height:36px" /></li>
           </ul>
         </div>
       </div>
@@ -453,7 +458,7 @@
         <h2 class="section__label"><span class="pl">Usługi</span><span class="en">Services</span></h2>
         <div class="section__body">
           <div class="svc">
-            <h3><span class="pl">Strony internetowe</span><span class="en">Websites</span></h3>
+            <h3><span class="svc__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,42H40A14,14,0,0,0,26,56V200a14,14,0,0,0,14,14H216a14,14,0,0,0,14-14V56A14,14,0,0,0,216,42ZM40,54H216a2,2,0,0,1,2,2V90H38V56A2,2,0,0,1,40,54ZM216,202H40a2,2,0,0,1-2-2V102H218v98A2,2,0,0,1,216,202Z"/></svg></span><span class="pl">Strony internetowe</span><span class="en">Websites</span></h3>
             <div class="svc__desc">
               <p><span class="pl">Od prostego one-pagera po rozbudowany serwis z&nbsp;integracjami, a&nbsp;także sklepy internetowe. Zawsze z&nbsp;indywidualnym projektem graficznym.</span><span class="en">From a simple one-pager to a full site with integrations, as well as online stores. Always with a custom visual design.</span></p>
             </div>
@@ -465,7 +470,7 @@
             </ul>
           </div>
           <div class="svc">
-            <h3><span class="pl">Importy produktowe</span><span class="en">Product imports</span></h3>
+            <h3><span class="svc__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26C75.29,26,34,49.72,34,80v96c0,30.28,41.29,54,94,54s94-23.72,94-54V80C222,49.72,180.71,26,128,26Zm0,12c44.45,0,82,19.23,82,42s-37.55,42-82,42S46,102.77,46,80,83.55,38,128,38Zm82,138c0,22.77-37.55,42-82,42s-82-19.23-82-42V154.79C62,171.16,92.37,182,128,182s66-10.84,82-27.21Zm0-48c0,22.77-37.55,42-82,42s-82-19.23-82-42V106.79C62,123.16,92.37,134,128,134s66-10.84,82-27.21Z"/></svg></span><span class="pl">Importy produktowe</span><span class="en">Product imports</span></h3>
             <div class="svc__desc">
               <p><span class="pl">Bazy produktowe i&nbsp;importy pod WooCommerce, IdoSell, Temu, Empik, Allegro i&nbsp;OLX.</span><span class="en">Product databases and imports for WooCommerce, IdoSell, Temu, Empik, Allegro and OLX.</span></p>
             </div>
@@ -477,7 +482,7 @@
             </ul>
           </div>
           <div class="svc">
-            <h3><span class="pl">E-commerce</span><span class="en">E-commerce</span></h3>
+            <h3><span class="svc__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26.22,94.41A6,6,0,0,0,26,96v16A38,38,0,0,0,42,143V216a6,6,0,0,0,6,6H208a6,6,0,0,0,6-6V143A38,38,0,0,0,230,112V96a5.91,5.91,0,0,0-.23-1.64L215.43,44.15A14.07,14.07,0,0,0,202,34H54A14.07,14.07,0,0,0,40.57,44.15Zm25.89-47A2,2,0,0,1,54,46H202a2,2,0,0,1,1.92,1.45L216.05,90H40ZM102,102h52v10a26,26,0,0,1-52,0Zm-64,0H90v10a26,26,0,0,1-38.18,23,6,6,0,0,0-1.65-1A26,26,0,0,1,38,112ZM202,210H54V148.66a38,38,0,0,0,42-16.21,37.95,37.95,0,0,0,64,0,38,38,0,0,0,42,16.21Zm3.83-76a6,6,0,0,0-1.65,1A26,26,0,0,1,166,112V102h52v10A26,26,0,0,1,205.83,134Z"/></svg></span><span class="pl">E-commerce</span><span class="en">E-commerce</span></h3>
             <div class="svc__desc">
               <p><span class="pl">Bieżąca obsługa sklepu internetowego: produkty, grafiki i&nbsp;zmiany wizualne. Jako stała współpraca albo jednorazowe zlecenie.</span><span class="en">Day-to-day care of your online store: products, graphics and visual changes. As ongoing cooperation or a one-off job.</span></p>
             </div>
@@ -489,7 +494,7 @@
             </ul>
           </div>
           <div class="svc">
-            <h3><span class="pl">Automatyzacja</span><span class="en">Automation</span></h3>
+            <h3><span class="svc__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.24,75.76l-32-32a6,6,0,0,0-8.48,8.48L225.51,74H208c-48,0-59.44,27.46-69.54,51.69-9.43,22.64-17.66,42.33-53,44.16a38,38,0,1,0,.06,12c43.34-2.06,54.29-28.29,64-51.55C159.44,106.53,168,86,208,86h17.51l-21.75,21.76a6,6,0,1,0,8.48,8.48l32-32A6,6,0,0,0,244.24,75.76ZM48,202a26,26,0,1,1,26-26A26,26,0,0,1,48,202Z"/></svg></span><span class="pl">Automatyzacja</span><span class="en">Automation</span></h3>
             <div class="svc__desc">
               <p><span class="pl">Narzędzia do pozyskiwania klientów, kampanii i&nbsp;automatyzacji procesów w&nbsp;firmie.</span><span class="en">Tools for client acquisition, campaigns and business process automation.</span></p>
             </div>
