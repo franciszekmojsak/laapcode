@@ -1159,13 +1159,14 @@
   });
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  /* ── Współpraca: ludzik (wygląd i chód z „Pracowni ludzika”) ── */
-  var LZ = {"tempo":0.38,"krok":30,"rece":36,"podskok":3,"glowa":3,"pochylenie":5,"kolys":0,"predkosc":6.5,"rozmiar":105,"glowaSkala":1.14,"brzuch":0.73,"nogi":1.5,"stopy":9,"kreska":1.2,"oczy":"duze","buzia":"usmiech","czub":false,"kapelusz":true,"okulary":false,"szalik":false,"plecak":false,"mruganie":7.7};
+  /* ── Współpraca: ludzik albo ptaszek (wygląd i chód z „Pracowni ludzika”) ── */
+  var LZ = {"postac":"ptak","tempo":0.38,"krok":30,"rece":36,"podskok":3,"glowa":3,"pochylenie":5,"kolys":0,"predkosc":6.5,"rozmiar":130,"glowaSkala":1.58,"brzuch":1.23,"nogi":0.77,"stopy":10,"kreska":0.9,"oczy":"duze","buzia":"prosta","czub":true,"kapelusz":true,"okulary":false,"szalik":false,"plecak":false,"mruganie":7.7};
   var wSec = document.getElementById('proces'), wTrack = wSec.querySelector('.steps__walk'), walker = wSec.querySelector('.walker'), wsvg = walker.querySelector('svg');
   var pItems = [].slice.call(wSec.querySelectorAll('.pstep')), WG = {}, wgeo = {}, NS = 'http://www.w3.org/2000/svg';
   function wel(tag, attrs, parent) { var n = document.createElementNS(NS, tag); for (var a in attrs) n.setAttribute(a, attrs[a]); (parent || wsvg).appendChild(n); return n; }
   function wBuild() {
     while (wsvg.firstChild) wsvg.removeChild(wsvg.firstChild);
+    if (LZ.postac === 'ptak') { wBird(); wFit(); return; }
     var hs = LZ.glowaSkala, bw = LZ.brzuch, L = 25 * LZ.nogi, foot = LZ.stopy;
     var ground = 0, hipY = -L, bot = hipY + 1.5, top = hipY - 24, hw = 10 * bw, cx = 25;
     var ry = 11 * hs, rx = 12 * hs, hcy = top - ry + 1.2, hcx = 25.5;
@@ -1177,7 +1178,7 @@
     wsvg.style.marginBottom = (-4 * scale).toFixed(1) + 'px';
     wsvg.style.marginLeft = (vbX * scale).toFixed(1) + 'px';
     wsvg.style.strokeWidth = LZ.kreska;
-    wgeo = { ground: ground, hipY: hipY, top: top, hcx: hcx, hcy: hcy, hs: hs, scale: scale, w: 50 * scale };
+    wgeo = { ground: ground, hipY: hipY, top: top, hcx: hcx, hcy: hcy, hs: hs, scale: scale, w: 50 * scale, armK: 1 };
     WG.root = wel('g', {});
     WG.body = wel('g', {}, WG.root);
     var shY = top + 6.5, shL = cx - hw * 0.55, shR = cx + hw * 0.55;
@@ -1206,6 +1207,115 @@
     if (LZ.buzia === 'jezyk') { wel('path', { d: 'M' + mx + ' ' + my + ' q' + (3.6 * hs) + ' ' + (2.5 * hs) + ' ' + (7.2 * hs) + ' ' + (-.4 * hs) }, WG.head); wel('path', { class: 'f', d: 'M' + (mx + 3.2 * hs) + ' ' + (my + 1.7 * hs) + ' q' + (.6 * hs) + ' ' + (3.2 * hs) + ' ' + (2.6 * hs) + ' ' + (.6 * hs) }, WG.head); }
   }
 
+  function wBird() {
+    var hs = LZ.glowaSkala, bw = LZ.brzuch, L = 24 * LZ.nogi, foot = LZ.stopy * .55, k = LZ.kreska;
+    var ground = 0, hipY = -L, hcx = 28, rx = 6.2 * hs, ry = 7.6 * hs;
+    var nb = hipY - 15 * bw, hcy = nb - 3.2 - ry;
+    var capTop = hcy - ry - 2.6 * hs, plumeH = LZ.czub ? 33 * hs : 0;
+    var minY = Math.min(capTop - plumeH, hcy - ry - 3) - 4;
+    var vbX = -14, vbW = 78, vbH = ground + 4 - minY, scale = LZ.rozmiar / 80;
+    wsvg.setAttribute('viewBox', vbX + ' ' + minY.toFixed(2) + ' ' + vbW + ' ' + vbH.toFixed(2));
+    wsvg.setAttribute('width', (vbW * scale).toFixed(1)); wsvg.setAttribute('height', (vbH * scale).toFixed(1));
+    wsvg.style.marginBottom = (-4 * scale).toFixed(1) + 'px';
+    wsvg.style.marginLeft = (vbX * scale).toFixed(1) + 'px';
+    wsvg.style.strokeWidth = k;
+    wgeo = { ground: ground, hipY: hipY, scale: scale, w: 50 * scale, armK: .16 };
+    WG.root = wel('g', {}); WG.body = wel('g', {}, WG.root);
+    function P(x, y) { return x.toFixed(2) + ' ' + y.toFixed(2); }
+    var thin = (k * .62).toFixed(2);
+    /* nogi: długie, cienkie, z lekkim kolanem */
+    function leg(hx) {
+      var g = wel('g', {}, WG.body), fx = hx + .6;
+      wel('path', { d: 'M' + P(hx, hipY) + ' L' + P(hx - 1.2, hipY + L * .55) + ' L' + P(fx, ground) + ' M' + P(fx - 1.6, ground) + ' L' + P(fx + foot, ground) + ' M' + P(fx, ground) + ' L' + P(fx + foot * .8, ground - 1.6) }, g);
+      return g;
+    }
+    WG.leg1 = leg(hcx - 2.4); wgeo.l1 = [hcx - 2.4, hipY];
+    WG.leg2 = leg(hcx + .8); wgeo.l2 = [hcx + .8, hipY];
+    /* tułów i ogon: jedna smukła kropla, ogon zwęża się do tyłu i kończy zawijasem */
+    var tt = [hcx - 21 * bw, hipY + 4.2], neckL = hcx - 1.4 * hs, neckR = hcx + 1.4 * hs;
+    var bodyD = 'M' + P(neckL, nb) + ' L' + P(neckR, nb)
+      + ' C ' + P(hcx + 6.4 * bw, nb + 4 * bw) + ' ' + P(hcx + 6.6 * bw, hipY - 2.4) + ' ' + P(hcx + 1.6, hipY + .4)
+      + ' C ' + P(hcx - 4 * bw, hipY + 2.6) + ' ' + P(tt[0] + 8 * bw, tt[1] + 1.2) + ' ' + P(tt[0], tt[1])
+      + ' C ' + P(tt[0] + 7 * bw, tt[1] - 2.6) + ' ' + P(hcx - 6 * bw, hipY - 3.4 * bw) + ' ' + P(neckL - 1.6, nb + 6 * bw)
+      + ' C ' + P(neckL - .6, nb + 3) + ' ' + P(neckL, nb + 1.2) + ' ' + P(neckL, nb) + ' Z';
+    wel('path', { class: 'f', d: bodyD }, WG.body);
+    var hatch = '';
+    function q(a, c, b, t) { return [(1 - t) * (1 - t) * a[0] + 2 * (1 - t) * t * c[0] + t * t * b[0], (1 - t) * (1 - t) * a[1] + 2 * (1 - t) * t * c[1] + t * t * b[1]]; }
+    var sA = [hcx + .6, nb + 2.6], sC = [hcx - 5.5 * bw, hipY - 4.6 * bw], sB = [tt[0] + 4.4 * bw, tt[1] - 1.1];
+    var eA = [hcx + 5 * bw, nb + 5.6 * bw], eC = [hcx + 4 * bw, hipY + 1.2], eB = [tt[0] + 5.6 * bw, tt[1] + .2];
+    for (var i = 0; i < 8; i++) {
+      var t = .02 + i * .085, u = q(sA, sC, sB, t), v = q(eA, eC, eB, Math.min(.96, t + .3));
+      u = [u[0] + (v[0] - u[0]) * .08, u[1] + (v[1] - u[1]) * .08]; v = [v[0] + (u[0] - v[0]) * .1, v[1] + (u[1] - v[1]) * .1];
+      hatch += 'M' + P(u[0], u[1]) + ' Q ' + P((u[0] + v[0]) / 2 + 1.1, (u[1] + v[1]) / 2 - .5) + ' ' + P(v[0], v[1]) + ' ';
+    }
+    wel('path', { d: hatch, 'stroke-width': thin }, WG.body);
+    WG.arm1 = wel('g', {}, WG.body); wgeo.a1 = tt;
+    wel('path', { d: 'M' + P(tt[0], tt[1]) + ' C ' + P(tt[0] - 3.2, tt[1] + .6) + ' ' + P(tt[0] - 3.8, tt[1] - 2.8) + ' ' + P(tt[0] - 1.2, tt[1] - 3.2) + ' C ' + P(tt[0] + .6, tt[1] - 3.4) + ' ' + P(tt[0] + .8, tt[1] - 1.6) + ' ' + P(tt[0] - .4, tt[1] - 1.4)
+      + ' M' + P(tt[0] + 1.4, tt[1] + .2) + ' l-1.6 2.8 M' + P(tt[0] + 3.4, tt[1] - .2) + ' l-1 3 M' + P(tt[0] + 5.4, tt[1] - .7) + ' l-.4 2.9' }, WG.arm1);
+    /* głowa */
+    WG.head = wel('g', {}, WG.body); wgeo.neck = [hcx, nb + 1];
+    wel('path', { d: 'M' + P(neckL, nb + .6) + ' L' + P(hcx - 1.1 * hs, hcy + ry - .6) + ' M' + P(neckR, nb + .6) + ' L' + P(hcx + 1.2 * hs, hcy + ry - .6) }, WG.head);
+    if (LZ.szalik) {
+      var by = nb - 1.4, bx = hcx + .2;
+      wel('path', { class: 'f', d: 'M' + P(bx, by) + ' L' + P(bx - 4.2 * hs, by - 2.4 * hs) + ' L' + P(bx - 4.4 * hs, by + 2.2 * hs) + ' Z M' + P(bx, by) + ' L' + P(bx + 4.2 * hs, by - 2.2 * hs) + ' L' + P(bx + 4.4 * hs, by + 2.4 * hs) + ' Z' }, WG.head);
+      wel('circle', { class: 'f o', cx: bx.toFixed(2), cy: by.toFixed(2), r: (1 * hs).toFixed(2) }, WG.head);
+    }
+    /* pióropusz: kilka gładkich piór, kołysze się przy chodzie */
+    var pb = [hcx - 1.2 * hs, capTop + .8];
+    WG.arm2 = wel('g', {}, WG.head); wgeo.a2 = pb;
+    if (LZ.czub) {
+      var F = [[-19, -16, -8, -4], [-17, -23, -7, -8], [-13, -29, -5, -12], [-8, -33, -3, -14], [-3, -31, -1, -14], [1, -26, 1, -11], [4, -18, 2, -7], [-14, -10, -6, -2], [-6, -24, -2, -10]];
+      var pd = '';
+      F.forEach(function (f) {
+        var tx = pb[0] + f[0] * hs, ty = pb[1] + f[1] * hs, dx = f[0] < -2 ? -1 : 1;
+        pd += 'M' + P(pb[0], pb[1]) + ' C ' + P(pb[0] + f[2] * hs * .3, pb[1] + f[3] * hs) + ' ' + P(pb[0] + f[2] * hs, pb[1] + f[3] * hs * 1.5) + ' ' + P(tx, ty) + ' ';
+        pd += 'M' + P(tx, ty) + ' q' + (dx * 1 * hs).toFixed(2) + ' ' + (.1 * hs).toFixed(2) + ' ' + (dx * 1.3 * hs).toFixed(2) + ' ' + (1.3 * hs).toFixed(2) + ' ';
+      });
+      wel('path', { d: pd, 'stroke-width': (k * .72).toFixed(2) }, WG.arm2);
+    }
+    wel('ellipse', { class: 'f', cx: hcx.toFixed(2), cy: hcy.toFixed(2), rx: rx.toFixed(2), ry: ry.toFixed(2) }, WG.head);
+    /* czepek w drobne kółeczka z kokardą */
+    if (LZ.kapelusz) {
+      var cy0 = hcy - ry * .46, cl = hcx - rx * 1.06, cr = hcx + rx * 1.06;
+      wel('path', { class: 'f', d: 'M' + P(cl, cy0) + ' C ' + P(cl - .4, capTop - 1.4) + ' ' + P(cr + .4, capTop - 1.4) + ' ' + P(cr, cy0) + ' Q ' + P(hcx, cy0 + 1.6 * hs) + ' ' + P(cl, cy0) + ' Z' }, WG.head);
+      for (var yy = capTop + 1.6 * hs; yy < cy0 - .2; yy += 2.1 * hs) {
+        var half = (cr - cl) / 2 * Math.sqrt(Math.max(0, 1 - Math.pow((cy0 - yy) / (cy0 - capTop + .8), 2))) - 1.4 * hs, row = Math.round((yy - capTop) / (2.1 * hs));
+        for (var xx = hcx - half + (row % 2 ? 1.05 * hs : 0); xx <= hcx + half + .01; xx += 2.1 * hs) wel('circle', { class: 'o', cx: xx.toFixed(2), cy: yy.toFixed(2), r: (.62 * hs).toFixed(2), 'stroke-width': thin }, WG.head);
+      }
+      var bc = [hcx - rx * .55, capTop + 1.4 * hs];
+      wel('path', { class: 'f', d: 'M' + P(bc[0], bc[1]) + ' L' + P(bc[0] - 5 * hs, bc[1] - 3.4 * hs) + ' L' + P(bc[0] - 5.4 * hs, bc[1] + 2.2 * hs) + ' Z M' + P(bc[0], bc[1]) + ' L' + P(bc[0] + 3.6 * hs, bc[1] - 4 * hs) + ' L' + P(bc[0] + 4.6 * hs, bc[1] + .6 * hs) + ' Z' }, WG.head);
+      wel('circle', { class: 'f o', cx: bc[0].toFixed(2), cy: bc[1].toFixed(2), r: (1 * hs).toFixed(2) }, WG.head);
+    }
+    /* dziób: długi, w dół i do przodu */
+    var b0 = [hcx + rx * .5, hcy + ry * .4], tip = [hcx + rx + 7.6 * hs, hcy + ry * 1.05];
+    if (LZ.buzia === 'o') {
+      wel('path', { class: 'f', d: 'M' + P(b0[0], b0[1] - 1.6 * hs) + ' L' + P(tip[0], tip[1] - 2.2 * hs) + ' L' + P(b0[0] + .6, b0[1] + .6 * hs) + ' Z' }, WG.head);
+      wel('path', { class: 'f', d: 'M' + P(b0[0] - .2, b0[1] + 1.2 * hs) + ' L' + P(tip[0] - 1.8 * hs, tip[1] + .6 * hs) + ' L' + P(b0[0] - 1.4 * hs, b0[1] + 2.6 * hs) + ' Z' }, WG.head);
+    } else {
+      wel('path', { class: 'f', d: 'M' + P(b0[0], b0[1] - 1.6 * hs) + ' L' + P(tip[0], tip[1]) + ' L' + P(b0[0] - 1.4 * hs, b0[1] + 2.4 * hs) + ' Z' }, WG.head);
+      wel('path', { d: 'M' + P(b0[0] - .2, b0[1] + .5 * hs) + ' L' + P(tip[0] - 3 * hs, tip[1] - 1.2 * hs), 'stroke-width': thin }, WG.head);
+    }
+    if (LZ.buzia === 'usmiech' || LZ.buzia === 'jezyk') wel('path', { d: 'M' + P(hcx - rx * .58, hcy + ry * .52) + ' q' + (1.8 * hs).toFixed(2) + ' ' + (2.2 * hs).toFixed(2) + ' ' + (4.4 * hs).toFixed(2) + ' ' + (.9 * hs).toFixed(2) }, WG.head);
+    /* oczy: duże kółka ze szprychami */
+    var e1 = [hcx - 2 * hs, hcy + .5 * hs], e2 = [hcx + 3 * hs, hcy + .3 * hs], er = 2.5 * hs;
+    WG.eyes = wel('g', {}, WG.head); wgeo.eyes = [(e1[0] + e2[0]) / 2, (e1[1] + e2[1]) / 2];
+    [e1, e2].forEach(function (e, i) {
+      if (LZ.oczy === 'duze') {
+        wel('circle', { class: 'f o', cx: e[0].toFixed(2), cy: e[1].toFixed(2), r: er.toFixed(2) }, WG.eyes);
+        var sp = '';
+        for (var a = 0; a < 8; a++) { var an = a / 8 * Math.PI * 2 + (i ? .2 : 0); sp += 'M' + P(e[0] + Math.cos(an) * er * .3, e[1] + Math.sin(an) * er * .3) + ' L' + P(e[0] + Math.cos(an) * er * .82, e[1] + Math.sin(an) * er * .82) + ' '; }
+        wel('path', { d: sp, 'stroke-width': thin }, WG.eyes);
+        wel('circle', { class: 'd', cx: e[0].toFixed(2), cy: e[1].toFixed(2), r: (er * .26).toFixed(2) }, WG.eyes);
+      }
+      if (LZ.oczy === 'kropki') wel('circle', { class: 'd', cx: e[0].toFixed(2), cy: e[1].toFixed(2), r: (1.25 * hs).toFixed(2) }, WG.eyes);
+      if (LZ.oczy === 'kreski') wel('path', { d: 'M' + P(e[0], e[1] - 1.6 * hs) + ' v' + (3.2 * hs).toFixed(2) }, WG.eyes);
+      if (LZ.oczy === 'zezowate') { wel('circle', { class: 'f o', cx: e[0].toFixed(2), cy: e[1].toFixed(2), r: er.toFixed(2) }, WG.eyes); wel('circle', { class: 'd', cx: (e[0] + (i ? -1.1 : 1.1) * hs).toFixed(2), cy: (e[1] + .4 * hs).toFixed(2), r: (1 * hs).toFixed(2) }, WG.eyes); }
+    });
+    if (LZ.okulary) { wel('circle', { class: 'o', cx: e1[0].toFixed(2), cy: e1[1].toFixed(2), r: (er + 1.1 * hs).toFixed(2) }, WG.head); wel('circle', { class: 'o', cx: e2[0].toFixed(2), cy: e2[1].toFixed(2), r: (er + 1.1 * hs).toFixed(2) }, WG.head); }
+    if (LZ.plecak) wel('rect', { class: 'f', x: (tb[0] + 1).toFixed(2), y: (nb + 2).toFixed(2), width: 6, height: 7, transform: 'rotate(-24 ' + P(tb[0] + 4, nb + 5) + ')' }, WG.body);
+  }  // pas nad krokami rośnie razem z postacią, żeby pióropusz nie wchodził na nagłówek
+  function wFit() { wTrack.style.height = Math.max(150, Math.ceil(parseFloat(wsvg.getAttribute('height')) + 12)) + 'px'; }
+
   wBuild();
   var wx = 0, wt = 0, wph = 0, wamp = 0, wlast = 0, wdir = 1, wMouse = false, wIdle = 0, wHop = 0, wBlinkAt = 0, wBlink = 0, wRun = false, wHere = -1, wInView = false, wSeen = false;
   function wrot(g, a, pt) { if (g) g.setAttribute('transform', 'rotate(' + a.toFixed(2) + ' ' + pt[0] + ' ' + pt[1] + ')'); }
@@ -1224,7 +1334,7 @@
     wph += (dt / 1000) / Math.max(.1, LZ.tempo) * Math.PI * 2 * (walking ? 1 : 0);
     var sn = Math.sin(wph);
     wrot(WG.leg1, LZ.krok * sn * wamp, wgeo.l1); wrot(WG.leg2, -LZ.krok * sn * wamp, wgeo.l2);
-    wrot(WG.arm1, -LZ.rece * sn * wamp, wgeo.a1); wrot(WG.arm2, LZ.rece * sn * wamp, wgeo.a2);
+    wrot(WG.arm1, -LZ.rece * wgeo.armK * sn * wamp, wgeo.a1); wrot(WG.arm2, LZ.rece * wgeo.armK * sn * wamp, wgeo.a2);
     wrot(WG.head, LZ.glowa * Math.sin(wph + .6) * wamp, wgeo.neck);
     if (wHop > 0) wHop = Math.max(0, wHop - dt / 520);
     var hopY = wHop > 0 ? -Math.sin(wHop * Math.PI) * 16 : 0, hopR = wHop > 0 ? -Math.sin(wHop * Math.PI) * 8 : 0;
