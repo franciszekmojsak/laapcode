@@ -144,7 +144,7 @@
   .clients { padding: clamp(40px, 4vw, 64px) 0; }
   .clients .grid { align-items: center; }
   .clients__label { grid-column: 1 / span 2; font-size: 14px; font-weight: 500; }
-  .clients__logos { grid-column: 3 / -1; display: flex; justify-content: space-between; align-items: center; gap: 32px 48px; flex-wrap: wrap; }
+  .clients__logos { grid-column: 3 / -1; display: flex; justify-content: space-between; align-items: center; gap: 28px 40px; flex-wrap: wrap; }
   .clients__logos img { width: auto; filter: brightness(0); }
 
   /* ── Sekcje ── */
@@ -168,32 +168,24 @@
   .vol__block { position: relative; z-index: 1; width: calc((100% - 11 * var(--gap)) / 12 * 5 + 4 * var(--gap)); padding: clamp(24px, 2.4vw, 40px); background: var(--sheet); border: 1px solid var(--ink); }
   .vol__num { font-size: clamp(64px, 8.4vw, 152px); font-weight: 300; line-height: .9; letter-spacing: -0.05em; white-space: nowrap; }
   .vol__cap { margin-top: 18px; font-size: clamp(18px, 1.5vw, 24px); font-weight: 300; line-height: 1.3; letter-spacing: -0.01em; max-width: 18em; }
-  .vol__meta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); margin-top: clamp(28px, 3vw, 48px); padding-top: 20px; border-top: 1px solid var(--ink); }
-  .vol__meta dt { font-size: clamp(32px, 3.2vw, 52px); font-weight: 300; line-height: 1; letter-spacing: -0.03em; }
-  .vol__meta dd { margin-top: 10px; font-size: 14px; }
 
   .peek { position: fixed; left: 0; top: 0; z-index: 50; width: clamp(240px, 22vw, 360px); pointer-events: none; opacity: 0; transition: opacity .25s; border: 1px solid var(--ink); background: var(--sheet); }
   .peek.is-on { opacity: 1; }
   .peek { aspect-ratio: 4 / 3; overflow: hidden; }
   .peek img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-  /* strony: kolaż ramek przeglądarki i telefonu */
-  .sites { row-gap: clamp(72px, 8vw, 140px); align-items: start; }
-  .site { position: relative; }
+  /* strony: gęsta galeria, rzędy o równej wysokości */
   .frame { border: 1px solid var(--ink); background: var(--sheet); will-change: transform; }
-  .site--a { grid-column: 1 / span 8; }
-  .site--b { grid-column: 10 / span 3; margin-top: clamp(48px, 9vw, 160px); }
-  .site--c { grid-column: 2 / span 3; margin-top: clamp(-120px, -6vw, -40px); }
-  .site--d { grid-column: 6 / span 7; align-self: center; }
-  .site--e { grid-column: 1 / span 4; }
-  .site--f { grid-column: 5 / span 4; margin-top: clamp(48px, 7vw, 120px); }
-  .site--g { grid-column: 9 / span 4; margin-top: clamp(24px, 3.5vw, 60px); }
-  .site--e .work__vp, .site--f .work__vp, .site--g .work__vp { aspect-ratio: 4 / 5; }
-  .work__vp--phone { aspect-ratio: 9 / 18; }
-  .phone__top, .phone__bot { display: flex; justify-content: center; align-items: center; height: 26px; border-bottom: 1px solid var(--ink); }
-  .phone__bot { border-bottom: 0; border-top: 1px solid var(--ink); height: 22px; }
-  .phone__top i { display: block; width: 44px; height: 1px; background: var(--ink); }
-  .phone__bot i { display: block; width: 10px; height: 10px; border: 1px solid var(--ink); }
+  .gal { display: flex; flex-direction: column; gap: 14px; }
+  .gal__row { display: flex; gap: 14px; }
+  .gal__item { position: relative; flex: var(--ar) 1 0%; min-width: 0; }
+  .gal__item .work__vp { aspect-ratio: var(--ar); border: 1px solid var(--ink); background: var(--sheet); }
+  .gal__item.is-fit .work__shot { height: 100%; object-fit: cover; object-position: top; }
+  .gal__item--phone .work__vp::before, .gal__item--phone .work__vp::after { content: ''; position: absolute; z-index: 1; left: 0; right: 0; pointer-events: none; }
+  .gal__item--phone .work__vp::before { top: 0; height: 16px; background: linear-gradient(var(--ink), var(--ink)) 50% 4px / 32% 6px no-repeat, var(--sheet); }
+  .gal__item--phone .work__vp::after { bottom: 0; height: 14px; background: linear-gradient(var(--ink), var(--ink)) 50% 6px / 30% 2px no-repeat, var(--sheet); }
+  .gal__cap { position: absolute; z-index: 2; left: 0; bottom: 0; max-width: 100%; padding: 6px 10px; background: var(--sheet); border: 1px solid var(--ink); font: 400 12px/1.35 var(--mono); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .4s var(--ease); pointer-events: none; }
+  .gal__item:hover .gal__cap { opacity: 1; transform: none; }
 
   /* spis projektów */
   .plist { margin-top: clamp(112px, 11vw, 200px); row-gap: 48px; }
@@ -212,20 +204,20 @@
   .case__kicker { grid-column: 1 / -1; font-size: 14px; font-weight: 500; }
   .case__title { grid-column: 1 / span 7; font-size: clamp(36px, 4.6vw, 80px); font-weight: 300; line-height: 1.02; letter-spacing: -0.035em; }
   .case__lead { grid-column: 9 / span 4; font-size: 14px; }
+  .case__note { grid-column: 1 / span 7; grid-row: 3; margin-top: -8px; font-size: 14px; }
   .case__body { align-items: start; }
 
   /* kolekcja: zdjęcia i zakres */
-  .coll { grid-column: 1 / span 7; position: relative; aspect-ratio: 1 / .97; }
+  .coll { grid-column: 1 / span 7; position: relative; aspect-ratio: 1 / 1; }
   .cshot { position: absolute; margin: 0; }
   .cshot .frame { overflow: hidden; cursor: zoom-in; }
   .cshot img { display: block; width: 100%; height: auto; }
-  .cshot--p { left: 8.8%; top: 0; width: 91.2%; z-index: 1; }
+  .cshot--p { left: 10%; top: 0; width: 90%; z-index: 1; }
   .cshot--p .frame { aspect-ratio: 1.72; }
-  .cshot--k { left: 0; top: 52%; width: 47%; z-index: 2; }
-  .cshot--k .frame { aspect-ratio: 1.57; }
-  .cshot--p img, .cshot--k img { height: 100%; object-fit: cover; object-position: top; }
-  .cshot--l2 { left: 73%; top: 52%; width: 27%; z-index: 3; }
-  .cshot--l1 { left: 42.4%; top: 58.5%; width: 30%; z-index: 4; }
+  .cshot--p img { height: 100%; object-fit: cover; object-position: top; }
+  .cshot--k { left: 0; top: 46%; width: 60%; z-index: 2; }
+  .cshot--l2 { left: 77%; top: 51%; width: 23%; z-index: 3; }
+  .cshot--l1 { left: 54%; top: 57%; width: 23%; z-index: 4; }
   .scope { grid-column: 9 / span 4; position: sticky; top: calc(var(--nav) + 32px); }
   .scope__head { padding-bottom: 14px; font-size: 14px; font-weight: 500; }
   .scope ul { border-bottom: 1px solid var(--ink); }
@@ -392,13 +384,11 @@
     .hero__intro, .hero__cta { grid-column: 1 / -1; grid-row: auto; }
     .clients__label { grid-column: 1 / -1; margin-bottom: 24px; }
     .clients__logos { grid-column: 1 / -1; justify-content: flex-start; }
-    .site--a, .site--d, .site--e { grid-column: 1 / -1; margin-top: 0; }
-    .site--b { grid-column: 1 / span 6; margin-top: 0; }
-    .site--c { grid-column: 7 / span 6; margin-top: 64px; }
-    .site--f { grid-column: 1 / span 6; margin-top: 0; }
-    .site--g { grid-column: 7 / span 6; margin-top: 48px; }
-    .site--d { grid-row: auto; }
-    .sites { row-gap: 56px; }
+    .gal { --rh: 240px; gap: 10px; }
+    .gal__row { gap: 10px; overflow-x: auto; scroll-snap-type: x proximity; margin: 0 calc(-1 * var(--pad)); padding: 0 var(--pad); scroll-padding: 0 var(--pad); scrollbar-width: none; }
+    .gal__row::-webkit-scrollbar { display: none; }
+    .gal__item { flex: none; width: calc(var(--rh) * var(--ar)); scroll-snap-align: start; }
+    .gal__cap { display: none; }
     .plist__row { flex-wrap: wrap; gap: 4px 12px; }
     .plist__name { flex-basis: 100%; }
     .plist__scope { text-align: left; flex: 1 1 auto; }
@@ -441,8 +431,8 @@
     <nav class="nav__links" aria-label="Menu">
       <a class="u-link" href="#realizacje"><span class="pl">Realizacje</span><span class="en">Work</span></a>
       <a href="#uslugi"><span class="pl">Usługi</span><span class="en">Services</span></a>
-      <a href="#o-mnie"><span class="pl">O mnie</span><span class="en">About</span></a>
       <a href="#proces"><span class="pl">Współpraca</span><span class="en">Process</span></a>
+      <a href="#o-mnie"><span class="pl">O mnie</span><span class="en">About</span></a>
       <a href="#kontakt"><span class="pl">Kontakt</span><span class="en">Contact</span></a>
     </nav>
     <div class="nav__tools">
@@ -479,12 +469,14 @@
     <div class="wrap grid">
       <p class="clients__label"><span class="pl">Współprace</span><span class="en">Clients</span></p>
       <ul class="clients__logos">
-        <li><img src="../img/clients/wise-habit.png" alt="Wise Habit" width="700" height="64" style="height:17px" /></li>
-        <li><img src="../img/clients/wise-habit-agency.svg" alt="Wise Habit Agency for the Future" style="height:24px" /></li>
-        <li><img src="../img/clients/toxic-hair.png" alt="Toxic Hair" width="262" height="300" style="height:56px" /></li>
-        <li><img src="../img/clients/the-b.png" alt="Shop B" width="308" height="194" style="height:44px" /></li>
-        <li><img src="../img/clients/lust-for-life.png" alt="Lust for Life &amp; Lust for Business" width="600" height="124" style="height:30px" /></li>
-        <li><img src="../img/clients/laap.png" alt="Laap" width="203" height="178" style="height:36px" /></li>
+        <li><img src="../img/clients/wise-habit.png" alt="Wise Habit" width="700" height="64" style="height:15px" /></li>
+        <li><img src="../img/clients/wise-habit-agency.svg" alt="Wise Habit Agency for the Future" style="height:21px" /></li>
+        <li><img src="../img/clients/toxic-hair.png" alt="Toxic Hair" width="262" height="300" style="height:50px" /></li>
+        <li><img src="../img/clients/the-b.png" alt="Shop B" width="308" height="194" style="height:40px" /></li>
+        <li><img src="../img/clients/lust-for-life.png" alt="Lust for Life &amp; Lust for Business" width="600" height="124" style="height:27px" /></li>
+        <li><img src="../img/clients/laap.png" alt="Laap" width="203" height="178" style="height:32px" /></li>
+        <li><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" style="height:20px" onerror="this.parentNode.hidden=true" /></li>
+        <li><img src="../img/clients/mikolaj-markowski.png" alt="Mikołaj Markowski" width="279" height="147" style="height:36px" /></li>
       </ul>
     </div>
   </section>
@@ -497,52 +489,66 @@
         <p class="sec-intro just" data-x><span class="pl">Strony internetowe, wdrożenia produktów, importy i&nbsp;automatyzacje z&nbsp;ostatnich lat. Przewijaj dalej, a&nbsp;zrzuty przewiną się razem z&nbsp;Tobą.</span><span class="en">Websites, product rollouts, imports and automation from recent years. Keep scrolling and the screenshots scroll along with you.</span></p>
       </header>
 
-      <!-- strony: kolaż zrzutów -->
-      <div class="sites grid" data-x>
-        <figure class="site site--a" data-speed="0">
-          <div class="frame">
-            <div class="bar"><span class="bar__dots"><i></i><i></i><i></i></span><span>agency.wisehabit.com</span></div>
-            <div class="work__vp" data-full="../img/wybrane/lfl-desktop.webp"><img class="work__shot" src="../img/wybrane/lfl-desktop.webp" width="1100" height="3667" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., strona konferencji" /></div>
-          </div>
-        </figure>
-        <figure class="site site--b" data-speed="-.07">
-          <div class="frame frame--phone">
-            <div class="phone__top"><i></i></div>
-            <div class="work__vp work__vp--phone" data-full="../img/wybrane/lfl-mobile.webp"><img class="work__shot" src="../img/wybrane/lfl-mobile.webp" width="480" height="4554" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div>
-            <div class="phone__bot"><i></i></div>
-          </div>
-        </figure>
-        <figure class="site site--c" data-speed=".05">
-          <div class="frame frame--phone">
-            <div class="phone__top"><i></i></div>
-            <div class="work__vp work__vp--phone" data-full="../img/wybrane/p3-mobile.webp"><img class="work__shot" src="../img/wybrane/p3-mobile.webp" width="480" height="4554" loading="lazy" decoding="async" alt="The Power of Three, wersja na telefon" /></div>
-            <div class="phone__bot"><i></i></div>
-          </div>
-        </figure>
-        <figure class="site site--d" data-speed="-.03">
-          <div class="frame">
-            <div class="bar"><span class="bar__dots"><i></i><i></i><i></i></span><span>agency.wisehabit.com</span></div>
-            <div class="work__vp" data-full="../img/wybrane/p3-desktop.webp"><img class="work__shot" src="../img/wybrane/p3-desktop.webp" width="1100" height="3667" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work, strona wystawy" /></div>
-          </div>
-        </figure>
-        <figure class="site site--e" data-speed=".04">
-          <div class="frame">
-            <div class="bar"><span class="bar__dots"><i></i><i></i><i></i></span><span>Laap Drones</span></div>
-            <div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_2.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_2.webp" width="1122" height="5158" loading="lazy" decoding="async" alt="Laap Drones, strona główna" /></div>
-          </div>
-        </figure>
-        <figure class="site site--f" data-speed="-.05">
-          <div class="frame">
-            <div class="bar"><span class="bar__dots"><i></i><i></i><i></i></span><span>agency.wisehabit.com</span></div>
-            <div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_5.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_5.webp" width="1221" height="1818" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div>
-          </div>
-        </figure>
-        <figure class="site site--g" data-speed=".03">
-          <div class="frame">
-            <div class="bar"><span class="bar__dots"><i></i><i></i><i></i></span><span>Portfolio</span></div>
-            <div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_1.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_1.webp" width="1221" height="1113" loading="lazy" decoding="async" alt="Portfolio projektanta, strona projektu" /></div>
-          </div>
-        </figure>
+      <!-- strony: gęsta galeria zrzutów, rzędy o równej wysokości -->
+      <div class="gal" data-x>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.3825"><div class="work__vp" data-full="../img/wybrane/lfl-start.webp"><img class="work__shot" src="../img/wybrane/lfl-start.webp" width="1200" height="868" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="gal__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="gal__item gal__item--phone" style="--ar:0.4615"><div class="work__vp" data-full="../img/wybrane/lfl-m-format.webp"><img class="work__shot" src="../img/wybrane/lfl-m-format.webp" width="520" height="2139" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="gal__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:2.0906"><div class="work__vp" data-full="../img/wybrane/lfl-wydarzenia.webp"><img class="work__shot" src="../img/wybrane/lfl-wydarzenia.webp" width="1200" height="574" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="gal__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item" style="--ar:0.6200"><div class="work__vp" data-full="../img/wybrane/portfolio-start.webp"><img class="work__shot" src="../img/wybrane/portfolio-start.webp" width="900" height="1777" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:1.8065"><div class="work__vp" data-full="../img/wybrane/portfolio-rozmiary.webp"><img class="work__shot" src="../img/wybrane/portfolio-rozmiary.webp" width="1400" height="775" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:0.8841"><div class="work__vp" data-full="../img/wybrane/portfolio-veins.webp"><img class="work__shot" src="../img/wybrane/portfolio-veins.webp" width="900" height="1018" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:0.8411"><div class="work__vp" data-full="../img/wybrane/portfolio-proces.webp"><img class="work__shot" src="../img/wybrane/portfolio-proces.webp" width="900" height="1070" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.7964"><div class="work__vp" data-full="../img/wybrane/p3-start.webp"><img class="work__shot" src="../img/wybrane/p3-start.webp" width="1200" height="668" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="gal__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:1.5171"><div class="work__vp" data-full="../img/wybrane/p3-panel.webp"><img class="work__shot" src="../img/wybrane/p3-panel.webp" width="1200" height="791" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="gal__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
+          <figure class="gal__item gal__item--phone" style="--ar:0.4615"><div class="work__vp" data-full="../img/wybrane/p3-m-projekty.webp"><img class="work__shot" src="../img/wybrane/p3-m-projekty.webp" width="520" height="3024" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work, wersja na telefon" /></div><figcaption class="gal__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item gal__item--phone" style="--ar:0.4615"><div class="work__vp" data-full="../img/wybrane/agency-m-liczby.webp"><img class="work__shot" src="../img/wybrane/agency-m-liczby.webp" width="520" height="2104" loading="lazy" decoding="async" alt="Agency for the Future, wersja na telefon" /></div><figcaption class="gal__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:2.0022"><div class="work__vp" data-full="../img/laapcode_hero_wise-habit-agency.webp"><img class="work__shot" src="../img/laapcode_hero_wise-habit-agency.webp" width="1800" height="899" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="gal__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:1.0083"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_3.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_3.webp" width="1221" height="1211" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="gal__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.2069"><div class="work__vp" data-full="../img/wybrane/portfolio-zin.webp"><img class="work__shot" src="../img/wybrane/portfolio-zin.webp" width="1400" height="1160" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item" style="--ar:0.6200"><div class="work__vp" data-full="../img/wybrane/portfolio-lozko.webp"><img class="work__shot" src="../img/wybrane/portfolio-lozko.webp" width="900" height="2158" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:1.1765"><div class="work__vp" data-full="../img/wybrane/portfolio-yeast-coast.webp"><img class="work__shot" src="../img/wybrane/portfolio-yeast-coast.webp" width="1400" height="1190" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:0.6803"><div class="work__vp" data-full="../img/wybrane/portfolio-wentylator.webp"><img class="work__shot" src="../img/wybrane/portfolio-wentylator.webp" width="900" height="1323" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.9169"><div class="work__vp" data-full="../img/wybrane/lfl-miejsce.webp"><img class="work__shot" src="../img/wybrane/lfl-miejsce.webp" width="1200" height="626" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="gal__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="gal__item gal__item--phone" style="--ar:0.4615"><div class="work__vp" data-full="../img/wybrane/lfl-m-prelegenci.webp"><img class="work__shot" src="../img/wybrane/lfl-m-prelegenci.webp" width="520" height="3206" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="gal__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:1.9802"><div class="work__vp" data-full="../img/wybrane/lfl-partnerzy.webp"><img class="work__shot" src="../img/wybrane/lfl-partnerzy.webp" width="1200" height="606" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="gal__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.5142"><div class="work__vp" data-full="../img/wybrane/laap-start.webp"><img class="work__shot" src="../img/wybrane/laap-start.webp" width="1122" height="741" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="gal__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:1.5540"><div class="work__vp" data-full="../img/wybrane/laap-galeria.webp"><img class="work__shot" src="../img/wybrane/laap-galeria.webp" width="1122" height="722" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="gal__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:1.3432"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_4.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_4.webp" width="1221" height="909" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="gal__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.6461"><div class="work__vp" data-full="../img/laapcode_hero_lukasz-klimek.webp"><img class="work__shot" src="../img/laapcode_hero_lukasz-klimek.webp" width="1600" height="972" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="gal__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:2.3904"><div class="work__vp" data-full="../img/wybrane/agency-klimek-las.webp"><img class="work__shot" src="../img/wybrane/agency-klimek-las.webp" width="1200" height="502" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="gal__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
+          <figure class="gal__item gal__item--phone" style="--ar:0.4615"><div class="work__vp" data-full="../img/wybrane/agency-m-klimek.webp"><img class="work__shot" src="../img/wybrane/agency-m-klimek.webp" width="520" height="1884" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy, wersja na telefon" /></div><figcaption class="gal__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.0533"><div class="work__vp" data-full="../img/laapcode_hero_adaptive-tableware.webp"><img class="work__shot" src="../img/laapcode_hero_adaptive-tableware.webp" width="1600" height="1519" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:0.7200"><div class="work__vp" data-full="../img/wybrane/portfolio-miski.webp"><img class="work__shot" src="../img/wybrane/portfolio-miski.webp" width="900" height="1250" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item" style="--ar:0.6200"><div class="work__vp" data-full="../img/wybrane/portfolio-wystawy.webp"><img class="work__shot" src="../img/wybrane/portfolio-wystawy.webp" width="900" height="2099" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:1.0146"><div class="work__vp" data-full="../img/laapcode_hero_floral-foam.webp"><img class="work__shot" src="../img/laapcode_hero_floral-foam.webp" width="1600" height="1577" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="gal__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="gal__item" style="--ar:0.6200"><div class="work__vp" data-full="../img/wybrane/brewing-kolekcja.webp"><img class="work__shot" src="../img/wybrane/brewing-kolekcja.webp" width="900" height="2554" loading="lazy" decoding="async" alt="Brewing collection, strona kolekcji" /></div><figcaption class="gal__cap"><span class="pl">Brewing collection, strona kolekcji</span><span class="en">Brewing collection, collection page</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.9108"><div class="work__vp" data-full="../img/wybrane/agency-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob.webp" width="1200" height="628" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="gal__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
+          <figure class="gal__item gal__item--phone" style="--ar:0.4615"><div class="work__vp" data-full="../img/wybrane/agency-m-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-m-archisnob.webp" width="520" height="2501" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob, wersja na telefon" /></div><figcaption class="gal__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:2.0478"><div class="work__vp" data-full="../img/wybrane/agency-archisnob-magazyn.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob-magazyn.webp" width="1200" height="586" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="gal__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
+        </div>
+        <div class="gal__row" data-reveal>
+          <figure class="gal__item is-fit" style="--ar:1.9378"><div class="work__vp" data-full="../img/wybrane/laap-blog.webp"><img class="work__shot" src="../img/wybrane/laap-blog.webp" width="1122" height="579" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="gal__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="gal__item is-fit" style="--ar:3.0151"><div class="work__vp" data-full="../img/wybrane/agency-materialy.webp"><img class="work__shot" src="../img/wybrane/agency-materialy.webp" width="1200" height="398" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="gal__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+        </div>
       </div>
 
       <!-- spis projektów -->
@@ -550,10 +556,10 @@
         <div class="plist__col">
           <p class="plist__head"><span class="pl">Strony internetowe</span><span class="en">Websites</span></p>
           <ul>
-            <li class="plist__row" data-peek="../img/wybrane/lfl-desktop.webp"><span class="plist__name">Lust for Life. Lust for Business.</span><span class="plist__scope"><span class="pl">Strona wydarzenia</span><span class="en">Event website</span></span><span class="plist__year"></span></li>
-            <li class="plist__row" data-peek="../img/wybrane/p3-desktop.webp"><span class="plist__name">The Power of Three, Architect@Work</span><span class="plist__scope"><span class="pl">Strona wystawy</span><span class="en">Exhibition website</span></span><span class="plist__year"></span></li>
-            <li class="plist__row" data-peek="../img/archiwum/a01.webp"><span class="plist__name">Agency for the Future</span><span class="plist__scope"><span class="pl">Strona internetowa i&nbsp;automatyzacje</span><span class="en">Website and automation</span></span><span class="plist__year"></span></li>
-            <li class="plist__row" data-peek="../img/archiwum/a18.webp"><span class="plist__name">Laap Drones</span><span class="plist__scope"><span class="pl">Strona internetowa</span><span class="en">Website</span></span><span class="plist__year"></span></li>
+            <li class="plist__row" data-peek="../img/wybrane/lfl-prelegenci.webp"><span class="plist__name">Lust for Life. Lust for Business.</span><span class="plist__scope"><span class="pl">Strona wydarzenia</span><span class="en">Event website</span></span><span class="plist__year"></span></li>
+            <li class="plist__row" data-peek="../img/wybrane/p3-ludzie.webp"><span class="plist__name">The Power of Three, Architect@Work</span><span class="plist__scope"><span class="pl">Strona wystawy</span><span class="en">Exhibition website</span></span><span class="plist__year"></span></li>
+            <li class="plist__row" data-peek="../img/wybrane/agency-uslugi.webp"><span class="plist__name">Agency for the Future</span><span class="plist__scope"><span class="pl">Strona internetowa i&nbsp;automatyzacje</span><span class="en">Website and automation</span></span><span class="plist__year"></span></li>
+            <li class="plist__row" data-peek="../img/wybrane/laap-uslugi.webp"><span class="plist__name">Laap Drones</span><span class="plist__scope"><span class="pl">Strona internetowa</span><span class="en">Website</span></span><span class="plist__year"></span></li>
             <li class="plist__row" data-peek="../img/archiwum/a17.webp"><span class="plist__name"><span class="pl">Portfolio projektanta</span><span class="en">Designer portfolio</span></span><span class="plist__scope"><span class="pl">Strona internetowa</span><span class="en">Website</span></span><span class="plist__year"></span></li>
             <li class="plist__row"><span class="plist__name"><span class="pl">Sklep internetowy</span><span class="en">Online store</span></span><span class="plist__scope"><span class="pl">W&nbsp;przygotowaniu</span><span class="en">In progress</span></span><span class="plist__year"></span></li>
           </ul>
@@ -581,7 +587,7 @@
         <div class="case__body grid">
           <div class="coll" data-x>
             <figure class="site cshot cshot--p" data-speed="0"><div class="frame" data-full="../img/kolekcja/kolekcja-karta-produktu.webp"><img src="../img/kolekcja/kolekcja-karta-produktu.webp" width="1400" height="975" loading="lazy" decoding="async" alt="Karta produktu z kodem EAN i parametrami" /></div></figure>
-            <figure class="site cshot cshot--k" data-speed=".035"><div class="frame" data-full="../img/kolekcja/kolekcja-strona-kolekcji.webp"><img src="../img/kolekcja/kolekcja-strona-kolekcji.webp" width="1400" height="1197" loading="lazy" decoding="async" alt="Strona kolekcji w sklepie" /></div></figure>
+            <figure class="site cshot cshot--k" data-speed=".035"><div class="frame" data-full="../img/kolekcja/kolekcja-strona-kolekcji.webp"><img src="../img/kolekcja/kolekcja-strona-kolekcji.webp" width="1576" height="1347" loading="lazy" decoding="async" alt="Strona kolekcji w sklepie" /></div></figure>
             <figure class="site cshot cshot--l2" data-speed=".015"><div class="frame" data-full="../img/kolekcja/kolekcja-lista-produktow-2.webp"><img src="../img/kolekcja/kolekcja-lista-produktow-2.webp" width="1004" height="1267" loading="lazy" decoding="async" alt="Lista produktów kolekcji" /></div></figure>
             <figure class="site cshot cshot--l1" data-speed="-.045"><div class="frame" data-full="../img/kolekcja/kolekcja-lista-produktow-1.webp"><img src="../img/kolekcja/kolekcja-lista-produktow-1.webp" width="1104" height="1267" loading="lazy" decoding="async" alt="Lista produktów kolekcji, ciąg dalszy" /></div></figure>
           </div>
@@ -621,10 +627,6 @@
           <div class="vol__block">
             <p class="vol__num"><span data-count="10000">10&nbsp;000</span>+</p>
             <p class="vol__cap"><span class="pl">produktów wprowadzonych do sklepów w&nbsp;ostatnich dwóch latach</span><span class="en">products added to online stores over the last two years</span></p>
-            <dl class="vol__meta">
-              <div><dt>6</dt><dd><span class="pl">platform sprzedażowych</span><span class="en">sales platforms</span></dd></div>
-              <div><dt>4+</dt><dd><span class="pl">lata w&nbsp;e-commerce i&nbsp;programowaniu</span><span class="en">years in e-commerce and code</span></dd></div>
-            </dl>
           </div>
         </div>
       </article>
@@ -634,6 +636,7 @@
         <header class="case__head grid">
           <p class="case__kicker"><span class="pl">Przykładowa realizacja</span><span class="en">Case study</span></p>
           <h3 class="case__title" data-x><span class="pl">Wdrożenie czatu AI</span><span class="en">AI chat rollout</span></h3>
+          <p class="case__note"><span class="pl">Jeśli masz pytanie odnośnie projektu, możesz je również tutaj zadać.</span><span class="en">If you have a&nbsp;question about your project, you can ask it here too.</span></p>
           <p class="case__lead just"><span class="pl">Asystent AI na stronie firmowej. Zna ofertę firmy i&nbsp;odpowiada w&nbsp;tonie marki. Gdy pytanie wykracza poza to, co jest na stronie, nie zmyśla, tylko kieruje do zespołu, a&nbsp;dane kontaktowe z&nbsp;rozmowy trafiają dalej jako lead. Ten czat działa naprawdę: kliknij pole na dole okna i&nbsp;zapytaj o&nbsp;stronę, sklep albo import produktów.</span><span class="en">An AI assistant on a&nbsp;company website. It knows the company’s offer and answers in the brand’s tone of voice. When a&nbsp;question goes beyond what is on the website, it does not make things up: it points to the team, and contact details from the chat are passed on as a&nbsp;lead. This chat really works: click the field at the bottom of the window and ask about a&nbsp;website, a&nbsp;store or a&nbsp;product import.</span></p>
         </header>
         <div class="case__body grid">
@@ -715,6 +718,25 @@
     </div>
   </section>
 
+  <!-- ══ Współpraca: cztery kroki, a nad nimi spaceruje ludzik ══ -->
+  <section class="section" id="proces">
+    <div class="wrap">
+      <header class="sec-head grid">
+        <h2 class="sec-title" data-x><span class="pl">Jak wygląda współpraca</span><span class="en">How we work together</span></h2>
+        <p class="sec-intro just" data-x><span class="pl">Cztery kroki od pierwszej rozmowy do działającej strony. Na każdym etapie wiesz, co się dzieje i&nbsp;co będzie dalej.</span><span class="en">Four steps from the first call to a&nbsp;working website. At every stage you know what is happening and what comes next.</span></p>
+      </header>
+      <div class="steps" data-x>
+        <div class="steps__walk"><div class="walker" aria-hidden="true"><div class="walker__flip"><svg focusable="false"></svg></div></div></div>
+        <ol class="steps__row grid">
+          <li class="pstep"><i></i><h3 class="pstep__title"><span class="pl">Rozmowa i&nbsp;plan</span><span class="en">Conversation and plan</span></h3><p class="just"><span class="pl">Poznaję firmę, klientów i&nbsp;cel strony. Najpierw ustalamy strukturę treści i&nbsp;zakres, dopiero potem wygląd.</span><span class="en">I&nbsp;get to know the company, its customers and the goal of the website. We agree on the content structure and scope first, visuals second.</span></p></li>
+          <li class="pstep"><i></i><h3 class="pstep__title"><span class="pl">Projekt</span><span class="en">Design</span></h3><p class="just"><span class="pl">Projektuję układ i&nbsp;wygląd w&nbsp;Twojej estetyce. Oglądasz projekt i&nbsp;wprowadzamy poprawki, zanim zacznę budować.</span><span class="en">I&nbsp;design the layout and look in your aesthetic. You review the design and we make changes before I&nbsp;start building.</span></p></li>
+          <li class="pstep"><i></i><h3 class="pstep__title"><span class="pl">Wdrożenie</span><span class="en">Build</span></h3><p class="just"><span class="pl">Buduję stronę w&nbsp;uporządkowanym kodzie, bez zbędnych wtyczek, i&nbsp;sprawdzam ją na każdym ekranie, od telefonu po duży monitor.</span><span class="en">I&nbsp;build the website in clean, structured code without unnecessary plugins and check it on every screen, from a&nbsp;phone to a&nbsp;large monitor.</span></p></li>
+          <li class="pstep"><i></i><h3 class="pstep__title"><span class="pl">Opieka po starcie</span><span class="en">Care after launch</span></h3><p class="just"><span class="pl">Po publikacji pomagam w&nbsp;zmianach i&nbsp;rozbudowie. Bez abonamentu i&nbsp;miesięcznych opłat.</span><span class="en">After launch I&nbsp;help with changes and new features. No subscription and no monthly fees.</span></p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ Ta strona: liczby mierzone na żywo ══ -->
   <section class="section" id="ta-strona">
     <div class="wrap">
@@ -744,25 +766,6 @@
         <p class="just"><span class="pl">Od ponad czterech lat łączę doświadczenie w&nbsp;e-commerce, sprzedaży, marketingu i&nbsp;programowaniu. Z&nbsp;tego połączenia wyrosło to, czym zajmuję się dziś: strony i&nbsp;narzędzia, które dobrze wyglądają i&nbsp;pracują na sprzedaż.</span><span class="en">For over four years I&nbsp;have been combining experience in e-commerce, sales, marketing and programming. That mix grew into what I&nbsp;do today: websites and tools that look good and work for sales.</span></p>
         <p class="just"><span class="pl">Prowadzę projekty od początku do końca: projektuję, wdrażam i&nbsp;utrzymuję rozwiązania, które realnie ułatwiają prowadzenie firmy, bez zbędnych kosztów i&nbsp;komplikacji.</span><span class="en">I&nbsp;run projects from start to finish: I&nbsp;design, build and maintain solutions that make running a&nbsp;company genuinely easier, without unnecessary costs or complications.</span></p>
         <p class="about__sign">Franciszek Mojsak</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ Współpraca: cztery kroki, a nad nimi spaceruje ludzik ══ -->
-  <section class="section" id="proces">
-    <div class="wrap">
-      <header class="sec-head grid">
-        <h2 class="sec-title" data-x><span class="pl">Jak wygląda współpraca</span><span class="en">How we work together</span></h2>
-        <p class="sec-intro just" data-x><span class="pl">Cztery kroki od pierwszej rozmowy do działającej strony. Na każdym etapie wiesz, co się dzieje i&nbsp;co będzie dalej.</span><span class="en">Four steps from the first call to a&nbsp;working website. At every stage you know what is happening and what comes next.</span></p>
-      </header>
-      <div class="steps" data-x>
-        <div class="steps__walk"><div class="walker" aria-hidden="true"><div class="walker__flip"><svg focusable="false"></svg></div></div></div>
-        <ol class="steps__row grid">
-          <li class="pstep"><i></i><h3 class="pstep__title"><span class="pl">Rozmowa i&nbsp;plan</span><span class="en">Conversation and plan</span></h3><p class="just"><span class="pl">Poznaję firmę, klientów i&nbsp;cel strony. Najpierw ustalamy strukturę treści i&nbsp;zakres, dopiero potem wygląd.</span><span class="en">I&nbsp;get to know the company, its customers and the goal of the website. We agree on the content structure and scope first, visuals second.</span></p></li>
-          <li class="pstep"><i></i><h3 class="pstep__title"><span class="pl">Projekt</span><span class="en">Design</span></h3><p class="just"><span class="pl">Projektuję układ i&nbsp;wygląd w&nbsp;Twojej estetyce. Oglądasz projekt i&nbsp;wprowadzamy poprawki, zanim zacznę budować.</span><span class="en">I&nbsp;design the layout and look in your aesthetic. You review the design and we make changes before I&nbsp;start building.</span></p></li>
-          <li class="pstep"><i></i><h3 class="pstep__title"><span class="pl">Wdrożenie</span><span class="en">Build</span></h3><p class="just"><span class="pl">Buduję stronę w&nbsp;uporządkowanym kodzie, bez zbędnych wtyczek, i&nbsp;sprawdzam ją na każdym ekranie, od telefonu po duży monitor.</span><span class="en">I&nbsp;build the website in clean, structured code without unnecessary plugins and check it on every screen, from a&nbsp;phone to a&nbsp;large monitor.</span></p></li>
-          <li class="pstep"><i></i><h3 class="pstep__title"><span class="pl">Opieka po starcie</span><span class="en">Care after launch</span></h3><p class="just"><span class="pl">Po publikacji pomagam w&nbsp;zmianach i&nbsp;rozbudowie. Bez abonamentu i&nbsp;miesięcznych opłat.</span><span class="en">After launch I&nbsp;help with changes and new features. No subscription and no monthly fees.</span></p></li>
-        </ol>
       </div>
     </div>
   </section>
