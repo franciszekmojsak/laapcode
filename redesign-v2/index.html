@@ -144,8 +144,13 @@
   .clients { padding: clamp(40px, 4vw, 64px) 0; }
   .clients .grid { align-items: center; }
   .clients__label { grid-column: 1 / span 2; font-size: 14px; font-weight: 500; }
-  .clients__logos { grid-column: 3 / -1; display: flex; justify-content: space-between; align-items: center; gap: 28px 40px; flex-wrap: wrap; }
+  .clients__logos { grid-column: 3 / -1; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
+  .clients__run { display: flex; width: max-content; animation: logos 46s linear infinite; }
+  .clients__logos:hover .clients__run { animation-play-state: paused; }
+  .clients__set { display: flex; align-items: center; gap: 64px; padding-right: 64px; }
+  .clients__set li { flex: none; }
   .clients__logos img { width: auto; filter: brightness(0); }
+  @keyframes logos { to { transform: translate3d(-33.3333%, 0, 0); } }
 
   /* ── Sekcje ── */
   .section { padding-top: clamp(120px, 13vw, 220px); }
@@ -176,29 +181,23 @@
 
   /* strony: gęsta galeria, rzędy o równej wysokości */
   .frame { border: 1px solid var(--ink); background: var(--sheet); will-change: transform; }
-  .hs { position: relative; margin-top: clamp(8px, 1.5vw, 24px); }
-  .hs__pin { --ph: calc(100vh - var(--nav)); --u: calc(var(--ph) / 100); --lead: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad))); --iw: min(340px, 70vw); --x0: calc(var(--lead) + var(--iw) + 6 * var(--u)); position: relative; height: var(--ph); overflow: hidden; }
-  .hs.is-pinned .hs__pin { position: sticky; top: var(--nav); }
-  .hs__intro { position: absolute; z-index: 1; left: var(--lead); top: calc(3 * var(--u)); width: var(--iw); will-change: transform; }
-  .hs__title { font-size: clamp(26px, 2.4vw, 40px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; }
-  .hs__text { margin-top: 20px; font-size: 14px; }
-  .hs__swipe, .hs.is-pinned .hs__hint { display: inline; }
-  .hs__hint, .hs.is-pinned .hs__swipe { display: none; }
-  .hs__row { position: absolute; left: 0; top: calc(var(--ry) * var(--u)); height: calc(var(--rh) * var(--u)); display: flex; align-items: flex-start; width: max-content; padding: 0 var(--lead) 0 var(--x0); will-change: transform; }
-  .hs__item { position: relative; flex: none; margin: 0 0 0 calc(var(--g) * var(--u)); top: calc(var(--j) * var(--u)); width: calc(var(--rh) * var(--ar) * var(--u)); height: 100%; }
+  .hs { --u: min(1vw, 16px); --pp: 6px; position: relative; display: flex; flex-direction: column; align-items: center; margin-top: clamp(8px, 2vw, 32px); padding: calc(3.2 * var(--u)) 0; overflow: hidden; }
+  .hs__row { display: flex; align-items: flex-start; flex: none; width: max-content; margin-top: calc(var(--mt) * var(--u)); will-change: transform; }
+  .hs__item { position: relative; z-index: var(--z); flex: none; margin: 0 0 0 calc(var(--g) * var(--u)); top: calc(var(--j) * var(--u)); width: calc((var(--rh) * var(--u) - 2 * var(--pp)) * var(--ar) + 2 * var(--pp)); height: calc(var(--rh) * var(--u)); padding: calc(var(--pp) - 1px); background: var(--sheet); border: 1px solid var(--ink); transform: rotate(var(--r)); transition: transform .6s var(--ease); }
+  .hs__item:first-child { margin-left: 0; }
+  .hs__item:hover { z-index: 40; transform: rotate(0deg) scale(1.04); }
   .hs__item .work__vp { width: 100%; height: 100%; aspect-ratio: auto; border: 1px solid var(--ink); background: var(--sheet); }
   .hs__item.is-fit .work__shot { height: 100%; object-fit: cover; object-position: top; }
   .hs__item--phone .work__vp::before, .hs__item--phone .work__vp::after { content: ''; position: absolute; z-index: 1; left: 0; right: 0; pointer-events: none; }
-  .hs__item--phone .work__vp::before { top: 0; height: 16px; background: linear-gradient(var(--ink), var(--ink)) 50% 4px / 32% 6px no-repeat, var(--sheet); }
-  .hs__item--phone .work__vp::after { bottom: 0; height: 14px; background: linear-gradient(var(--ink), var(--ink)) 50% 6px / 30% 2px no-repeat, var(--sheet); }
-  .hs__cap { position: absolute; z-index: 2; left: 0; bottom: 0; max-width: 100%; padding: 6px 10px; background: var(--sheet); border: 1px solid var(--ink); font: 400 12px/1.35 var(--mono); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .4s var(--ease); pointer-events: none; }
+  .hs__item--phone .work__vp::before { top: 0; height: 14px; background: linear-gradient(var(--ink), var(--ink)) 50% 3px / 32% 5px no-repeat, var(--sheet); }
+  .hs__item--phone .work__vp::after { bottom: 0; height: 12px; background: linear-gradient(var(--ink), var(--ink)) 50% 5px / 30% 2px no-repeat, var(--sheet); }
+  .hs__cap { position: absolute; z-index: 2; left: calc(var(--pp) - 1px); bottom: calc(var(--pp) - 1px); max-width: calc(100% - 2 * var(--pp) + 2px); padding: 6px 10px; background: var(--sheet); border: 1px solid var(--ink); font: 400 12px/1.35 var(--mono); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .4s var(--ease); pointer-events: none; }
   .hs__item:hover .hs__cap { opacity: 1; transform: none; }
-  .hs__bar { display: none; position: absolute; left: var(--lead); right: var(--lead); bottom: calc(1.2 * var(--u)); height: 3px; }
-  .hs__bar::before { content: ''; position: absolute; left: 0; right: 0; top: 1px; height: 1px; background: var(--ink); }
-  .hs__bar i { display: block; height: 3px; background: var(--ink); transform: scaleX(0); transform-origin: left; }
-  .hs.is-pinned .hs__bar { display: block; }
-  .hs:not(.is-pinned) .hs__pin { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
-  .hs:not(.is-pinned) .hs__pin::-webkit-scrollbar { display: none; }
+  .hs:not(.is-mouse) { align-items: flex-start; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .hs:not(.is-mouse)::-webkit-scrollbar { display: none; }
+  .hs:not(.is-mouse) .hs__row { padding: 0 var(--pad); }
+  .hs__swipe, .hs-mouse .hs__hint { display: inline; }
+  .hs__hint, .hs-mouse .hs__swipe { display: none; }
 
   /* spis projektów */
   .plist { margin-top: clamp(112px, 11vw, 200px); row-gap: 48px; }
@@ -379,6 +378,7 @@
     .pstep { grid-column: span 6; }
     .sec-title { grid-column: 1 / -1; }
     .sec-intro { grid-column: 1 / span 7; margin-top: 28px; }
+    @media (max-width: 600px) { .sec-intro { grid-column: 1 / -1; } }
     .vol__block { width: calc((100% - 11 * var(--gap)) / 12 * 7 + 6 * var(--gap)); }
     .plist__col { grid-column: 1 / -1; }
     .about__photo { grid-column: 1 / span 6; }
@@ -396,8 +396,9 @@
     .hero__photo { grid-column: 1 / -1; grid-row: auto; margin-top: 8px; }
     .hero__intro, .hero__cta { grid-column: 1 / -1; grid-row: auto; }
     .clients__label { grid-column: 1 / -1; margin-bottom: 24px; }
-    .clients__logos { grid-column: 1 / -1; justify-content: flex-start; }
-    .hs__pin { --ph: 540px; }
+    .clients__logos { grid-column: 1 / -1; }
+    .clients__set { gap: 44px; padding-right: 44px; }
+    .hs { --u: 10px; --pp: 4px; }
     .hs__cap { display: none; }
     .plist__row { flex-wrap: wrap; gap: 4px 12px; }
     .plist__name { flex-basis: 100%; }
@@ -426,6 +427,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .clients__run { animation: none; }
     *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-delay: 0s !important; transition-delay: 0s !important; }
   }
 </style>
@@ -478,16 +480,40 @@
   <section class="clients" id="wspolprace" aria-label="Współprace">
     <div class="wrap grid">
       <p class="clients__label"><span class="pl">Współprace</span><span class="en">Clients</span></p>
-      <ul class="clients__logos">
-        <li><img src="../img/clients/wise-habit.png" alt="Wise Habit" width="700" height="64" style="height:15px" /></li>
-        <li><img src="../img/clients/wise-habit-agency.svg" alt="Wise Habit Agency for the Future" style="height:21px" /></li>
-        <li><img src="../img/clients/toxic-hair.png" alt="Toxic Hair" width="262" height="300" style="height:50px" /></li>
-        <li><img src="../img/clients/the-b.png" alt="Shop B" width="308" height="194" style="height:40px" /></li>
-        <li><img src="../img/clients/lust-for-life.png" alt="Lust for Life &amp; Lust for Business" width="600" height="124" style="height:27px" /></li>
-        <li><img src="../img/clients/laap.png" alt="Laap" width="203" height="178" style="height:32px" /></li>
-        <li><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" style="height:20px" onerror="this.parentNode.hidden=true" /></li>
-        <li><img src="../img/clients/mikolaj-markowski.png" alt="Mikołaj Markowski" width="279" height="147" style="height:36px" /></li>
-      </ul>
+      <div class="clients__logos">
+        <div class="clients__run">
+          <ul class="clients__set">
+            <li><img src="../img/clients/wise-habit.png" alt="Wise Habit" width="700" height="64" style="height:15px" /></li>
+            <li><img src="../img/clients/wise-habit-agency.svg" alt="Wise Habit Agency for the Future" style="height:21px" /></li>
+            <li><img src="../img/clients/toxic-hair.png" alt="Toxic Hair" width="262" height="300" style="height:50px" /></li>
+            <li><img src="../img/clients/the-b.png" alt="Shop B" width="308" height="194" style="height:40px" /></li>
+            <li><img src="../img/clients/lust-for-life.png" alt="Lust for Life &amp; Lust for Business" width="600" height="124" style="height:27px" /></li>
+            <li><img src="../img/clients/laap.png" alt="Laap" width="203" height="178" style="height:32px" /></li>
+            <li><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" style="height:20px" onerror="this.parentNode.hidden=true" /></li>
+            <li><img src="../img/clients/mikolaj-markowski.png" alt="Mikołaj Markowski" width="279" height="147" style="height:36px" /></li>
+          </ul>
+          <ul class="clients__set" aria-hidden="true">
+            <li><img src="../img/clients/wise-habit.png" width="700" height="64" style="height:15px" alt="" /></li>
+            <li><img src="../img/clients/wise-habit-agency.svg" style="height:21px" alt="" /></li>
+            <li><img src="../img/clients/toxic-hair.png" width="262" height="300" style="height:50px" alt="" /></li>
+            <li><img src="../img/clients/the-b.png" width="308" height="194" style="height:40px" alt="" /></li>
+            <li><img src="../img/clients/lust-for-life.png" width="600" height="124" style="height:27px" alt="" /></li>
+            <li><img src="../img/clients/laap.png" width="203" height="178" style="height:32px" alt="" /></li>
+            <li><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" style="height:20px" onerror="this.parentNode.hidden=true" alt="" /></li>
+            <li><img src="../img/clients/mikolaj-markowski.png" width="279" height="147" style="height:36px" alt="" /></li>
+          </ul>
+          <ul class="clients__set" aria-hidden="true">
+            <li><img src="../img/clients/wise-habit.png" width="700" height="64" style="height:15px" alt="" /></li>
+            <li><img src="../img/clients/wise-habit-agency.svg" style="height:21px" alt="" /></li>
+            <li><img src="../img/clients/toxic-hair.png" width="262" height="300" style="height:50px" alt="" /></li>
+            <li><img src="../img/clients/the-b.png" width="308" height="194" style="height:40px" alt="" /></li>
+            <li><img src="../img/clients/lust-for-life.png" width="600" height="124" style="height:27px" alt="" /></li>
+            <li><img src="../img/clients/laap.png" width="203" height="178" style="height:32px" alt="" /></li>
+            <li><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" style="height:20px" onerror="this.parentNode.hidden=true" alt="" /></li>
+            <li><img src="../img/clients/mikolaj-markowski.png" width="279" height="147" style="height:36px" alt="" /></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -496,58 +522,54 @@
     <div class="wrap">
       <header class="sec-head grid">
         <h2 class="sec-title" data-x><span class="pl">Wybrane realizacje</span><span class="en">Selected work</span></h2>
-        <p class="sec-intro just" data-x><span class="pl">Strony internetowe, wdrożenia produktów, importy i&nbsp;automatyzacje z&nbsp;ostatnich lat. Najpierw fragmenty stron, potem wybrane wdrożenia od środka.</span><span class="en">Websites, product rollouts, imports and automation from recent years. First parts of websites, then selected projects from the inside.</span></p>
+        <p class="sec-intro just" data-x><span class="pl">Fragmenty stron, nad którymi pracowałem: wybrane sekcje stron wydarzeń, firm i&nbsp;portfolio, które zaprojektowałem i&nbsp;zbudowałem, w&nbsp;wersji na komputer i&nbsp;na telefon. <span class="hs__hint">Przesuń kursor w&nbsp;lewo albo w&nbsp;prawo, a&nbsp;galeria pojedzie za nim.</span><span class="hs__swipe">Przesuń galerię palcem w&nbsp;bok, żeby zobaczyć więcej.</span></span><span class="en">Parts of websites I&nbsp;have worked on: selected sections of event, company and portfolio websites I&nbsp;designed and built, on desktop and on mobile. <span class="hs__hint">Move the cursor left or right and the gallery follows.</span><span class="hs__swipe">Swipe the gallery sideways to see more.</span></span></p>
       </header>
 
     </div>
 
-      <!-- strony: pozioma galeria, trzy pasy przesuwają się w bok z różną prędkością -->
-      <div class="hs">
-        <div class="hs__pin">
-          <div class="hs__intro no-rel" data-x><p class="hs__title"><span class="pl">Fragmenty stron, nad którymi pracowałem</span><span class="en">Parts of websites I&nbsp;have worked on</span></p><p class="hs__text just"><span class="pl">Wybrane sekcje stron wydarzeń, firm i&nbsp;portfolio, które zaprojektowałem i&nbsp;zbudowałem, w&nbsp;wersji na komputer i&nbsp;na telefon. <span class="hs__hint">Przewijaj dalej, a&nbsp;galeria przesunie się w&nbsp;bok.</span><span class="hs__swipe">Przesuń palcem w&nbsp;bok, żeby zobaczyć więcej.</span></span><span class="en">Selected sections of event, company and portfolio websites I&nbsp;designed and built, on desktop and on mobile. <span class="hs__hint">Keep scrolling and the gallery moves sideways.</span><span class="hs__swipe">Swipe sideways to see more.</span></span></p></div>
-          <div class="hs__row hs__row--a" style="--ry:3;--rh:28">
-            <figure class="hs__item is-fit" style="--ar:1.8065;--g:0;--j:0.2"><div class="work__vp" data-full="../img/wybrane/portfolio-rozmiary.webp"><img class="work__shot" src="../img/wybrane/portfolio-rozmiary.webp" width="1400" height="775" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:2.0906;--g:4.4;--j:1.1"><div class="work__vp" data-full="../img/wybrane/lfl-wydarzenia.webp"><img class="work__shot" src="../img/wybrane/lfl-wydarzenia.webp" width="1200" height="574" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
-            <figure class="hs__item" style="--ar:0.6200;--g:4.2;--j:0.0"><div class="work__vp" data-full="../img/wybrane/portfolio-lozko.webp"><img class="work__shot" src="../img/wybrane/portfolio-lozko.webp" width="900" height="2158" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.9108;--g:4.4;--j:-0.3"><div class="work__vp" data-full="../img/wybrane/agency-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob.webp" width="1200" height="628" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.3432;--g:6.7;--j:-1.3"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_4.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_4.webp" width="1221" height="909" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:0.7200;--g:4.8;--j:-0.9"><div class="work__vp" data-full="../img/wybrane/portfolio-miski.webp"><img class="work__shot" src="../img/wybrane/portfolio-miski.webp" width="900" height="1250" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.9169;--g:4.5;--j:1.6"><div class="work__vp" data-full="../img/wybrane/lfl-miejsce.webp"><img class="work__shot" src="../img/wybrane/lfl-miejsce.webp" width="1200" height="626" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
-            <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:4.4;--j:0.3"><div class="work__vp" data-full="../img/wybrane/agency-m-klimek.webp"><img class="work__shot" src="../img/wybrane/agency-m-klimek.webp" width="520" height="1884" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-            <figure class="hs__item" style="--ar:0.6200;--g:4.7;--j:0.7"><div class="work__vp" data-full="../img/wybrane/brewing-kolekcja.webp"><img class="work__shot" src="../img/wybrane/brewing-kolekcja.webp" width="900" height="2554" loading="lazy" decoding="async" alt="Brewing collection, strona kolekcji" /></div><figcaption class="hs__cap"><span class="pl">Brewing collection, strona kolekcji</span><span class="en">Brewing collection, collection page</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:2.3904;--g:4.8;--j:-1.1"><div class="work__vp" data-full="../img/wybrane/agency-klimek-las.webp"><img class="work__shot" src="../img/wybrane/agency-klimek-las.webp" width="1200" height="502" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.5171;--g:4.8;--j:-0.3"><div class="work__vp" data-full="../img/wybrane/p3-panel.webp"><img class="work__shot" src="../img/wybrane/p3-panel.webp" width="1200" height="791" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="hs__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
-          </div>
-          <div class="hs__row hs__row--b" style="--ry:35;--rh:36">
-            <figure class="hs__item is-fit" style="--ar:1.3825;--g:0;--j:0.9"><div class="work__vp" data-full="../img/wybrane/lfl-start.webp"><img class="work__shot" src="../img/wybrane/lfl-start.webp" width="1200" height="868" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
-            <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:5.2;--j:-1.0"><div class="work__vp" data-full="../img/wybrane/agency-m-liczby.webp"><img class="work__shot" src="../img/wybrane/agency-m-liczby.webp" width="520" height="2104" loading="lazy" decoding="async" alt="Agency for the Future, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-            <figure class="hs__item" style="--ar:0.6200;--g:5.6;--j:-0.6"><div class="work__vp" data-full="../img/wybrane/portfolio-start.webp"><img class="work__shot" src="../img/wybrane/portfolio-start.webp" width="900" height="1777" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.5540;--g:5.0;--j:-0.9"><div class="work__vp" data-full="../img/wybrane/laap-galeria.webp"><img class="work__shot" src="../img/wybrane/laap-galeria.webp" width="1122" height="722" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
-            <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:4.7;--j:0.9"><div class="work__vp" data-full="../img/wybrane/p3-m-projekty.webp"><img class="work__shot" src="../img/wybrane/p3-m-projekty.webp" width="520" height="3024" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.0083;--g:5.1;--j:0.8"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_3.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_3.webp" width="1221" height="1211" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.2069;--g:5.9;--j:0.3"><div class="work__vp" data-full="../img/wybrane/portfolio-zin.webp"><img class="work__shot" src="../img/wybrane/portfolio-zin.webp" width="1400" height="1160" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:5.5;--j:-0.3"><div class="work__vp" data-full="../img/wybrane/lfl-m-format.webp"><img class="work__shot" src="../img/wybrane/lfl-m-format.webp" width="520" height="2139" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:2.0022;--g:5.4;--j:0.9"><div class="work__vp" data-full="../img/laapcode_hero_wise-habit-agency.webp"><img class="work__shot" src="../img/laapcode_hero_wise-habit-agency.webp" width="1800" height="899" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
-            <figure class="hs__item" style="--ar:0.6200;--g:3.6;--j:1.4"><div class="work__vp" data-full="../img/wybrane/portfolio-wystawy.webp"><img class="work__shot" src="../img/wybrane/portfolio-wystawy.webp" width="900" height="2099" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.7964;--g:4.5;--j:-1.2"><div class="work__vp" data-full="../img/wybrane/p3-start.webp"><img class="work__shot" src="../img/wybrane/p3-start.webp" width="1200" height="668" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="hs__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
-            <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:3.7;--j:-0.5"><div class="work__vp" data-full="../img/wybrane/agency-m-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-m-archisnob.webp" width="520" height="2501" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:0.8841;--g:3.4;--j:-0.3"><div class="work__vp" data-full="../img/wybrane/portfolio-veins.webp"><img class="work__shot" src="../img/wybrane/portfolio-veins.webp" width="900" height="1018" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:4.7;--j:0.5"><div class="work__vp" data-full="../img/wybrane/lfl-m-prelegenci.webp"><img class="work__shot" src="../img/wybrane/lfl-m-prelegenci.webp" width="520" height="3206" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.6461;--g:4.9;--j:1.4"><div class="work__vp" data-full="../img/laapcode_hero_lukasz-klimek.webp"><img class="work__shot" src="../img/laapcode_hero_lukasz-klimek.webp" width="1600" height="972" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
-          </div>
-          <div class="hs__row hs__row--c" style="--ry:75;--rh:21">
-            <figure class="hs__item is-fit" style="--ar:0.8411;--g:0;--j:0.5"><div class="work__vp" data-full="../img/wybrane/portfolio-proces.webp"><img class="work__shot" src="../img/wybrane/portfolio-proces.webp" width="900" height="1070" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:3.0151;--g:4.4;--j:1.2"><div class="work__vp" data-full="../img/wybrane/agency-materialy.webp"><img class="work__shot" src="../img/wybrane/agency-materialy.webp" width="1200" height="398" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.0533;--g:5.7;--j:1.5"><div class="work__vp" data-full="../img/laapcode_hero_adaptive-tableware.webp"><img class="work__shot" src="../img/laapcode_hero_adaptive-tableware.webp" width="1600" height="1519" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.9378;--g:5.8;--j:1.5"><div class="work__vp" data-full="../img/wybrane/laap-blog.webp"><img class="work__shot" src="../img/wybrane/laap-blog.webp" width="1122" height="579" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.1765;--g:3.9;--j:-0.7"><div class="work__vp" data-full="../img/wybrane/portfolio-yeast-coast.webp"><img class="work__shot" src="../img/wybrane/portfolio-yeast-coast.webp" width="1400" height="1190" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.9802;--g:6.7;--j:-1.5"><div class="work__vp" data-full="../img/wybrane/lfl-partnerzy.webp"><img class="work__shot" src="../img/wybrane/lfl-partnerzy.webp" width="1200" height="606" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:0.6803;--g:6.5;--j:1.3"><div class="work__vp" data-full="../img/wybrane/portfolio-wentylator.webp"><img class="work__shot" src="../img/wybrane/portfolio-wentylator.webp" width="900" height="1323" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:2.0478;--g:3.7;--j:-1.1"><div class="work__vp" data-full="../img/wybrane/agency-archisnob-magazyn.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob-magazyn.webp" width="1200" height="586" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.0146;--g:6.5;--j:1.5"><div class="work__vp" data-full="../img/laapcode_hero_floral-foam.webp"><img class="work__shot" src="../img/laapcode_hero_floral-foam.webp" width="1600" height="1577" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-            <figure class="hs__item is-fit" style="--ar:1.5142;--g:6.3;--j:0.7"><div class="work__vp" data-full="../img/wybrane/laap-start.webp"><img class="work__shot" src="../img/wybrane/laap-start.webp" width="1122" height="741" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
-          </div>
-          <div class="hs__bar" aria-hidden="true"><i></i></div>
+      <!-- strony: rozrzucone kartki, galeria jedzie za kursorem -->
+      <div class="hs" data-x>
+        <div class="hs__row hs__row--a" style="--rh:14.6;--mt:0">
+          <figure class="hs__item is-fit" style="--ar:1.8065;--g:0;--j:-0.4;--r:-2.4deg;--z:7"><div class="work__vp" data-full="../img/wybrane/portfolio-rozmiary.webp"><img class="work__shot" src="../img/wybrane/portfolio-rozmiary.webp" width="1400" height="775" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:2.0906;--g:0.8;--j:0.6;--r:2.3deg;--z:1"><div class="work__vp" data-full="../img/wybrane/lfl-wydarzenia.webp"><img class="work__shot" src="../img/wybrane/lfl-wydarzenia.webp" width="1200" height="574" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="hs__item" style="--ar:0.6200;--g:1.5;--j:0.5;--r:2.5deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-lozko.webp"><img class="work__shot" src="../img/wybrane/portfolio-lozko.webp" width="900" height="2158" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.9108;--g:2.3;--j:-0.6;--r:-0.8deg;--z:1"><div class="work__vp" data-full="../img/wybrane/agency-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob.webp" width="1200" height="628" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.3432;--g:0.2;--j:-0.7;--r:-2.0deg;--z:8"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_4.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_4.webp" width="1221" height="909" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:0.7200;--g:-1.0;--j:0.5;--r:0deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-miski.webp"><img class="work__shot" src="../img/wybrane/portfolio-miski.webp" width="900" height="1250" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.9169;--g:1.2;--j:1.5;--r:0deg;--z:6"><div class="work__vp" data-full="../img/wybrane/lfl-miejsce.webp"><img class="work__shot" src="../img/wybrane/lfl-miejsce.webp" width="1200" height="626" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.6;--j:-1.5;--r:2.4deg;--z:1"><div class="work__vp" data-full="../img/wybrane/agency-m-klimek.webp"><img class="work__shot" src="../img/wybrane/agency-m-klimek.webp" width="520" height="1884" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item" style="--ar:0.6200;--g:-0.3;--j:-1.1;--r:0.5deg;--z:8"><div class="work__vp" data-full="../img/wybrane/brewing-kolekcja.webp"><img class="work__shot" src="../img/wybrane/brewing-kolekcja.webp" width="900" height="2554" loading="lazy" decoding="async" alt="Brewing collection, strona kolekcji" /></div><figcaption class="hs__cap"><span class="pl">Brewing collection, strona kolekcji</span><span class="en">Brewing collection, collection page</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:2.3904;--g:1.9;--j:-0.9;--r:0deg;--z:2"><div class="work__vp" data-full="../img/wybrane/agency-klimek-las.webp"><img class="work__shot" src="../img/wybrane/agency-klimek-las.webp" width="1200" height="502" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.5171;--g:0.3;--j:0.7;--r:1.6deg;--z:1"><div class="work__vp" data-full="../img/wybrane/p3-panel.webp"><img class="work__shot" src="../img/wybrane/p3-panel.webp" width="1200" height="791" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="hs__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
+        </div>
+        <div class="hs__row hs__row--b" style="--rh:17.4;--mt:-0.9">
+          <figure class="hs__item is-fit" style="--ar:1.3825;--g:0;--j:0.5;--r:-2.2deg;--z:1"><div class="work__vp" data-full="../img/wybrane/lfl-start.webp"><img class="work__shot" src="../img/wybrane/lfl-start.webp" width="1200" height="868" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.3;--j:0.6;--r:-2.6deg;--z:3"><div class="work__vp" data-full="../img/wybrane/agency-m-liczby.webp"><img class="work__shot" src="../img/wybrane/agency-m-liczby.webp" width="520" height="2104" loading="lazy" decoding="async" alt="Agency for the Future, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item" style="--ar:0.6200;--g:2.0;--j:-0.3;--r:-1.8deg;--z:7"><div class="work__vp" data-full="../img/wybrane/portfolio-start.webp"><img class="work__shot" src="../img/wybrane/portfolio-start.webp" width="900" height="1777" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.5540;--g:0.8;--j:-1.3;--r:-1.4deg;--z:8"><div class="work__vp" data-full="../img/wybrane/laap-galeria.webp"><img class="work__shot" src="../img/wybrane/laap-galeria.webp" width="1122" height="722" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.2;--j:-0.3;--r:1.6deg;--z:4"><div class="work__vp" data-full="../img/wybrane/p3-m-projekty.webp"><img class="work__shot" src="../img/wybrane/p3-m-projekty.webp" width="520" height="3024" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.0083;--g:-0.4;--j:1.3;--r:2.2deg;--z:5"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_3.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_3.webp" width="1221" height="1211" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.2069;--g:1.4;--j:0.7;--r:-0.9deg;--z:4"><div class="work__vp" data-full="../img/wybrane/portfolio-zin.webp"><img class="work__shot" src="../img/wybrane/portfolio-zin.webp" width="1400" height="1160" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.8;--j:0.5;--r:0deg;--z:4"><div class="work__vp" data-full="../img/wybrane/lfl-m-format.webp"><img class="work__shot" src="../img/wybrane/lfl-m-format.webp" width="520" height="2139" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:2.0022;--g:0.6;--j:0.4;--r:-1.0deg;--z:2"><div class="work__vp" data-full="../img/laapcode_hero_wise-habit-agency.webp"><img class="work__shot" src="../img/laapcode_hero_wise-habit-agency.webp" width="1800" height="899" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+          <figure class="hs__item" style="--ar:0.6200;--g:1.7;--j:-0.2;--r:-1.7deg;--z:8"><div class="work__vp" data-full="../img/wybrane/portfolio-wystawy.webp"><img class="work__shot" src="../img/wybrane/portfolio-wystawy.webp" width="900" height="2099" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.7964;--g:0.0;--j:-0.5;--r:0.6deg;--z:3"><div class="work__vp" data-full="../img/wybrane/p3-start.webp"><img class="work__shot" src="../img/wybrane/p3-start.webp" width="1200" height="668" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="hs__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.0;--j:0.0;--r:-1.4deg;--z:2"><div class="work__vp" data-full="../img/wybrane/agency-m-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-m-archisnob.webp" width="520" height="2501" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:0.8841;--g:-1.3;--j:0.5;--r:-1.9deg;--z:5"><div class="work__vp" data-full="../img/wybrane/portfolio-veins.webp"><img class="work__shot" src="../img/wybrane/portfolio-veins.webp" width="900" height="1018" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.4;--j:-0.8;--r:-2.2deg;--z:5"><div class="work__vp" data-full="../img/wybrane/lfl-m-prelegenci.webp"><img class="work__shot" src="../img/wybrane/lfl-m-prelegenci.webp" width="520" height="3206" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.6461;--g:0.9;--j:-0.3;--r:2.0deg;--z:4"><div class="work__vp" data-full="../img/laapcode_hero_lukasz-klimek.webp"><img class="work__shot" src="../img/laapcode_hero_lukasz-klimek.webp" width="1600" height="972" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
+        </div>
+        <div class="hs__row hs__row--c" style="--rh:12.8;--mt:-0.9">
+          <figure class="hs__item is-fit" style="--ar:0.8411;--g:0;--j:-1.3;--r:1.0deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-proces.webp"><img class="work__shot" src="../img/wybrane/portfolio-proces.webp" width="900" height="1070" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:3.0151;--g:2.0;--j:-0.7;--r:2.5deg;--z:7"><div class="work__vp" data-full="../img/wybrane/agency-materialy.webp"><img class="work__shot" src="../img/wybrane/agency-materialy.webp" width="1200" height="398" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.0533;--g:-1.3;--j:1.0;--r:-2.1deg;--z:4"><div class="work__vp" data-full="../img/laapcode_hero_adaptive-tableware.webp"><img class="work__shot" src="../img/laapcode_hero_adaptive-tableware.webp" width="1600" height="1519" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.9378;--g:0.1;--j:-0.0;--r:-1.4deg;--z:1"><div class="work__vp" data-full="../img/wybrane/laap-blog.webp"><img class="work__shot" src="../img/wybrane/laap-blog.webp" width="1122" height="579" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.1765;--g:-0.6;--j:1.2;--r:-0.6deg;--z:9"><div class="work__vp" data-full="../img/wybrane/portfolio-yeast-coast.webp"><img class="work__shot" src="../img/wybrane/portfolio-yeast-coast.webp" width="1400" height="1190" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.9802;--g:-0.0;--j:-0.9;--r:-1.7deg;--z:9"><div class="work__vp" data-full="../img/wybrane/lfl-partnerzy.webp"><img class="work__shot" src="../img/wybrane/lfl-partnerzy.webp" width="1200" height="606" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:0.6803;--g:1.3;--j:-0.4;--r:1.7deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-wentylator.webp"><img class="work__shot" src="../img/wybrane/portfolio-wentylator.webp" width="900" height="1323" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:2.0478;--g:0.4;--j:0.2;--r:-1.3deg;--z:5"><div class="work__vp" data-full="../img/wybrane/agency-archisnob-magazyn.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob-magazyn.webp" width="1200" height="586" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.0146;--g:0.4;--j:0.8;--r:0.5deg;--z:5"><div class="work__vp" data-full="../img/laapcode_hero_floral-foam.webp"><img class="work__shot" src="../img/laapcode_hero_floral-foam.webp" width="1600" height="1577" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.5142;--g:-1.1;--j:-0.4;--r:0deg;--z:6"><div class="work__vp" data-full="../img/wybrane/laap-start.webp"><img class="work__shot" src="../img/wybrane/laap-start.webp" width="1122" height="741" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
         </div>
       </div>
 
@@ -582,7 +604,7 @@
       <article class="case" id="kolekcja">
         <header class="case__head grid">
           <p class="case__kicker"><span class="pl">Przykładowa realizacja</span><span class="en">Case study</span></p>
-          <h3 class="case__title" data-x><span class="pl">Wdrożenie nowej kolekcji</span><span class="en">New collection rollout</span></h3>
+          <h3 class="case__title" data-x><span class="pl">Wdrożenie nowej kolekcji produktów na rynek e-commerce</span><span class="en">Rolling out a<h3 class="case__title" data-x><span class="pl">Wdrożenie nowej kolekcji</span><span class="en">New collection rollout</span></h3>nbsp;new product collection to e-commerce</span></h3>
           <p class="case__lead just"><span class="pl">Od arkusza z&nbsp;danymi do kolekcji, którą można kupić. Przygotowuję listę produktów i&nbsp;karty produktów, uzupełniam kody i&nbsp;zdjęcia, porządkuję kategorie, a&nbsp;potem wdrażam wszystko na działający sklep razem z&nbsp;banerami na start sprzedaży.</span><span class="en">From a&nbsp;data sheet to a&nbsp;collection people can buy. I&nbsp;prepare the product list and product pages, add codes and photos, sort out categories, then roll everything out on the live store, together with banners for the launch.</span></p>
         </header>
         <div class="case__body grid">
@@ -938,7 +960,7 @@
     ticking = false;
     var vh = window.innerHeight, sh = document.documentElement.scrollHeight - vh;
     prog.style.transform = 'scaleX(' + (sh > 0 ? Math.min(1, window.scrollY / sh) : 0) + ')';
-    moveWall(); moveSites(); scopeProgress(); moveHs();
+    moveWall(); moveSites(); scopeProgress();
     active.forEach(function (v) {
       var img = v.firstElementChild, r = v.getBoundingClientRect(), vw = window.innerWidth;
       var p = v.parentNode.classList.contains('hs__item') ? (vw - r.left) / (vw + r.width) : (vh - r.top) / (vh + r.height);
@@ -950,38 +972,37 @@
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
 
-  /* ── Strony: trzy pasy zrzutów przesuwają się w bok, każdy w swoim tempie ── */
-  var hs = document.querySelector('.hs'), hsPin = hs.querySelector('.hs__pin'), hsIntro = hs.querySelector('.hs__intro'), hsFill = hs.querySelector('.hs__bar i');
-  var hsRows = [].slice.call(hs.querySelectorAll('.hs__row')), hsOn = false, hsD = [], hsMax = 0, hsTop = 0, HS_RATE = 1.5;
+  /* ── Strony: rozrzucone kartki, galeria jedzie za kursorem ── */
+  var hs = document.querySelector('.hs'), hsRows = [].slice.call(hs.querySelectorAll('.hs__row'));
+  var hsMouse = !reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var hsHalf = [], hsT = 0, hsC = 0, hsRaf = 0;
+  hs.classList.toggle('is-mouse', hsMouse); root.classList.toggle('hs-mouse', hsMouse);
+  function hsApply() { hsRows.forEach(function (r, i) { r.style.transform = hsMouse ? 'translate3d(' + (-hsC * hsHalf[i]).toFixed(1) + 'px,0,0)' : ''; }); }
   function hsLayout() {
-    hsOn = !reduce && window.innerWidth > 800;
-    hs.classList.toggle('is-pinned', hsOn);
-    var w = hsPin.clientWidth;
-    hsD = hsRows.map(function (r) { return Math.max(0, r.offsetWidth - w); });
-    hsMax = Math.max.apply(null, hsD.concat(0));
-    hsTop = hsOn ? parseFloat(getComputedStyle(hsPin).top) || 0 : 0;
-    hs.style.height = hsOn ? Math.round(hsPin.offsetHeight + hsMax / HS_RATE) + 'px' : '';
-    if (!hsOn) { hsRows.forEach(function (r) { r.style.transform = ''; }); hsIntro.style.transform = ''; }
+    var w = hs.clientWidth, widths = hsRows.map(function (r) { return r.offsetWidth; }), max = Math.max.apply(null, widths);
+    hsHalf = widths.map(function (x) { return Math.max(0, (x - w) / 2); });
+    if (!hsMouse) { hsRows.forEach(function (r, i) { r.style.marginLeft = ((max - widths[i]) / 2).toFixed(0) + 'px'; }); hs.scrollLeft = (hs.scrollWidth - w) / 2; }
+    hsApply();
   }
-  function moveHs() {
-    if (!hsOn) return;
-    var p = hsMax ? Math.min(1, Math.max(0, (hsTop - hs.getBoundingClientRect().top) * HS_RATE / hsMax)) : 0;
-    hsRows.forEach(function (r, i) { r.style.transform = 'translate3d(' + (-p * hsD[i]).toFixed(1) + 'px,0,0)'; });
-    hsIntro.style.transform = 'translate3d(' + (-p * hsMax).toFixed(1) + 'px,0,0)';
-    hsFill.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+  function hsTick() {
+    hsC += (hsT - hsC) * 0.06;
+    if (Math.abs(hsT - hsC) < 0.0004) hsC = hsT;
+    hsApply(); onScroll();
+    hsRaf = hsC !== hsT ? requestAnimationFrame(hsTick) : 0;
   }
-  hsPin.addEventListener('wheel', function (e) {
-    if (!hsOn || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-    e.preventDefault(); window.scrollBy({ top: e.deltaX / HS_RATE, behavior: 'instant' });
-  }, { passive: false });
-  hsPin.addEventListener('scroll', function () { onScroll(); }, { passive: true });
+  if (hsMouse) hs.addEventListener('mousemove', function (e) {
+    var r = hs.getBoundingClientRect();
+    hsT = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - 0.5) * 2.3));
+    if (!hsRaf) hsRaf = requestAnimationFrame(hsTick);
+  });
+  hs.addEventListener('scroll', function () { onScroll(); }, { passive: true });
   hsLayout();
-  // na komputerze pasy wjeżdżają szybko, więc zdjęcia ładują się zawczasu, zanim galeria dojedzie
+  // przy myszce zdjęcia z boków wjeżdżają szybko, więc ładują się zawczasu
   var hsLoad = new IntersectionObserver(function (es) {
-    if (!es[0].isIntersecting || !hsOn) return;
+    if (!es[0].isIntersecting || !hsMouse) return;
     [].forEach.call(hs.querySelectorAll('img[loading="lazy"]'), function (i) { i.loading = 'eager'; });
     hsLoad.disconnect();
-  }, { rootMargin: '120% 0px' });
+  }, { rootMargin: '100% 0px' });
   hsLoad.observe(hs);
 
   /* ── Strony: lekka paralaksa ramek ── */
