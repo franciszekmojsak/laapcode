@@ -1,7 +1,7 @@
 // Vercel Serverless Function: POST /api/chat
 // Czat na stronie code.laap.pl. Przyjmuje historię rozmowy, pyta Claude (Anthropic API) i zwraca odpowiedź.
 // Wymaga zmiennej środowiskowej ANTHROPIC_API_KEY (Vercel: Project Settings > Environment Variables).
-// Opcjonalnie CLAUDE_MODEL, żeby zmienić model bez zmiany kodu.
+// Opcjonalnie CLAUDE_MODEL, żeby zmienić model bez zmiany kodu (domyślnie claude-haiku-5-5).
 
 const SYSTEM_PROMPT = `You are the chat assistant on the website of Franciszek Mojsak (code.laap.pl). Franciszek is one person who designs and builds websites, online stores, product imports and automation for companies and individuals, from the first sketch to a working website. You are also a live example of the AI chats he builds for clients.
 
@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: process.env.CLAUDE_MODEL || "claude-haiku-4-5-20251001",
+        model: process.env.CLAUDE_MODEL || "claude-haiku-5-5",
         max_tokens: 400,
         system: SYSTEM_PROMPT,
         messages: trimmed,
