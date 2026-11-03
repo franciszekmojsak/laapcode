@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="robots" content="noindex" />
 <title>Franciszek Mojsak · strony, sklepy i automatyzacje</title>
-<meta name="description" content="Projektuję i wdrażam strony internetowe, sklepy i automatyzacje. Od pierwszego szkicu po działającą stronę." />
+<meta name="description" content="Projektuję i wdrażam strony internetowe oraz sklepy, które łączą dopracowany wygląd z funkcjonalnością. Zajmuję się również rozwojem e-commerce i automatyzacją procesów." />
+<meta property="og:title" content="Franciszek Mojsak · strony, sklepy i automatyzacje" />
+<meta property="og:description" content="Projektuję i wdrażam strony internetowe oraz sklepy. Od pierwszego szkicu po gotowe wdrożenie." />
+<meta property="og:type" content="website" />
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
 <link rel="preload" href="../fonts/manrope-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin />
 <style>
@@ -82,10 +84,10 @@
     .nav__in { height: auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; padding-top: 22px; padding-bottom: 22px; font-weight: 500; }
     .nav__logo { grid-column: 1 / span 3; }
     .nav__kicker { display: block; grid-column: 5 / span 3; font-size: 14px; line-height: 1.35; }
-    .nav__links { grid-column: 8 / span 2; flex-direction: column; gap: 3px; line-height: 1.35; }
+    .nav__links { grid-column: 9 / span 3; margin-left: calc((100% - 2 * var(--gap)) / 3 * .35); flex-direction: column; gap: 3px; line-height: 1.35; }
     .nav__links a { width: max-content; background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease); }
     .nav__links a:hover { background-size: 100% 1px; }
-    .nav__tools { grid-column: 10 / span 3; justify-self: end; line-height: 1.35; }
+    .nav__tools { grid-column: 12 / span 1; justify-self: end; line-height: 1.35; }
     .nav .wrap { max-width: none; }
   }
   .nav__menu { display: none; font-size: 15px; }
@@ -202,6 +204,8 @@
   .wk__tile--form img { object-fit: contain; object-position: center; padding: 4% 3%; }
   .wk__foot { margin-top: 32px; align-items: start; }
   .wk__caps { grid-column: 1 / span 7; display: grid; }
+  .wk__foot { position: relative; }
+  .wk__cta { position: absolute; right: 0; top: var(--ct, 0px); font-size: 14px; transition: top .4s var(--ease); }
   .wk__cap { grid-area: 1 / 1; opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .6s var(--ease); pointer-events: none; }
   .wk__cap.is-on { opacity: 1; transform: none; transition-delay: .2s; pointer-events: auto; }
   .wk__sc { font-size: clamp(20px, 1.7vw, 26px); font-weight: 300; letter-spacing: -0.01em; line-height: 1.2; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--ink); }
@@ -218,6 +222,7 @@
     .wk__slide--duo .wk__win { grid-column: 1 / -1; }
     .wk__col--pair { grid-column: 8 / span 5; }
     .wk__caps { grid-column: 1 / -1; }
+    .wk__cta { position: static; grid-column: 1 / -1; margin-top: 24px; }
     .wk__nav { grid-column: 1 / -1; justify-self: stretch; justify-content: space-between; margin-top: 24px; }
   }
   @media (max-width: 600px) {
@@ -463,6 +468,10 @@
   .svx__desc { margin-top: 18px; font-size: 15px; line-height: 1.7; }
   .svx__list { margin-top: 22px; display: grid; gap: 10px; font-size: 15px; line-height: 1.45; }
   .svx__list li { position: relative; padding-left: 22px; }
+  .svx__it { display: flex; flex-direction: column; }
+  .svx__cta { margin-top: auto; padding-top: 26px; font-size: 14px; }
+  .svx__cta .u { background-size: 0 1px; background-position: 0 100%; }
+  .svx__cta .u:hover, .svx__cta .u:focus-visible { background-size: 100% 1px; }
   .svx__list li::before { content: ''; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border: 1px solid var(--accent); }
   @media (max-width: 800px) {
     .svx { grid-template-columns: 1fr; }
@@ -654,7 +663,6 @@
       <a href="#kontakt"><span class="pl">Kontakt</span><span class="en">Contact</span></a>
     </nav>
     <div class="nav__tools">
-      <button class="xbtn" type="button" data-xtoggle aria-pressed="false" title="G"><i></i><span><span class="pl">Konstrukcja</span><span class="en">Structure</span></span></button>
       <div class="lang" role="group" aria-label="Język / Language"><button type="button" data-lang="pl" aria-pressed="true">PL</button><span>/</span><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
       <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav"><span class="pl">Menu</span><span class="en">Menu</span></button>
     </div>
@@ -805,6 +813,7 @@
           <div class="wk__cap"><p class="wk__sc"><span class="pl">Wystawa na targach Architect@Work</span><span class="en">An exhibition at Architect@Work</span></p><p class="wk__ds just"><span class="pl">Podstrona wystawy w&nbsp;serwisie Wise Habit. Pokazuje prezentowane projekty, ich autorów i&nbsp;panel dyskusyjny, czytelnie na komputerze i&nbsp;na telefonie.</span><span class="en">An exhibition subpage on the Wise Habit website. It presents the projects on show, their authors and the panel discussion, clearly on desktop and on mobile.</span></p><p class="wk__ln"><a class="u" href="https://agency.wisehabit.com/power-of-three" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
         </div>
         <div class="wk__nav"><div class="wk__bars"><button type="button" aria-label="Wise Habit, Agency for the Future"></button><button type="button" aria-label="Mikołaj Markowski"></button><button type="button" aria-label="Laap Drones"></button><button type="button" aria-label="Lust for Life. Lust for Business."></button><button type="button" aria-label="The Power of Three, Architect@Work"></button></div><div class="wk__arrows"><button type="button" class="wk__arr" data-dir="-1" aria-label="Poprzedni projekt"><svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="wk__arr" data-dir="1" aria-label="Następny projekt"><svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+        <p class="wk__cta"><a class="u" href="#kontakt"><span class="pl">Skontaktuj się.</span><span class="en">Get in touch.</span></a></p>
       </div>
     </div>
   </section>
@@ -925,6 +934,7 @@
             <li><span class="pl">Odświeżenie designu i&nbsp;przeniesienie strony</span><span class="en">Redesign and site migration</span></li>
             <li><span class="pl">Formularze, wersje językowe i&nbsp;czat AI</span><span class="en">Forms, language versions and AI chat</span></li>
           </ul>
+          <p class="svx__cta"><a class="u" href="#kontakt"><span class="pl">Skontaktuj się.</span><span class="en">Get in touch.</span></a></p>
         </li>
         <li class="svx__it" data-reveal>
           <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26.22,94.41A6,6,0,0,0,26,96v16A38,38,0,0,0,42,143V216a6,6,0,0,0,6,6H208a6,6,0,0,0,6-6V143A38,38,0,0,0,230,112V96a5.91,5.91,0,0,0-.23-1.64L215.43,44.15A14.07,14.07,0,0,0,202,34H54A14.07,14.07,0,0,0,40.57,44.15Zm25.89-47A2,2,0,0,1,54,46H202a2,2,0,0,1,1.92,1.45L216.05,90H40ZM102,102h52v10a26,26,0,0,1-52,0Zm-64,0H90v10a26,26,0,0,1-38.18,23,6,6,0,0,0-1.65-1A26,26,0,0,1,38,112ZM202,210H54V148.66a38,38,0,0,0,42-16.21,37.95,37.95,0,0,0,64,0,38,38,0,0,0,42,16.21Zm3.83-76a6,6,0,0,0-1.65,1A26,26,0,0,1,166,112V102h52v10A26,26,0,0,1,205.83,134Z"/></svg></span></div>
@@ -937,6 +947,7 @@
             <li><span class="pl">Integracje z&nbsp;płatnościami i&nbsp;CRM</span><span class="en">Payment and CRM integrations</span></li>
             <li><span class="pl">Zmiany wizualne i&nbsp;w&nbsp;układzie sklepu</span><span class="en">Visual and layout changes</span></li>
           </ul>
+          <p class="svx__cta"><a class="u" href="#kontakt"><span class="pl">Skontaktuj się.</span><span class="en">Get in touch.</span></a></p>
         </li>
         <li class="svx__it" data-reveal>
           <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222.72,67.91l-88-48.18a13.9,13.9,0,0,0-13.44,0l-88,48.18A14,14,0,0,0,26,80.18v95.64a14,14,0,0,0,7.28,12.27l88,48.18a13.92,13.92,0,0,0,13.44,0l88-48.18A14,14,0,0,0,230,175.82V80.18A14,14,0,0,0,222.72,67.91ZM127,30.25a2,2,0,0,1,1.92,0L212.51,76,178.57,94.57,94.05,48.31ZM122,223,39,177.57a2,2,0,0,1-1-1.75V86.66l84,46ZM43.49,76,81.56,55.15l84.51,46.26L128,122.24ZM218,175.82a2,2,0,0,1-1,1.75h0L134,223V132.64l36-19.71V152a6,6,0,0,0,12,0V106.37l36-19.71Z"/></svg></span></div>
@@ -949,6 +960,7 @@
             <li><span class="pl">Aktualizacje i&nbsp;poprawki katalogowe</span><span class="en">Catalogue updates and corrections</span></li>
             <li><span class="pl">Banery i&nbsp;grafiki produktowe</span><span class="en">Banners and product visuals</span></li>
           </ul>
+          <p class="svx__cta"><a class="u" href="#kontakt"><span class="pl">Skontaktuj się.</span><span class="en">Get in touch.</span></a></p>
         </li>
         <li class="svx__it" data-reveal>
           <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.24,75.76l-32-32a6,6,0,0,0-8.48,8.48L225.51,74H208c-48,0-59.44,27.46-69.54,51.69-9.43,22.64-17.66,42.33-53,44.16a38,38,0,1,0,.06,12c43.34-2.06,54.29-28.29,64-51.55C159.44,106.53,168,86,208,86h17.51l-21.75,21.76a6,6,0,1,0,8.48,8.48l32-32A6,6,0,0,0,244.24,75.76ZM48,202a26,26,0,1,1,26-26A26,26,0,0,1,48,202Z"/></svg></span></div>
@@ -961,6 +973,7 @@
             <li><span class="pl">Mailingi i&nbsp;kampanie e-mail</span><span class="en">Email campaigns and mailings</span></li>
             <li><span class="pl">Scrapowanie i&nbsp;budowanie baz danych</span><span class="en">Data scraping and database building</span></li>
           </ul>
+          <p class="svx__cta"><a class="u" href="#kontakt"><span class="pl">Skontaktuj się.</span><span class="en">Get in touch.</span></a></p>
         </li>
       </ul>
     </div>
@@ -1129,10 +1142,6 @@
     if (on) xLabels();
   }
   xBtns.forEach(function (b) { b.addEventListener('click', function () { setX(!root.classList.contains('is-xray')); }); });
-  document.addEventListener('keydown', function (e) {
-    if ((e.key === 'g' || e.key === 'G') && !e.metaKey && !e.ctrlKey && !e.altKey && !/input|textarea|select/i.test(e.target.tagName)) setX(!root.classList.contains('is-xray'));
-    if (e.key === 'Escape' && root.classList.contains('is-xray')) setX(false);
-  });
 
   /* ── Pojawianie się przy przewijaniu ── */
   var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } }); }, { rootMargin: '0px 0px -12% 0px' });
@@ -1200,7 +1209,17 @@
       [titles, caps].forEach(function (g) { g.forEach(function (e, n) { e.classList.toggle('is-on', n === i); }); });
       bb.forEach(function (b, n) { b.setAttribute('aria-current', n === i); });
       place(); if (seen) sc[i].forEach(function (s) { s.play(1200); });
+      ctaPos();
     }
+    var cta = wk.querySelector('.wk__cta'), foot = wk.querySelector('.wk__foot');
+    function ctaPos() {
+      if (!cta || !caps[i]) return;
+      var ref = caps[i].querySelector('.wk__ln') || caps[i].querySelector('.wk__ds');
+      var fr = foot.getBoundingClientRect(), rr = ref.getBoundingClientRect();
+      var top = ref.classList.contains('wk__ln') ? rr.top - fr.top : rr.bottom - fr.top - cta.offsetHeight;
+      cta.style.setProperty('--ct', Math.round(top) + 'px');
+    }
+    window.addEventListener('resize', ctaPos);
     wk.querySelectorAll('.wk__arr').forEach(function (b) { b.addEventListener('click', function () { go(i + +b.dataset.dir); }); });
     bb.forEach(function (b, k) { b.addEventListener('click', function () { go(k); }); });
     var x0 = 0, dx = 0, down = false, moved = false;

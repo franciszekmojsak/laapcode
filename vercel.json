@@ -1,47 +1,118 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/index", "permanent": false },
-    { "source": "/pl", "destination": "/index", "permanent": true },
-    { "source": "/pl/", "destination": "/index", "permanent": true },
-    { "source": "/pl/temu.html", "destination": "/temu", "permanent": true },
-    { "source": "/pl/wp.html", "destination": "/importy-produktowe-wordpress-woocommerce", "permanent": true },
-    { "source": "/wp", "destination": "/importy-produktowe-wordpress-woocommerce", "permanent": true },
-    { "source": "/pl/privacy.html", "destination": "/privacy", "permanent": true },
-    { "source": "/pl/terms.html", "destination": "/terms", "permanent": true }
+    {
+      "source": "/pl",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pl/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pl/temu.html",
+      "destination": "/temu",
+      "permanent": true
+    },
+    {
+      "source": "/pl/wp.html",
+      "destination": "/importy-produktowe-wordpress-woocommerce",
+      "permanent": true
+    },
+    {
+      "source": "/wp",
+      "destination": "/importy-produktowe-wordpress-woocommerce",
+      "permanent": true
+    },
+    {
+      "source": "/pl/privacy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/pl/terms.html",
+      "destination": "/terms",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/index", "destination": "/pl/index.html" },
-    { "source": "/temu", "destination": "/pl/temu.html" },
-    { "source": "/importy-produktowe-wordpress-woocommerce", "destination": "/pl/wp.html" },
-    { "source": "/privacy", "destination": "/pl/privacy.html" },
-    { "source": "/terms", "destination": "/pl/terms.html" }
+    {
+      "source": "/",
+      "destination": "/redesign-v2/index.html"
+    },
+    {
+      "source": "/index",
+      "destination": "/redesign-v2/index.html"
+    },
+    {
+      "source": "/stara",
+      "destination": "/pl/index.html"
+    },
+    {
+      "source": "/temu",
+      "destination": "/pl/temu.html"
+    },
+    {
+      "source": "/importy-produktowe-wordpress-woocommerce",
+      "destination": "/pl/wp.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/pl/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/pl/terms.html"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     },
     {
       "source": "/img/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/css/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
       ]
     },
     {
       "source": "/js/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
       ]
     }
   ]
