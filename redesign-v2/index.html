@@ -188,11 +188,14 @@
   .wk__vp img { width: 100%; height: auto; will-change: transform; }
   .wk__col { grid-column: 10 / span 3; display: grid; grid-template-rows: 1fr 1fr; gap: var(--gap); min-height: 0; }
   .wk__col--mid { grid-column: 6 / span 4; }
-  .wk__phone { grid-column: 10 / span 3; position: relative; height: 100%; padding: 10px 6px; border: 1px solid var(--ink); border-radius: 18px; background: var(--sheet); }
-  .wk__phone .wk__vp { height: 100%; border: 1px solid var(--ink); border-radius: 10px; }
+  .wk__col--one { grid-template-rows: 1fr; }
+  .wk__col--pair { grid-column: 6 / -1; grid-template-rows: 1fr; grid-template-columns: 1fr 1fr; column-gap: var(--gap); }
+  .wk__phone { grid-column: 10 / span 3; position: relative; height: 100%; border: 1px solid var(--ink); background: var(--sheet); overflow: hidden; }
+  .wk__phone .wk__vp { height: 100%; }
   .wk__tile { position: relative; border: 1px solid var(--ink); overflow: hidden; min-height: 0; background: var(--sheet); }
   .wk__tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 1.2s var(--ease); }
   .wk__tile:hover img { transform: scale(1.04); }
+  .wk__tile--form img { object-position: left top; }
   .wk__foot { margin-top: 32px; align-items: start; }
   .wk__caps { grid-column: 1 / span 7; display: grid; }
   .wk__cap { grid-area: 1 / 1; opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .6s var(--ease); pointer-events: none; }
@@ -207,7 +210,8 @@
   @media (max-width: 900px) {
     .wk__titles { grid-column: 1 / -1; }
     .wk__win { grid-column: 1 / span 7; } .wk__col--mid { grid-column: 8 / span 5; }
-    .wk__phone, .wk__slide > .wk__col:not(.wk__col--mid) { display: none; }
+    .wk__phone, .wk__slide > .wk__col:not(.wk__col--mid):not(.wk__col--pair) { display: none; }
+    .wk__col--pair { grid-column: 8 / span 5; }
     .wk__caps { grid-column: 1 / -1; }
     .wk__nav { grid-column: 1 / -1; justify-self: stretch; justify-content: space-between; margin-top: 24px; }
   }
@@ -215,6 +219,8 @@
     .wk__slide { aspect-ratio: auto; height: 520px; max-height: none; grid-template-rows: minmax(0, 1.4fr) minmax(0, 1fr); row-gap: var(--gap); }
     .wk__win { grid-column: 1 / -1; grid-row: 1; }
     .wk__col--mid { grid-column: 1 / -1; grid-row: 2; grid-template-rows: 1fr; grid-template-columns: 1fr 1fr; }
+    .wk__col--pair { grid-column: 1 / -1; grid-row: 2; }
+    .wk__col--one { grid-template-columns: 1fr; }
     .wk__bar span { display: none; }
     .wk__arr { width: 48px; height: 48px; }
   }
@@ -441,25 +447,23 @@
 
   /* ── Usługi ── */
   /* ── Usługi: cztery karty w siatce 2 × 2 ── */
-  .svx { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
-  .svx__it { padding: clamp(32px, 3.4vw, 56px) clamp(24px, 3vw, 56px) clamp(40px, 4vw, 64px) 0; border-bottom: 1px solid var(--ink); }
-  .svx__it:nth-child(2n) { padding-left: clamp(24px, 3vw, 56px); padding-right: 0; border-left: 1px solid var(--ink); }
+  .svx { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(48px, 6vw, 112px); row-gap: clamp(56px, 6vw, 104px); }
+  .svx__it { padding: 0; }
   .svx__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: clamp(28px, 3vw, 48px); }
   .svx__icon { display: block; width: 44px; height: 44px; color: var(--accent); transition: transform .6s var(--ease); }
   .svx__icon svg { width: 100%; height: 100%; }
   .svx__it:hover .svx__icon { transform: translateY(-4px); }
-  .svx__no { font: 400 12px/1 var(--mono); }
   .svx__title { font-size: clamp(30px, 3vw, 48px); font-weight: 300; line-height: 1.05; letter-spacing: -0.03em; }
   .svx__sub { margin-top: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--ink); font-size: clamp(16px, 1.2vw, 19px); line-height: 1.4; }
-  .svx__desc { margin-top: 18px; max-width: 34em; font-size: 15px; line-height: 1.7; }
+  .svx__desc { margin-top: 18px; font-size: 15px; line-height: 1.7; }
   .svx__list { margin-top: 22px; display: grid; gap: 10px; font-size: 15px; line-height: 1.45; }
   .svx__list li { position: relative; padding-left: 22px; }
   .svx__list li::before { content: ''; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border: 1px solid var(--accent); }
   @media (max-width: 800px) {
     .svx { grid-template-columns: 1fr; }
-    .svx__it, .svx__it:nth-child(2n) { padding: 36px 0 44px; border-left: 0; }
   }
   .svcs { border-bottom: 1px solid var(--ink); }
+  #uslugi .sec-head { margin-bottom: clamp(48px, 5vw, 88px); }
   .svc { align-items: start; padding: clamp(36px, 3.4vw, 56px) 0; border-top: 1px solid var(--ink); }
   .svc__head { grid-column: 1 / span 6; display: flex; align-items: center; gap: .42em; font-size: clamp(30px, 4vw, 66px); font-weight: 300; line-height: 1; letter-spacing: -0.03em; transition: transform .6s var(--ease); }
   .svc:hover .svc__head { transform: translateX(14px); }
@@ -780,11 +784,11 @@
       </div>
       <div class="wk__view">
         <div class="wk__track">
-          <div class="wk__slide is-on"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>agency.wisehabit.com</span></div><div class="wk__vp"><img src="../img/laapcode_uslugi_stronainternetowa_5.webp" alt="Wise Habit, Agency for the Future" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/agency-archisnob.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/agency-klimek-las.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/agency-m-liczby.webp" alt="" loading="lazy" decoding="async"></div></div></div>
-          <div class="wk__slide no-m"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>portfolio</span></div><div class="wk__vp"><img src="../img/wybrane/portfolio-start.webp" alt="Mikołaj Markowski" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/portfolio-yeast-coast.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/portfolio-zin.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__col"><figure class="wk__tile"><img src="../img/wybrane/portfolio-miski.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/portfolio-wentylator.webp" alt="" loading="lazy" decoding="async"></figure></div></div>
-          <div class="wk__slide no-m"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>laap drones</span></div><div class="wk__vp"><img src="../img/laapcode_uslugi_stronainternetowa_2.webp" alt="Laap Drones" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/laap-galeria.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-blog.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__col"><figure class="wk__tile"><img src="../img/wybrane/laap-start.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-uslugi.webp" alt="" loading="lazy" decoding="async"></figure></div></div>
-          <div class="wk__slide"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>agency.wisehabit.com/conference-lust-for-life</span></div><div class="wk__vp"><img src="../img/wybrane/lfl-desktop.webp" alt="Lust for Life. Lust for Business." loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/lfl-prelegenci.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/lfl-wydarzenia.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/lfl-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
-          <div class="wk__slide"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>agency.wisehabit.com/power-of-three</span></div><div class="wk__vp"><img src="../img/wybrane/p3-desktop.webp" alt="The Power of Three, Architect@Work" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/p3-panel.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/p3-ludzie.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/p3-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+          <div class="wk__slide is-on"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/agency-strona.webp" alt="Wise Habit, Agency for the Future" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/agency-archisnob-sklep.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile wk__tile--form"><img src="../img/wybrane/agency-formularz.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/agency-m-design.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+          <div class="wk__slide no-m"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/portfolio-start.webp" alt="Mikołaj Markowski" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--pair"><figure class="wk__tile"><img src="../img/wybrane/portfolio-proces.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/portfolio-veins.webp" alt="" loading="lazy" decoding="async"></figure></div></div>
+          <div class="wk__slide no-m"><div class="wk__win"><div class="wk__vp"><img src="../img/laapcode_uslugi_stronainternetowa_2.webp" alt="Laap Drones" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/laap-uslugi.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-blog.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__col"><figure class="wk__tile"><img src="../img/wybrane/laap-galeria.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-start.webp" alt="" loading="lazy" decoding="async"></figure></div></div>
+          <div class="wk__slide"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/lfl-desktop.webp" alt="Lust for Life. Lust for Business." loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/lfl-wydarzenia.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/lfl-partnerzy.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/lfl-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+          <div class="wk__slide"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/p3-desktop.webp" alt="The Power of Three, Architect@Work" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid wk__col--one"><figure class="wk__tile"><img src="../img/wybrane/p3-ludzie.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/p3-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
         </div>
       </div>
       <div class="wk__foot grid">
@@ -906,7 +910,7 @@
       </header>
       <ul class="svx">
         <li class="svx__it" data-reveal>
-          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,42H40A14,14,0,0,0,26,56V200a14,14,0,0,0,14,14H216a14,14,0,0,0,14-14V56A14,14,0,0,0,216,42Zm2,158a2,2,0,0,1-2,2H40a2,2,0,0,1-2-2V56a2,2,0,0,1,2-2H216a2,2,0,0,1,2,2ZM78,84A10,10,0,1,1,68,74,10,10,0,0,1,78,84Zm40,0a10,10,0,1,1-10-10A10,10,0,0,1,118,84Z"/></svg></span><span class="svx__no">01</span></div>
+          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,42H40A14,14,0,0,0,26,56V200a14,14,0,0,0,14,14H216a14,14,0,0,0,14-14V56A14,14,0,0,0,216,42Zm2,158a2,2,0,0,1-2,2H40a2,2,0,0,1-2-2V56a2,2,0,0,1,2-2H216a2,2,0,0,1,2,2ZM78,84A10,10,0,1,1,68,74,10,10,0,0,1,78,84Zm40,0a10,10,0,1,1-10-10A10,10,0,0,1,118,84Z"/></svg></span></div>
           <h3 class="svx__title"><span class="pl">Strony internetowe</span><span class="en">Websites</span></h3>
           <p class="svx__sub"><span class="pl">Projektowanie i&nbsp;wdrażanie stron firmowych</span><span class="en">Design and build of company websites</span></p>
           <p class="svx__desc just"><span class="pl">Strony budowane od zera, z&nbsp;naciskiem na estetykę dopasowaną do Twojej marki i&nbsp;widoczność w&nbsp;wyszukiwarkach, zarówno w&nbsp;SEO, jak i&nbsp;GEO.</span><span class="en">Websites built from scratch, with a&nbsp;focus on aesthetics tailored to your brand and visibility in search engines, both SEO and GEO.</span></p>
@@ -918,7 +922,7 @@
           </ul>
         </li>
         <li class="svx__it" data-reveal>
-          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26.22,94.41A6,6,0,0,0,26,96v16A38,38,0,0,0,42,143V216a6,6,0,0,0,6,6H208a6,6,0,0,0,6-6V143A38,38,0,0,0,230,112V96a5.91,5.91,0,0,0-.23-1.64L215.43,44.15A14.07,14.07,0,0,0,202,34H54A14.07,14.07,0,0,0,40.57,44.15Zm25.89-47A2,2,0,0,1,54,46H202a2,2,0,0,1,1.92,1.45L216.05,90H40ZM102,102h52v10a26,26,0,0,1-52,0Zm-64,0H90v10a26,26,0,0,1-38.18,23,6,6,0,0,0-1.65-1A26,26,0,0,1,38,112ZM202,210H54V148.66a38,38,0,0,0,42-16.21,37.95,37.95,0,0,0,64,0,38,38,0,0,0,42,16.21Zm3.83-76a6,6,0,0,0-1.65,1A26,26,0,0,1,166,112V102h52v10A26,26,0,0,1,205.83,134Z"/></svg></span><span class="svx__no">02</span></div>
+          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26.22,94.41A6,6,0,0,0,26,96v16A38,38,0,0,0,42,143V216a6,6,0,0,0,6,6H208a6,6,0,0,0,6-6V143A38,38,0,0,0,230,112V96a5.91,5.91,0,0,0-.23-1.64L215.43,44.15A14.07,14.07,0,0,0,202,34H54A14.07,14.07,0,0,0,40.57,44.15Zm25.89-47A2,2,0,0,1,54,46H202a2,2,0,0,1,1.92,1.45L216.05,90H40ZM102,102h52v10a26,26,0,0,1-52,0Zm-64,0H90v10a26,26,0,0,1-38.18,23,6,6,0,0,0-1.65-1A26,26,0,0,1,38,112ZM202,210H54V148.66a38,38,0,0,0,42-16.21,37.95,37.95,0,0,0,64,0,38,38,0,0,0,42,16.21Zm3.83-76a6,6,0,0,0-1.65,1A26,26,0,0,1,166,112V102h52v10A26,26,0,0,1,205.83,134Z"/></svg></span></div>
           <h3 class="svx__title"><span class="pl">Sklepy internetowe</span><span class="en">Online stores</span></h3>
           <p class="svx__sub"><span class="pl">Budowa i&nbsp;rozwój e-commerce</span><span class="en">Building and growing e-commerce</span></p>
           <p class="svx__desc just"><span class="pl">Nowy sklep od projektu po start sprzedaży albo rozbudowa sklepu, który już działa.</span><span class="en">A&nbsp;new store from design to first sales, or growing a&nbsp;store that already runs.</span></p>
@@ -930,7 +934,7 @@
           </ul>
         </li>
         <li class="svx__it" data-reveal>
-          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222.72,67.91l-88-48.18a13.9,13.9,0,0,0-13.44,0l-88,48.18A14,14,0,0,0,26,80.18v95.64a14,14,0,0,0,7.28,12.27l88,48.18a13.92,13.92,0,0,0,13.44,0l88-48.18A14,14,0,0,0,230,175.82V80.18A14,14,0,0,0,222.72,67.91ZM127,30.25a2,2,0,0,1,1.92,0L212.51,76,178.57,94.57,94.05,48.31ZM122,223,39,177.57a2,2,0,0,1-1-1.75V86.66l84,46ZM43.49,76,81.56,55.15l84.51,46.26L128,122.24ZM218,175.82a2,2,0,0,1-1,1.75h0L134,223V132.64l36-19.71V152a6,6,0,0,0,12,0V106.37l36-19.71Z"/></svg></span><span class="svx__no">03</span></div>
+          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222.72,67.91l-88-48.18a13.9,13.9,0,0,0-13.44,0l-88,48.18A14,14,0,0,0,26,80.18v95.64a14,14,0,0,0,7.28,12.27l88,48.18a13.92,13.92,0,0,0,13.44,0l88-48.18A14,14,0,0,0,230,175.82V80.18A14,14,0,0,0,222.72,67.91ZM127,30.25a2,2,0,0,1,1.92,0L212.51,76,178.57,94.57,94.05,48.31ZM122,223,39,177.57a2,2,0,0,1-1-1.75V86.66l84,46ZM43.49,76,81.56,55.15l84.51,46.26L128,122.24ZM218,175.82a2,2,0,0,1-1,1.75h0L134,223V132.64l36-19.71V152a6,6,0,0,0,12,0V106.37l36-19.71Z"/></svg></span></div>
           <h3 class="svx__title"><span class="pl">Obsługa e-commerce</span><span class="en">E-commerce care</span></h3>
           <p class="svx__sub"><span class="pl">Importy, katalogi, produkty i&nbsp;optymalizacja</span><span class="en">Imports, catalogues, products and optimisation</span></p>
           <p class="svx__desc just"><span class="pl">Bieżąca praca przy sklepie i&nbsp;katalogu produktów, także na marketplace’ach: WooCommerce, IdoSell, Empik, Allegro, OLX i&nbsp;inne. Jako stała współpraca albo jednorazowe zlecenie.</span><span class="en">Day-to-day work on your store and product catalogue, marketplaces included: WooCommerce, IdoSell, Empik, Allegro, OLX and more. As ongoing cooperation or a&nbsp;one-off job.</span></p>
@@ -942,7 +946,7 @@
           </ul>
         </li>
         <li class="svx__it" data-reveal>
-          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.24,75.76l-32-32a6,6,0,0,0-8.48,8.48L225.51,74H208c-48,0-59.44,27.46-69.54,51.69-9.43,22.64-17.66,42.33-53,44.16a38,38,0,1,0,.06,12c43.34-2.06,54.29-28.29,64-51.55C159.44,106.53,168,86,208,86h17.51l-21.75,21.76a6,6,0,1,0,8.48,8.48l32-32A6,6,0,0,0,244.24,75.76ZM48,202a26,26,0,1,1,26-26A26,26,0,0,1,48,202Z"/></svg></span><span class="svx__no">04</span></div>
+          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.24,75.76l-32-32a6,6,0,0,0-8.48,8.48L225.51,74H208c-48,0-59.44,27.46-69.54,51.69-9.43,22.64-17.66,42.33-53,44.16a38,38,0,1,0,.06,12c43.34-2.06,54.29-28.29,64-51.55C159.44,106.53,168,86,208,86h17.51l-21.75,21.76a6,6,0,1,0,8.48,8.48l32-32A6,6,0,0,0,244.24,75.76ZM48,202a26,26,0,1,1,26-26A26,26,0,0,1,48,202Z"/></svg></span></div>
           <h3 class="svx__title"><span class="pl">Automatyzacje</span><span class="en">Automation</span></h3>
           <p class="svx__sub"><span class="pl">Integracje, AI, API i&nbsp;usprawnianie procesów</span><span class="en">Integrations, AI, APIs and process improvements</span></p>
           <p class="svx__desc just"><span class="pl">Narzędzia i&nbsp;integracje, które oszczędzają czas i&nbsp;ułatwiają obsługę klientów.</span><span class="en">Tools and integrations that save time and make serving your clients easier.</span></p>
