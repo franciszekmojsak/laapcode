@@ -15,12 +15,14 @@
   @font-face { font-family: 'Manrope'; font-weight: 400; font-display: swap; src: url('../fonts/manrope-latin-400-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
   @font-face { font-family: 'Manrope'; font-weight: 400; font-display: swap; src: url('../fonts/manrope-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
   @font-face { font-family: 'Manrope'; font-weight: 500; font-display: swap; src: url('../fonts/manrope-latin-500-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Manrope'; font-weight: 600; font-display: swap; src: url('../fonts/manrope-latin-600-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
   @font-face { font-family: 'Manrope'; font-weight: 500; font-display: swap; src: url('../fonts/manrope-latin-ext-500-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'Manrope'; font-weight: 600; font-display: swap; src: url('../fonts/manrope-latin-ext-600-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
   @font-face { font-family: 'IBM Plex Mono'; font-weight: 400; font-display: swap; src: url('../fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
   @font-face { font-family: 'IBM Plex Mono'; font-weight: 400; font-display: swap; src: url('../fonts/ibm-plex-mono-latin-ext-400-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 
   :root {
-    --sheet: #FFFFFF;
+    --sheet: #FAFAFA;
     --ink: #141414;
     --pad: 72px;
     --gap: 24px;
@@ -70,6 +72,22 @@
   .xbtn[aria-pressed="true"] i { background: var(--ink); }
   .lang { display: flex; gap: 6px; }
   .lang button[aria-pressed="true"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .nav__kicker { display: none; }
+  @media (min-width: 961px) {
+    .nav { transition: transform .5s var(--ease); }
+    .nav.is-tucked { transform: translateY(-100%); }
+    .nav { transition: transform .5s var(--ease), background-color .4s; }
+    .nav.is-top { background-color: transparent; }
+    .nav.is-top .nav__progress { opacity: 0; }
+    .nav__in { height: auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; padding-top: 22px; padding-bottom: 22px; font-weight: 600; }
+    .nav__logo { grid-column: 1 / span 3; font-weight: 600; }
+    .nav__kicker { display: block; grid-column: 5 / span 3; font-size: 14px; line-height: 1.35; }
+    .nav__links { grid-column: 8 / span 2; flex-direction: column; gap: 3px; line-height: 1.35; }
+    .nav__links a { width: max-content; background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease); }
+    .nav__links a:hover { background-size: 100% 1px; }
+    .nav__tools { grid-column: 10 / span 3; justify-self: end; line-height: 1.35; }
+    .nav .wrap { max-width: none; }
+  }
   .nav__menu { display: none; font-size: 15px; }
   .nav__progress { position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: var(--ink); transform-origin: 0 50%; transform: scaleX(0); }
   @media (max-width: 960px) {
@@ -90,13 +108,14 @@
 
   /* ── HERO ── */
   .hero { position: relative; overflow: hidden; }
-  .hero__layer { position: relative; padding-top: calc(var(--nav) + clamp(10px, 1.2vw, 20px)); padding-bottom: clamp(56px, 7vw, 112px); }
+  .hero__layer { position: relative; padding-top: calc(var(--nav) + clamp(10px, 1.2vw, 20px)); padding-bottom: clamp(40px, 4.5vw, 72px); }
+  @media (min-width: 961px) { .hero__layer { padding-top: 150px; } }
   .hero__front { --h: clamp(48px, 7.6vw, 146px); row-gap: clamp(24px, 2.6vw, 40px); align-items: start; }
   .hero__kicker { grid-column: 1 / -1; grid-row: 1; font-size: 14px; font-weight: 500; }
   .hero__title { grid-column: 1 / -1; grid-row: 2; font-size: var(--h); font-weight: 300; line-height: .96; letter-spacing: -0.045em; }
   .hero__title .line { display: block; overflow: hidden; padding: 0 .06em .3em 0; margin-bottom: -.3em; }
   .hero__title .line > span { display: inline-block; }
-  .hero__title .l2 { margin-left: calc((100% - 11 * var(--gap)) / 12 * 6 + 6 * var(--gap)); }
+  .hero__title .l2 { margin-left: calc((100% - 11 * var(--gap)) / 12 * 4 + 4 * var(--gap)); }
   .hero__title .l3 { margin-left: calc((100% - 11 * var(--gap)) / 12 * 6 + 6 * var(--gap)); }
   .hero__photo { grid-column: 1 / span 4; grid-row: 2 / span 2; margin-top: calc(var(--h) * 2.06); }
   .hero__photo img { width: 100%; }
@@ -104,6 +123,101 @@
   .hero__cta { grid-column: 10 / span 3; grid-row: 3; align-self: end; }
   .hero .hs { --u: min(.84vw, 13.5px); margin-top: 0; padding-bottom: calc(5 * var(--u)); z-index: 2; }
   .hero__galhint { position: relative; z-index: 2; margin-top: clamp(-40px, -2vw, -16px); font: 400 12px/1.4 var(--mono); }
+  /* ── HERO na cały ekran: nagłówek, wielki tytuł, pięć zrzutów przy dolnej krawędzi ── */
+  @media (min-width: 901px) {
+    .hero { display: flex; flex-direction: column; height: 86vh; height: 86svh; min-height: 600px; }
+    .hero__layer { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; padding-bottom: 72px; width: 100%; }
+    .hero__front { --h: clamp(56px, 8vw, 260px); }
+    .hero .hero__layer, .hero .hero__code .hero__layer { max-width: none; }
+    .hero__draw { width: 100%; }
+    .hero__title { grid-row: auto; }
+    .hero__title .l2 { margin-left: 0; text-align: right; }
+    .hstrip-w { flex: 0 0 auto; }
+  }
+  .hero .hero__title { font-weight: 400; letter-spacing: -0.05em; }
+  .lead { padding: clamp(24px, 2.5vw, 48px) 0 clamp(24px, 3vw, 56px); }
+  .lead .hero__intro { grid-column: 1 / span 5; grid-row: 1; font-size: 15px; padding-top: 0; }
+  .lead .hero__cta { grid-column: 10 / span 3; grid-row: 1; align-self: end; }
+  .js .lead .hero__intro, .js .lead .hero__cta { opacity: 1; }
+  @media (max-width: 900px) {
+      .lead .hero__intro, .lead .hero__cta { grid-column: 1 / -1; grid-row: auto; }
+    .lead .hero__cta { margin-top: 24px; }
+  }
+  /* ── Hero: kartki z realizacjami jako ledwo widoczne tło ── */
+  .hero__bg { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; pointer-events: none; opacity: .09; -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent); mask-image: linear-gradient(to bottom, #000 72%, transparent); }
+  .hero__bg .hs { --u: clamp(8px, calc(100svh / 50), 22px); overflow: visible; align-items: center; margin: 0; transform: translate3d(calc(var(--mx, 0) * -24px), calc(var(--my, 0) * -14px), 0); transition: transform 1.6s var(--ease); }
+  .hero__bg .hs__row { padding: 0; }
+  .hero__bg .hs__cap { display: none; }
+  .js .hero__bg { opacity: 0; transition: opacity 1.6s var(--ease) .3s; }
+  .is-loaded .hero__bg { opacity: .09; }
+  .hero__layer { z-index: 1; }
+  /* ── Hero: pięć zrzutów pod nagłówkiem ── */
+  .hstrip-w { position: relative; z-index: 2; }
+  .hstrip { display: flex; align-items: flex-end; }
+  .hstrip__it { position: relative; flex: none; width: calc(var(--w) * 100%); aspect-ratio: var(--a); overflow: hidden; background: var(--sheet); }
+  .hstrip__it img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transition: transform 1.2s var(--ease); }
+  .hstrip__it:hover img { transform: scale(1.03); }
+  .hstrip__it figcaption { position: absolute; left: 0; bottom: 0; padding: 6px 10px; background: var(--sheet); font: 400 11px/1.3 var(--mono); opacity: 0; transform: translateY(100%); transition: opacity .3s, transform .5s var(--ease); }
+  .hstrip__it:hover figcaption { opacity: 1; transform: none; }
+  @media (max-width: 900px) { .hstrip__it { width: calc(var(--wm, 0) * 100%); } .hstrip__it:nth-child(n+4) { display: none; } }
+  /* ── Realizacje w hero: karuzela z kolażem ekranów ── */
+  .wkx { overflow-x: clip; }
+  .wk { position: relative; z-index: 2; padding-top: clamp(40px, 5vw, 96px); padding-bottom: clamp(96px, 9vw, 160px); }
+  .wk__head { align-items: end; margin-bottom: 28px; }
+  .wk__kicker { grid-column: 1 / -1; font-size: 14px; margin-bottom: 14px; }
+  .wk__titles { grid-column: 1 / -1; display: grid; }
+  .wk__title { grid-area: 1 / 1; align-self: end; font-size: clamp(32px, 4.2vw, 64px); font-weight: 300; letter-spacing: -0.035em; line-height: 1.04; opacity: 0; transform: translateY(10px); transition: opacity .4s, transform .7s var(--ease); pointer-events: none; }
+  .wk__title.is-on { opacity: 1; transform: none; transition-delay: .2s; }
+  .wk__arrows { display: flex; }
+  .wk__nav { grid-column: 9 / span 4; justify-self: end; display: flex; align-items: center; gap: 28px; }
+  .wk__arr { width: 56px; height: 56px; display: grid; place-items: center; border: 1px solid var(--ink); background: var(--sheet); font-size: 20px; color: var(--ink); cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .wk__arr + .wk__arr { border-left: 0; }
+  .wk__arr:hover, .wk__arr:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .wk__view { overflow: visible; }
+  .wk__track { display: flex; gap: var(--gap); transition: transform 1.1s var(--ease); touch-action: pan-y; user-select: none; }
+  .wk__track.is-drag { transition: none; }
+  .wk__slide { flex: none; width: 100%; aspect-ratio: 2.05; max-height: min(46vh, 520px); min-height: 0; overflow: hidden; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); column-gap: var(--gap); opacity: 0; transition: opacity .9s var(--ease); }
+  .wk__slide.is-on { opacity: 1; }
+  .wk__slide.is-next { opacity: .14; cursor: pointer; }
+  .wk__slide img { pointer-events: none; -webkit-user-drag: none; }
+  .wk__win { grid-column: 1 / span 5; display: flex; flex-direction: column; min-height: 0; border: 1px solid var(--ink); background: var(--sheet); overflow: hidden; }
+  .wk__bar { flex: none; display: flex; align-items: center; gap: 10px; height: 30px; padding: 0 12px; border-bottom: 1px solid var(--ink); font: 400 11px/1 var(--mono); white-space: nowrap; overflow: hidden; }
+  .wk__bar i { flex: none; width: 7px; height: 7px; border: 1px solid var(--ink); border-radius: 50%; }
+  .wk__bar span { margin-left: 6px; overflow: hidden; text-overflow: ellipsis; }
+  .wk__vp { position: relative; flex: 1; overflow: hidden; min-height: 0; }
+  .wk__vp img { width: 100%; height: auto; will-change: transform; }
+  .wk__col { grid-column: 10 / span 3; display: grid; grid-template-rows: 1fr 1fr; gap: var(--gap); min-height: 0; }
+  .wk__col--mid { grid-column: 6 / span 4; }
+  .wk__phone { grid-column: 10 / span 3; position: relative; height: 100%; padding: 10px 6px; border: 1px solid var(--ink); border-radius: 18px; background: var(--sheet); }
+  .wk__phone .wk__vp { height: 100%; border: 1px solid var(--ink); border-radius: 10px; }
+  .wk__tile { position: relative; border: 1px solid var(--ink); overflow: hidden; min-height: 0; background: var(--sheet); }
+  .wk__tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 1.2s var(--ease); }
+  .wk__tile:hover img { transform: scale(1.04); }
+  .wk__foot { margin-top: 32px; align-items: start; }
+  .wk__caps { grid-column: 1 / span 7; display: grid; }
+  .wk__cap { grid-area: 1 / 1; opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .6s var(--ease); pointer-events: none; }
+  .wk__cap.is-on { opacity: 1; transform: none; transition-delay: .2s; pointer-events: auto; }
+  .wk__sc { font-size: clamp(20px, 1.7vw, 26px); font-weight: 300; letter-spacing: -0.01em; line-height: 1.2; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--ink); }
+  .wk__ds { font-size: 15px; max-width: 640px; }
+  .wk__ln { margin-top: 14px; font-size: 14px; }
+  .wk__bars { display: flex; gap: 6px; width: 160px; }
+  .wk__bars button { flex: 1; height: 15px; position: relative; border: 0; background: none; cursor: pointer; }
+  .wk__bars button::before { content: ''; position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: var(--ink); transition: height .3s, top .3s, background .3s; }
+  .wk__bars button[aria-current="true"]::before { background: var(--accent); height: 3px; top: 6px; }
+  @media (max-width: 900px) {
+    .wk__titles { grid-column: 1 / -1; }
+    .wk__win { grid-column: 1 / span 7; } .wk__col--mid { grid-column: 8 / span 5; }
+    .wk__phone, .wk__slide > .wk__col:not(.wk__col--mid) { display: none; }
+    .wk__caps { grid-column: 1 / -1; }
+    .wk__nav { grid-column: 1 / -1; justify-self: stretch; justify-content: space-between; margin-top: 24px; }
+  }
+  @media (max-width: 600px) {
+    .wk__slide { aspect-ratio: auto; height: 520px; max-height: none; grid-template-rows: minmax(0, 1.4fr) minmax(0, 1fr); row-gap: var(--gap); }
+    .wk__win { grid-column: 1 / -1; grid-row: 1; }
+    .wk__col--mid { grid-column: 1 / -1; grid-row: 2; grid-template-rows: 1fr; grid-template-columns: 1fr 1fr; }
+    .wk__bar span { display: none; }
+    .wk__arr { width: 48px; height: 48px; }
+  }
   .btn { display: flex; justify-content: space-between; align-items: center; gap: 24px; width: 100%; padding: 15px 24px; border: 1px solid var(--ink); background: var(--sheet); color: var(--ink); font-size: 14px; line-height: 1; transition: background .2s, color .2s; }
   .btn:hover, .btn:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 
@@ -121,14 +235,6 @@
   .hero__code [data-bp] { position: relative; outline: 1px dashed rgba(255, 255, 255, .45); outline-offset: 7px; }
   .hero__code [data-bp]::after { content: attr(data-label); position: absolute; left: -7px; top: -28px; color: var(--sheet); font: 400 11px/1.2 var(--mono); letter-spacing: 0; white-space: nowrap; -webkit-text-stroke: 0; }
   .hero__code .hero__title[data-bp]::after { top: auto; bottom: calc(100% + 14px); }
-  /* linie siatki przy kursorze */
-  .hero__spot { position: absolute; top: 0; bottom: 0; left: 50%; z-index: 0; width: min(100%, var(--max)); transform: translateX(-50%); padding: 0 var(--pad); pointer-events: none; opacity: 0; transition: opacity .5s var(--ease);
-    -webkit-mask-image: radial-gradient(circle var(--sr, 220px) at var(--sx, -999px) var(--sy, -999px), #000 0%, rgba(0,0,0,.6) 45%, transparent 100%); mask-image: radial-gradient(circle var(--sr, 220px) at var(--sx, -999px) var(--sy, -999px), #000 0%, rgba(0,0,0,.6) 45%, transparent 100%); }
-  .hero__spot .grid { height: 100%; }
-  .hero__spot i { display: block; height: 100%; border-left: 1px solid rgba(20, 20, 20, .26); }
-  .hero__spot i:last-child { border-right: 1px solid rgba(20, 20, 20, .26); }
-  .hero.is-spot .hero__spot { opacity: 1; }
-  .is-xray .hero__spot { display: none; }
   /* linie siatki przy wejściu na stronę */
   .hero__draw { position: absolute; top: 0; bottom: 0; left: 50%; width: min(100%, var(--max)); transform: translateX(-50%); padding: 0 var(--pad); pointer-events: none; z-index: 1; }
   .hero__draw .grid { height: 100%; }
@@ -145,13 +251,21 @@
   .is-loaded .hero__photo { clip-path: inset(0); }
   .is-loaded .hero__kicker, .is-loaded .hero__hint { opacity: 1; transition-delay: .5s; }
   .is-loaded .hero__intro, .is-loaded .hero__cta { opacity: 1; transition-delay: .75s; }
-  .is-loaded .hero__draw i { animation: draw 1.6s var(--ease) 2.3s both; }
-  .is-loaded .hero__draw i:nth-child(2n) { animation-delay: 2.36s; }
-  .is-loaded .hero__draw i:nth-child(3n) { animation-delay: 2.42s; }
+  .is-loaded .hero__draw i { animation: draw 1.6s var(--ease) .9s both; }
+  .is-loaded .hero__draw i:nth-child(2n) { animation-delay: .96s; }
+  .is-loaded .hero__draw i:nth-child(3n) { animation-delay: 1.02s; }
+  /* wejście: górny pasek się pojawia, tytuł wyjeżdża, zdjęcia wyrastają od dołu jedno po drugim */
+  .js .hstrip__it { clip-path: inset(100% 0 0 0); transition: clip-path 1.2s var(--ease); }
+  .is-loaded .hstrip__it { clip-path: inset(0); }
+  .is-loaded .hstrip__it:nth-child(1) { transition-delay: .35s; }
+  .is-loaded .hstrip__it:nth-child(2) { transition-delay: .45s; }
+  .is-loaded .hstrip__it:nth-child(3) { transition-delay: .55s; }
+  .is-loaded .hstrip__it:nth-child(4) { transition-delay: .65s; }
+  .is-loaded .hstrip__it:nth-child(5) { transition-delay: .75s; }
   @keyframes draw { 0% { transform: scaleY(0); opacity: 1; } 45% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 
   /* ── Współprace ── */
-  .clients { padding: clamp(40px, 4vw, 64px) 0; }
+  .clients { padding: clamp(72px, 8vw, 140px) 0; }
   .clients .grid { align-items: center; }
   .clients__label { grid-column: 1 / span 2; font-size: 14px; font-weight: 500; }
   .clients__logos { grid-column: 3 / -1; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
@@ -313,6 +427,7 @@
   .chat__form:focus-within { box-shadow: inset 0 0 0 1px var(--ink); }
   .chat .msg { white-space: pre-wrap; overflow-wrap: anywhere; }
   .flow { grid-column: 1 / span 5; grid-row: 1; }
+  .case--chat .flow { align-self: center; }
   .flow p { font-size: 14px; }
   .flow p + p { margin-top: 16px; }
   .flow ul { position: relative; }
@@ -325,6 +440,25 @@
   .flow__tech { margin-top: 28px; font: 400 12px/1.6 var(--mono); }
 
   /* ── Usługi ── */
+  /* ── Usługi: cztery karty w siatce 2 × 2 ── */
+  .svx { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+  .svx__it { padding: clamp(32px, 3.4vw, 56px) clamp(24px, 3vw, 56px) clamp(40px, 4vw, 64px) 0; border-bottom: 1px solid var(--ink); }
+  .svx__it:nth-child(2n) { padding-left: clamp(24px, 3vw, 56px); padding-right: 0; border-left: 1px solid var(--ink); }
+  .svx__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: clamp(28px, 3vw, 48px); }
+  .svx__icon { display: block; width: 44px; height: 44px; color: var(--accent); transition: transform .6s var(--ease); }
+  .svx__icon svg { width: 100%; height: 100%; }
+  .svx__it:hover .svx__icon { transform: translateY(-4px); }
+  .svx__no { font: 400 12px/1 var(--mono); }
+  .svx__title { font-size: clamp(30px, 3vw, 48px); font-weight: 300; line-height: 1.05; letter-spacing: -0.03em; }
+  .svx__sub { margin-top: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--ink); font-size: clamp(16px, 1.2vw, 19px); line-height: 1.4; }
+  .svx__desc { margin-top: 18px; max-width: 34em; font-size: 15px; line-height: 1.7; }
+  .svx__list { margin-top: 22px; display: grid; gap: 10px; font-size: 15px; line-height: 1.45; }
+  .svx__list li { position: relative; padding-left: 22px; }
+  .svx__list li::before { content: ''; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border: 1px solid var(--accent); }
+  @media (max-width: 800px) {
+    .svx { grid-template-columns: 1fr; }
+    .svx__it, .svx__it:nth-child(2n) { padding: 36px 0 44px; border-left: 0; }
+  }
   .svcs { border-bottom: 1px solid var(--ink); }
   .svc { align-items: start; padding: clamp(36px, 3.4vw, 56px) 0; border-top: 1px solid var(--ink); }
   .svc__head { grid-column: 1 / span 6; display: flex; align-items: center; gap: .42em; font-size: clamp(30px, 4vw, 66px); font-weight: 300; line-height: 1; letter-spacing: -0.03em; transition: transform .6s var(--ease); }
@@ -345,6 +479,7 @@
   .svc:hover .ico__swing { transform: rotate(5deg); }
   .svc__desc { grid-column: 7 / span 3; font-size: 14px; padding-top: .3em; }
   .svc__list { grid-column: 10 / span 3; font-size: 14px; padding-top: .3em; }
+  .svc__sub { font-size: clamp(16px, 1.25vw, 19px); line-height: 1.35; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--ink); }
   .svc__list li + li { margin-top: 6px; }
 
   /* ── Współpraca: kroki i ludzik ── */
@@ -501,6 +636,7 @@
 <header class="nav" id="nav">
   <div class="wrap nav__in">
     <a class="nav__logo" href="#top">Franciszek Mojsak</a>
+    <p class="nav__kicker"><span class="pl">Strony internetowe, e-commerce, automatyzacje</span><span class="en">Websites, e-commerce, automation</span></p>
     <nav class="nav__links" aria-label="Menu">
       <a href="#proces"><span class="pl">Współpraca</span><span class="en">Process</span></a>
       <a class="u-link" href="#realizacje"><span class="pl">Realizacje</span><span class="en">Work</span></a>
@@ -520,66 +656,71 @@
 <main id="top">
   <!-- ══ HERO: projekt na wierzchu, konstrukcja pod lupą ══ -->
   <section class="hero" id="hero">
+    <!-- tło: rozrzucone kartki ze zrzutami, prawie niewidoczne -->
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hs">
+        <div class="hs__row hs__row--a" style="--rh:14.6;--mt:0">
+          <figure class="hs__item is-fit" style="--ar:1.8065;--g:0;--j:-0.4;--r:-2.4deg;--z:7"><div class="work__vp" data-full="../img/wybrane/portfolio-rozmiary.webp"><img class="work__shot" src="../img/wybrane/portfolio-rozmiary.webp" width="1400" height="775" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:2.0906;--g:0.8;--j:0.6;--r:2.3deg;--z:1"><div class="work__vp" data-full="../img/wybrane/lfl-wydarzenia.webp"><img class="work__shot" src="../img/wybrane/lfl-wydarzenia.webp" width="1200" height="574" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="hs__item" style="--ar:0.6200;--g:1.5;--j:0.5;--r:2.5deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-lozko.webp"><img class="work__shot" src="../img/wybrane/portfolio-lozko.webp" width="900" height="2158" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.9108;--g:2.3;--j:-0.6;--r:-0.8deg;--z:1"><div class="work__vp" data-full="../img/wybrane/agency-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob.webp" width="1200" height="628" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.3432;--g:0.2;--j:-0.7;--r:-2.0deg;--z:8"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_4.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_4.webp" width="1221" height="909" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:0.7200;--g:-1.0;--j:0.5;--r:0deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-miski.webp"><img class="work__shot" src="../img/wybrane/portfolio-miski.webp" width="900" height="1250" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.9169;--g:1.2;--j:1.5;--r:0deg;--z:6"><div class="work__vp" data-full="../img/wybrane/lfl-miejsce.webp"><img class="work__shot" src="../img/wybrane/lfl-miejsce.webp" width="1200" height="626" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.6;--j:-1.5;--r:2.4deg;--z:1"><div class="work__vp" data-full="../img/wybrane/agency-m-klimek.webp"><img class="work__shot" src="../img/wybrane/agency-m-klimek.webp" width="520" height="1884" decoding="async" alt="Agency for the Future, profil twórcy, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item" style="--ar:0.6200;--g:-0.3;--j:-1.1;--r:0.5deg;--z:8"><div class="work__vp" data-full="../img/wybrane/brewing-kolekcja.webp"><img class="work__shot" src="../img/wybrane/brewing-kolekcja.webp" width="900" height="2554" decoding="async" alt="Brewing collection, strona kolekcji" /></div><figcaption class="hs__cap"><span class="pl">Brewing collection, strona kolekcji</span><span class="en">Brewing collection, collection page</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:2.3904;--g:1.9;--j:-0.9;--r:0deg;--z:2"><div class="work__vp" data-full="../img/wybrane/agency-klimek-las.webp"><img class="work__shot" src="../img/wybrane/agency-klimek-las.webp" width="1200" height="502" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.5171;--g:0.3;--j:0.7;--r:1.6deg;--z:1"><div class="work__vp" data-full="../img/wybrane/p3-panel.webp"><img class="work__shot" src="../img/wybrane/p3-panel.webp" width="1200" height="791" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="hs__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
+        </div>
+        <div class="hs__row hs__row--b" style="--rh:17.4;--mt:-0.9">
+          <figure class="hs__item is-fit" style="--ar:1.3825;--g:0;--j:0.5;--r:-2.2deg;--z:1"><div class="work__vp" data-full="../img/wybrane/lfl-start.webp"><img class="work__shot" src="../img/wybrane/lfl-start.webp" width="1200" height="868" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.3;--j:0.6;--r:-2.6deg;--z:3"><div class="work__vp" data-full="../img/wybrane/agency-m-liczby.webp"><img class="work__shot" src="../img/wybrane/agency-m-liczby.webp" width="520" height="2104" decoding="async" alt="Agency for the Future, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item" style="--ar:0.6200;--g:2.0;--j:-0.3;--r:-1.8deg;--z:7"><div class="work__vp" data-full="../img/wybrane/portfolio-start.webp"><img class="work__shot" src="../img/wybrane/portfolio-start.webp" width="900" height="1777" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.5540;--g:0.8;--j:-1.3;--r:-1.4deg;--z:8"><div class="work__vp" data-full="../img/wybrane/laap-galeria.webp"><img class="work__shot" src="../img/wybrane/laap-galeria.webp" width="1122" height="722" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.2;--j:-0.3;--r:1.6deg;--z:4"><div class="work__vp" data-full="../img/wybrane/p3-m-projekty.webp"><img class="work__shot" src="../img/wybrane/p3-m-projekty.webp" width="520" height="3024" decoding="async" alt="The Power of Three, Architect@Work, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.0083;--g:-0.4;--j:1.3;--r:2.2deg;--z:5"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_3.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_3.webp" width="1221" height="1211" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.2069;--g:1.4;--j:0.7;--r:-0.9deg;--z:4"><div class="work__vp" data-full="../img/wybrane/portfolio-zin.webp"><img class="work__shot" src="../img/wybrane/portfolio-zin.webp" width="1400" height="1160" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.8;--j:0.5;--r:0deg;--z:4"><div class="work__vp" data-full="../img/wybrane/lfl-m-format.webp"><img class="work__shot" src="../img/wybrane/lfl-m-format.webp" width="520" height="2139" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:2.0022;--g:0.6;--j:0.4;--r:-1.0deg;--z:2"><div class="work__vp" data-full="../img/laapcode_hero_wise-habit-agency.webp"><img class="work__shot" src="../img/laapcode_hero_wise-habit-agency.webp" width="1800" height="899" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+          <figure class="hs__item" style="--ar:0.6200;--g:1.7;--j:-0.2;--r:-1.7deg;--z:8"><div class="work__vp" data-full="../img/wybrane/portfolio-wystawy.webp"><img class="work__shot" src="../img/wybrane/portfolio-wystawy.webp" width="900" height="2099" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.7964;--g:0.0;--j:-0.5;--r:0.6deg;--z:3"><div class="work__vp" data-full="../img/wybrane/p3-start.webp"><img class="work__shot" src="../img/wybrane/p3-start.webp" width="1200" height="668" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="hs__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.0;--j:0.0;--r:-1.4deg;--z:2"><div class="work__vp" data-full="../img/wybrane/agency-m-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-m-archisnob.webp" width="520" height="2501" decoding="async" alt="Agency for the Future, ArchiSnob, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:0.8841;--g:-1.3;--j:0.5;--r:-1.9deg;--z:5"><div class="work__vp" data-full="../img/wybrane/portfolio-veins.webp"><img class="work__shot" src="../img/wybrane/portfolio-veins.webp" width="900" height="1018" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.4;--j:-0.8;--r:-2.2deg;--z:5"><div class="work__vp" data-full="../img/wybrane/lfl-m-prelegenci.webp"><img class="work__shot" src="../img/wybrane/lfl-m-prelegenci.webp" width="520" height="3206" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.6461;--g:0.9;--j:-0.3;--r:2.0deg;--z:4"><div class="work__vp" data-full="../img/laapcode_hero_lukasz-klimek.webp"><img class="work__shot" src="../img/laapcode_hero_lukasz-klimek.webp" width="1600" height="972" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
+        </div>
+        <div class="hs__row hs__row--c" style="--rh:12.8;--mt:-0.9">
+          <figure class="hs__item is-fit" style="--ar:0.8411;--g:0;--j:-1.3;--r:1.0deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-proces.webp"><img class="work__shot" src="../img/wybrane/portfolio-proces.webp" width="900" height="1070" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:3.0151;--g:2.0;--j:-0.7;--r:2.5deg;--z:7"><div class="work__vp" data-full="../img/wybrane/agency-materialy.webp"><img class="work__shot" src="../img/wybrane/agency-materialy.webp" width="1200" height="398" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.0533;--g:-1.3;--j:1.0;--r:-2.1deg;--z:4"><div class="work__vp" data-full="../img/laapcode_hero_adaptive-tableware.webp"><img class="work__shot" src="../img/laapcode_hero_adaptive-tableware.webp" width="1600" height="1519" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.9378;--g:0.1;--j:-0.0;--r:-1.4deg;--z:1"><div class="work__vp" data-full="../img/wybrane/laap-blog.webp"><img class="work__shot" src="../img/wybrane/laap-blog.webp" width="1122" height="579" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.1765;--g:-0.6;--j:1.2;--r:-0.6deg;--z:9"><div class="work__vp" data-full="../img/wybrane/portfolio-yeast-coast.webp"><img class="work__shot" src="../img/wybrane/portfolio-yeast-coast.webp" width="1400" height="1190" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.9802;--g:-0.0;--j:-0.9;--r:-1.7deg;--z:9"><div class="work__vp" data-full="../img/wybrane/lfl-partnerzy.webp"><img class="work__shot" src="../img/wybrane/lfl-partnerzy.webp" width="1200" height="606" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:0.6803;--g:1.3;--j:-0.4;--r:1.7deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-wentylator.webp"><img class="work__shot" src="../img/wybrane/portfolio-wentylator.webp" width="900" height="1323" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:2.0478;--g:0.4;--j:0.2;--r:-1.3deg;--z:5"><div class="work__vp" data-full="../img/wybrane/agency-archisnob-magazyn.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob-magazyn.webp" width="1200" height="586" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.0146;--g:0.4;--j:0.8;--r:0.5deg;--z:5"><div class="work__vp" data-full="../img/laapcode_hero_floral-foam.webp"><img class="work__shot" src="../img/laapcode_hero_floral-foam.webp" width="1600" height="1577" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
+          <figure class="hs__item is-fit" style="--ar:1.5142;--g:-1.1;--j:-0.4;--r:0deg;--z:6"><div class="work__vp" data-full="../img/wybrane/laap-start.webp"><img class="work__shot" src="../img/wybrane/laap-start.webp" width="1122" height="741" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
+        </div>
+      </div>
+    </div>
     <div class="hero__draw" aria-hidden="true"><div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-    <div class="hero__spot" aria-hidden="true"><div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
     <div class="wrap hero__layer">
       <div class="grid hero__front">
-        <p class="hero__kicker" data-bp="p"><span class="pl">Projektuję i&nbsp;wdrażam strony, sklepy i&nbsp;automatyzacje</span><span class="en">I design and build websites, stores and automations</span></p>
         <h1 class="hero__title" data-bp="h1">
-          <span class="pl"><span class="line l1"><span>Twój styl, przełożony</span></span><span class="line l2"><span>na kod.</span></span></span>
-          <span class="en"><span class="line l1"><span>Your style, translated</span></span><span class="line l2"><span>into code.</span></span></span>
+          <span class="pl"><span class="line l1"><span>Zrobię Ci porządną</span></span><span class="line l2"><span>stronę.</span></span></span>
+          <span class="en"><span class="line l1"><span>I&rsquo;ll build you</span></span><span class="line l2"><span>a&nbsp;proper website.</span></span></span>
         </h1>
-        <p class="hero__intro just" data-bp="p"><span class="pl">Dla firm i&nbsp;osób, którym zależy na zrozumieniu ich potrzeb, wysokim poziomie projektowania i&nbsp;stronie spójnej z&nbsp;ich estetyką. Jedna osoba od pierwszego szkicu po działającą stronę, bez miesięcznych opłat za utrzymanie.</span><span class="en">For companies and individuals who value being understood, a&nbsp;high standard of design and a&nbsp;website that matches their aesthetic. One person from the first sketch to a&nbsp;working website, with no monthly maintenance fees.</span></p>
-        <p class="hero__cta"><a class="btn" href="#kontakt" data-bp="a"><span><span class="pl">Skontaktuj się</span><span class="en">Get in touch</span></span><span aria-hidden="true">→</span></a></p>
       </div>
     </div>
     <div class="hero__code" aria-hidden="true" inert></div>
-    <div class="wrap"><p class="hero__hint hero__galhint"><span class="pl"><span class="hs__hint">Fragmenty stron, nad którymi pracowałem. Przesuń kursor w&nbsp;lewo albo w&nbsp;prawo.</span><span class="hs__swipe">Fragmenty stron, nad którymi pracowałem. Przesuń palcem w&nbsp;bok.</span></span><span class="en"><span class="hs__hint">Parts of websites I&nbsp;have worked on. Move the cursor left or right.</span><span class="hs__swipe">Parts of websites I&nbsp;have worked on. Swipe sideways.</span></span></p></div>
-      <!-- strony: rozrzucone kartki, galeria jedzie za kursorem -->
-      <div class="hs" data-x>
-        <div class="hs__row hs__row--a" style="--rh:14.6;--mt:0">
-          <figure class="hs__item is-fit" style="--ar:1.8065;--g:0;--j:-0.4;--r:-2.4deg;--z:7"><div class="work__vp" data-full="../img/wybrane/portfolio-rozmiary.webp"><img class="work__shot" src="../img/wybrane/portfolio-rozmiary.webp" width="1400" height="775" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:2.0906;--g:0.8;--j:0.6;--r:2.3deg;--z:1"><div class="work__vp" data-full="../img/wybrane/lfl-wydarzenia.webp"><img class="work__shot" src="../img/wybrane/lfl-wydarzenia.webp" width="1200" height="574" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
-          <figure class="hs__item" style="--ar:0.6200;--g:1.5;--j:0.5;--r:2.5deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-lozko.webp"><img class="work__shot" src="../img/wybrane/portfolio-lozko.webp" width="900" height="2158" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.9108;--g:2.3;--j:-0.6;--r:-0.8deg;--z:1"><div class="work__vp" data-full="../img/wybrane/agency-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob.webp" width="1200" height="628" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.3432;--g:0.2;--j:-0.7;--r:-2.0deg;--z:8"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_4.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_4.webp" width="1221" height="909" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:0.7200;--g:-1.0;--j:0.5;--r:0deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-miski.webp"><img class="work__shot" src="../img/wybrane/portfolio-miski.webp" width="900" height="1250" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.9169;--g:1.2;--j:1.5;--r:0deg;--z:6"><div class="work__vp" data-full="../img/wybrane/lfl-miejsce.webp"><img class="work__shot" src="../img/wybrane/lfl-miejsce.webp" width="1200" height="626" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
-          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.6;--j:-1.5;--r:2.4deg;--z:1"><div class="work__vp" data-full="../img/wybrane/agency-m-klimek.webp"><img class="work__shot" src="../img/wybrane/agency-m-klimek.webp" width="520" height="1884" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-          <figure class="hs__item" style="--ar:0.6200;--g:-0.3;--j:-1.1;--r:0.5deg;--z:8"><div class="work__vp" data-full="../img/wybrane/brewing-kolekcja.webp"><img class="work__shot" src="../img/wybrane/brewing-kolekcja.webp" width="900" height="2554" loading="lazy" decoding="async" alt="Brewing collection, strona kolekcji" /></div><figcaption class="hs__cap"><span class="pl">Brewing collection, strona kolekcji</span><span class="en">Brewing collection, collection page</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:2.3904;--g:1.9;--j:-0.9;--r:0deg;--z:2"><div class="work__vp" data-full="../img/wybrane/agency-klimek-las.webp"><img class="work__shot" src="../img/wybrane/agency-klimek-las.webp" width="1200" height="502" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.5171;--g:0.3;--j:0.7;--r:1.6deg;--z:1"><div class="work__vp" data-full="../img/wybrane/p3-panel.webp"><img class="work__shot" src="../img/wybrane/p3-panel.webp" width="1200" height="791" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="hs__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
-        </div>
-        <div class="hs__row hs__row--b" style="--rh:17.4;--mt:-0.9">
-          <figure class="hs__item is-fit" style="--ar:1.3825;--g:0;--j:0.5;--r:-2.2deg;--z:1"><div class="work__vp" data-full="../img/wybrane/lfl-start.webp"><img class="work__shot" src="../img/wybrane/lfl-start.webp" width="1200" height="868" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
-          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.3;--j:0.6;--r:-2.6deg;--z:3"><div class="work__vp" data-full="../img/wybrane/agency-m-liczby.webp"><img class="work__shot" src="../img/wybrane/agency-m-liczby.webp" width="520" height="2104" loading="lazy" decoding="async" alt="Agency for the Future, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-          <figure class="hs__item" style="--ar:0.6200;--g:2.0;--j:-0.3;--r:-1.8deg;--z:7"><div class="work__vp" data-full="../img/wybrane/portfolio-start.webp"><img class="work__shot" src="../img/wybrane/portfolio-start.webp" width="900" height="1777" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.5540;--g:0.8;--j:-1.3;--r:-1.4deg;--z:8"><div class="work__vp" data-full="../img/wybrane/laap-galeria.webp"><img class="work__shot" src="../img/wybrane/laap-galeria.webp" width="1122" height="722" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
-          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.2;--j:-0.3;--r:1.6deg;--z:4"><div class="work__vp" data-full="../img/wybrane/p3-m-projekty.webp"><img class="work__shot" src="../img/wybrane/p3-m-projekty.webp" width="520" height="3024" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.0083;--g:-0.4;--j:1.3;--r:2.2deg;--z:5"><div class="work__vp" data-full="../img/laapcode_uslugi_stronainternetowa_3.webp"><img class="work__shot" src="../img/laapcode_uslugi_stronainternetowa_3.webp" width="1221" height="1211" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.2069;--g:1.4;--j:0.7;--r:-0.9deg;--z:4"><div class="work__vp" data-full="../img/wybrane/portfolio-zin.webp"><img class="work__shot" src="../img/wybrane/portfolio-zin.webp" width="1400" height="1160" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.8;--j:0.5;--r:0deg;--z:4"><div class="work__vp" data-full="../img/wybrane/lfl-m-format.webp"><img class="work__shot" src="../img/wybrane/lfl-m-format.webp" width="520" height="2139" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:2.0022;--g:0.6;--j:0.4;--r:-1.0deg;--z:2"><div class="work__vp" data-full="../img/laapcode_hero_wise-habit-agency.webp"><img class="work__shot" src="../img/laapcode_hero_wise-habit-agency.webp" width="1800" height="899" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
-          <figure class="hs__item" style="--ar:0.6200;--g:1.7;--j:-0.2;--r:-1.7deg;--z:8"><div class="work__vp" data-full="../img/wybrane/portfolio-wystawy.webp"><img class="work__shot" src="../img/wybrane/portfolio-wystawy.webp" width="900" height="2099" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.7964;--g:0.0;--j:-0.5;--r:0.6deg;--z:3"><div class="work__vp" data-full="../img/wybrane/p3-start.webp"><img class="work__shot" src="../img/wybrane/p3-start.webp" width="1200" height="668" loading="lazy" decoding="async" alt="The Power of Three, Architect@Work" /></div><figcaption class="hs__cap"><span class="pl">The Power of Three, Architect@Work</span><span class="en">The Power of Three, Architect@Work</span></figcaption></figure>
-          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:1.0;--j:0.0;--r:-1.4deg;--z:2"><div class="work__vp" data-full="../img/wybrane/agency-m-archisnob.webp"><img class="work__shot" src="../img/wybrane/agency-m-archisnob.webp" width="520" height="2501" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob, wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:0.8841;--g:-1.3;--j:0.5;--r:-1.9deg;--z:5"><div class="work__vp" data-full="../img/wybrane/portfolio-veins.webp"><img class="work__shot" src="../img/wybrane/portfolio-veins.webp" width="900" height="1018" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item hs__item--phone" style="--ar:0.4615;--g:-0.4;--j:-0.8;--r:-2.2deg;--z:5"><div class="work__vp" data-full="../img/wybrane/lfl-m-prelegenci.webp"><img class="work__shot" src="../img/wybrane/lfl-m-prelegenci.webp" width="520" height="3206" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business., wersja na telefon" /></div><figcaption class="hs__cap"><span class="pl">Wersja na telefon</span><span class="en">Mobile version</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.6461;--g:0.9;--j:-0.3;--r:2.0deg;--z:4"><div class="work__vp" data-full="../img/laapcode_hero_lukasz-klimek.webp"><img class="work__shot" src="../img/laapcode_hero_lukasz-klimek.webp" width="1600" height="972" loading="lazy" decoding="async" alt="Agency for the Future, profil twórcy" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, profil twórcy</span><span class="en">Agency for the Future, creator profile</span></figcaption></figure>
-        </div>
-        <div class="hs__row hs__row--c" style="--rh:12.8;--mt:-0.9">
-          <figure class="hs__item is-fit" style="--ar:0.8411;--g:0;--j:-1.3;--r:1.0deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-proces.webp"><img class="work__shot" src="../img/wybrane/portfolio-proces.webp" width="900" height="1070" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:3.0151;--g:2.0;--j:-0.7;--r:2.5deg;--z:7"><div class="work__vp" data-full="../img/wybrane/agency-materialy.webp"><img class="work__shot" src="../img/wybrane/agency-materialy.webp" width="1200" height="398" loading="lazy" decoding="async" alt="Agency for the Future" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future</span><span class="en">Agency for the Future</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.0533;--g:-1.3;--j:1.0;--r:-2.1deg;--z:4"><div class="work__vp" data-full="../img/laapcode_hero_adaptive-tableware.webp"><img class="work__shot" src="../img/laapcode_hero_adaptive-tableware.webp" width="1600" height="1519" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.9378;--g:0.1;--j:-0.0;--r:-1.4deg;--z:1"><div class="work__vp" data-full="../img/wybrane/laap-blog.webp"><img class="work__shot" src="../img/wybrane/laap-blog.webp" width="1122" height="579" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.1765;--g:-0.6;--j:1.2;--r:-0.6deg;--z:9"><div class="work__vp" data-full="../img/wybrane/portfolio-yeast-coast.webp"><img class="work__shot" src="../img/wybrane/portfolio-yeast-coast.webp" width="1400" height="1190" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.9802;--g:-0.0;--j:-0.9;--r:-1.7deg;--z:9"><div class="work__vp" data-full="../img/wybrane/lfl-partnerzy.webp"><img class="work__shot" src="../img/wybrane/lfl-partnerzy.webp" width="1200" height="606" loading="lazy" decoding="async" alt="Lust for Life. Lust for Business." /></div><figcaption class="hs__cap"><span class="pl">Lust for Life. Lust for Business.</span><span class="en">Lust for Life. Lust for Business.</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:0.6803;--g:1.3;--j:-0.4;--r:1.7deg;--z:3"><div class="work__vp" data-full="../img/wybrane/portfolio-wentylator.webp"><img class="work__shot" src="../img/wybrane/portfolio-wentylator.webp" width="900" height="1323" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:2.0478;--g:0.4;--j:0.2;--r:-1.3deg;--z:5"><div class="work__vp" data-full="../img/wybrane/agency-archisnob-magazyn.webp"><img class="work__shot" src="../img/wybrane/agency-archisnob-magazyn.webp" width="1200" height="586" loading="lazy" decoding="async" alt="Agency for the Future, ArchiSnob" /></div><figcaption class="hs__cap"><span class="pl">Agency for the Future, ArchiSnob</span><span class="en">Agency for the Future, ArchiSnob</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.0146;--g:0.4;--j:0.8;--r:0.5deg;--z:5"><div class="work__vp" data-full="../img/laapcode_hero_floral-foam.webp"><img class="work__shot" src="../img/laapcode_hero_floral-foam.webp" width="1600" height="1577" loading="lazy" decoding="async" alt="Portfolio, Mikołaj Markowski" /></div><figcaption class="hs__cap"><span class="pl">Portfolio, Mikołaj Markowski</span><span class="en">Portfolio, Mikołaj Markowski</span></figcaption></figure>
-          <figure class="hs__item is-fit" style="--ar:1.5142;--g:-1.1;--j:-0.4;--r:0deg;--z:6"><div class="work__vp" data-full="../img/wybrane/laap-start.webp"><img class="work__shot" src="../img/wybrane/laap-start.webp" width="1122" height="741" loading="lazy" decoding="async" alt="Laap Drones" /></div><figcaption class="hs__cap"><span class="pl">Laap Drones</span><span class="en">Laap Drones</span></figcaption></figure>
-        </div>
-      </div>
+  </section>
+
+  <!-- ══ Wstęp pod hero ══ -->
+  <section class="lead">
+    <div class="wrap grid">
+        <p class="hero__intro just" data-bp="p"><span class="pl">Dla firm i&nbsp;osób, którym zależy na zrozumieniu ich potrzeb, wysokim poziomie projektowania i&nbsp;stronie spójnej z&nbsp;ich estetyką. Jedna osoba od pierwszego szkicu po działającą stronę. Poza tworzeniem stron robię również sklepy internetowe, obsługuję działające e-commerce i&nbsp;wdrażam automatyzacje.</span><span class="en">For companies and individuals who value being understood, a&nbsp;high standard of design and a&nbsp;website that matches their aesthetic. One person from the first sketch to a&nbsp;working website. Besides websites, I&nbsp;also build online stores, look after running e-commerce and set up automations.</span></p>
+        <p class="hero__cta"><a class="btn" href="#kontakt" data-bp="a"><span><span class="pl">Skontaktuj się</span><span class="en">Get in touch</span></span><span aria-hidden="true">→</span></a></p>
+    </div>
   </section>
 
   <!-- ══ Współprace ══ -->
@@ -619,6 +760,42 @@
             <li><img src="../img/clients/mikolaj-markowski.png" width="279" height="147" style="height:36px" alt="" /></li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Ostatnie realizacje: karuzela ══ -->
+  <section class="wkx" aria-label="Ostatnie realizacje">
+    <!-- realizacje: karuzela, nazwa, kolaż ekranów, opis -->
+    <div class="wrap wk" id="wybrane" data-x>
+      <div class="wk__head grid">
+        <p class="wk__kicker"><span class="pl">Ostatnie realizacje</span><span class="en">Recent work</span></p>
+        <div class="wk__titles">
+          <h3 class="wk__title is-on"><span class="pl">Strona agencji projektowej, Wise Habit Agency for the Future</span><span class="en">Design agency website, Wise Habit Agency for the Future</span></h3>
+          <h3 class="wk__title"><span class="pl">Portfolio projektanta, Mikołaj Markowski</span><span class="en">Designer portfolio, Mikołaj Markowski</span></h3>
+          <h3 class="wk__title"><span class="pl">Serwis firmowy, Laap Drones</span><span class="en">Company website, Laap Drones</span></h3>
+          <h3 class="wk__title"><span class="pl">Strona wydarzenia, Lust for Life. Lust for Business.</span><span class="en">Event website, Lust for Life. Lust for Business.</span></h3>
+          <h3 class="wk__title"><span class="pl">Strona wydarzenia, The Power of Three</span><span class="en">Event website, The Power of Three</span></h3>
+        </div>
+      </div>
+      <div class="wk__view">
+        <div class="wk__track">
+          <div class="wk__slide is-on"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>agency.wisehabit.com</span></div><div class="wk__vp"><img src="../img/laapcode_uslugi_stronainternetowa_5.webp" alt="Wise Habit, Agency for the Future" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/agency-archisnob.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/agency-klimek-las.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/agency-m-liczby.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+          <div class="wk__slide no-m"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>portfolio</span></div><div class="wk__vp"><img src="../img/wybrane/portfolio-start.webp" alt="Mikołaj Markowski" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/portfolio-yeast-coast.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/portfolio-zin.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__col"><figure class="wk__tile"><img src="../img/wybrane/portfolio-miski.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/portfolio-wentylator.webp" alt="" loading="lazy" decoding="async"></figure></div></div>
+          <div class="wk__slide no-m"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>laap drones</span></div><div class="wk__vp"><img src="../img/laapcode_uslugi_stronainternetowa_2.webp" alt="Laap Drones" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/laap-galeria.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-blog.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__col"><figure class="wk__tile"><img src="../img/wybrane/laap-start.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-uslugi.webp" alt="" loading="lazy" decoding="async"></figure></div></div>
+          <div class="wk__slide"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>agency.wisehabit.com/conference-lust-for-life</span></div><div class="wk__vp"><img src="../img/wybrane/lfl-desktop.webp" alt="Lust for Life. Lust for Business." loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/lfl-prelegenci.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/lfl-wydarzenia.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/lfl-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+          <div class="wk__slide"><div class="wk__win"><div class="wk__bar" aria-hidden="true"><i></i><i></i><i></i><span>agency.wisehabit.com/power-of-three</span></div><div class="wk__vp"><img src="../img/wybrane/p3-desktop.webp" alt="The Power of Three, Architect@Work" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/p3-panel.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/p3-ludzie.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/p3-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+        </div>
+      </div>
+      <div class="wk__foot grid">
+        <div class="wk__caps">
+          <div class="wk__cap is-on"><p class="wk__sc"><span class="pl">Nowy design i&nbsp;przeniesienie całej strony</span><span class="en">A&nbsp;new design and a&nbsp;full site move</span></p><p class="wk__ds just"><span class="pl">Agencja potrzebowała świeższego wyglądu i&nbsp;strony, którą może swobodnie rozwijać. Zająłem się redesignem i&nbsp;odświeżeniem strony, stawiając na większy minimalizm i&nbsp;przejrzystość, a&nbsp;potem przeniosłem ją w&nbsp;całości: ponad 20 podstron z&nbsp;usługami, konferencjami, wystawami, magazynem ArchiSnob i&nbsp;profilami projektantów. Na stronie działa czat AI, który odpowiada odwiedzającym na pytania, oraz formularze kontaktowe.</span><span class="en">The agency needed a&nbsp;fresher look and a&nbsp;site it could grow freely. I&nbsp;redesigned and refreshed it, aiming for more minimalism and clarity, then moved it over in full: more than 20 subpages with services, conferences, exhibitions, the ArchiSnob magazine and designer profiles. The site runs an AI chat that answers visitors&rsquo; questions, plus contact forms.</span></p><p class="wk__ln"><a class="u" href="https://agency.wisehabit.com/" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
+          <div class="wk__cap"><p class="wk__sc"><span class="pl">Strona w&nbsp;charakterze jego pracowni</span><span class="en">A&nbsp;site with the character of his studio</span></p><p class="wk__ds just"><span class="pl">Mikołaj projektuje przedmioty i&nbsp;eksperymentuje z&nbsp;materiałami, od porcelany po pracę z&nbsp;robotem KUKA. Portfolio miało wyglądać jak jego pracownia, a&nbsp;nie jak gotowy szablon: odręczne logo, maszynowy krój pisma, kolaże zdjęć z&nbsp;procesu i&nbsp;krótki opis przy każdym projekcie. Strona działa w&nbsp;dwóch językach.</span><span class="en">Mikołaj designs objects and experiments with materials, from porcelain to work with a&nbsp;KUKA robot. The portfolio had to feel like his studio, not a&nbsp;ready-made template: a&nbsp;hand-drawn logo, a&nbsp;typewriter typeface, collages of process photos and a&nbsp;short note on every project. The site works in two languages.</span></p></div>
+          <div class="wk__cap"><p class="wk__sc"><span class="pl">Design inspirowany starymi mapami</span><span class="en">A&nbsp;design inspired by old maps</span></p><p class="wk__ds just"><span class="pl">Laap Drones nagrywa filmy FPV we wnętrzach hal, magazynów i&nbsp;domów, a&nbsp;także buduje i&nbsp;serwisuje drony. Inspiracją dla designu były stare mapy kartograficzne: cienkie linie, siatki i&nbsp;opisy jak na planie. Trzy usługi, galeria realizacji i&nbsp;blog są czytelne od pierwszego ekranu.</span><span class="en">Laap Drones films FPV footage inside halls, warehouses and houses, and builds and services drones. The design draws on old cartographic maps: thin lines, grids and labels like on a&nbsp;plan. Three services, a&nbsp;project gallery and a&nbsp;blog, all clear from the first screen.</span></p></div>
+          <div class="wk__cap"><p class="wk__sc"><span class="pl">Agenda i&nbsp;prelegenci czytelni w&nbsp;kilka sekund</span><span class="en">Agenda and speakers clear in seconds</span></p><p class="wk__ds just"><span class="pl">Podstrona konferencji o&nbsp;designie i&nbsp;biznesie w&nbsp;serwisie Wise Habit. Program dnia, sylwetki prelegentów, miejsce i&nbsp;partnerzy ułożone tak, żeby gość od razu wiedział, kiedy, gdzie i&nbsp;kogo posłucha. Wersja na telefon dopracowana osobno.</span><span class="en">A&nbsp;conference subpage about design and business on the Wise Habit website. The programme, speaker profiles, venue and partners arranged so a&nbsp;guest knows at once when, where and whom they will hear. The mobile version was refined separately.</span></p><p class="wk__ln"><a class="u" href="https://agency.wisehabit.com/conference-lust-for-life" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
+          <div class="wk__cap"><p class="wk__sc"><span class="pl">Wystawa na targach Architect@Work</span><span class="en">An exhibition at Architect@Work</span></p><p class="wk__ds just"><span class="pl">Podstrona wystawy w&nbsp;serwisie Wise Habit. Pokazuje prezentowane projekty, ich autorów i&nbsp;panel dyskusyjny, czytelnie na komputerze i&nbsp;na telefonie.</span><span class="en">An exhibition subpage on the Wise Habit website. It presents the projects on show, their authors and the panel discussion, clearly on desktop and on mobile.</span></p><p class="wk__ln"><a class="u" href="https://agency.wisehabit.com/power-of-three" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
+        </div>
+        <div class="wk__nav"><div class="wk__bars"><button type="button" aria-label="Wise Habit, Agency for the Future"></button><button type="button" aria-label="Mikołaj Markowski"></button><button type="button" aria-label="Laap Drones"></button><button type="button" aria-label="Lust for Life. Lust for Business."></button><button type="button" aria-label="The Power of Three, Architect@Work"></button></div><div class="wk__arrows"><button type="button" class="wk__arr" data-dir="-1" aria-label="Poprzedni projekt">←</button><button type="button" class="wk__arr" data-dir="1" aria-label="Następny projekt">→</button></div></div>
       </div>
     </div>
   </section>
@@ -727,44 +904,53 @@
       <header class="sec-head grid">
         <h2 class="sec-title" data-x><span class="pl">Usługi</span><span class="en">Services</span></h2>
       </header>
-      <ul class="svcs">
-        <li class="svc grid" data-reveal>
-          <h3 class="svc__head"><span class="svc__icon"><svg class="ico ico--www" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g class="ico__sway"><path class="s t" d="M49 15 C 47.5 10, 44.5 6.5, 38.5 5 M38.5 5 q-.9 .2 -1.1 1.2 M49 15 C 48.6 9.5, 47.6 5.5, 45 1.8 M45 1.8 q-.9 .2 -.8 1.2 M49 15 C 50 10.5, 51.6 7, 55.4 4.6 M55.4 4.6 q.9 .5 .5 1.4 M49 15 C 46 12.2, 42.6 11.6, 38.4 12.6 M38.4 12.6 q-.5 .9 .3 1.5"/></g><g transform="rotate(-3 30 34)"><rect class="s f" x="7" y="16" width="44" height="35"/><path class="s" d="M7 23 L51 23"/><circle class="s t" cx="11.5" cy="19.5" r="1.4"/><circle class="s t" cx="15.5" cy="19.5" r="1.4"/><circle class="s t" cx="19.5" cy="19.5" r="1.4"/><rect class="s" x="11" y="27" width="16" height="13"/><path class="s t" d="M11.85 30.31 L14.31 27.85 M11.85 32.91 L16.91 27.85 M11.85 35.51 L19.51 27.85 M11.85 38.11 L22.11 27.85 M13.41 39.15 L24.71 27.85 M16.01 39.15 L26.15 29.01 M18.61 39.15 L26.15 31.61 M21.21 39.15 L26.15 34.21 M23.81 39.15 L26.15 36.81"/><path class="s t" d="M31 29 L47 29 M31 32.5 L45 32.5 M31 36 L47 36 M31 39.5 L41 39.5 M11 44.5 L36 44.5 M11 47.5 L30 47.5"/></g><circle class="s f" cx="49" cy="15" r="1.7"/></svg></span><span><span class="pl">Strony internetowe</span><span class="en">Websites</span></span></h3>
-          <p class="svc__desc just"><span class="pl">Strony budowane od zera, z&nbsp;naciskiem na estetykę dopasowaną do Twojej marki i&nbsp;widoczność w&nbsp;wyszukiwarkach, zarówno w&nbsp;SEO, jak i&nbsp;GEO.</span><span class="en">Websites built from scratch, with a&nbsp;focus on aesthetics tailored to your brand and visibility in search engines, both SEO and GEO.</span></p>
-          <ul class="svc__list">
+      <ul class="svx">
+        <li class="svx__it" data-reveal>
+          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,42H40A14,14,0,0,0,26,56V200a14,14,0,0,0,14,14H216a14,14,0,0,0,14-14V56A14,14,0,0,0,216,42Zm2,158a2,2,0,0,1-2,2H40a2,2,0,0,1-2-2V56a2,2,0,0,1,2-2H216a2,2,0,0,1,2,2ZM78,84A10,10,0,1,1,68,74,10,10,0,0,1,78,84Zm40,0a10,10,0,1,1-10-10A10,10,0,0,1,118,84Z"/></svg></span><span class="svx__no">01</span></div>
+          <h3 class="svx__title"><span class="pl">Strony internetowe</span><span class="en">Websites</span></h3>
+          <p class="svx__sub"><span class="pl">Projektowanie i&nbsp;wdrażanie stron firmowych</span><span class="en">Design and build of company websites</span></p>
+          <p class="svx__desc just"><span class="pl">Strony budowane od zera, z&nbsp;naciskiem na estetykę dopasowaną do Twojej marki i&nbsp;widoczność w&nbsp;wyszukiwarkach, zarówno w&nbsp;SEO, jak i&nbsp;GEO.</span><span class="en">Websites built from scratch, with a&nbsp;focus on aesthetics tailored to your brand and visibility in search engines, both SEO and GEO.</span></p>
+          <ul class="svx__list">
             <li><span class="pl">Strony One Page</span><span class="en">One-page sites</span></li>
             <li><span class="pl">Rozbudowane strony firmowe</span><span class="en">Full company websites</span></li>
-            <li><span class="pl">Sklepy internetowe</span><span class="en">Online stores</span></li>
-            <li><span class="pl">Integracje z&nbsp;API, CRM i&nbsp;płatnościami</span><span class="en">API, CRM and payment integrations</span></li>
+            <li><span class="pl">Odświeżenie designu i&nbsp;przeniesienie strony</span><span class="en">Redesign and site migration</span></li>
+            <li><span class="pl">Formularze, wersje językowe i&nbsp;czat AI</span><span class="en">Forms, language versions and AI chat</span></li>
           </ul>
         </li>
-        <li class="svc grid" data-reveal>
-          <h3 class="svc__head"><span class="svc__icon"><svg class="ico ico--import" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path class="s t" d="M60 6 C 52 5, 47 10, 51 14 C 55 18, 54 23, 45 25 M47.6 21.9 L45 25 L49 26.4"/><g class="ico__hop"><rect class="s f" x="16" y="26" width="18" height="13"/><path class="s t" d="M25 26 L25 39 M16 32.5 L34 32.5"/><path class="s f" d="M25 26 L19.5 21.5 L19 27.2 Z M25 26 L30.6 21.8 L31 27.4 Z"/><circle class="s f" cx="25" cy="26" r="1.3"/></g><rect class="s f" x="7" y="39" width="25" height="16"/><path class="s t" d="M7.85 42.95 L10.95 39.85 M7.85 45.95 L13.95 39.85 M7.85 48.95 L16.95 39.85 M7.85 51.95 L19.95 39.85 M8.65 54.15 L22.95 39.85 M11.65 54.15 L25.95 39.85 M14.65 54.15 L28.95 39.85 M17.65 54.15 L31.15 40.65 M20.65 54.15 L31.15 43.65 M23.65 54.15 L31.15 46.65 M26.65 54.15 L31.15 49.65 M29.65 54.15 L31.15 52.65"/><rect class="s f" x="32" y="43" width="20" height="12"/><circle class="s t" cx="36" cy="46.8" r="0.9"/><circle class="s t" cx="41" cy="46.8" r="0.9"/><circle class="s t" cx="46" cy="46.8" r="0.9"/><circle class="s t" cx="38.5" cy="51.2" r="0.9"/><circle class="s t" cx="43.5" cy="51.2" r="0.9"/><circle class="s t" cx="48.5" cy="51.2" r="0.9"/><path class="s" d="M4 55 L58 55"/></svg></span><span><span class="pl">Importy produktowe</span><span class="en">Product imports</span></span></h3>
-          <p class="svc__desc just"><span class="pl">Masowe importy i&nbsp;aktualizacje produktów pod WooCommerce, IdoSell, Empik, Allegro, OLX i&nbsp;inne platformy.</span><span class="en">Bulk imports and product updates for WooCommerce, IdoSell, Empik, Allegro, OLX and other platforms.</span></p>
-          <ul class="svc__list">
+        <li class="svx__it" data-reveal>
+          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M26.22,94.41A6,6,0,0,0,26,96v16A38,38,0,0,0,42,143V216a6,6,0,0,0,6,6H208a6,6,0,0,0,6-6V143A38,38,0,0,0,230,112V96a5.91,5.91,0,0,0-.23-1.64L215.43,44.15A14.07,14.07,0,0,0,202,34H54A14.07,14.07,0,0,0,40.57,44.15Zm25.89-47A2,2,0,0,1,54,46H202a2,2,0,0,1,1.92,1.45L216.05,90H40ZM102,102h52v10a26,26,0,0,1-52,0Zm-64,0H90v10a26,26,0,0,1-38.18,23,6,6,0,0,0-1.65-1A26,26,0,0,1,38,112ZM202,210H54V148.66a38,38,0,0,0,42-16.21,37.95,37.95,0,0,0,64,0,38,38,0,0,0,42,16.21Zm3.83-76a6,6,0,0,0-1.65,1A26,26,0,0,1,166,112V102h52v10A26,26,0,0,1,205.83,134Z"/></svg></span><span class="svx__no">02</span></div>
+          <h3 class="svx__title"><span class="pl">Sklepy internetowe</span><span class="en">Online stores</span></h3>
+          <p class="svx__sub"><span class="pl">Budowa i&nbsp;rozwój e-commerce</span><span class="en">Building and growing e-commerce</span></p>
+          <p class="svx__desc just"><span class="pl">Nowy sklep od projektu po start sprzedaży albo rozbudowa sklepu, który już działa.</span><span class="en">A&nbsp;new store from design to first sales, or growing a&nbsp;store that already runs.</span></p>
+          <ul class="svx__list">
+            <li><span class="pl">Projekt i&nbsp;wdrożenie sklepu</span><span class="en">Store design and build</span></li>
+            <li><span class="pl">Wdrożenie nowych kolekcji</span><span class="en">New collection rollouts</span></li>
+            <li><span class="pl">Integracje z&nbsp;płatnościami i&nbsp;CRM</span><span class="en">Payment and CRM integrations</span></li>
+            <li><span class="pl">Zmiany wizualne i&nbsp;w&nbsp;układzie sklepu</span><span class="en">Visual and layout changes</span></li>
+          </ul>
+        </li>
+        <li class="svx__it" data-reveal>
+          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222.72,67.91l-88-48.18a13.9,13.9,0,0,0-13.44,0l-88,48.18A14,14,0,0,0,26,80.18v95.64a14,14,0,0,0,7.28,12.27l88,48.18a13.92,13.92,0,0,0,13.44,0l88-48.18A14,14,0,0,0,230,175.82V80.18A14,14,0,0,0,222.72,67.91ZM127,30.25a2,2,0,0,1,1.92,0L212.51,76,178.57,94.57,94.05,48.31ZM122,223,39,177.57a2,2,0,0,1-1-1.75V86.66l84,46ZM43.49,76,81.56,55.15l84.51,46.26L128,122.24ZM218,175.82a2,2,0,0,1-1,1.75h0L134,223V132.64l36-19.71V152a6,6,0,0,0,12,0V106.37l36-19.71Z"/></svg></span><span class="svx__no">03</span></div>
+          <h3 class="svx__title"><span class="pl">Obsługa e-commerce</span><span class="en">E-commerce care</span></h3>
+          <p class="svx__sub"><span class="pl">Importy, katalogi, produkty i&nbsp;optymalizacja</span><span class="en">Imports, catalogues, products and optimisation</span></p>
+          <p class="svx__desc just"><span class="pl">Bieżąca praca przy sklepie i&nbsp;katalogu produktów, także na marketplace’ach: WooCommerce, IdoSell, Empik, Allegro, OLX i&nbsp;inne. Jako stała współpraca albo jednorazowe zlecenie.</span><span class="en">Day-to-day work on your store and product catalogue, marketplaces included: WooCommerce, IdoSell, Empik, Allegro, OLX and more. As ongoing cooperation or a&nbsp;one-off job.</span></p>
+          <ul class="svx__list">
             <li><span class="pl">Masowe importy produktów, wariantów i&nbsp;zdjęć</span><span class="en">Bulk imports of products, variants and images</span></li>
             <li><span class="pl">Mapowanie kategorii i&nbsp;atrybutów</span><span class="en">Category and attribute mapping</span></li>
             <li><span class="pl">Aktualizacje i&nbsp;poprawki katalogowe</span><span class="en">Catalogue updates and corrections</span></li>
-            <li><span class="pl">Stała współpraca na preferencyjnych warunkach</span><span class="en">Ongoing cooperation on preferential terms</span></li>
-          </ul>
-        </li>
-        <li class="svc grid" data-reveal>
-          <h3 class="svc__head"><span class="svc__icon"><svg class="ico ico--shop" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g class="ico__swing"><path class="s t" d="M23 24 C 23 13, 28 9.5, 32 9.5 C 36 9.5, 41 13, 41 24"/><path class="s f" d="M13 24 L51 24 L54 56 L10 56 Z"/><path class="s t" d="M12.6 29 L51.4 29"/><circle class="s t" cx="17" cy="35" r="1.05"/><circle class="s t" cx="24" cy="35" r="1.05"/><circle class="s t" cx="31" cy="35" r="1.05"/><circle class="s t" cx="38" cy="35" r="1.05"/><circle class="s t" cx="45" cy="35" r="1.05"/><circle class="s t" cx="20.5" cy="41.5" r="1.05"/><circle class="s t" cx="27.5" cy="41.5" r="1.05"/><circle class="s t" cx="34.5" cy="41.5" r="1.05"/><circle class="s t" cx="41.5" cy="41.5" r="1.05"/><circle class="s t" cx="17" cy="48" r="1.05"/><circle class="s t" cx="24" cy="48" r="1.05"/><circle class="s t" cx="31" cy="48" r="1.05"/><circle class="s t" cx="38" cy="48" r="1.05"/><circle class="s t" cx="45" cy="48" r="1.05"/><path class="s t" d="M41 16 C 47 15, 50 20, 54 25"/><path class="s f" d="M52.2 24.4 L59 27 L56 35.2 L49.2 32.6 Z"/><circle class="s t" cx="54.2" cy="27.6" r="1"/><path class="s t" d="M51.4 30.4 L55.7 32 M50.8 32 L53.6 33"/></g></svg></span><span>E-commerce</span></h3>
-          <p class="svc__desc just"><span class="pl">Bieżąca obsługa sklepu internetowego: produkty, grafiki, zmiany wizualne i&nbsp;blog. Jako stała współpraca albo jednorazowe zlecenie.</span><span class="en">Day-to-day care of your online store: products, graphics, visual changes and blog. As ongoing cooperation or a&nbsp;one-off job.</span></p>
-          <ul class="svc__list">
-            <li><span class="pl">Produkty i&nbsp;zarządzanie sklepem</span><span class="en">Products and store management</span></li>
             <li><span class="pl">Banery i&nbsp;grafiki produktowe</span><span class="en">Banners and product visuals</span></li>
-            <li><span class="pl">Zmiany wizualne i&nbsp;w&nbsp;układzie sklepu</span><span class="en">Visual and layout changes to the store</span></li>
-            <li><span class="pl">Stała współpraca lub jednorazowe zlecenie</span><span class="en">Ongoing cooperation or a&nbsp;one-off job</span></li>
           </ul>
         </li>
-        <li class="svc grid" data-reveal>
-          <h3 class="svc__head"><span class="svc__icon"><svg class="ico ico--auto" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g class="ico__spin" style="transform-origin:25px 37px"><path class="s f" d="M37.36 34.54 L40.38 35.06 L40.38 38.94 L37.36 39.46 A12.6 12.6 0 0 1 36.73 41.61 L38.99 43.68 L36.89 46.95 L34.07 45.75 A12.6 12.6 0 0 1 32.37 47.22 L33.16 50.18 L29.62 51.8 L27.9 49.26 A12.6 12.6 0 0 1 25.67 49.58 L24.73 52.5 L20.89 51.94 L20.81 48.88 A12.6 12.6 0 0 1 18.77 47.95 L16.4 49.89 L13.46 47.35 L15.05 44.73 A12.6 12.6 0 0 1 13.84 42.84 L10.79 43.2 L9.7 39.47 L12.45 38.12 A12.6 12.6 0 0 1 12.45 35.88 L9.7 34.53 L10.79 30.8 L13.84 31.16 A12.6 12.6 0 0 1 15.05 29.27 L13.46 26.65 L16.4 24.11 L18.77 26.05 A12.6 12.6 0 0 1 20.81 25.12 L20.89 22.06 L24.73 21.5 L25.67 24.42 A12.6 12.6 0 0 1 27.9 24.74 L29.62 22.2 L33.16 23.82 L32.37 26.78 A12.6 12.6 0 0 1 34.07 28.25 L36.89 27.05 L38.99 30.32 L36.73 32.39 A12.6 12.6 0 0 1 37.36 34.54 Z"/><circle class="s f" cx="25" cy="37" r="8.4"/><path class="s t" d="M27.69 37 L32.22 37 M26.9 38.9 L30.11 42.11 M25 39.69 L25 44.22 M23.1 38.9 L19.89 42.11 M22.31 37 L17.78 37 M23.1 35.1 L19.89 31.89 M25 34.31 L25 29.78 M26.9 35.1 L30.11 31.89"/><circle class="s f" cx="25" cy="37" r="2.1"/></g><g class="ico__spin ico__spin--back" style="transform-origin:46.5px 19.5px"><path class="s f" d="M54.34 20.47 L56.26 21.68 L54.94 24.86 L52.73 24.36 A7.9 7.9 0 0 1 51.36 25.73 L51.86 27.94 L48.68 29.26 L47.47 27.34 A7.9 7.9 0 0 1 45.53 27.34 L44.32 29.26 L41.14 27.94 L41.64 25.73 A7.9 7.9 0 0 1 40.27 24.36 L38.06 24.86 L36.74 21.68 L38.66 20.47 A7.9 7.9 0 0 1 38.66 18.53 L36.74 17.32 L38.06 14.14 L40.27 14.64 A7.9 7.9 0 0 1 41.64 13.27 L41.14 11.06 L44.32 9.74 L45.53 11.66 A7.9 7.9 0 0 1 47.47 11.66 L48.68 9.74 L51.86 11.06 L51.36 13.27 A7.9 7.9 0 0 1 52.73 14.64 L54.94 14.14 L56.26 17.32 L54.34 18.53 A7.9 7.9 0 0 1 54.34 20.47 Z"/><circle class="s f" cx="46.5" cy="19.5" r="5"/><path class="s t" d="M48 19.5 L50.6 19.5 M47.25 20.8 L48.55 23.05 M45.75 20.8 L44.45 23.05 M45 19.5 L42.4 19.5 M45.75 18.2 L44.45 15.95 M47.25 18.2 L48.55 15.95"/><circle class="s f" cx="46.5" cy="19.5" r="1.4"/></g><path class="s t" d="M47 41 C 56 43, 58 52, 51 56 C 46 59, 40 58, 37 55 M39.6 58.4 L37 55 L41.6 54.2"/><path class="s t" d="M57 6 l2.6 -2.6 M59.5 11 l3.4 -.6 M52.5 4 l.6 -3.2"/></svg></span><span><span class="pl">Automatyzacje</span><span class="en">Automation</span></span></h3>
-          <p class="svc__desc just"><span class="pl">Narzędzia i&nbsp;integracje, które oszczędzają czas i&nbsp;ułatwiają obsługę klientów.</span><span class="en">Tools and integrations that save time and make serving your clients easier.</span></p>
-          <ul class="svc__list">
+        <li class="svx__it" data-reveal>
+          <div class="svx__top"><span class="svx__icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.24,75.76l-32-32a6,6,0,0,0-8.48,8.48L225.51,74H208c-48,0-59.44,27.46-69.54,51.69-9.43,22.64-17.66,42.33-53,44.16a38,38,0,1,0,.06,12c43.34-2.06,54.29-28.29,64-51.55C159.44,106.53,168,86,208,86h17.51l-21.75,21.76a6,6,0,1,0,8.48,8.48l32-32A6,6,0,0,0,244.24,75.76ZM48,202a26,26,0,1,1,26-26A26,26,0,0,1,48,202Z"/></svg></span><span class="svx__no">04</span></div>
+          <h3 class="svx__title"><span class="pl">Automatyzacje</span><span class="en">Automation</span></h3>
+          <p class="svx__sub"><span class="pl">Integracje, AI, API i&nbsp;usprawnianie procesów</span><span class="en">Integrations, AI, APIs and process improvements</span></p>
+          <p class="svx__desc just"><span class="pl">Narzędzia i&nbsp;integracje, które oszczędzają czas i&nbsp;ułatwiają obsługę klientów.</span><span class="en">Tools and integrations that save time and make serving your clients easier.</span></p>
+          <ul class="svx__list">
+            <li><span class="pl">Integracje między systemami i&nbsp;API</span><span class="en">System and API integrations</span></li>
+            <li><span class="pl">Asystenci AI i&nbsp;czaty na stronę</span><span class="en">AI assistants and website chats</span></li>
             <li><span class="pl">Mailingi i&nbsp;kampanie e-mail</span><span class="en">Email campaigns and mailings</span></li>
             <li><span class="pl">Scrapowanie i&nbsp;budowanie baz danych</span><span class="en">Data scraping and database building</span></li>
-            <li><span class="pl">Integracje między systemami i&nbsp;API</span><span class="en">System and API integrations</span></li>
           </ul>
         </li>
       </ul>
@@ -861,6 +1047,26 @@
   clone.querySelectorAll('img').forEach(function (n) { n.removeAttribute('fetchpriority'); n.setAttribute('alt', ''); });
   code.appendChild(clone);
 
+  /* ── Pasek menu: chowa się przy przewijaniu w dół, wraca przy przewijaniu w górę ── */
+  var lastY = window.scrollY, wide = window.matchMedia('(min-width: 961px)');
+  function tuck() {
+    var y = window.scrollY, d = y - lastY;
+    nav.classList.toggle('is-top', y < 40);
+    if (!wide.matches || y < 120 || nav.classList.contains('is-open')) nav.classList.remove('is-tucked');
+    else if (d > 4) nav.classList.add('is-tucked');
+    else if (d < -4) nav.classList.remove('is-tucked');
+    if (Math.abs(d) > 4) lastY = y;
+  }
+  window.addEventListener('scroll', tuck, { passive: true }); window.addEventListener('resize', tuck); tuck();
+
+  /* ── Tło z kartek lekko odsuwa się od kursora ── */
+  var heroBg = hero.querySelector('.hero__bg .hs');
+  if (heroBg && finePointer && !reduce) hero.addEventListener('pointermove', function (e) {
+    var r = hero.getBoundingClientRect();
+    heroBg.style.setProperty('--mx', ((e.clientX - r.left) / r.width - .5).toFixed(3));
+    heroBg.style.setProperty('--my', ((e.clientY - r.top) / r.height - .5).toFixed(3));
+  });
+
   function bpLabels() {
     var f = front.querySelectorAll('[data-bp]'), c = clone.querySelectorAll('[data-bp]');
     f.forEach(function (el, i) {
@@ -874,8 +1080,9 @@
   }
 
   var x = 0, y = 0, full = 0, tfull = 0, raf = 0;
-  var introOn = !reduce, introStarted = false;
-  if (introOn) code.style.clipPath = 'inset(0px 0px 0px 0px)';
+  // ciemna warstwa nie zasłania już hero przy wejściu; pokazuje się tylko w trybie Konstrukcja
+  var introOn = false, introStarted = false;
+  code.style.clipPath = 'inset(50% 50% 50% 50%)'; code.style.visibility = 'hidden';
   function runIntro() {
     if (!introOn || introStarted) return;
     introStarted = true;
@@ -897,24 +1104,6 @@
     code.style.visibility = full < 0.002 ? 'hidden' : 'visible';
   }
   function kick() { if (!raf) raf = requestAnimationFrame(frame); }
-
-  /* ── Linie siatki widoczne wokół kursora ── */
-  var spot = hero.querySelector('.hero__spot'), gsx = 0, gsy = 0, gqx = 0, gqy = 0, sraf = 0, sseen = false;
-  function spotFrame() {
-    gqx += (gsx - gqx) * (reduce ? 1 : .2); gqy += (gsy - gqy) * (reduce ? 1 : .2);
-    spot.style.setProperty('--sx', gqx.toFixed(1) + 'px'); spot.style.setProperty('--sy', gqy.toFixed(1) + 'px');
-    sraf = (Math.abs(gsx - gqx) > .3 || Math.abs(gsy - gqy) > .3) ? requestAnimationFrame(spotFrame) : 0;
-  }
-  if (finePointer) {
-    hero.addEventListener('pointermove', function (e) {
-      if (e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
-      var r = spot.getBoundingClientRect(); gsx = e.clientX - r.left; gsy = e.clientY - r.top;
-      if (!sseen) { gqx = gsx; gqy = gsy; sseen = true; }
-      spot.style.setProperty('--sr', Math.max(160, Math.min(280, hero.clientWidth * .17)) + 'px');
-      hero.classList.add('is-spot'); if (!sraf) sraf = requestAnimationFrame(spotFrame);
-    });
-    hero.addEventListener('pointerleave', function () { hero.classList.remove('is-spot'); sseen = false; });
-  }
 
   /* ── Tryb Konstrukcja: siatka i wymiary całej strony ── */
   var xBtns = document.querySelectorAll('[data-xtoggle]');
@@ -962,38 +1151,55 @@
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
 
-  /* ── Strony: rozrzucone kartki, galeria jedzie za kursorem ── */
-  var hs = document.querySelector('.hs'), hsRows = [].slice.call(hs.querySelectorAll('.hs__row'));
-  var hsMouse = !reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var hsHalf = [], hsT = 0, hsC = 0, hsRaf = 0;
-  hs.classList.toggle('is-mouse', hsMouse); root.classList.toggle('hs-mouse', hsMouse);
-  function hsApply() { hsRows.forEach(function (r, i) { r.style.transform = hsMouse ? 'translate3d(' + (-hsC * hsHalf[i]).toFixed(1) + 'px,0,0)' : ''; }); }
-  function hsLayout() {
-    var w = hs.clientWidth, widths = hsRows.map(function (r) { return r.offsetWidth; }), max = Math.max.apply(null, widths);
-    hsHalf = widths.map(function (x) { return Math.max(0, (x - w) / 2); });
-    if (!hsMouse) { hsRows.forEach(function (r, i) { r.style.marginLeft = ((max - widths[i]) / 2).toFixed(0) + 'px'; }); hs.scrollLeft = (hs.scrollWidth - w) / 2; }
-    hsApply();
+  /* ── Realizacje: karuzela; strona w oknie przewija się sama w dół i z powrotem ── */
+  function wkScroller(vp) {
+    var img = vp.querySelector('img'), on = false, dir = 1, t = 0;
+    function go() {
+      if (!on) return;
+      var d = Math.max(0, img.offsetHeight - vp.offsetHeight); if (!d) return;
+      var y = dir > 0 ? -d : 0, cur = -new DOMMatrix(getComputedStyle(img).transform).m42;
+      img.style.transition = 'transform ' + Math.max(.6, Math.abs(-y - cur) / 90).toFixed(2) + 's cubic-bezier(.45,0,.55,1)';
+      img.style.transform = 'translateY(' + y + 'px)';
+    }
+    img.addEventListener('transitionend', function () { if (!on) return; dir = -dir; clearTimeout(t); t = setTimeout(go, 1400); });
+    return {
+      play: function (delay) { if (reduce) return; on = true; clearTimeout(t); t = setTimeout(go, delay || 0); },
+      stop: function () { on = false; clearTimeout(t); dir = 1; img.style.transition = 'transform .9s cubic-bezier(.2,.7,.1,1)'; img.style.transform = 'translateY(0)'; }
+    };
   }
-  function hsTick() {
-    hsC += (hsT - hsC) * 0.06;
-    if (Math.abs(hsT - hsC) < 0.0004) hsC = hsT;
-    hsApply(); onScroll();
-    hsRaf = hsC !== hsT ? requestAnimationFrame(hsTick) : 0;
-  }
-  if (hsMouse) hs.addEventListener('mousemove', function (e) {
-    var r = hs.getBoundingClientRect();
-    hsT = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - 0.5) * 2.3));
-    if (!hsRaf) hsRaf = requestAnimationFrame(hsTick);
-  });
-  hs.addEventListener('scroll', function () { onScroll(); }, { passive: true });
-  hsLayout();
-  // przy myszce zdjęcia z boków wjeżdżają szybko, więc ładują się zawczasu
-  var hsLoad = new IntersectionObserver(function (es) {
-    if (!es[0].isIntersecting || !hsMouse) return;
-    [].forEach.call(hs.querySelectorAll('img[loading="lazy"]'), function (i) { i.loading = 'eager'; });
-    hsLoad.disconnect();
-  }, { rootMargin: '100% 0px' });
-  hsLoad.observe(hs);
+  (function () {
+    var wk = document.getElementById('wybrane'); if (!wk) return;
+    var track = wk.querySelector('.wk__track'), sl = [].slice.call(track.children), N = sl.length, i = -1, seen = false;
+    var titles = [].slice.call(wk.querySelectorAll('.wk__title')), caps = [].slice.call(wk.querySelectorAll('.wk__cap')), bb = [].slice.call(wk.querySelectorAll('.wk__bars button'));
+    var sc = sl.map(function (s) { return [].map.call(s.querySelectorAll('.wk__vp'), wkScroller); });
+    function place(dx) { track.style.transform = 'translateX(' + (-(sl[Math.max(i, 0)].offsetLeft - sl[0].offsetLeft) + (dx || 0)) + 'px)'; }
+    function go(k) {
+      k = (k + N) % N; if (k === i) return;
+      if (i >= 0) sc[i].forEach(function (s) { s.stop(); });
+      i = k;
+      sl.forEach(function (s, n) { s.classList.toggle('is-on', n === i); s.classList.toggle('is-next', n === i + 1); });
+      [titles, caps].forEach(function (g) { g.forEach(function (e, n) { e.classList.toggle('is-on', n === i); }); });
+      bb.forEach(function (b, n) { b.setAttribute('aria-current', n === i); });
+      sl[i].querySelectorAll('img[loading="lazy"]').forEach(function (im) { im.loading = 'eager'; });
+      if (sl[i + 1]) sl[i + 1].querySelectorAll('img[loading="lazy"]').forEach(function (im) { im.loading = 'eager'; });
+      place(); if (seen) sc[i].forEach(function (s) { s.play(1200); });
+    }
+    wk.querySelectorAll('.wk__arr').forEach(function (b) { b.addEventListener('click', function () { go(i + +b.dataset.dir); }); });
+    bb.forEach(function (b, k) { b.addEventListener('click', function () { go(k); }); });
+    var x0 = 0, dx = 0, down = false, moved = false;
+    sl.forEach(function (s, k) { s.addEventListener('click', function () { if (!moved && k === i + 1) go(k); }); });
+    track.addEventListener('pointerdown', function (e) { down = true; moved = false; x0 = e.clientX; dx = 0; });
+    window.addEventListener('pointermove', function (e) { if (!down) return; dx = e.clientX - x0; if (Math.abs(dx) > 6) { moved = true; track.classList.add('is-drag'); place(dx); } });
+    window.addEventListener('pointerup', function () { if (!down) return; down = false; track.classList.remove('is-drag'); if (dx < -60 && i < N - 1) go(i + 1); else if (dx > 60 && i > 0) go(i - 1); else place(); setTimeout(function () { moved = false; }, 0); });
+    window.addEventListener('resize', function () { place(); });
+    wk.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') go(i + 1); if (e.key === 'ArrowLeft') go(i - 1); });
+    // przewijanie rusza dopiero, gdy karuzela jest na ekranie
+    new IntersectionObserver(function (es) {
+      var v = es[0].isIntersecting; if (v === seen) return; seen = v;
+      sc[i].forEach(function (s) { v ? s.play(600) : s.stop(); });
+    }, { threshold: .25 }).observe(track);
+    go(0);
+  })();
 
   /* ── Strony: lekka paralaksa ramek ── */
   var sites = [].slice.call(document.querySelectorAll('.site[data-speed]'));
@@ -1405,7 +1611,7 @@
   }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(ready); else ready();
   setTimeout(function () { if (!root.classList.contains('is-loaded')) { root.classList.add('is-loaded'); setTimeout(runIntro, 1150); } }, 1500);
-  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { bpLabels(); if (root.classList.contains('is-xray')) xLabels(); hsLayout(); onScroll(); wGo(Math.min(wt, wMax())); }, 120); vw(); });
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { bpLabels(); if (root.classList.contains('is-xray')) xLabels(); onScroll(); wGo(Math.min(wt, wMax())); }, 120); vw(); });
 })();
 </script>
 
