@@ -174,28 +174,32 @@
   .wk__arr + .wk__arr { border-left: 0; }
   .wk__arr:hover, .wk__arr:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
   .wk__view { overflow: visible; }
-  .wk__track { display: flex; gap: var(--gap); transition: transform 1.1s var(--ease); touch-action: pan-y; user-select: none; }
-  .wk__track.is-drag { transition: none; }
-  .wk__slide { flex: none; width: 100%; aspect-ratio: 2.05; max-height: min(46vh, 520px); min-height: 0; overflow: hidden; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); column-gap: var(--gap); opacity: 0; transition: opacity .9s var(--ease); }
+  .wk__track { position: relative; touch-action: pan-y; user-select: none; }
+  .wk__track > .wk__slide:not(:first-child) { position: absolute; left: 0; top: 0; }
+  .wk__slide { transform: translateX(calc(var(--o, 0) * (100% + var(--gap)) + var(--dx, 0px))); transition: transform 1.1s var(--ease), opacity .9s var(--ease); }
+  .wk__track.is-drag .wk__slide, .wk__slide.is-jump { transition: none; }
+  .wk__slide { flex: none; width: 100%; aspect-ratio: 2.05; max-height: min(50vh, 560px); min-height: 0; overflow: hidden; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); column-gap: var(--gap); opacity: 0; }
   .wk__slide.is-on { opacity: 1; }
-  .wk__slide.is-next { opacity: .14; cursor: pointer; }
+  .wk__slide.is-side { opacity: .14; cursor: pointer; }
   .wk__slide img { pointer-events: none; -webkit-user-drag: none; }
-  .wk__win { grid-column: 1 / span 5; display: flex; flex-direction: column; min-height: 0; border: 1px solid var(--ink); background: var(--sheet); overflow: hidden; }
+  .wk__win { grid-column: 1 / span 4; display: flex; flex-direction: column; min-height: 0; border: 1px solid var(--ink); background: var(--sheet); overflow: hidden; }
   .wk__bar { flex: none; display: flex; align-items: center; gap: 10px; height: 30px; padding: 0 12px; border-bottom: 1px solid var(--ink); font: 400 11px/1 var(--mono); white-space: nowrap; overflow: hidden; }
   .wk__bar i { flex: none; width: 7px; height: 7px; border: 1px solid var(--ink); border-radius: 50%; }
   .wk__bar span { margin-left: 6px; overflow: hidden; text-overflow: ellipsis; }
   .wk__vp { position: relative; flex: 1; overflow: hidden; min-height: 0; }
   .wk__vp img { width: 100%; height: auto; will-change: transform; }
   .wk__col { grid-column: 10 / span 3; display: grid; grid-template-rows: 1fr 1fr; gap: var(--gap); min-height: 0; }
-  .wk__col--mid { grid-column: 6 / span 4; }
+  .wk__col--mid { grid-column: 5 / span 5; }
+  .wk__slide--duo .wk__win { grid-column: 1 / span 9; }
   .wk__col--one { grid-template-rows: 1fr; }
-  .wk__col--pair { grid-column: 6 / -1; grid-template-rows: 1fr; grid-template-columns: 1fr 1fr; column-gap: var(--gap); }
+  .wk__col--pair { grid-column: 5 / -1; grid-template-rows: 1fr; grid-template-columns: 1fr 1fr; column-gap: var(--gap); }
   .wk__phone { grid-column: 10 / span 3; position: relative; height: 100%; border: 1px solid var(--ink); background: var(--sheet); overflow: hidden; }
   .wk__phone .wk__vp { height: 100%; }
   .wk__tile { position: relative; border: 1px solid var(--ink); overflow: hidden; min-height: 0; background: var(--sheet); }
   .wk__tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 1.2s var(--ease); }
   .wk__tile:hover img { transform: scale(1.04); }
-  .wk__tile--form img { object-position: left top; }
+  .wk__tile--form { background: #ECECEC; }
+  .wk__tile--form img { object-fit: contain; object-position: center; padding: 4% 3%; }
   .wk__foot { margin-top: 32px; align-items: start; }
   .wk__caps { grid-column: 1 / span 7; display: grid; }
   .wk__cap { grid-area: 1 / 1; opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .6s var(--ease); pointer-events: none; }
@@ -211,6 +215,7 @@
     .wk__titles { grid-column: 1 / -1; }
     .wk__win { grid-column: 1 / span 7; } .wk__col--mid { grid-column: 8 / span 5; }
     .wk__phone, .wk__slide > .wk__col:not(.wk__col--mid):not(.wk__col--pair) { display: none; }
+    .wk__slide--duo .wk__win { grid-column: 1 / -1; }
     .wk__col--pair { grid-column: 8 / span 5; }
     .wk__caps { grid-column: 1 / -1; }
     .wk__nav { grid-column: 1 / -1; justify-self: stretch; justify-content: space-between; margin-top: 24px; }
@@ -711,8 +716,8 @@
     <div class="wrap hero__layer">
       <div class="grid hero__front">
         <h1 class="hero__title" data-bp="h1">
-          <span class="pl"><span class="line l1"><span>Zrobię Ci porządną</span></span><span class="line l2"><span>stronę.</span></span></span>
-          <span class="en"><span class="line l1"><span>I&rsquo;ll build you</span></span><span class="line l2"><span>a&nbsp;proper website.</span></span></span>
+          <span class="pl"><span class="line l1"><span>Projektuję, wdrażam</span></span><span class="line l2"><span>strony oraz sklepy.</span></span></span>
+          <span class="en"><span class="line l1"><span>I&nbsp;design and build</span></span><span class="line l2"><span>websites and stores.</span></span></span>
         </h1>
       </div>
     </div>
@@ -722,7 +727,7 @@
   <!-- ══ Wstęp pod hero ══ -->
   <section class="lead">
     <div class="wrap grid">
-        <p class="hero__intro just" data-bp="p"><span class="pl">Dla firm i&nbsp;osób, którym zależy na zrozumieniu ich potrzeb, wysokim poziomie projektowania i&nbsp;stronie spójnej z&nbsp;ich estetyką. Jedna osoba od pierwszego szkicu po działającą stronę. Poza tworzeniem stron robię również sklepy internetowe, obsługuję działające e-commerce i&nbsp;wdrażam automatyzacje.</span><span class="en">For companies and individuals who value being understood, a&nbsp;high standard of design and a&nbsp;website that matches their aesthetic. One person from the first sketch to a&nbsp;working website. Besides websites, I&nbsp;also build online stores, look after running e-commerce and set up automations.</span></p>
+        <p class="hero__intro just" data-bp="p"><span class="pl">Projektuję i&nbsp;wdrażam strony internetowe oraz sklepy, które łączą dopracowany wygląd z&nbsp;funkcjonalnością. Pracuję bezpośrednio z&nbsp;klientami, od pierwszego szkicu po gotowe wdrożenie. Zajmuję się również rozwojem e-commerce i&nbsp;automatyzacją procesów.</span><span class="en">I&nbsp;design and build websites and online stores that combine a&nbsp;refined look with functionality. I&nbsp;work directly with clients, from the first sketch to the finished launch. I&nbsp;also work on e-commerce growth and process automation.</span></p>
         <p class="hero__cta"><a class="btn" href="#kontakt" data-bp="a"><span><span class="pl">Skontaktuj się</span><span class="en">Get in touch</span></span><span aria-hidden="true">→</span></a></p>
     </div>
   </section>
@@ -741,7 +746,7 @@
             <li><img src="../img/clients/lust-for-life.png" alt="Lust for Life &amp; Lust for Business" width="600" height="124" style="height:27px" /></li>
             <li><img src="../img/clients/laap.png" alt="Laap" width="203" height="178" style="height:32px" /></li>
             <li><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" alt="Ponadczasowi" style="height:20px" onerror="this.parentNode.hidden=true" /></li>
-            <li><img src="../img/clients/mikolaj-markowski.png" alt="Mikołaj Markowski" width="279" height="147" style="height:36px" /></li>
+            <li><img src="../img/clients/mikolaj-markowski.webp" alt="Mikołaj Markowski" width="372" height="191" style="height:36px" /></li>
           </ul>
           <ul class="clients__set" aria-hidden="true">
             <li><img src="../img/clients/wise-habit.png" width="700" height="64" style="height:15px" alt="" /></li>
@@ -751,7 +756,7 @@
             <li><img src="../img/clients/lust-for-life.png" width="600" height="124" style="height:27px" alt="" /></li>
             <li><img src="../img/clients/laap.png" width="203" height="178" style="height:32px" alt="" /></li>
             <li><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" style="height:20px" onerror="this.parentNode.hidden=true" alt="" /></li>
-            <li><img src="../img/clients/mikolaj-markowski.png" width="279" height="147" style="height:36px" alt="" /></li>
+            <li><img src="../img/clients/mikolaj-markowski.webp" width="372" height="191" style="height:36px" alt="" /></li>
           </ul>
           <ul class="clients__set" aria-hidden="true">
             <li><img src="../img/clients/wise-habit.png" width="700" height="64" style="height:15px" alt="" /></li>
@@ -761,7 +766,7 @@
             <li><img src="../img/clients/lust-for-life.png" width="600" height="124" style="height:27px" alt="" /></li>
             <li><img src="../img/clients/laap.png" width="203" height="178" style="height:32px" alt="" /></li>
             <li><img src="https://ponadczasowi.pl/assets/images/logo/PONADCZASOWI_logo_grubsze_litery_4.svg" style="height:20px" onerror="this.parentNode.hidden=true" alt="" /></li>
-            <li><img src="../img/clients/mikolaj-markowski.png" width="279" height="147" style="height:36px" alt="" /></li>
+            <li><img src="../img/clients/mikolaj-markowski.webp" width="372" height="191" style="height:36px" alt="" /></li>
           </ul>
         </div>
       </div>
@@ -786,20 +791,20 @@
         <div class="wk__track">
           <div class="wk__slide is-on"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/agency-strona.webp" alt="Wise Habit, Agency for the Future" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/agency-archisnob-sklep.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile wk__tile--form"><img src="../img/wybrane/agency-formularz.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/agency-m-design.webp" alt="" loading="lazy" decoding="async"></div></div></div>
           <div class="wk__slide no-m"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/portfolio-start.webp" alt="Mikołaj Markowski" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--pair"><figure class="wk__tile"><img src="../img/wybrane/portfolio-proces.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/portfolio-veins.webp" alt="" loading="lazy" decoding="async"></figure></div></div>
-          <div class="wk__slide no-m"><div class="wk__win"><div class="wk__vp"><img src="../img/laapcode_uslugi_stronainternetowa_2.webp" alt="Laap Drones" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/laap-uslugi.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-blog.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__col"><figure class="wk__tile"><img src="../img/wybrane/laap-galeria.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-start.webp" alt="" loading="lazy" decoding="async"></figure></div></div>
-          <div class="wk__slide"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/lfl-desktop.webp" alt="Lust for Life. Lust for Business." loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/lfl-wydarzenia.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/lfl-partnerzy.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/lfl-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
-          <div class="wk__slide"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/p3-desktop.webp" alt="The Power of Three, Architect@Work" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid wk__col--one"><figure class="wk__tile"><img src="../img/wybrane/p3-ludzie.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/p3-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+          <div class="wk__slide no-m"><div class="wk__win"><div class="wk__vp"><img src="../img/laapcode_uslugi_stronainternetowa_2.webp" alt="Laap Drones" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/laap-uslugi.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/laap-blog.webp" alt="" loading="lazy" decoding="async"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/laap-m.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+          <div class="wk__slide wk__slide--duo"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/lfl-desktop.webp" alt="Lust for Life. Lust for Business." loading="lazy" decoding="async"></div></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/lfl-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+          <div class="wk__slide"><div class="wk__win"><div class="wk__vp"><img src="../img/wybrane/p3-desktop.webp" alt="The Power of Three, Architect@Work" loading="lazy" decoding="async"></div></div><div class="wk__col wk__col--mid"><figure class="wk__tile"><img src="../img/wybrane/p3-ludzie.webp" alt="" loading="lazy" decoding="async"></figure><figure class="wk__tile"><img src="../img/wybrane/p3-panel.webp" alt="" loading="lazy" decoding="async" style="object-position: center 100%"></figure></div><div class="wk__phone"><div class="wk__vp"><img src="../img/wybrane/p3-mobile.webp" alt="" loading="lazy" decoding="async"></div></div></div>
         </div>
       </div>
       <div class="wk__foot grid">
         <div class="wk__caps">
-          <div class="wk__cap is-on"><p class="wk__sc"><span class="pl">Nowy design i&nbsp;przeniesienie całej strony</span><span class="en">A&nbsp;new design and a&nbsp;full site move</span></p><p class="wk__ds just"><span class="pl">Agencja potrzebowała świeższego wyglądu i&nbsp;strony, którą może swobodnie rozwijać. Zająłem się redesignem i&nbsp;odświeżeniem strony, stawiając na większy minimalizm i&nbsp;przejrzystość, a&nbsp;potem przeniosłem ją w&nbsp;całości: ponad 20 podstron z&nbsp;usługami, konferencjami, wystawami, magazynem ArchiSnob i&nbsp;profilami projektantów. Na stronie działa czat AI, który odpowiada odwiedzającym na pytania, oraz formularze kontaktowe.</span><span class="en">The agency needed a&nbsp;fresher look and a&nbsp;site it could grow freely. I&nbsp;redesigned and refreshed it, aiming for more minimalism and clarity, then moved it over in full: more than 20 subpages with services, conferences, exhibitions, the ArchiSnob magazine and designer profiles. The site runs an AI chat that answers visitors&rsquo; questions, plus contact forms.</span></p><p class="wk__ln"><a class="u" href="https://agency.wisehabit.com/" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
-          <div class="wk__cap"><p class="wk__sc"><span class="pl">Strona w&nbsp;charakterze jego pracowni</span><span class="en">A&nbsp;site with the character of his studio</span></p><p class="wk__ds just"><span class="pl">Mikołaj projektuje przedmioty i&nbsp;eksperymentuje z&nbsp;materiałami, od porcelany po pracę z&nbsp;robotem KUKA. Portfolio miało wyglądać jak jego pracownia, a&nbsp;nie jak gotowy szablon: odręczne logo, maszynowy krój pisma, kolaże zdjęć z&nbsp;procesu i&nbsp;krótki opis przy każdym projekcie. Strona działa w&nbsp;dwóch językach.</span><span class="en">Mikołaj designs objects and experiments with materials, from porcelain to work with a&nbsp;KUKA robot. The portfolio had to feel like his studio, not a&nbsp;ready-made template: a&nbsp;hand-drawn logo, a&nbsp;typewriter typeface, collages of process photos and a&nbsp;short note on every project. The site works in two languages.</span></p></div>
+          <div class="wk__cap is-on"><p class="wk__sc"><span class="pl">Nowy design i&nbsp;przeniesienie całej strony</span><span class="en">A&nbsp;new design and a&nbsp;full site move</span></p><p class="wk__ds just"><span class="pl">Agencja potrzebowała świeższego wyglądu i&nbsp;strony, którą może swobodnie rozwijać. Zająłem się redesignem i&nbsp;odświeżeniem strony, stawiając na większy minimalizm i&nbsp;przejrzystość, a&nbsp;potem przeniosłem ją w&nbsp;całości: wiele podstron z&nbsp;usługami, konferencjami, wystawami, magazynem ArchiSnob i&nbsp;profilami projektantów. Na stronie działa czat AI, który odpowiada odwiedzającym na pytania, oraz formularze kontaktowe.</span><span class="en">The agency needed a&nbsp;fresher look and a&nbsp;site it could grow freely. I&nbsp;redesigned and refreshed it, aiming for more minimalism and clarity, then moved it over in full: many subpages with services, conferences, exhibitions, the ArchiSnob magazine and designer profiles. The site runs an AI chat that answers visitors&rsquo; questions, plus contact forms.</span></p><p class="wk__ln"><a class="u" href="https://agency.wisehabit.com/" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
+          <div class="wk__cap"><p class="wk__sc"><span class="pl">Postawienie strony internetowej</span><span class="en">Building the website</span></p><p class="wk__ds just"><span class="pl">Mikołaj projektuje przedmioty i&nbsp;eksperymentuje z&nbsp;materiałami, od porcelany po pracę z&nbsp;robotem KUKA. Portfolio miało wyglądać jak jego pracownia, a&nbsp;nie jak gotowy szablon: odręczne logo, maszynowy krój pisma, kolaże zdjęć z&nbsp;procesu i&nbsp;krótki opis przy każdym projekcie. Strona działa w&nbsp;dwóch językach.</span><span class="en">Mikołaj designs objects and experiments with materials, from porcelain to work with a&nbsp;KUKA robot. The portfolio had to feel like his studio, not a&nbsp;ready-made template: a&nbsp;hand-drawn logo, a&nbsp;typewriter typeface, collages of process photos and a&nbsp;short note on every project. The site works in two languages.</span></p><p class="wk__ln"><a class="u" href="https://mikolajmarkowski.vercel.app/" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
           <div class="wk__cap"><p class="wk__sc"><span class="pl">Design inspirowany starymi mapami</span><span class="en">A&nbsp;design inspired by old maps</span></p><p class="wk__ds just"><span class="pl">Laap Drones nagrywa filmy FPV we wnętrzach hal, magazynów i&nbsp;domów, a&nbsp;także buduje i&nbsp;serwisuje drony. Inspiracją dla designu były stare mapy kartograficzne: cienkie linie, siatki i&nbsp;opisy jak na planie. Trzy usługi, galeria realizacji i&nbsp;blog są czytelne od pierwszego ekranu.</span><span class="en">Laap Drones films FPV footage inside halls, warehouses and houses, and builds and services drones. The design draws on old cartographic maps: thin lines, grids and labels like on a&nbsp;plan. Three services, a&nbsp;project gallery and a&nbsp;blog, all clear from the first screen.</span></p></div>
           <div class="wk__cap"><p class="wk__sc"><span class="pl">Agenda i&nbsp;prelegenci czytelni w&nbsp;kilka sekund</span><span class="en">Agenda and speakers clear in seconds</span></p><p class="wk__ds just"><span class="pl">Podstrona konferencji o&nbsp;designie i&nbsp;biznesie w&nbsp;serwisie Wise Habit. Program dnia, sylwetki prelegentów, miejsce i&nbsp;partnerzy ułożone tak, żeby gość od razu wiedział, kiedy, gdzie i&nbsp;kogo posłucha. Wersja na telefon dopracowana osobno.</span><span class="en">A&nbsp;conference subpage about design and business on the Wise Habit website. The programme, speaker profiles, venue and partners arranged so a&nbsp;guest knows at once when, where and whom they will hear. The mobile version was refined separately.</span></p><p class="wk__ln"><a class="u" href="https://agency.wisehabit.com/conference-lust-for-life" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
           <div class="wk__cap"><p class="wk__sc"><span class="pl">Wystawa na targach Architect@Work</span><span class="en">An exhibition at Architect@Work</span></p><p class="wk__ds just"><span class="pl">Podstrona wystawy w&nbsp;serwisie Wise Habit. Pokazuje prezentowane projekty, ich autorów i&nbsp;panel dyskusyjny, czytelnie na komputerze i&nbsp;na telefonie.</span><span class="en">An exhibition subpage on the Wise Habit website. It presents the projects on show, their authors and the panel discussion, clearly on desktop and on mobile.</span></p><p class="wk__ln"><a class="u" href="https://agency.wisehabit.com/power-of-three" target="_blank" rel="noopener"><span class="pl">Zobacz stronę</span><span class="en">See the website</span> ↗</a></p></div>
         </div>
-        <div class="wk__nav"><div class="wk__bars"><button type="button" aria-label="Wise Habit, Agency for the Future"></button><button type="button" aria-label="Mikołaj Markowski"></button><button type="button" aria-label="Laap Drones"></button><button type="button" aria-label="Lust for Life. Lust for Business."></button><button type="button" aria-label="The Power of Three, Architect@Work"></button></div><div class="wk__arrows"><button type="button" class="wk__arr" data-dir="-1" aria-label="Poprzedni projekt">←</button><button type="button" class="wk__arr" data-dir="1" aria-label="Następny projekt">→</button></div></div>
+        <div class="wk__nav"><div class="wk__bars"><button type="button" aria-label="Wise Habit, Agency for the Future"></button><button type="button" aria-label="Mikołaj Markowski"></button><button type="button" aria-label="Laap Drones"></button><button type="button" aria-label="Lust for Life. Lust for Business."></button><button type="button" aria-label="The Power of Three, Architect@Work"></button></div><div class="wk__arrows"><button type="button" class="wk__arr" data-dir="-1" aria-label="Poprzedni projekt"><svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="wk__arr" data-dir="1" aria-label="Następny projekt"><svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
       </div>
     </div>
   </section>
@@ -881,9 +886,9 @@
           <div class="chat" data-x>
             <template id="chatAva"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="14 14 292 420"><g><g class="plume"><path d="M 180.35 280.7 C 161.4 249.1 117.15 233.3 30.25 154.3 M 30.25 154.3 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 163.8 217.5 125.05 185.9 46.05 99 M 46.05 99 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 168.5 185.9 140.85 138.5 77.65 51.6 M 77.65 51.6 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 173.25 170.1 156.65 114.8 117.15 20 M 117.15 20 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 178 170.1 172.45 114.8 156.65 35.8 M 156.65 35.8 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 182.75 193.8 188.25 150.35 188.25 75.3 M 188.25 75.3 q 7.9 0.8 10.25 10.25 M 180.35 280.7 C 185.1 225.4 196.15 197.75 211.95 138.5 M 211.95 138.5 q 7.9 0.8 10.25 10.25 M 180.35 280.7 C 166.15 264.9 132.95 257 69.75 201.7 M 69.75 201.7 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 175.65 201.7 164.55 162.2 132.95 91.1 M 132.95 91.1 q -7.9 0.8 -10.25 10.25" stroke-width="3.25" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /></g><ellipse cx="189.85" cy="357.25" rx="49" ry="60.05" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M 137.95 329.65 C 135.95 269.7 243.75 269.7 241.75 329.65 Q 189.85 342.3 137.95 329.65 Z" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /><g><circle cx="172.55" cy="289.3" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="189.1" cy="289.3" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="205.7" cy="289.3" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="153.7" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="170.3" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="186.9" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="203.5" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="220.05" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="157.7" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="174.3" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="190.9" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="207.45" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="224.05" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /></g><path d="M 162.9 287.75 L 123.4 260.9 L 120.25 305.1 Z M 162.9 287.75 L 191.35 256.15 L 199.25 292.5 Z" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="162.9" cy="287.75" r="7.9" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M 214.35 368.65 L 298.85 420.3 L 203.3 400.25 Z" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M 213.35 385.25 L 275.15 410.8" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><g class="eyes"><circle cx="174.05" cy="361.2" r="19.75" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M 179.95 361.2 L 190.25 361.2 M 178.25 365.4 L 185.5 372.65 M 174.05 367.15 L 174.05 377.4 M 169.85 365.4 L 162.6 372.65 M 168.15 361.2 L 157.85 361.2 M 169.85 357 L 162.6 349.75 M 174.05 355.3 L 174.05 345 M 178.25 357 L 185.5 349.75" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="174.05" cy="361.2" r="5.15" fill="#141414" stroke="none" /><circle cx="213.55" cy="359.65" r="19.75" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M 219.35 360.8 L 229.4 362.85 M 216.8 364.55 L 222.5 373.15 M 212.35 365.45 L 210.35 375.5 M 208.6 362.9 L 200.05 368.6 M 207.75 358.45 L 197.7 356.4 M 210.3 354.7 L 204.6 346.15 M 214.75 353.8 L 216.75 343.75 M 218.5 356.35 L 227.05 350.7" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" /><circle cx="213.55" cy="359.65" r="5.15" fill="#141414" stroke="none" /></g></g></svg></template>
             <div class="chat__log" aria-live="polite">
-              <p class="msg msg--bot"><span class="pl">Cześć! W&nbsp;czym możemy pomóc?</span><span class="en">Hi! How can we help?</span></p>
+              <p class="msg msg--bot"><span class="pl">Cześć, w&nbsp;czym mogę pomóc?</span><span class="en">Hi, how can I help?</span></p>
               <p class="msg msg--me"><span class="pl">Ile trwa realizacja projektu?</span><span class="en">How long does a&nbsp;project take?</span></p>
-              <p class="msg msg--bot"><span class="pl">To zależy od zakresu. Dokładny termin zespół ustala po krótkiej rozmowie. Zostawisz adres e-mail?</span><span class="en">It depends on the scope. The team sets the exact timeline after a&nbsp;short call. Would you like to leave your email?</span></p>
+              <p class="msg msg--bot"><span class="pl">To zależy od zakresu. Dokładny termin ustalę po krótkiej rozmowie. Zostawisz adres e-mail?</span><span class="en">It depends on the scope. I&rsquo;ll set the exact timeline after a&nbsp;short call. Would you like to leave your email?</span></p>
               <p class="msg msg--me">anna@example.com</p>
               <p class="msg msg--bot"><span class="pl">Dziękuję. Przekazałem wiadomość zespołowi, odezwiemy się wkrótce.</span><span class="en">Thank you. I have passed your message to the team, we will be in touch soon.</span></p>
               <p class="msg msg--sys"><span class="pl">nowy kontakt: anna@example.com, przekazany do zespołu</span><span class="en">new lead: anna@example.com, passed to the team</span></p>
@@ -964,7 +969,7 @@
   <!-- ══ O mnie ══ -->
   <section class="section" id="o-mnie">
     <div class="wrap grid about">
-      <figure class="about__photo" data-reveal data-x><img src="../img/laapcode_franciszek-mojsak-okulary.webp" alt="Franciszek Mojsak nad Bałtykiem" width="1600" height="1200" decoding="async" /></figure>
+      <figure class="about__photo" data-reveal data-x><img src="../img/laapcode_franciszek-mojsak-jesien.webp" alt="Franciszek Mojsak jesienią pod drzewem" width="1600" height="1200" decoding="async" /></figure>
       <div class="about__text" data-reveal>
         <h2 class="sec-title" data-x><span class="pl">O mnie</span><span class="en">About</span></h2>
         <p class="about__lead"><span class="pl">Łączę e-commerce, sprzedaż, marketing i&nbsp;programowanie.</span><span class="en">I&nbsp;combine e-commerce, sales, marketing and programming.</span></p>
@@ -1176,25 +1181,33 @@
     var track = wk.querySelector('.wk__track'), sl = [].slice.call(track.children), N = sl.length, i = -1, seen = false;
     var titles = [].slice.call(wk.querySelectorAll('.wk__title')), caps = [].slice.call(wk.querySelectorAll('.wk__cap')), bb = [].slice.call(wk.querySelectorAll('.wk__bars button'));
     var sc = sl.map(function (s) { return [].map.call(s.querySelectorAll('.wk__vp'), wkScroller); });
-    function place(dx) { track.style.transform = 'translateX(' + (-(sl[Math.max(i, 0)].offsetLeft - sl[0].offsetLeft) + (dx || 0)) + 'px)'; }
+    function off(n) { var o = ((n - i) % N + N) % N; return o > N / 2 ? o - N : o; }
+    function place(dx) { track.style.setProperty('--dx', '0px'); sl.forEach(function (s) { s.style.setProperty('--dx', (dx || 0) + 'px'); }); }
     function go(k) {
       k = (k + N) % N; if (k === i) return;
       if (i >= 0) sc[i].forEach(function (s) { s.stop(); });
+      var prev = sl.map(function (s, n) { return i < 0 ? 0 : off(n); });
       i = k;
-      sl.forEach(function (s, n) { s.classList.toggle('is-on', n === i); s.classList.toggle('is-next', n === i + 1); });
+      sl.forEach(function (s, n) {
+        var o = off(n);
+        s.classList.toggle('is-jump', i >= 0 && Math.abs(o - prev[n]) > 1);
+        s.style.setProperty('--o', o);
+        s.classList.toggle('is-on', o === 0); s.classList.toggle('is-side', Math.abs(o) === 1);
+        s.setAttribute('aria-hidden', o === 0 ? 'false' : 'true');
+        if (Math.abs(o) <= 1) s.querySelectorAll('img[loading="lazy"]').forEach(function (im) { im.loading = 'eager'; });
+      });
+      requestAnimationFrame(function () { sl.forEach(function (s) { s.classList.remove('is-jump'); }); });
       [titles, caps].forEach(function (g) { g.forEach(function (e, n) { e.classList.toggle('is-on', n === i); }); });
       bb.forEach(function (b, n) { b.setAttribute('aria-current', n === i); });
-      sl[i].querySelectorAll('img[loading="lazy"]').forEach(function (im) { im.loading = 'eager'; });
-      if (sl[i + 1]) sl[i + 1].querySelectorAll('img[loading="lazy"]').forEach(function (im) { im.loading = 'eager'; });
       place(); if (seen) sc[i].forEach(function (s) { s.play(1200); });
     }
     wk.querySelectorAll('.wk__arr').forEach(function (b) { b.addEventListener('click', function () { go(i + +b.dataset.dir); }); });
     bb.forEach(function (b, k) { b.addEventListener('click', function () { go(k); }); });
     var x0 = 0, dx = 0, down = false, moved = false;
-    sl.forEach(function (s, k) { s.addEventListener('click', function () { if (!moved && k === i + 1) go(k); }); });
+    sl.forEach(function (s, k) { s.addEventListener('click', function () { var o = off(k); if (!moved && Math.abs(o) === 1) go(i + o); }); });
     track.addEventListener('pointerdown', function (e) { down = true; moved = false; x0 = e.clientX; dx = 0; });
     window.addEventListener('pointermove', function (e) { if (!down) return; dx = e.clientX - x0; if (Math.abs(dx) > 6) { moved = true; track.classList.add('is-drag'); place(dx); } });
-    window.addEventListener('pointerup', function () { if (!down) return; down = false; track.classList.remove('is-drag'); if (dx < -60 && i < N - 1) go(i + 1); else if (dx > 60 && i > 0) go(i - 1); else place(); setTimeout(function () { moved = false; }, 0); });
+    window.addEventListener('pointerup', function () { if (!down) return; down = false; track.classList.remove('is-drag'); if (dx < -60) go(i + 1); else if (dx > 60) go(i - 1); else place(); setTimeout(function () { moved = false; }, 0); });
     window.addEventListener('resize', function () { place(); });
     wk.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') go(i + 1); if (e.key === 'ArrowLeft') go(i - 1); });
     // przewijanie rusza dopiero, gdy karuzela jest na ekranie
@@ -1265,7 +1278,7 @@
     if (live) return; live = true; chatRun = true;
     [].slice.call(cLog.querySelectorAll('.msg:not(.msg--typing)')).forEach(function (m) { m.remove(); });
     typing.classList.remove('is-shown'); cLog.appendChild(typing);
-    var hi = cPl() ? 'Cześć! Jestem asystentem Franciszka. Zapytaj o stronę, sklep, importy produktów albo automatyzacje.' : 'Hi! I am Franciszek’s assistant. Ask about websites, online stores, product imports or automation.';
+    var hi = cPl() ? 'Cześć, w czym mogę pomóc? Zapytaj o stronę, sklep, e-commerce albo automatyzacje.' : 'Hi, how can I help? Ask about websites, online stores, e-commerce or automation.';
     cAdd('msg--bot', hi); turns = [{ role: 'assistant', content: hi }]; lightFlow(1);
   }
   cIn.addEventListener('focus', goLive);
