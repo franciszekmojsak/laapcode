@@ -8,7 +8,45 @@
 <meta property="og:title" content="Franciszek Mojsak · strony, sklepy i automatyzacje" />
 <meta property="og:description" content="Projektuję i wdrażam strony internetowe oraz sklepy. Od pierwszego szkicu po gotowe wdrożenie." />
 <meta property="og:type" content="website" />
-<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
+<meta property="og:url" content="https://franciszek.mojsak.com/" />
+<meta property="og:site_name" content="Franciszek Mojsak" />
+<meta property="og:locale" content="pl_PL" />
+<meta property="og:image" content="https://franciszek.mojsak.com/img/og-franciszek.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Franciszek Mojsak · strony, sklepy i automatyzacje" />
+<meta name="twitter:description" content="Projektuję i wdrażam strony internetowe oraz sklepy. Od pierwszego szkicu po gotowe wdrożenie." />
+<meta name="twitter:image" content="https://franciszek.mojsak.com/img/og-franciszek.jpg" />
+<meta name="author" content="Franciszek Mojsak" />
+<meta name="theme-color" content="#FAFAFA" />
+<link rel="canonical" href="https://franciszek.mojsak.com/" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Franciszek Mojsak",
+  "url": "https://franciszek.mojsak.com/",
+  "image": "https://franciszek.mojsak.com/img/og-franciszek.jpg",
+  "email": "franciszekmojsak@gmail.com",
+  "telephone": "+48 531 041 234",
+  "description": "Projektowanie i wdrażanie stron internetowych oraz sklepów, obsługa e-commerce, importy produktowe i automatyzacje.",
+  "areaServed": "PL",
+  "founder": { "@type": "Person", "name": "Franciszek Mojsak", "jobTitle": "Projektant stron internetowych", "email": "franciszekmojsak@gmail.com" },
+  "knowsLanguage": ["pl", "en"],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Strony internetowe" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 800, "priceCurrency": "PLN" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sklepy internetowe" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": 2000, "priceCurrency": "PLN" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Obsługa e-commerce i importy produktowe" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatyzacje" } }
+  ]
+}
+</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
 <link rel="preload" href="../fonts/manrope-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin />
 <style>
   /* ── Fonty: self-hosted ── */
@@ -88,7 +126,7 @@
     .nav__links a { width: max-content; background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--ease); }
     .nav__links a:hover { background-size: 100% 1px; }
     .nav__tools { grid-column: 12 / span 1; justify-self: end; line-height: 1.35; }
-    .nav .wrap { max-width: none; }
+    .nav .wrap, .lead .wrap { max-width: none; }
   }
   .nav__menu { display: none; font-size: 15px; }
   .nav__progress { position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: var(--ink); transform-origin: 0 50%; transform: scaleX(0); }
@@ -558,6 +596,9 @@
 
   /* ── Stopka: tabelka rysunkowa ── */
   .foot { padding: clamp(120px, 12vw, 200px) 0 40px; }
+  .footbird { display: flex; align-items: flex-end; gap: 20px; margin-bottom: 20px; }
+  .footbird__img { flex: none; width: 44px; height: auto; }
+  .footbird__txt { font-size: 13px; line-height: 1.6; max-width: 36em; }
   .tblock { border-top: 1px solid var(--ink); padding-top: 20px; row-gap: 24px; font-size: 14px; }
   .tblock > div { grid-column: span 3; }
   .tblock dt { font-weight: 500; }
@@ -982,7 +1023,7 @@
   <!-- ══ O mnie ══ -->
   <section class="section" id="o-mnie">
     <div class="wrap grid about">
-      <figure class="about__photo" data-reveal data-x><img src="../img/laapcode_franciszek-mojsak-jesien.webp" alt="Franciszek Mojsak jesienią pod drzewem" width="1600" height="1200" decoding="async" /></figure>
+      <figure class="about__photo" data-reveal data-x><img src="../img/franciszek-mojsak.webp" alt="Franciszek Mojsak" width="1264" height="843" decoding="async" /></figure>
       <div class="about__text" data-reveal>
         <h2 class="sec-title" data-x><span class="pl">O mnie</span><span class="en">About</span></h2>
         <p class="about__lead"><span class="pl">Łączę e-commerce, sprzedaż, marketing i&nbsp;programowanie.</span><span class="en">I&nbsp;combine e-commerce, sales, marketing and programming.</span></p>
@@ -1018,13 +1059,17 @@
 
 <footer class="foot">
   <div class="wrap">
+    <div class="footbird">
+      <img class="footbird__img" src="../img/ptaszek.svg" alt="" width="64" height="128" loading="lazy" />
+      <p class="footbird__txt"><span class="pl">Ptaszek na tej stronie jest inspirowany grafiką „Madárpár” („Para ptaków”) z&nbsp;1970 roku węgierskiego grafika i&nbsp;malarza Arnolda Grossa (1929–2015).</span><span class="en">The bird on this site is inspired by „Madárpár” („A&nbsp;Pair of Birds”), a&nbsp;1970 print by the Hungarian printmaker and painter Arnold Gross (1929–2015).</span></p>
+    </div>
     <dl class="tblock grid">
       <div><dt><span class="pl">Autor</span><span class="en">Author</span></dt><dd>Franciszek Mojsak</dd></div>
       <div><dt><span class="pl">Kontakt</span><span class="en">Contact</span></dt><dd><a class="u" href="mailto:franciszekmojsak@gmail.com">franciszekmojsak@gmail.com</a></dd></div>
     </dl>
     <div class="legal">
       <p>© <span data-year>2026</span> Franciszek Mojsak</p>
-      <nav><a class="u" href="/blog"><span class="pl">Blog</span><span class="en">Blog</span></a><a class="u" href="/privacy"><span class="pl">Polityka prywatności</span><span class="en">Privacy policy</span></a><a class="u" href="/terms"><span class="pl">Regulamin</span><span class="en">Terms</span></a></nav>
+      <nav><a class="u" href="/privacy"><span class="pl">Polityka prywatności</span><span class="en">Privacy policy</span></a><a class="u" href="/terms"><span class="pl">Regulamin</span><span class="en">Terms</span></a></nav>
     </div>
   </div>
 </footer>
