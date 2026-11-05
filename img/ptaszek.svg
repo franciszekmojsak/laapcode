@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" width="318.85" height="637.95" viewBox="0 0 318.85 637.95">
+<g id="ptaszek">
+<g id="cialo">
+<g id="noga-tylna">
+<path d="M 177.85 525.55 L 171.85 576.35 L 180.85 617.95 M 172.85 617.95 L 208.35 617.95 M 180.85 617.95 L 202.85 609.95" fill="none" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g id="noga-przednia">
+<path d="M 193.85 525.55 L 187.85 576.35 L 196.85 617.95 M 188.85 617.95 L 224.35 617.95 M 196.85 617.95 L 218.85 609.95" fill="none" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path d="M 178.8 433.3 L 200.9 433.3 C 229.2 457.9 230.45 513.55 197.85 527.55 C 165.25 538.55 109.9 552.55 60.7 546.55 C 103.75 533.55 152.95 504.65 170.8 470.2 C 175.8 448.3 178.8 439.3 178.8 433.3 Z" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="tulow" />
+<path d="M 192.45 452.75 Q 203.65 473.2 203.8 498.6 M 185.75 461.3 Q 196.35 481.45 195.95 506.55 M 178.5 469.7 Q 188 489.3 186.5 513.9 M 170.7 477.9 Q 178.65 496.75 175.55 520.55 M 162.35 486 Q 168.2 503.8 163.1 526.65 M 153.45 493.9 Q 156.75 510.5 149.1 532.05 M 144 501.7 Q 144.3 516.75 133.6 536.85 M 134 509.35 Q 130.75 522.65 116.55 540.95" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" id="piora-na-tulowiu" />
+<g id="ogon-zawijas">
+<path d="M 60.7 546.55 C 44.7 549.55 41.7 532.55 54.7 530.55 C 63.7 529.55 64.7 538.55 58.7 539.55 M 67.7 547.55 l -8 14 M 77.7 545.55 l -5 15 M 87.7 543.05 l -2 14.5" fill="none" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g id="glowa">
+<path d="M 178.8 436.3 L 181.15 414.3 M 200.9 436.3 L 199.35 414.3" fill="none" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="szyja" />
+<g id="pioropusz">
+<path d="M 180.35 280.7 C 161.4 249.1 117.15 233.3 30.25 154.3 M 30.25 154.3 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 163.8 217.5 125.05 185.9 46.05 99 M 46.05 99 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 168.5 185.9 140.85 138.5 77.65 51.6 M 77.65 51.6 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 173.25 170.1 156.65 114.8 117.15 20 M 117.15 20 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 178 170.1 172.45 114.8 156.65 35.8 M 156.65 35.8 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 182.75 193.8 188.25 150.35 188.25 75.3 M 188.25 75.3 q 7.9 0.8 10.25 10.25 M 180.35 280.7 C 185.1 225.4 196.15 197.75 211.95 138.5 M 211.95 138.5 q 7.9 0.8 10.25 10.25 M 180.35 280.7 C 166.15 264.9 132.95 257 69.75 201.7 M 69.75 201.7 q -7.9 0.8 -10.25 10.25 M 180.35 280.7 C 175.65 201.7 164.55 162.2 132.95 91.1 M 132.95 91.1 q -7.9 0.8 -10.25 10.25" stroke-width="3.25" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<ellipse cx="189.85" cy="357.25" rx="49" ry="60.05" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="glowa-owal" />
+<path d="M 137.95 329.65 C 135.95 269.7 243.75 269.7 241.75 329.65 Q 189.85 342.3 137.95 329.65 Z" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="czepek" />
+<g id="czepek-kolka">
+<circle cx="172.55" cy="289.3" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="189.1" cy="289.3" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="205.7" cy="289.3" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="153.7" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="170.3" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="186.9" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="203.5" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="220.05" cy="305.9" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="157.7" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="174.3" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="190.9" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="207.45" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="224.05" cy="322.5" r="4.9" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path d="M 162.9 287.75 L 123.4 260.9 L 120.25 305.1 Z M 162.9 287.75 L 191.35 256.15 L 199.25 292.5 Z" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="kokarda" />
+<circle cx="162.9" cy="287.75" r="7.9" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="kokarda-wezel" />
+<path d="M 214.35 368.65 L 298.85 420.3 L 203.3 400.25 Z" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="dziob" />
+<path d="M 213.35 385.25 L 275.15 410.8" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" id="dziob-linia" />
+<g id="oczy">
+<circle cx="174.05" cy="361.2" r="19.75" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="oko-lewe" />
+<path d="M 179.95 361.2 L 190.25 361.2 M 178.25 365.4 L 185.5 372.65 M 174.05 367.15 L 174.05 377.4 M 169.85 365.4 L 162.6 372.65 M 168.15 361.2 L 157.85 361.2 M 169.85 357 L 162.6 349.75 M 174.05 355.3 L 174.05 345 M 178.25 357 L 185.5 349.75" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" id="oko-lewe-szprychy" />
+<circle cx="174.05" cy="361.2" r="5.15" fill="#141414" stroke="none" id="oko-lewe-zrenica" />
+<circle cx="213.55" cy="359.65" r="19.75" fill="#FFFFFF" stroke="#141414" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" id="oko-prawe" />
+<path d="M 219.35 360.8 L 229.4 362.85 M 216.8 364.55 L 222.5 373.15 M 212.35 365.45 L 210.35 375.5 M 208.6 362.9 L 200.05 368.6 M 207.75 358.45 L 197.7 356.4 M 210.3 354.7 L 204.6 346.15 M 214.75 353.8 L 216.75 343.75 M 218.5 356.35 L 227.05 350.7" stroke-width="2.8" fill="none" stroke="#141414" stroke-linecap="round" stroke-linejoin="round" id="oko-prawe-szprychy" />
+<circle cx="213.55" cy="359.65" r="5.15" fill="#141414" stroke="none" id="oko-prawe-zrenica" />
+</g>
+</g>
+</g>
+</g>
+</svg>
